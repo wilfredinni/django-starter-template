@@ -5,7 +5,7 @@ services:
       image: redis:alpine
       container_name: redis-container
       ports:
-        - 6379:6380
+        - 6380:6379
 
   app:
     build:
