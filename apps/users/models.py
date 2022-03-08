@@ -6,4 +6,4 @@ class CustomUser(AbstractUser):
     # more fields here
 
     def __str__(self):
-        return f"{self.username} - {self.company}"
+        return f"{self.username}"
