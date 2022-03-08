@@ -8,8 +8,23 @@ license = "MIT"
 [tool.poetry.dependencies]
 python = "^3.8"
 Django = "^4.0.3"
+django-celery-email = "^3.0.0"
+django-cors-headers = "^3.11.0"
+django-environ = "^0.8.1"
+django-filter = "^21.1"
+dj-rest-auth = "^2.2.3"
+djangorestframework = "^3.13.1"
+django-cleanup = "^6.0.0"
+psycopg2-binary = "^2.9.3"
+requests = "^2.27.1"
+redis = "^4.1.4"
 
 [tool.poetry.dev-dependencies]
+black = "^22.1.0"
+pytest = "^7.0.1"
+django-debug-toolbar = "^3.2.4"
+django-extensions = "^3.1.5"
+flake8 = "^4.0.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
