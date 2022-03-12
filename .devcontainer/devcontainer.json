@@ -40,6 +40,7 @@
 		"github.copilot",
 		"rangav.vscode-thunder-client",
 		"ms-azuretools.vscode-docker",
+		"johnpapa.vscode-peacock",
 	],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// This can be used to network with other containers or the host.
