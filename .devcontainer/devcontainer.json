@@ -2,10 +2,10 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.224.2/containers/python-3-postgres
 // Update the VARIANT arg in docker-compose.yml to pick a Python version
 {
-	"name": "Python 3 & PostgreSQL",
+	"name": "Django starter template",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
-	"workspaceFolder": "/workspace",
+	"workspaceFolder": "/django-starter-template",
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
 		"python.defaultInterpreterPath": "/usr/local/bin/python",

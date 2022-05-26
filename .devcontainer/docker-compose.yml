@@ -20,7 +20,7 @@ services:
         NODE_VERSION: "16"
 
     volumes:
-      - ..:/workspace:cached
+      - ..:/django-starter-template:cached
 
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
