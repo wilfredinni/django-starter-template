@@ -123,11 +123,11 @@ uvloop = ["uvloop (>=0.15.2)"]
 
 [[package]]
 name = "celery"
-version = "5.2.6"
+version = "5.2.7"
 description = "Distributed Task Queue."
 category = "main"
 optional = false
-python-versions = ">=3.7,"
+python-versions = ">=3.7"
 
 [package.dependencies]
 billiard = ">=3.6.4.0,<4.0"
@@ -564,7 +564,7 @@ test = ["pytest (>=6.0)", "pytest-cov", "flaky", "ipyparallel", "pre-commit", "p
 
 [[package]]
 name = "ipython"
-version = "8.3.0"
+version = "8.4.0"
 description = "IPython: Productive Interactive Computing"
 category = "dev"
 optional = false
@@ -1327,8 +1327,8 @@ black = [
     {file = "black-22.3.0.tar.gz", hash = "sha256:35020b8886c022ced9282b51b5a875b6d1ab0c387b31a065b84db7c33085ca79"},
 ]
 celery = [
-    {file = "celery-5.2.6-py3-none-any.whl", hash = "sha256:da31f8eae7607b1582e5ee2d3f2d6f58450585afd23379491e3d9229d08102d0"},
-    {file = "celery-5.2.6.tar.gz", hash = "sha256:d1398cadf30f576266b34370e28e880306ec55f7a4b6307549b0ae9c15663481"},
+    {file = "celery-5.2.7-py3-none-any.whl", hash = "sha256:138420c020cd58d6707e6257b6beda91fd39af7afde5d36c6334d175302c0e14"},
+    {file = "celery-5.2.7.tar.gz", hash = "sha256:fafbd82934d30f8a004f81e8f7a062e31413a23d444be8ee3326553915958c6d"},
 ]
 certifi = [
     {file = "certifi-2022.5.18.1-py3-none-any.whl", hash = "sha256:f1d53542ee8cbedbe2118b5686372fb33c297fcd6379b050cca0ef13a597382a"},
@@ -1526,8 +1526,8 @@ ipykernel = [
     {file = "ipykernel-6.13.0.tar.gz", hash = "sha256:0e28273e290858393e86e152b104e5506a79c13d25b951ac6eca220051b4be60"},
 ]
 ipython = [
-    {file = "ipython-8.3.0-py3-none-any.whl", hash = "sha256:341456643a764c28f670409bbd5d2518f9b82c013441084ff2c2fc999698f83b"},
-    {file = "ipython-8.3.0.tar.gz", hash = "sha256:807ae3cf43b84693c9272f70368440a9a7eaa2e7e6882dad943c32fbf7e51402"},
+    {file = "ipython-8.4.0-py3-none-any.whl", hash = "sha256:7ca74052a38fa25fe9bedf52da0be7d3fdd2fb027c3b778ea78dfe8c212937d1"},
+    {file = "ipython-8.4.0.tar.gz", hash = "sha256:f2db3a10254241d9b447232cec8b424847f338d9d36f9a577a6192c332a46abd"},
 ]
 itypes = [
     {file = "itypes-1.2.0-py2.py3-none-any.whl", hash = "sha256:03da6872ca89d29aef62773672b2d408f490f80db48b23079a4b194c86dd04c6"},
