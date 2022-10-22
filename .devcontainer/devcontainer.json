@@ -1,50 +1,52 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.224.2/containers/python-3-postgres
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.245.2/containers/python-3-postgres
 // Update the VARIANT arg in docker-compose.yml to pick a Python version
 {
 	"name": "Django starter template",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
 	"workspaceFolder": "/django-starter-template",
-	// Set *default* container specific settings.json values on container create.
-	"settings": {
-		"python.defaultInterpreterPath": "/usr/local/bin/python",
-		"python.linting.enabled": true,
-		"python.linting.pylintEnabled": true,
-		"python.formatting.autopep8Path": "/usr/local/py-utils/bin/autopep8",
-		"python.formatting.blackPath": "/usr/local/py-utils/bin/black",
-		"python.formatting.yapfPath": "/usr/local/py-utils/bin/yapf",
-		"python.linting.banditPath": "/usr/local/py-utils/bin/bandit",
-		"python.linting.flake8Path": "/usr/local/py-utils/bin/flake8",
-		"python.linting.mypyPath": "/usr/local/py-utils/bin/mypy",
-		"python.linting.pycodestylePath": "/usr/local/py-utils/bin/pycodestyle",
-		"python.linting.pydocstylePath": "/usr/local/py-utils/bin/pydocstyle",
-		"python.linting.pylintPath": "/usr/local/py-utils/bin/pylint",
-		"python.testing.pytestPath": "/usr/local/py-utils/bin/pytest"
+	// Configure tool-specific properties.
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Set *default* container specific settings.json values on container create.
+			"settings": {
+				"python.defaultInterpreterPath": "/usr/local/bin/python",
+				"python.linting.enabled": true,
+				"python.linting.pylintEnabled": true,
+				"python.formatting.autopep8Path": "/usr/local/py-utils/bin/autopep8",
+				"python.formatting.blackPath": "/usr/local/py-utils/bin/black",
+				"python.formatting.yapfPath": "/usr/local/py-utils/bin/yapf",
+				"python.linting.banditPath": "/usr/local/py-utils/bin/bandit",
+				"python.linting.flake8Path": "/usr/local/py-utils/bin/flake8",
+				"python.linting.mypyPath": "/usr/local/py-utils/bin/mypy",
+				"python.linting.pycodestylePath": "/usr/local/py-utils/bin/pycodestyle",
+				"python.linting.pydocstylePath": "/usr/local/py-utils/bin/pydocstyle",
+				"python.linting.pylintPath": "/usr/local/py-utils/bin/pylint",
+				"python.testing.pytestPath": "/usr/local/py-utils/bin/pytest"
+			},
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"usernamehw.errorlens",
+				"mtxr.sqltools",
+				"mtxr.sqltools-driver-pg",
+				"streetsidesoftware.code-spell-checker",
+				"gruntfuggly.todo-tree",
+				"shardulm94.trailing-spaces",
+				"visualstudioexptteam.vscodeintellicode",
+				"donjayamanne.githistory",
+				"irongeek.vscode-env",
+				"ms-azuretools.vscode-docker",
+				"johnpapa.vscode-peacock",
+				"bungcip.better-toml",
+				"tomoki1207.pdf",
+				"redhat.vscode-yaml"
+			]
+		}
 	},
-	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": [
-		"ms-python.python",
-		"ms-python.vscode-pylance",
-		"usernamehw.errorlens",
-		"mtxr.sqltools",
-		"mtxr.sqltools-driver-pg",
-		"streetsidesoftware.code-spell-checker",
-		"streetsidesoftware.code-spell-checker-spanish",
-		"gruntfuggly.todo-tree",
-		"shardulm94.trailing-spaces",
-		"visualstudioexptteam.vscodeintellicode",
-		"donjayamanne.githistory",
-		"irongeek.vscode-env",
-		"github.copilot",
-		"rangav.vscode-thunder-client",
-		"ms-azuretools.vscode-docker",
-		"johnpapa.vscode-peacock",
-		"bungcip.better-toml",
-		"GitHub.copilot-labs",
-		"tomoki1207.pdf",
-		"redhat.vscode-yaml",
-	],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// This can be used to network with other containers or the host.
 	"forwardPorts": [
@@ -54,5 +56,9 @@
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "poetry install",
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-	"remoteUser": "vscode"
+	"remoteUser": "vscode",
+	"features": {
+		"homebrew": "latest",
+		"fish": "latest"
+	}
 }

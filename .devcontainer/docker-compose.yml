@@ -1,11 +1,11 @@
-version: '3.3'
+version: '3.7'
 
 services:
   redis:
-      image: redis:alpine
-      container_name: redis-container
-      ports:
-        - 6380:6379
+    image: redis:alpine
+    container_name: redis-container
+    ports:
+      - 6380:6379
 
   app:
     build:
@@ -15,9 +15,9 @@ services:
         # Update 'VARIANT' to pick a version of Python: 3, 3.10, 3.9, 3.8, 3.7, 3.6
         # Append -bullseye or -buster to pin to an OS version.
         # Use -bullseye variants on local arm64/Apple Silicon.
-        VARIANT: "3.10"
+        VARIANT: 3-bullseye
         # Optional Node.js version to install
-        NODE_VERSION: "16"
+        NODE_VERSION: "none"
 
     volumes:
       - ..:/django-starter-template:cached
