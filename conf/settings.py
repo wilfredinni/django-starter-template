@@ -31,7 +31,9 @@ SECRET_KEY = env("DJANGO_SECRET_KEY")
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["*"])
 AUTH_USER_MODEL = "users.CustomUser"
 AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
+    },
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
@@ -56,7 +58,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.humanize",
     "django.contrib.postgres",
-
     # Third-party apps
     "corsheaders",
     "djcelery_email",
@@ -66,7 +67,6 @@ INSTALLED_APPS = [
     "dj_rest_auth",
     "django_cleanup.apps.CleanupConfig",
     "drf_yasg",
-
     # Local apps
     "apps.users",
 ]
@@ -191,6 +191,6 @@ if not DEBUG:
 # Django Debug Toolbar and Django Extensions
 # -----------------------------------------------------------------------------
 if DEBUG:
-    INSTALLED_APPS += ["debug_toolbar", "django_extensions"]
+    INSTALLED_APPS += ["debug_toolbar", "django_extensions", "django_seed"]
     INTERNAL_IPS = ["127.0.0.1"]
     MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
