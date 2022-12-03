@@ -41,4 +41,7 @@
     ],
     "terminal.integrated.defaultProfile.linux": "fish",
     "cSpell.language": "en,es",
+    "cSpell.words": [
+        "levelname"
+    ],
 }
