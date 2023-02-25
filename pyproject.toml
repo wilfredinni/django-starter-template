@@ -23,7 +23,7 @@ drf-yasg = {extras = ["validation"], version = "^1.20.0"}
 celery = "^5.2.7"
 
 [tool.poetry.group.dev.dependencies]
-black = "^22.1.0"
+black = "^23.0.0"
 pytest = "^7.0.1"
 django-debug-toolbar = "^3.2.4"
 django-extensions = "^3.1.5"
