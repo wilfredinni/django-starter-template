@@ -591,13 +591,13 @@ files = [
 
 [[package]]
 name = "dj-rest-auth"
-version = "2.2.8"
+version = "3.0.0"
 description = "Authentication and Registration in Django Rest Framework"
 category = "main"
 optional = false
 python-versions = ">=3.5"
 files = [
-    {file = "dj-rest-auth-2.2.8.tar.gz", hash = "sha256:9fb3492888185ede8b2064ad6803120c7b0b83ab08e2347a02e9b44282374242"},
+    {file = "dj-rest-auth-3.0.0.tar.gz", hash = "sha256:ee792c6b380dac20ecacb79769681cc30896f56ddf8212d370f7c220a5c6a0cf"},
 ]
 
 [package.dependencies]
@@ -2206,4 +2206,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "ae732a38818cff6919b26d72336da6b994835bf9c6c10eaae3759ab6b7691028"
+content-hash = "81497174d1b0c50fbc78454026d221c0d6e01977b8bf72bd53093ea0cd6f7698"
