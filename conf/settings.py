@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.humanize",
     "django.contrib.postgres",
+    "django.contrib.sites",
     # Third-party apps
     "corsheaders",
     "djcelery_email",
@@ -65,6 +66,10 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "dj_rest_auth",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "dj_rest_auth.registration",
     "django_cleanup.apps.CleanupConfig",
     "drf_yasg",
     # Local apps
