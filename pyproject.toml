@@ -6,13 +6,13 @@ authors = ["Carlos Montecinos <carlos.w.montecinos@gmail.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.10"
 Django = "^4.0.3"
 django-celery-email = "^3.0.0"
 django-cors-headers = "^3.11.0"
 django-environ = "^0.9.0"
 django-filter = "^22.1"
-dj-rest-auth = "^2.2.3"
+dj-rest-auth = "^3.0.0"
 djangorestframework = "^3.13.1"
 django-cleanup = "^7.0.0"
 psycopg2-binary = "^2.9.3"
@@ -23,11 +23,11 @@ drf-yasg = {extras = ["validation"], version = "^1.20.0"}
 celery = "^5.2.7"
 
 [tool.poetry.group.dev.dependencies]
-black = "^22.1.0"
+black = "^23.0.0"
 pytest = "^7.0.1"
 django-debug-toolbar = "^3.2.4"
 django-extensions = "^3.1.5"
-flake8 = "^5.0.0"
+flake8 = "^6.0.0"
 ipykernel = "^6.13.0"
 django-seed = "^0.3.1"
 
