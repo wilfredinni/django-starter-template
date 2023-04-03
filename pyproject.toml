@@ -25,7 +25,7 @@ celery = "^5.2.7"
 [tool.poetry.group.dev.dependencies]
 black = "^23.0.0"
 pytest = "^7.0.1"
-django-debug-toolbar = "^3.2.4"
+django-debug-toolbar = "^4.0.0"
 django-extensions = "^3.1.5"
 flake8 = "^6.0.0"
 ipykernel = "^6.13.0"
