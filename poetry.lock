@@ -619,13 +619,13 @@ files = [
 
 [[package]]
 name = "dj-rest-auth"
-version = "3.0.0"
+version = "4.0.0"
 description = "Authentication and Registration in Django Rest Framework"
 category = "main"
 optional = false
 python-versions = ">=3.5"
 files = [
-    {file = "dj-rest-auth-3.0.0.tar.gz", hash = "sha256:ee792c6b380dac20ecacb79769681cc30896f56ddf8212d370f7c220a5c6a0cf"},
+    {file = "dj-rest-auth-4.0.0.tar.gz", hash = "sha256:75f5cba821500ffd81574beb6e164b428d19141fda94252a6423396292cd53c3"},
 ]
 
 [package.dependencies]
@@ -2257,4 +2257,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "a219ca69e5503ea61184e54a2c7ff65b22182f51e162dbe7846bacac91bf6cde"
+content-hash = "6ce57ccab2970b696a271713acd5218aac1fad9d8f4f83fe84d5f5b1e136802e"
