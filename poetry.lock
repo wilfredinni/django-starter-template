@@ -799,14 +799,14 @@ pytz = "*"
 
 [[package]]
 name = "drf-yasg"
-version = "1.21.6"
+version = "1.21.7"
 description = "Automated generation of real Swagger/OpenAPI 2.0 schemas from Django Rest Framework code."
 category = "main"
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "drf-yasg-1.21.6.tar.gz", hash = "sha256:d65387ed657d6bc157baf9de62e8d9b444857f06ed5486cf8915a9174b6be53c"},
-    {file = "drf_yasg-1.21.6-py3-none-any.whl", hash = "sha256:4628c061c1605cdccdb6345df0dc8b5d3c5981c327e81a289642bf99aa92a9b2"},
+    {file = "drf-yasg-1.21.7.tar.gz", hash = "sha256:4c3b93068b3dfca6969ab111155e4dd6f7b2d680b98778de8fd460b7837bdb0d"},
+    {file = "drf_yasg-1.21.7-py3-none-any.whl", hash = "sha256:f85642072c35e684356475781b7ecf5d218fff2c6185c040664dd49f0a4be181"},
 ]
 
 [package.dependencies]
