@@ -720,14 +720,14 @@ sqlparse = ">=0.2"
 
 [[package]]
 name = "django-environ"
-version = "0.11.0"
+version = "0.11.1"
 description = "A package that allows you to utilize 12factor inspired environment variables to configure your Django application."
 category = "main"
 optional = false
 python-versions = ">=3.6,<4"
 files = [
-    {file = "django-environ-0.11.0.tar.gz", hash = "sha256:b0fb330ad306fd279c4badae067ff99334f2e39e7648949c128119ae16b759b1"},
-    {file = "django_environ-0.11.0-py2.py3-none-any.whl", hash = "sha256:ca493f27d6dbfdfdcd35fd0227ddb1a11db1b32f6df2c5dfd2c11a141eb2041b"},
+    {file = "django-environ-0.11.1.tar.gz", hash = "sha256:f50dde64c024dfac76279dfd7dade8da994e376d38c3374623ce99490f1534dd"},
+    {file = "django_environ-0.11.1-py2.py3-none-any.whl", hash = "sha256:3b8a0f7f02e6c2999776123f7b5afca4eda4b2b3d8bb5fc3805b2cf476c50018"},
 ]
 
 [package.extras]
