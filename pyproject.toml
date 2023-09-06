@@ -12,7 +12,6 @@ django-celery-email = "^3.0.0"
 django-cors-headers = "^4.0.0"
 django-environ = "^0.11.0"
 django-filter = "^22.1"
-dj-rest-auth = {extras = ["with-social"], version = "^4.0.0"}
 djangorestframework = "^3.13.1"
 django-cleanup = "^8.0.0"
 psycopg2-binary = "^2.9.3"
@@ -21,6 +20,11 @@ redis = "^5.0.0"
 sentry-sdk = "^1.5.6"
 drf-yasg = {extras = ["validation"], version = "^1.20.0"}
 celery = "^5.2.7"
+whitenoise = "^6.5.0"
+gunicorn = "^21.2.0"
+djangorestframework-simplejwt = "^5.3.0"
+django-allauth = "0.52.0"
+dj-rest-auth = "^4.0.1"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.0.0"

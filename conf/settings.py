@@ -30,6 +30,7 @@ USE_TZ = True
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["*"])
 AUTH_USER_MODEL = "users.CustomUser"
+AUTHENTICATION_BACKENDS = ["apps.users.auth_backend.EmailBackend"]
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
