@@ -24,7 +24,7 @@ whitenoise = "^6.5.0"
 gunicorn = "^21.2.0"
 djangorestframework-simplejwt = "^5.3.0"
 django-allauth = "0.52.0"
-dj-rest-auth = "^4.0.1"
+dj-rest-auth = "^5.0.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.0.0"
