@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from pathlib import Path
 
 import environ
@@ -154,6 +156,20 @@ REST_FRAMEWORK = {
 
 REST_AUTH_SERIALIZERS = {
     "USER_DETAILS_SERIALIZER": "apps.users.serializers.CustomUserProfileSerializer",
+}
+
+SOCIALACCOUNT_EMAIL_VERIFICATION = "none"
+SOCIALACCOUNT_EMAIL_REQUIRED = False
+REST_USE_JWT = True
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=45),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=6),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "UPDATE_LAST_LOGIN": True,
+    "USER_ID_FIELD": "id",  # for the custom user model
+    "USER_ID_CLAIM": "id",
+    "SIGNING_KEY": env("DJANGO_SECRET_KEY"),
 }
 
 # -----------------------------------------------------------------------------
