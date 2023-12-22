@@ -8,7 +8,7 @@ An opinionated django template that work best with VSCode DevContainer. Just hit
 
 ## What is included
 
-- Django 4+
+- Django 5+
 - Custom User model
 - Django Rest Framework
 - Token authentication with `dj-rest-auth`
