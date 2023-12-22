@@ -6,8 +6,8 @@ authors = ["Carlos Montecinos <carlos.w.montecinos@gmail.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.10"
-Django = "^4.0.3"
+python = "^3.11"
+Django = "^5.0.0"
 django-celery-email = "^3.0.0"
 django-cors-headers = "^4.0.0"
 django-environ = "^0.11.0"
@@ -23,7 +23,7 @@ celery = "^5.2.7"
 whitenoise = "^6.5.0"
 gunicorn = "^21.2.0"
 djangorestframework-simplejwt = "^5.2.2"
-django-allauth = "^0.52.0"
+django-allauth = "0.54.0"
 dj-rest-auth = "^2.2.3"
 
 [tool.poetry.group.dev.dependencies]
