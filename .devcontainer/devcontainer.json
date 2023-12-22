@@ -39,11 +39,11 @@
 				"visualstudioexptteam.vscodeintellicode",
 				"donjayamanne.githistory",
 				"irongeek.vscode-env",
-				"ms-azuretools.vscode-docker",
 				"johnpapa.vscode-peacock",
-				"bungcip.better-toml",
-				"tomoki1207.pdf",
-				"redhat.vscode-yaml"
+				"redhat.vscode-yaml",
+				"ms-python.black-formatter",
+				"ms-python.flake8",
+				"tamasfe.even-better-toml"
 			]
 		}
 	},
@@ -51,7 +51,8 @@
 	// This can be used to network with other containers or the host.
 	"forwardPorts": [
 		8000,
-		6379
+		6379,
+		5432
 	],
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "poetry install && poetry run python manage.py migrate",

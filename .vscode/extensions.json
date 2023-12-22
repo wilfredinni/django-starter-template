@@ -1,11 +1,13 @@
 {
     "recommendations": [
-        "ms-azuretools.vscode-docker",
         "irongeek.vscode-env",
         "ms-python.python",
         "shardulm94.trailing-spaces",
         "visualstudioexptteam.vscodeintellicode",
         "usernamehw.errorlens",
-        "johnpapa.vscode-peacock"
+        "johnpapa.vscode-peacock",
+        "ms-python.black-formatter",
+        "ms-python.flake8",
+        "tamasfe.even-better-toml"
     ]
 }
