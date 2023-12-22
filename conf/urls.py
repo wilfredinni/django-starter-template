@@ -24,7 +24,10 @@ urlpatterns = [
     path("admin-panel/", admin.site.urls),
     path("api-auth/", include("rest_framework.urls")),
     path("rest-auth/", include("dj_rest_auth.urls")),
-    path("dj-rest-auth/registration/", include("dj_rest_auth.registration.urls")),
+    path(
+        "dj-rest-auth/registration/",
+        include("dj_rest_auth.registration.urls"),
+    ),
     re_path(
         r"^swagger(?P<format>\.json|\.yaml)$",
         schema_view.without_ui(cache_timeout=0),
