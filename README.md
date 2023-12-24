@@ -32,7 +32,8 @@ This template provides a comprehensive and easy-to-use starting point for your n
 1. Clone the repo or use it as a template to start a new project.
 ![Use as template](https://docs.github.com/assets/images/help/repository/use-this-template-button.png)
 2. Open the project in VSCode.
-3. Hit `CTL/CMD + Shift + p` and select `Reopen in container`. VSCode will create a dev environment, install the dependencies, configure the database and migrate for you.
-4. Create your super user with `python manage.py createsuperuser`. Make sure to add the email, as all logins require an email and password.
-5. Run the project with `python manage.py reserver`.
-6. Work as usual.
+3. Use `env.example` to create a `.env` file.
+4. Hit `CTL/CMD + Shift + p` and select `Reopen in container`. VSCode will create a dev environment, install the dependencies, configure the database and migrate for you.
+5. Create your super user with `python manage.py createsuperuser`. Make sure to add the email, as all logins require an email and password.
+6. Run the project with `python manage.py reserver`.
+7. Work as usual.
