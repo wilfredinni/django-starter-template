@@ -39,6 +39,7 @@
     "cSpell.words": [
         "allauth",
         "authtoken",
+        "isort",
         "levelname",
         "SOCIALACCOUNT"
     ],

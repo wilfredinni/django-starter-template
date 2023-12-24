@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Django Starter Template</title>
+</head>
+
+<body class="bg-gray-900 pb-20">
+  <!-- Header -->
+  <header class="absolute inset-x-0 top-0 z-50">
+    <nav class="flex items-center justify-between p-6 lg:px-20" aria-label="Global">
+      <div class="flex lg:flex-1">
+        <a href="#" class="-m-1.5 p-1.5">
+          <span class="sr-only">Your Company</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+            class="h-8 w-8 text-sky-400 h-8 w-8">
+            <path fill-rule="evenodd"
+              d="M14.615 1.595a.75.75 0 0 1 .359.852L12.982 9.75h7.268a.75.75 0 0 1 .548 1.262l-10.5 11.25a.75.75 0 0 1-1.272-.71l1.992-7.302H3.75a.75.75 0 0 1-.548-1.262l10.5-11.25a.75.75 0 0 1 .913-.143Z"
+              clip-rule="evenodd" />
+          </svg>
+
+        </a>
+      </div>
+      <div class="flex lg:gap-x-12">
+        <a href="#" class="font-semibold leading-6 text-gray-300">Features</a>
+        <a href="#" class="font-semibold leading-6 text-gray-300">How to use</a>
+        <a href="#" class="font-semibold leading-6 text-gray-300">Contributing</a>
+      </div>
+      <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+        <a href="/admin-panel/" class="font-semibold leading-6 text-gray-300">Django admin <span
+            aria-hidden="true">&rarr;</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Feature section -->
+    <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
+      <div class="mx-auto max-w-2xl lg:text-center">
+        <p class="text-3xl font-semibold tracking-tight text-gray-200 sm:text-5xl">Django Starter Template
+        </p>
+        <p class="mt-6 text-xl leading-8 text-gray-300">This template provides a comprehensive and easy-to-use starting
+          point for your new Django project. It comes pre-configured with a robust set of features, saving you the
+          hassle of setting up everything from scratch.</p>
+      </div>
+
+      <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-16 lg:max-w-none">
+        <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-8 lg:max-w-none lg:grid-cols-3">
+          <!-- Django -->
+          <div class="group relative rounded-xl border border-slate-800">
+            <div
+              class="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 transition duration-300 [background:linear-gradient(var(--link-grid-hover-bg,theme(colors.sky.50)),var(--link-grid-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 [--link-grid-hover-bg:theme(colors.slate.800)]">
+            </div>
+            <div class="relative overflow-hidden rounded-xl p-6">
+              <svg fill="currentColor" width="800px" height="800px" viewBox="0 0 24 24"
+                class="h-8 w-8 text-sky-400 h-8 w-8" role="img" xmlns="http://www.w3.org/2000/svg">
+                <title>Django icon</title>
+                <path
+                  d="M11.146 0h3.924v18.165c-2.013.382-3.491.535-5.096.535-4.791 0-7.288-2.166-7.288-6.32 0-4.001 2.65-6.6 6.753-6.6.637 0 1.121.051 1.707.204V0zm0 9.143a3.894 3.894 0 0 0-1.325-.204c-1.988 0-3.134 1.223-3.134 3.364 0 2.09 1.096 3.236 3.109 3.236.433 0 .79-.025 1.35-.102V9.142zM21.314 6.06v9.097c0 3.134-.229 4.638-.917 5.937-.637 1.249-1.478 2.039-3.211 2.905l-3.644-1.733c1.733-.815 2.574-1.529 3.109-2.625.561-1.121.739-2.421.739-5.835V6.059h3.924zM17.39.021h3.924v4.026H17.39V.021z" />
+              </svg>
+              <p class="mt-4 font-display text-white text-lg font-medium"><a href="https://www.djangoproject.com/">
+                  <span class="absolute -inset-px rounded-xl"></span> Django 4+</a></p>
+              <p class="mt-1 text-base text-slate-300"> When support for
+                <span class="font-semibold text-sky-300">django-celery-beat</span> drop to Django 5,
+                it will be updated.
+              </p>
+            </div>
+          </div>
+
+          <!-- VSCode -->
+          <div class="group relative rounded-xl border border-slate-800">
+            <div
+              class="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 transition duration-300 [background:linear-gradient(var(--link-grid-hover-bg,theme(colors.sky.50)),var(--link-grid-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 [--link-grid-hover-bg:theme(colors.slate.800)]">
+            </div>
+            <div class="relative overflow-hidden rounded-xl p-6">
+              <svg fill="currentColor" width="800px" height="800px" viewBox="0 0 24 24"
+                class="h-8 w-8 text-sky-400 h-8 w-8" role="img" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="m21.292 4.103-4.118-1.98a1.232 1.232 0 0 0-.489-.121L16.643 2h-.036a1.248 1.248 0 0 0-.862.364L7.869 9.55 4.437 6.947a.83.83 0 0 0-1.064.047L2.272 7.995A.83.83 0 0 0 2 8.607v.004c0 .225.09.451.272.616l2.976 2.715-2.976 2.715a.834.834 0 0 0 .001 1.232l1.101 1.001a.828.828 0 0 0 1.065.047l3.432-2.603 7.876 7.186a1.24 1.24 0 0 0 .764.358l.012.001c.018.002.037.002.055.003.025.001.05.002.075.001l.027-.001c.169-.006.337-.045.496-.122l4.118-1.98c.431-.207.706-.645.706-1.125V5.229c0-.481-.275-.918-.708-1.126zm-4.298 12.369-5.972-4.531 5.972-4.531v9.062z" />
+              </svg>
+
+              <p class="mt-4 font-display text-white text-lg font-medium"><a href="https://code.visualstudio.com/">
+                  <span class="absolute -inset-px rounded-xl"></span> Visual Studio Code</a></p>
+              <p class="mt-1 text-base text-slate-300"> Everything integrated with VSC. Start developing with
+                <span class="font-semibold text-sky-300">Black</span>,
+                <span class="font-semibold text-sky-300">Flake8</span>,
+                <span class="font-semibold text-sky-300">isort</span> and
+                <span class="font-semibold text-sky-300">Pytest</span> with zero configuration thanks to <span
+                  class="font-semibold text-sky-300">dev containers</span>.
+              </p>
+            </div>
+          </div>
+
+          <!-- Postgresql -->
+          <div class="group relative rounded-xl border border-slate-800">
+            <div
+              class="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 transition duration-300 [background:linear-gradient(var(--link-grid-hover-bg,theme(colors.sky.50)),var(--link-grid-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 [--link-grid-hover-bg:theme(colors.slate.800)]">
+            </div>
+            <div class="relative overflow-hidden rounded-xl p-6">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                class="h-8 w-8 text-sky-400 h-8 w-8">
+                <path d="M21 6.375c0 2.692-4.03 4.875-9 4.875S3 9.067 3 6.375 7.03 1.5 12 1.5s9 2.183 9 4.875Z" />
+                <path
+                  d="M12 12.75c2.685 0 5.19-.586 7.078-1.609a8.283 8.283 0 0 0 1.897-1.384c.016.121.025.244.025.368C21 12.817 16.97 15 12 15s-9-2.183-9-4.875c0-.124.009-.247.025-.368a8.285 8.285 0 0 0 1.897 1.384C6.809 12.164 9.315 12.75 12 12.75Z" />
+                <path
+                  d="M12 16.5c2.685 0 5.19-.586 7.078-1.609a8.282 8.282 0 0 0 1.897-1.384c.016.121.025.244.025.368 0 2.692-4.03 4.875-9 4.875s-9-2.183-9-4.875c0-.124.009-.247.025-.368a8.284 8.284 0 0 0 1.897 1.384C6.809 15.914 9.315 16.5 12 16.5Z" />
+                <path
+                  d="M12 20.25c2.685 0 5.19-.586 7.078-1.609a8.282 8.282 0 0 0 1.897-1.384c.016.121.025.244.025.368 0 2.692-4.03 4.875-9 4.875s-9-2.183-9-4.875c0-.124.009-.247.025-.368a8.284 8.284 0 0 0 1.897 1.384C6.809 19.664 9.315 20.25 12 20.25Z" />
+              </svg>
+
+              <p class="mt-4 font-display text-white text-lg font-medium"><a href="https://www.postgresql.org/">
+                  <span class="absolute -inset-px rounded-xl"></span> PostgreSQL</a></p>
+              <p class="mt-1 text-base text-slate-300"> Start developing your project with a robust database without the
+                need to
+                install and configure it.
+              </p>
+            </div>
+          </div>
+
+          <!-- Notebook Support -->
+          <div class="group relative rounded-xl border border-slate-800">
+            <div
+              class="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 transition duration-300 [background:linear-gradient(var(--link-grid-hover-bg,theme(colors.sky.50)),var(--link-grid-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 [--link-grid-hover-bg:theme(colors.slate.800)]">
+            </div>
+            <div class="relative overflow-hidden rounded-xl p-6">
+              <svg fill="#38bdf8" width="800px" height="800px" viewBox="0 0 32 32" class="h-8 w-8 text-sky-400 h-8 w-8"
+                id="icon" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <style>
+                    .cls-1 {
+                      fill: none;
+                    }
+                  </style>
+                </defs>
+                <title>logo--jupyter</title>
+                <g id="path">
+                  <g id="path16_fill" data-name="path16 fill">
+                    <path id="path7_fill" data-name="path7 fill"
+                      d="M26.0766,3.5878a1.69,1.69,0,1,1-1.76-1.5853,1.67,1.67,0,0,1,1.76,1.5853Z" />
+                  </g>
+                </g>
+                <g id="path-2" data-name="path">
+                  <g id="path17_fill" data-name="path17 fill">
+                    <path id="path8_fill" data-name="path8 fill"
+                      d="M16.2191,23.1113c-4.4866,0-8.43-1.61-10.4688-3.9882a11.1618,11.1618,0,0,0,20.9377,0C24.6541,21.5011,20.7257,23.1113,16.2191,23.1113Z" />
+                  </g>
+                </g>
+                <g id="path-3" data-name="path">
+                  <g id="path18_fill" data-name="path18 fill">
+                    <path id="path9_fill" data-name="path9 fill"
+                      d="M16.2191,7.6483c4.4867,0,8.43,1.61,10.4689,3.9881a11.1618,11.1618,0,0,0-20.9377,0C7.7892,9.2535,11.7126,7.6483,16.2191,7.6483Z" />
+                  </g>
+                </g>
+                <g id="path-4" data-name="path">
+                  <g id="path19_fill" data-name="path19 fill">
+                    <path id="path10_fill" data-name="path10 fill"
+                      d="M10.0427,27.7388a2.1085,2.1085,0,1,1-.2031-.7976,2.1278,2.1278,0,0,1,.2031.7976Z" />
+                  </g>
+                </g>
+                <g id="path-5" data-name="path">
+                  <g id="path20_fill" data-name="path20 fill">
+                    <path id="path11_fill" data-name="path11 fill"
+                      d="M6.26,7.1064A1.2263,1.2263,0,1,1,7.4517,5.83,1.2415,1.2415,0,0,1,6.26,7.1064Z" />
+                  </g>
+                </g>
+                <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32"
+                  height="32" />
+              </svg>
+
+              <p class="mt-4 font-display text-white text-lg font-medium"><a
+                  href="https://github.com/wilfredinni/django-starter-template/blob/main/notebook.ipynb">
+                  <span class="absolute -inset-px rounded-xl"></span>Jupyter Notebooks</a></p>
+              <p class="mt-1 text-base text-slate-300">
+                Test your queries and code interactively with Jupyter Notebooks.</p>
+            </div>
+          </div>
+
+          <!-- rest framework -->
+          <div class="group relative rounded-xl border border-slate-800">
+            <div
+              class="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 transition duration-300 [background:linear-gradient(var(--link-grid-hover-bg,theme(colors.sky.50)),var(--link-grid-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 [--link-grid-hover-bg:theme(colors.slate.800)]">
+            </div>
+            <div class="relative overflow-hidden rounded-xl p-6">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                class="h-8 w-8 text-sky-400 h-8 w-8">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                  class="h-8 w-8 text-sky-400 h-8 w-8">
+                  <path fill-rule="evenodd"
+                    d="M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6Zm14.25 6a.75.75 0 0 1-.22.53l-2.25 2.25a.75.75 0 1 1-1.06-1.06L15.44 12l-1.72-1.72a.75.75 0 1 1 1.06-1.06l2.25 2.25c.141.14.22.331.22.53Zm-10.28-.53a.75.75 0 0 0 0 1.06l2.25 2.25a.75.75 0 1 0 1.06-1.06L8.56 12l1.72-1.72a.75.75 0 1 0-1.06-1.06l-2.25 2.25Z"
+                    clip-rule="evenodd" />
+                </svg>
+
+                <p class="mt-4 font-display text-white text-lg font-medium"><a
+                    href="https://www.django-rest-framework.org/">
+                    <span class="absolute -inset-px rounded-xl"></span> Django Rest Framework</a></p>
+                <p class="mt-1 text-base text-slate-300">A powerful and popular toolkit for building Web APIs using
+                  Django.</p>
+            </div>
+          </div>
+
+          <!-- user model -->
+          <div class="group relative rounded-xl border border-slate-800">
+            <div
+              class="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 transition duration-300 [background:linear-gradient(var(--link-grid-hover-bg,theme(colors.sky.50)),var(--link-grid-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 [--link-grid-hover-bg:theme(colors.slate.800)]">
+            </div>
+            <div class="relative overflow-hidden rounded-xl p-6">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                class="h-8 w-8 text-sky-400 h-8 w-8">
+                <path fill-rule="evenodd"
+                  d="M8.25 6.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM15.75 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM2.25 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM6.31 15.117A6.745 6.745 0 0 1 12 12a6.745 6.745 0 0 1 6.709 7.498.75.75 0 0 1-.372.568A12.696 12.696 0 0 1 12 21.75c-2.305 0-4.47-.612-6.337-1.684a.75.75 0 0 1-.372-.568 6.787 6.787 0 0 1 1.019-4.38Z"
+                  clip-rule="evenodd" />
+                <path
+                  d="M5.082 14.254a8.287 8.287 0 0 0-1.308 5.135 9.687 9.687 0 0 1-1.764-.44l-.115-.04a.563.563 0 0 1-.373-.487l-.01-.121a3.75 3.75 0 0 1 3.57-4.047ZM20.226 19.389a8.287 8.287 0 0 0-1.308-5.135 3.75 3.75 0 0 1 3.57 4.047l-.01.121a.563.563 0 0 1-.373.486l-.115.04c-.567.2-1.156.349-1.764.441Z" />
+              </svg>
+              <p class="mt-4 font-display text-white text-lg font-medium"><a
+                  href="https://github.com/wilfredinni/django-starter-template/blob/main/apps/users/models.py">
+                  <span class="absolute -inset-px rounded-xl"></span> Custom user model</a></p>
+              <p class="mt-1 text-base text-slate-300">You have the flexibility to define your own fields and behaviors
+                specific to your application's requirements.</p>
+            </div>
+          </div>
+
+          <!-- auth -->
+          <div class="group relative rounded-xl border border-slate-800">
+            <div
+              class="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 transition duration-300 [background:linear-gradient(var(--link-grid-hover-bg,theme(colors.sky.50)),var(--link-grid-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 [--link-grid-hover-bg:theme(colors.slate.800)]">
+            </div>
+            <div class="relative overflow-hidden rounded-xl p-6">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                class="h-8 w-8 text-sky-400 h-8 w-8">
+                <path fill-rule="evenodd"
+                  d="M15.75 1.5a6.75 6.75 0 0 0-6.651 7.906c.067.39-.032.717-.221.906l-6.5 6.499a3 3 0 0 0-.878 2.121v2.818c0 .414.336.75.75.75H6a.75.75 0 0 0 .75-.75v-1.5h1.5A.75.75 0 0 0 9 19.5V18h1.5a.75.75 0 0 0 .53-.22l2.658-2.658c.19-.189.517-.288.906-.22A6.75 6.75 0 1 0 15.75 1.5Zm0 3a.75.75 0 0 0 0 1.5A2.25 2.25 0 0 1 18 8.25a.75.75 0 0 0 1.5 0 3.75 3.75 0 0 0-3.75-3.75Z"
+                  clip-rule="evenodd" />
+              </svg>
+
+              <p class="mt-4 font-display text-white text-lg font-medium"><a
+                  href="https://dj-rest-auth.readthedocs.io/en/latest/">
+                  <span class="absolute -inset-px rounded-xl"></span> JWT and Token Auth</a></p>
+              <p class="mt-1 text-base text-slate-300"><span class="font-semibold text-sky-300">dj-rest-auth</span> for
+                Token and JWT
+                authentication. In development, Basic and Session
+                are also enabled.</p>
+            </div>
+          </div>
+
+          <!-- auto docs -->
+          <div class="group relative rounded-xl border border-slate-800">
+            <div
+              class="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 transition duration-300 [background:linear-gradient(var(--link-grid-hover-bg,theme(colors.sky.50)),var(--link-grid-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 [--link-grid-hover-bg:theme(colors.slate.800)]">
+            </div>
+            <div class="relative overflow-hidden rounded-xl p-6">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                class="h-8 w-8 text-sky-400 h-8 w-8">
+                <path fill-rule="evenodd"
+                  d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625ZM7.5 15a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 7.5 15Zm.75 2.25a.75.75 0 0 0 0 1.5H12a.75.75 0 0 0 0-1.5H8.25Z"
+                  clip-rule="evenodd" />
+                <path
+                  d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z" />
+              </svg>
+
+              <p class="mt-4 font-display text-white text-lg font-medium"><a
+                  href="https://drf-yasg.readthedocs.io/en/stable/">
+                  <span class="absolute -inset-px rounded-xl"></span> APIs auto documentation</a></p>
+              <p class="mt-1 text-base text-slate-300"> <span class="font-semibold text-sky-300">Swagger</span> and
+                <span class="font-semibold text-sky-300">Redoc</span> auto documentation for your APIs.
+              </p>
+            </div>
+          </div>
+
+          <!-- django filters -->
+          <div class="group relative rounded-xl border border-slate-800">
+            <div
+              class="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 transition duration-300 [background:linear-gradient(var(--link-grid-hover-bg,theme(colors.sky.50)),var(--link-grid-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 [--link-grid-hover-bg:theme(colors.slate.800)]">
+            </div>
+            <div class="relative overflow-hidden rounded-xl p-6">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                class="h-8 w-8 text-sky-400 h-8 w-8">
+                <path fill-rule="evenodd"
+                  d="M3.792 2.938A49.069 49.069 0 0 1 12 2.25c2.797 0 5.54.236 8.209.688a1.857 1.857 0 0 1 1.541 1.836v1.044a3 3 0 0 1-.879 2.121l-6.182 6.182a1.5 1.5 0 0 0-.439 1.061v2.927a3 3 0 0 1-1.658 2.684l-1.757.878A.75.75 0 0 1 9.75 21v-5.818a1.5 1.5 0 0 0-.44-1.06L3.13 7.938a3 3 0 0 1-.879-2.121V4.774c0-.897.64-1.683 1.542-1.836Z"
+                  clip-rule="evenodd" />
+              </svg>
+
+              <p class="mt-4 font-display text-white text-lg font-medium"><a
+                  href="https://django-filter.readthedocs.io/en/stable/">
+                  <span class="absolute -inset-px rounded-xl"></span> Django Filters</a></p>
+              <p class="mt-1 text-base text-slate-300"> You can easily add filters to your views and APIs with
+                django-filter.</p>
+            </div>
+          </div>
+
+          <!-- Asynchronous Tasks & Caching -->
+          <div class="group relative rounded-xl border border-slate-800">
+            <div
+              class="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 transition duration-300 [background:linear-gradient(var(--link-grid-hover-bg,theme(colors.sky.50)),var(--link-grid-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 [--link-grid-hover-bg:theme(colors.slate.800)]">
+            </div>
+            <div class="relative overflow-hidden rounded-xl p-6">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                class="h-8 w-8 text-sky-400 h-8 w-8">
+                <path d="M16.5 7.5h-9v9h9v-9Z" />
+                <path fill-rule="evenodd"
+                  d="M8.25 2.25A.75.75 0 0 1 9 3v.75h2.25V3a.75.75 0 0 1 1.5 0v.75H15V3a.75.75 0 0 1 1.5 0v.75h.75a3 3 0 0 1 3 3v.75H21A.75.75 0 0 1 21 9h-.75v2.25H21a.75.75 0 0 1 0 1.5h-.75V15H21a.75.75 0 0 1 0 1.5h-.75v.75a3 3 0 0 1-3 3h-.75V21a.75.75 0 0 1-1.5 0v-.75h-2.25V21a.75.75 0 0 1-1.5 0v-.75H9V21a.75.75 0 0 1-1.5 0v-.75h-.75a3 3 0 0 1-3-3v-.75H3A.75.75 0 0 1 3 15h.75v-2.25H3a.75.75 0 0 1 0-1.5h.75V9H3a.75.75 0 0 1 0-1.5h.75v-.75a3 3 0 0 1 3-3h.75V3a.75.75 0 0 1 .75-.75ZM6 6.75A.75.75 0 0 1 6.75 6h10.5a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75H6.75a.75.75 0 0 1-.75-.75V6.75Z"
+                  clip-rule="evenodd" />
+              </svg>
+
+              <p class="mt-4 font-display text-white text-lg font-medium"><a href="https://docs.celeryq.dev/en/stable/">
+                  <span class="absolute -inset-px rounded-xl"></span> Asynchronous Tasks & Caching</a></p>
+              <p class="mt-1 text-base text-slate-300">
+                <span class="font-semibold text-sky-300">Redis</span>,
+                <span class="font-semibold text-sky-300">Celery</span>,
+                <span class="font-semibold text-sky-300">django-celery-beat</span>,
+                <span class="font-semibold text-sky-300">django-celery-results</span>, and
+                <span class="font-semibold text-sky-300">django-redis</span> are included for task scheduling and
+                caching
+              </p>
+            </div>
+          </div>
+
+          <!-- Asynchronous Emails -->
+          <div class="group relative rounded-xl border border-slate-800">
+            <div
+              class="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 transition duration-300 [background:linear-gradient(var(--link-grid-hover-bg,theme(colors.sky.50)),var(--link-grid-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 [--link-grid-hover-bg:theme(colors.slate.800)]">
+            </div>
+            <div class="relative overflow-hidden rounded-xl p-6">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                class="h-8 w-8 text-sky-400 h-8 w-8">
+                <path fill-rule="evenodd"
+                  d="M1.5 9.832v1.793c0 1.036.84 1.875 1.875 1.875h17.25c1.035 0 1.875-.84 1.875-1.875V9.832a3 3 0 0 0-.722-1.952l-3.285-3.832A3 3 0 0 0 16.215 3h-8.43a3 3 0 0 0-2.278 1.048L2.222 7.88A3 3 0 0 0 1.5 9.832ZM7.785 4.5a1.5 1.5 0 0 0-1.139.524L3.881 8.25h3.165a3 3 0 0 1 2.496 1.336l.164.246a1.5 1.5 0 0 0 1.248.668h2.092a1.5 1.5 0 0 0 1.248-.668l.164-.246a3 3 0 0 1 2.496-1.336h3.165l-2.765-3.226a1.5 1.5 0 0 0-1.139-.524h-8.43Z"
+                  clip-rule="evenodd" />
+                <path
+                  d="M2.813 15c-.725 0-1.313.588-1.313 1.313V18a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3v-1.688c0-.724-.588-1.312-1.313-1.312h-4.233a3 3 0 0 0-2.496 1.336l-.164.246a1.5 1.5 0 0 1-1.248.668h-2.092a1.5 1.5 0 0 1-1.248-.668l-.164-.246A3 3 0 0 0 7.046 15H2.812Z" />
+              </svg>
+
+              <p class="mt-4 font-display text-white text-lg font-medium"><a
+                  href="https://github.com/pmclanahan/django-celery-email">
+                  <span class="absolute -inset-px rounded-xl"></span> Asynchronous Emails</a></p>
+              <p class="mt-1 text-base text-slate-300"> The template uses <span
+                  class="font-semibold text-sky-300">django-celery-email</span> for out of the box asynchronous emails.
+              </p>
+            </div>
+          </div>
+
+          <!-- Automatic File Cleanup -->
+          <div class="group relative rounded-xl border border-slate-800">
+            <div
+              class="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 transition duration-300 [background:linear-gradient(var(--link-grid-hover-bg,theme(colors.sky.50)),var(--link-grid-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 [--link-grid-hover-bg:theme(colors.slate.800)]">
+            </div>
+            <div class="relative overflow-hidden rounded-xl p-6">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                class="h-8 w-8 text-sky-400 h-8 w-8">
+                <path fill-rule="evenodd"
+                  d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z"
+                  clip-rule="evenodd" />
+              </svg>
+
+              <p class="mt-4 font-display text-white text-lg font-medium"><a
+                  href="https://github.com/un1t/django-cleanup">
+                  <span class="absolute -inset-px rounded-xl"></span> Automatic file cleanup</a></p>
+              <p class="mt-1 text-base text-slate-300">
+                <span class="font-semibold text-sky-300">django-cleanup</span> is included to automatically delete
+                uploaded files when an item is removed from the database.
+            </div>
+          </div>
+
+          <!-- Data Seeding -->
+          <div class="group relative rounded-xl border border-slate-800">
+            <div
+              class="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 transition duration-300 [background:linear-gradient(var(--link-grid-hover-bg,theme(colors.sky.50)),var(--link-grid-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 [--link-grid-hover-bg:theme(colors.slate.800)]">
+            </div>
+            <div class="relative overflow-hidden rounded-xl p-6">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                class="h-8 w-8 text-sky-400 h-8 w-8">
+                <path fill-rule="evenodd"
+                  d="M1.5 5.625c0-1.036.84-1.875 1.875-1.875h17.25c1.035 0 1.875.84 1.875 1.875v12.75c0 1.035-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 0 1 1.5 18.375V5.625ZM21 9.375A.375.375 0 0 0 20.625 9h-7.5a.375.375 0 0 0-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 0 0 .375-.375v-1.5Zm0 3.75a.375.375 0 0 0-.375-.375h-7.5a.375.375 0 0 0-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 0 0 .375-.375v-1.5Zm0 3.75a.375.375 0 0 0-.375-.375h-7.5a.375.375 0 0 0-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 0 0 .375-.375v-1.5ZM10.875 18.75a.375.375 0 0 0 .375-.375v-1.5a.375.375 0 0 0-.375-.375h-7.5a.375.375 0 0 0-.375.375v1.5c0 .207.168.375.375.375h7.5ZM3.375 15h7.5a.375.375 0 0 0 .375-.375v-1.5a.375.375 0 0 0-.375-.375h-7.5a.375.375 0 0 0-.375.375v1.5c0 .207.168.375.375.375Zm0-3.75h7.5a.375.375 0 0 0 .375-.375v-1.5A.375.375 0 0 0 10.875 9h-7.5A.375.375 0 0 0 3 9.375v1.5c0 .207.168.375.375.375Z"
+                  clip-rule="evenodd" />
+              </svg>
+
+              <p class="mt-4 font-display text-white text-lg font-medium"><a
+                  href="https://github.com/Brobin/django-seed">
+                  <span class="absolute -inset-px rounded-xl"></span> Data Seeding</a></p>
+              <p class="mt-1 text-base text-slate-300">
+                You can seed your models with <span class="font-semibold text-sky-300">django-seed</span>.
+            </div>
+          </div>
+
+          <!-- Debugging & Extensions -->
+          <div class="group relative rounded-xl border border-slate-800">
+            <div
+              class="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 transition duration-300 [background:linear-gradient(var(--link-grid-hover-bg,theme(colors.sky.50)),var(--link-grid-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 [--link-grid-hover-bg:theme(colors.slate.800)]">
+            </div>
+            <div class="relative overflow-hidden rounded-xl p-6">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                class="h-8 w-8 text-sky-400 h-8 w-8">
+                <path fill-rule="evenodd"
+                  d="M8.478 1.6a.75.75 0 0 1 .273 1.026 3.72 3.72 0 0 0-.425 1.121c.058.058.118.114.18.168A4.491 4.491 0 0 1 12 2.25c1.413 0 2.673.651 3.497 1.668.06-.054.12-.11.178-.167a3.717 3.717 0 0 0-.426-1.125.75.75 0 1 1 1.298-.752 5.22 5.22 0 0 1 .671 2.046.75.75 0 0 1-.187.582c-.241.27-.505.52-.787.749a4.494 4.494 0 0 1 .216 2.1c-.106.792-.753 1.295-1.417 1.403-.182.03-.364.057-.547.081.152.227.273.476.359.742a23.122 23.122 0 0 0 3.832-.803 23.241 23.241 0 0 0-.345-2.634.75.75 0 0 1 1.474-.28c.21 1.115.348 2.256.404 3.418a.75.75 0 0 1-.516.75c-1.527.499-3.119.854-4.76 1.049-.074.38-.22.735-.423 1.05 2.066.209 4.058.672 5.943 1.358a.75.75 0 0 1 .492.75 24.665 24.665 0 0 1-1.189 6.25.75.75 0 0 1-1.425-.47 23.14 23.14 0 0 0 1.077-5.306c-.5-.169-1.009-.32-1.524-.455.068.234.104.484.104.746 0 3.956-2.521 7.5-6 7.5-3.478 0-6-3.544-6-7.5 0-.262.037-.511.104-.746-.514.135-1.022.286-1.522.455.154 1.838.52 3.616 1.077 5.307a.75.75 0 1 1-1.425.468 24.662 24.662 0 0 1-1.19-6.25.75.75 0 0 1 .493-.749 24.586 24.586 0 0 1 4.964-1.24h.01c.321-.046.644-.085.969-.118a2.983 2.983 0 0 1-.424-1.05 24.614 24.614 0 0 1-4.76-1.05.75.75 0 0 1-.516-.75c.057-1.16.194-2.302.405-3.417a.75.75 0 0 1 1.474.28c-.164.862-.28 1.74-.345 2.634 1.237.371 2.517.642 3.832.803.085-.266.207-.515.359-.742a18.698 18.698 0 0 1-.547-.08c-.664-.11-1.311-.612-1.417-1.404a4.535 4.535 0 0 1 .217-2.103 6.788 6.788 0 0 1-.788-.751.75.75 0 0 1-.187-.583 5.22 5.22 0 0 1 .67-2.04.75.75 0 0 1 1.026-.273Z"
+                  clip-rule="evenodd" />
+              </svg>
+
+              <p class="mt-4 font-display text-white text-lg font-medium"><a
+                  href="https://django-extensions.readthedocs.io/en/latest/">
+                  <span class="absolute -inset-px rounded-xl"></span> Debugging & Extensions</a></p>
+              <p class="mt-1 text-base text-slate-300">
+                <span class="font-semibold text-sky-300">Django debug toolbar</span>, <span
+                  class="font-semibold text-sky-300">Django extensions</span> and <span
+                  class="font-semibold text-sky-300">Sentry</span> for debugging and enhancing the
+                functionality of Django.
+            </div>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>
