@@ -7,7 +7,7 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-Django = "^5.0.0"
+Django = "^4.2"
 django-celery-email = "^3.0.0"
 django-cors-headers = "^4.0.0"
 django-environ = "^0.11.0"
@@ -25,6 +25,8 @@ gunicorn = "^21.2.0"
 djangorestframework-simplejwt = "^5.2.2"
 django-allauth = "0.54.0"
 dj-rest-auth = "^2.2.3"
+django-celery-beat = "^2.5.0"
+django-celery-results = "^2.5.1"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.0.0"

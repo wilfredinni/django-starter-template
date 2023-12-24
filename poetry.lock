@@ -462,6 +462,19 @@ traitlets = ">=4"
 test = ["pytest"]
 
 [[package]]
+name = "cron-descriptor"
+version = "1.4.0"
+description = "A Python library that converts cron expressions into human readable strings."
+optional = false
+python-versions = "*"
+files = [
+    {file = "cron_descriptor-1.4.0.tar.gz", hash = "sha256:b6ff4e3a988d7ca04a4ab150248e9f166fb7a5c828a85090e75bcc25aa93b4dd"},
+]
+
+[package.extras]
+dev = ["polib"]
+
+[[package]]
 name = "cryptography"
 version = "41.0.7"
 description = "cryptography is a package which provides cryptographic recipes and primitives to Python developers."
@@ -574,17 +587,17 @@ with-social = ["django-allauth (>=0.40.0,<0.53.0)"]
 
 [[package]]
 name = "django"
-version = "5.0"
+version = "4.2.8"
 description = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
 optional = false
-python-versions = ">=3.10"
+python-versions = ">=3.8"
 files = [
-    {file = "Django-5.0-py3-none-any.whl", hash = "sha256:3a9fd52b8dbeae335ddf4a9dfa6c6a0853a1122f1fb071a8d5eca979f73a05c8"},
-    {file = "Django-5.0.tar.gz", hash = "sha256:7d29e14dfbc19cb6a95a4bd669edbde11f5d4c6a71fdaa42c2d40b6846e807f7"},
+    {file = "Django-4.2.8-py3-none-any.whl", hash = "sha256:6cb5dcea9e3d12c47834d32156b8841f533a4493c688e2718cafd51aa430ba6d"},
+    {file = "Django-4.2.8.tar.gz", hash = "sha256:d69d5e36cc5d9f4eb4872be36c622878afcdce94062716cf3e25bcedcb168b62"},
 ]
 
 [package.dependencies]
-asgiref = ">=3.7.0"
+asgiref = ">=3.6.0,<4"
 sqlparse = ">=0.3.1"
 tzdata = {version = "*", markers = "sys_platform == \"win32\""}
 
@@ -624,6 +637,25 @@ files = [
 django = "*"
 
 [[package]]
+name = "django-celery-beat"
+version = "2.5.0"
+description = "Database-backed Periodic Tasks."
+optional = false
+python-versions = "*"
+files = [
+    {file = "django-celery-beat-2.5.0.tar.gz", hash = "sha256:cd0a47f5958402f51ac0c715bc942ae33d7b50b4e48cba91bc3f2712be505df1"},
+    {file = "django_celery_beat-2.5.0-py3-none-any.whl", hash = "sha256:ae460faa5ea142fba0875409095d22f6bd7bcc7377889b85e8cab5c0dfb781fe"},
+]
+
+[package.dependencies]
+celery = ">=5.2.3,<6.0"
+cron-descriptor = ">=1.2.32"
+Django = ">=2.2,<5.0"
+django-timezone-field = ">=5.0"
+python-crontab = ">=2.3.4"
+tzdata = "*"
+
+[[package]]
 name = "django-celery-email"
 version = "3.0.0"
 description = "An async Django email backend using celery"
@@ -638,6 +670,21 @@ files = [
 celery = ">=4.0"
 django = ">=2.2"
 django-appconf = "*"
+
+[[package]]
+name = "django-celery-results"
+version = "2.5.1"
+description = "Celery result backends for Django."
+optional = false
+python-versions = "*"
+files = [
+    {file = "django_celery_results-2.5.1-py3-none-any.whl", hash = "sha256:0da4cd5ecc049333e4524a23fcfc3460dfae91aa0a60f1fae4b6b2889c254e01"},
+    {file = "django_celery_results-2.5.1.tar.gz", hash = "sha256:3ecb7147f773f34d0381bac6246337ce4cf88a2ea7b82774ed48e518b67bb8fd"},
+]
+
+[package.dependencies]
+celery = ">=5.2.7,<6.0"
+Django = ">=3.2.18"
 
 [[package]]
 name = "django-cleanup"
@@ -738,6 +785,20 @@ files = [
 django = ">=1.11"
 Faker = ">=0.7.7"
 toposort = ">=1.5"
+
+[[package]]
+name = "django-timezone-field"
+version = "6.1.0"
+description = "A Django app providing DB, form, and REST framework fields for zoneinfo and pytz timezone objects."
+optional = false
+python-versions = ">=3.8,<4.0"
+files = [
+    {file = "django_timezone_field-6.1.0-py3-none-any.whl", hash = "sha256:0095f43da716552fcc606783cfb42cb025892514f1ec660ebfa96186eb83b74c"},
+    {file = "django_timezone_field-6.1.0.tar.gz", hash = "sha256:d40f7059d7bae4075725d04a9dae601af9fe3c7f0119a69b0e2c6194a782f797"},
+]
+
+[package.dependencies]
+Django = ">=3.2,<6.0"
 
 [[package]]
 name = "djangorestframework"
@@ -1477,6 +1538,24 @@ pluggy = ">=0.12,<2.0"
 testing = ["argcomplete", "attrs (>=19.2.0)", "hypothesis (>=3.56)", "mock", "nose", "pygments (>=2.7.2)", "requests", "setuptools", "xmlschema"]
 
 [[package]]
+name = "python-crontab"
+version = "3.0.0"
+description = "Python Crontab API"
+optional = false
+python-versions = "*"
+files = [
+    {file = "python-crontab-3.0.0.tar.gz", hash = "sha256:79fb7465039ddfd4fb93d072d6ee0d45c1ac8bf1597f0686ea14fd4361dba379"},
+    {file = "python_crontab-3.0.0-py3-none-any.whl", hash = "sha256:6d5ba3c190ec76e4d252989a1644fcb233dbf53fbc8fceeb9febe1657b9fb1d4"},
+]
+
+[package.dependencies]
+python-dateutil = "*"
+
+[package.extras]
+cron-description = ["cron-descriptor"]
+cron-schedule = ["croniter"]
+
+[[package]]
 name = "python-dateutil"
 version = "2.8.2"
 description = "Extensions to the standard Python datetime module"
@@ -2127,4 +2206,4 @@ brotli = ["Brotli"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "c833ce5167aad028f1bd92521eb799c564c01d24bb7afb52a9aea9784611d684"
+content-hash = "745fc55cd5e6075e35b1ed72ae20d9d0a57ecf9eb3840d975438016b950a70a2"

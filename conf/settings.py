@@ -74,6 +74,8 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "dj_rest_auth.registration",
     "django_cleanup.apps.CleanupConfig",
+    "django_celery_results",
+    "django_celery_beat",
     "drf_yasg",
     # Local apps
     "apps.users",
@@ -120,7 +122,8 @@ ADMIN_MEDIA_PREFIX = STATIC_URL + "admin/"
 # Celery
 # -----------------------------------------------------------------------------
 CELERY_BROKER_URL = env("CELERY_BROKER_URL", default="redis://redis:6380")
-CELERY_RESULT_BACKEND = env("CELERY_RESULT_BACKEND", default="redis://redis:6380")
+CELERY_RESULT_EXTENDED = True
+CELERY_RESULT_BACKEND = env("CELERY_RESULT_BACKEND", default="django-db")
 CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
@@ -182,6 +185,18 @@ SIMPLE_JWT = {
 }
 
 # -----------------------------------------------------------------------------
+# Cache
+# -----------------------------------------------------------------------------
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": env("REDIS_URL", default="redis://redis:6380"),
+    }
+}
+
+USER_AGENTS_CACHE = "default"
+
+# -----------------------------------------------------------------------------
 # Sentry and logging
 # -----------------------------------------------------------------------------
 LOGGING = {
@@ -209,14 +224,33 @@ LOGGING = {
 
 if not DEBUG:
     import sentry_sdk
+    from celery import signals
+    from sentry_sdk.integrations.celery import CeleryIntegration
     from sentry_sdk.integrations.django import DjangoIntegration
 
+    SENTRY_DSN = env("SENTRY_DSN", default=None)
+
     sentry_sdk.init(
-        dsn=env("SENTRY_DNS"),
+        dsn=SENTRY_DSN,
         integrations=[DjangoIntegration()],
         traces_sample_rate=1.0,
         send_default_pii=True,
+        _experiments={
+            "profiles_sample_rate": 1.0,
+        },
     )
+
+    if SENTRY_DSN:
+
+        @signals.celeryd_init.connect
+        def init_sentry(**kwargs):
+            sentry_sdk.init(
+                dsn=SENTRY_DSN,
+                integrations=[CeleryIntegration(monitor_beat_tasks=True)],
+                environment="local.dev.grace",
+                release="v1.0",
+            )
+
 
 # -----------------------------------------------------------------------------
 # Django Debug Toolbar and Django Extensions
