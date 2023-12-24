@@ -1,4 +1,7 @@
 {
+    "flake8.args": [
+        "--max-line-length=90"
+    ],
     "workbench.colorCustomizations": {
         "activityBar.activeBackground": "#1f6fd0",
         "activityBar.activeBorder": "#ee90bb",
@@ -32,7 +35,6 @@
             "password": "postgres"
         }
     ],
-    "terminal.integrated.defaultProfile.linux": "fish",
     "cSpell.language": "en,es",
     "cSpell.words": [
         "levelname",
