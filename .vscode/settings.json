@@ -37,6 +37,8 @@
     ],
     "cSpell.language": "en,es",
     "cSpell.words": [
+        "allauth",
+        "authtoken",
         "levelname",
         "SOCIALACCOUNT"
     ],
