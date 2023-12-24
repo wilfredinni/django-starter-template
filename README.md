@@ -6,16 +6,16 @@ This template provides a comprehensive and easy-to-use starting point for your n
 
 ## Key features
 
-- **Django 4+**: The template is built on Django, a high-level Python web framework that encourages rapid development and clean, pragmatic design. It will be updated to Django 5 when django-celery-beat supports it.
-- **Custom User Model & Django Rest Framework**: It includes a custom user model and the Django Rest Framework for creating APIs.
-- **JWT and Token Authentication**: The template uses `dj-rest-auth` for Token and JWT authentication. (**In development, Basic and Session authentication is also enabled**).
+- **Django 4+**: It will be updated to Django 5 when django-celery-beat supports it.
+- **Custom User Model & Django Rest Framework**: It includes a custom user model and Django Rest Framework for creating APIs.
+- **JWT and Token Authentication**: The template uses `dj-rest-auth` for Token and JWT authentication.
 - **Auto Documentation**: `drf-yasg` is included for Swagger and Redoc API auto documentation.
 - **Django Filters**: You can easily add filters to your views and APIs with `django-filter`.
 - **Asynchronous Tasks & Caching**: `Redis`, `Celery`, `django-celery-beat`, `django-celery-results`, and `django-redis` are included for task scheduling and caching.
 - **Asynchronous Emails**: The template uses `django-celery-email` for sending asynchronous emails.
-- **Automatic File Cleanup**: `django-cleanup` is included to automatically delete uploaded files when an item is deleted from the database.
+- **Automatic File Cleanup**: `django-cleanup` is included to automatically delete uploaded files after a database delete.
 - **Data Seeding**: You can seed your models with `django-seed`.
-- **Debugging & Extensions**: The template includes Django debug toolbar and Django extensions for debugging and enhancing the functionality of Django.
+- **Debugging & Extensions**: The template includes Django debug toolbar and Django extensions for debugging and enhancing.
 - **Notebook Support**: The template supports Django/Jupiter Notebooks.
 - **Error Tracking**: `sentry-sdk` is included for error tracking.
 - **Database**: The template uses Postgresql as the database.
