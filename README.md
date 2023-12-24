@@ -2,7 +2,7 @@
 
 This template provides a comprehensive and easy-to-use starting point for your new project. It comes pre-configured with a robust set of features, saving you the hassle of setting up everything from scratch.
 
-Key features include:
+## Key features
 
 - **Django 4+**: The template is built on Django, a high-level Python web framework that encourages rapid development and clean, pragmatic design. It will be updated to Django 5 when django-celery-beat supports it.
 - **Custom User Model & Django Rest Framework**: It includes a custom user model and the Django Rest Framework for creating APIs.
