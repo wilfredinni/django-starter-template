@@ -1,5 +1,3 @@
-from datetime import timedelta
-
 from pathlib import Path
 
 import environ
@@ -157,7 +155,7 @@ REST_AUTH_SERIALIZERS = {
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "dj_rest_auth.utils.JWTCookieAuthentication",
+        "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
         "rest_framework.authentication.TokenAuthentication",
     ),
     "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
@@ -172,16 +170,12 @@ if DEBUG:
 
 SOCIALACCOUNT_EMAIL_VERIFICATION = "none"
 SOCIALACCOUNT_EMAIL_REQUIRED = False
-REST_USE_JWT = True
-SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=45),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=6),
-    "ROTATE_REFRESH_TOKENS": True,
-    "BLACKLIST_AFTER_ROTATION": True,
-    "UPDATE_LAST_LOGIN": True,
-    "USER_ID_FIELD": "id",  # for the custom user model
-    "USER_ID_CLAIM": "id",
-    "SIGNING_KEY": env("DJANGO_SECRET_KEY"),
+REST_AUTH = {
+    "USE_JWT": True,
+    "JWT_AUTH_HTTPONLY": False,
+    "JWT_AUTH_RETURN_EXPIRATION": True,
+    "SESSION_LOGIN": DEBUG,
+    "USER_DETAILS_SERIALIZER": "apps.users.serializers.CustomUserProfileSerializer",
 }
 
 # -----------------------------------------------------------------------------
