@@ -8,13 +8,13 @@
   <title>Django Starter Template</title>
 </head>
 
-<body class="bg-gray-900 pb-20">
+<body class="bg-gray-900">
   <!-- Header -->
   <header class="absolute inset-x-0 top-0 z-50">
     <nav class="flex items-center justify-between p-6 lg:px-20" aria-label="Global">
       <div class="flex lg:flex-1">
         <a href="#" class="-m-1.5 p-1.5">
-          <span class="sr-only">Your Company</span>
+          <span class="sr-only">Django starter template</span>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
             class="h-8 w-8 text-sky-400 h-8 w-8">
             <path fill-rule="evenodd"
@@ -24,10 +24,12 @@
 
         </a>
       </div>
-      <div class="flex lg:gap-x-12">
-        <a href="#" class="font-semibold leading-6 text-gray-300">Features</a>
-        <a href="#" class="font-semibold leading-6 text-gray-300">How to use</a>
-        <a href="#" class="font-semibold leading-6 text-gray-300">Contributing</a>
+      <div class="flex lg:gap-x-12 gap-x-4">
+        <a href="#features" class="font-semibold leading-6 text-gray-300">Features</a>
+        <a href="https://github.com/wilfredinni/django-starter-template?tab=readme-ov-file#requirements"
+          class="font-semibold leading-6 text-gray-300">Requirements</a>
+        <a href="https://github.com/wilfredinni/django-starter-template?tab=readme-ov-file#how-to-use"
+          class="font-semibold leading-6 text-gray-300">How to use</a>
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
         <a href="/admin-panel/" class="font-semibold leading-6 text-gray-300">Django admin <span
@@ -38,10 +40,11 @@
 
   <main>
     <!-- Feature section -->
-    <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
+    <div id="features" class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
       <div class="mx-auto max-w-2xl lg:text-center">
-        <p class="text-3xl font-semibold tracking-tight text-gray-200 sm:text-5xl">Django Starter Template
-        </p>
+        <p
+          class="text-3xl font-semibold text-transparent tracking-tight sm:text-5xl bg-gradient-to-r from-sky-400 to-pink-400 bg-clip-text pb-2">
+          Django Starter Template</p>
         <p class="mt-6 text-xl leading-8 text-gray-300">This template provides a comprehensive and easy-to-use starting
           point for your new Django project. It comes pre-configured with a robust set of features, saving you the
           hassle of setting up everything from scratch.</p>
@@ -84,7 +87,7 @@
 
               <p class="mt-4 font-display text-white text-lg font-medium"><a href="https://code.visualstudio.com/">
                   <span class="absolute -inset-px rounded-xl"></span> Visual Studio Code</a></p>
-              <p class="mt-1 text-base text-slate-300"> Everything integrated with VSC. Develop with
+              <p class="mt-1 text-base text-slate-300"> Fully integrated with VSC. Develop with
                 <span class="font-semibold text-sky-300">Black</span>,
                 <span class="font-semibold text-sky-300">Flake8</span>,
                 <span class="font-semibold text-sky-300">isort</span> and
@@ -175,6 +178,57 @@
                   <span class="absolute -inset-px rounded-xl"></span>Jupyter Notebooks</a></p>
               <p class="mt-1 text-base text-slate-300">
                 Test your queries and code interactively with Jupyter Notebooks.</p>
+            </div>
+          </div>
+
+          <!-- Asynchronous Tasks & Caching -->
+          <div class="group relative rounded-xl border border-slate-800">
+            <div
+              class="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 transition duration-300 [background:linear-gradient(var(--link-grid-hover-bg,theme(colors.sky.50)),var(--link-grid-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 [--link-grid-hover-bg:theme(colors.slate.800)]">
+            </div>
+            <div class="relative overflow-hidden rounded-xl p-6">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                class="h-8 w-8 text-sky-400 h-8 w-8">
+                <path d="M16.5 7.5h-9v9h9v-9Z" />
+                <path fill-rule="evenodd"
+                  d="M8.25 2.25A.75.75 0 0 1 9 3v.75h2.25V3a.75.75 0 0 1 1.5 0v.75H15V3a.75.75 0 0 1 1.5 0v.75h.75a3 3 0 0 1 3 3v.75H21A.75.75 0 0 1 21 9h-.75v2.25H21a.75.75 0 0 1 0 1.5h-.75V15H21a.75.75 0 0 1 0 1.5h-.75v.75a3 3 0 0 1-3 3h-.75V21a.75.75 0 0 1-1.5 0v-.75h-2.25V21a.75.75 0 0 1-1.5 0v-.75H9V21a.75.75 0 0 1-1.5 0v-.75h-.75a3 3 0 0 1-3-3v-.75H3A.75.75 0 0 1 3 15h.75v-2.25H3a.75.75 0 0 1 0-1.5h.75V9H3a.75.75 0 0 1 0-1.5h.75v-.75a3 3 0 0 1 3-3h.75V3a.75.75 0 0 1 .75-.75ZM6 6.75A.75.75 0 0 1 6.75 6h10.5a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75H6.75a.75.75 0 0 1-.75-.75V6.75Z"
+                  clip-rule="evenodd" />
+              </svg>
+
+              <p class="mt-4 font-display text-white text-lg font-medium"><a href="https://docs.celeryq.dev/en/stable/">
+                  <span class="absolute -inset-px rounded-xl"></span> Asynchronous Tasks & Caching</a></p>
+              <p class="mt-1 text-base text-slate-300">
+                <span class="font-semibold text-sky-300">Redis</span>,
+                <span class="font-semibold text-sky-300">Celery</span>,
+                <span class="font-semibold text-sky-300">django-celery-beat</span>,
+                <span class="font-semibold text-sky-300">django-celery-results</span>, and
+                <span class="font-semibold text-sky-300">django-redis</span> are included for task scheduling and
+                caching
+              </p>
+            </div>
+          </div>
+
+          <!-- Debugging & Extensions -->
+          <div class="group relative rounded-xl border border-slate-800">
+            <div
+              class="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 transition duration-300 [background:linear-gradient(var(--link-grid-hover-bg,theme(colors.sky.50)),var(--link-grid-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 [--link-grid-hover-bg:theme(colors.slate.800)]">
+            </div>
+            <div class="relative overflow-hidden rounded-xl p-6">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                class="h-8 w-8 text-sky-400 h-8 w-8">
+                <path fill-rule="evenodd"
+                  d="M8.478 1.6a.75.75 0 0 1 .273 1.026 3.72 3.72 0 0 0-.425 1.121c.058.058.118.114.18.168A4.491 4.491 0 0 1 12 2.25c1.413 0 2.673.651 3.497 1.668.06-.054.12-.11.178-.167a3.717 3.717 0 0 0-.426-1.125.75.75 0 1 1 1.298-.752 5.22 5.22 0 0 1 .671 2.046.75.75 0 0 1-.187.582c-.241.27-.505.52-.787.749a4.494 4.494 0 0 1 .216 2.1c-.106.792-.753 1.295-1.417 1.403-.182.03-.364.057-.547.081.152.227.273.476.359.742a23.122 23.122 0 0 0 3.832-.803 23.241 23.241 0 0 0-.345-2.634.75.75 0 0 1 1.474-.28c.21 1.115.348 2.256.404 3.418a.75.75 0 0 1-.516.75c-1.527.499-3.119.854-4.76 1.049-.074.38-.22.735-.423 1.05 2.066.209 4.058.672 5.943 1.358a.75.75 0 0 1 .492.75 24.665 24.665 0 0 1-1.189 6.25.75.75 0 0 1-1.425-.47 23.14 23.14 0 0 0 1.077-5.306c-.5-.169-1.009-.32-1.524-.455.068.234.104.484.104.746 0 3.956-2.521 7.5-6 7.5-3.478 0-6-3.544-6-7.5 0-.262.037-.511.104-.746-.514.135-1.022.286-1.522.455.154 1.838.52 3.616 1.077 5.307a.75.75 0 1 1-1.425.468 24.662 24.662 0 0 1-1.19-6.25.75.75 0 0 1 .493-.749 24.586 24.586 0 0 1 4.964-1.24h.01c.321-.046.644-.085.969-.118a2.983 2.983 0 0 1-.424-1.05 24.614 24.614 0 0 1-4.76-1.05.75.75 0 0 1-.516-.75c.057-1.16.194-2.302.405-3.417a.75.75 0 0 1 1.474.28c-.164.862-.28 1.74-.345 2.634 1.237.371 2.517.642 3.832.803.085-.266.207-.515.359-.742a18.698 18.698 0 0 1-.547-.08c-.664-.11-1.311-.612-1.417-1.404a4.535 4.535 0 0 1 .217-2.103 6.788 6.788 0 0 1-.788-.751.75.75 0 0 1-.187-.583 5.22 5.22 0 0 1 .67-2.04.75.75 0 0 1 1.026-.273Z"
+                  clip-rule="evenodd" />
+              </svg>
+
+              <p class="mt-4 font-display text-white text-lg font-medium"><a
+                  href="https://django-extensions.readthedocs.io/en/latest/">
+                  <span class="absolute -inset-px rounded-xl"></span> Debugging & Extensions</a></p>
+              <p class="mt-1 text-base text-slate-300">
+                <span class="font-semibold text-sky-300">Django debug toolbar</span>, <span
+                  class="font-semibold text-sky-300">Django extensions</span> and <span
+                  class="font-semibold text-sky-300">Sentry</span> for debugging and enhancing the
+                functionality of Django.
             </div>
           </div>
 
@@ -291,33 +345,6 @@
             </div>
           </div>
 
-          <!-- Asynchronous Tasks & Caching -->
-          <div class="group relative rounded-xl border border-slate-800">
-            <div
-              class="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 transition duration-300 [background:linear-gradient(var(--link-grid-hover-bg,theme(colors.sky.50)),var(--link-grid-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 [--link-grid-hover-bg:theme(colors.slate.800)]">
-            </div>
-            <div class="relative overflow-hidden rounded-xl p-6">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                class="h-8 w-8 text-sky-400 h-8 w-8">
-                <path d="M16.5 7.5h-9v9h9v-9Z" />
-                <path fill-rule="evenodd"
-                  d="M8.25 2.25A.75.75 0 0 1 9 3v.75h2.25V3a.75.75 0 0 1 1.5 0v.75H15V3a.75.75 0 0 1 1.5 0v.75h.75a3 3 0 0 1 3 3v.75H21A.75.75 0 0 1 21 9h-.75v2.25H21a.75.75 0 0 1 0 1.5h-.75V15H21a.75.75 0 0 1 0 1.5h-.75v.75a3 3 0 0 1-3 3h-.75V21a.75.75 0 0 1-1.5 0v-.75h-2.25V21a.75.75 0 0 1-1.5 0v-.75H9V21a.75.75 0 0 1-1.5 0v-.75h-.75a3 3 0 0 1-3-3v-.75H3A.75.75 0 0 1 3 15h.75v-2.25H3a.75.75 0 0 1 0-1.5h.75V9H3a.75.75 0 0 1 0-1.5h.75v-.75a3 3 0 0 1 3-3h.75V3a.75.75 0 0 1 .75-.75ZM6 6.75A.75.75 0 0 1 6.75 6h10.5a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75H6.75a.75.75 0 0 1-.75-.75V6.75Z"
-                  clip-rule="evenodd" />
-              </svg>
-
-              <p class="mt-4 font-display text-white text-lg font-medium"><a href="https://docs.celeryq.dev/en/stable/">
-                  <span class="absolute -inset-px rounded-xl"></span> Asynchronous Tasks & Caching</a></p>
-              <p class="mt-1 text-base text-slate-300">
-                <span class="font-semibold text-sky-300">Redis</span>,
-                <span class="font-semibold text-sky-300">Celery</span>,
-                <span class="font-semibold text-sky-300">django-celery-beat</span>,
-                <span class="font-semibold text-sky-300">django-celery-results</span>, and
-                <span class="font-semibold text-sky-300">django-redis</span> are included for task scheduling and
-                caching
-              </p>
-            </div>
-          </div>
-
           <!-- Asynchronous Emails -->
           <div class="group relative rounded-xl border border-slate-800">
             <div
@@ -384,34 +411,28 @@
                 You can seed your models with <span class="font-semibold text-sky-300">django-seed</span>.
             </div>
           </div>
-
-          <!-- Debugging & Extensions -->
-          <div class="group relative rounded-xl border border-slate-800">
-            <div
-              class="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 transition duration-300 [background:linear-gradient(var(--link-grid-hover-bg,theme(colors.sky.50)),var(--link-grid-hover-bg,theme(colors.sky.50)))_padding-box,linear-gradient(to_top,theme(colors.indigo.400),theme(colors.cyan.400),theme(colors.sky.500))_border-box] group-hover:opacity-100 [--link-grid-hover-bg:theme(colors.slate.800)]">
-            </div>
-            <div class="relative overflow-hidden rounded-xl p-6">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                class="h-8 w-8 text-sky-400 h-8 w-8">
-                <path fill-rule="evenodd"
-                  d="M8.478 1.6a.75.75 0 0 1 .273 1.026 3.72 3.72 0 0 0-.425 1.121c.058.058.118.114.18.168A4.491 4.491 0 0 1 12 2.25c1.413 0 2.673.651 3.497 1.668.06-.054.12-.11.178-.167a3.717 3.717 0 0 0-.426-1.125.75.75 0 1 1 1.298-.752 5.22 5.22 0 0 1 .671 2.046.75.75 0 0 1-.187.582c-.241.27-.505.52-.787.749a4.494 4.494 0 0 1 .216 2.1c-.106.792-.753 1.295-1.417 1.403-.182.03-.364.057-.547.081.152.227.273.476.359.742a23.122 23.122 0 0 0 3.832-.803 23.241 23.241 0 0 0-.345-2.634.75.75 0 0 1 1.474-.28c.21 1.115.348 2.256.404 3.418a.75.75 0 0 1-.516.75c-1.527.499-3.119.854-4.76 1.049-.074.38-.22.735-.423 1.05 2.066.209 4.058.672 5.943 1.358a.75.75 0 0 1 .492.75 24.665 24.665 0 0 1-1.189 6.25.75.75 0 0 1-1.425-.47 23.14 23.14 0 0 0 1.077-5.306c-.5-.169-1.009-.32-1.524-.455.068.234.104.484.104.746 0 3.956-2.521 7.5-6 7.5-3.478 0-6-3.544-6-7.5 0-.262.037-.511.104-.746-.514.135-1.022.286-1.522.455.154 1.838.52 3.616 1.077 5.307a.75.75 0 1 1-1.425.468 24.662 24.662 0 0 1-1.19-6.25.75.75 0 0 1 .493-.749 24.586 24.586 0 0 1 4.964-1.24h.01c.321-.046.644-.085.969-.118a2.983 2.983 0 0 1-.424-1.05 24.614 24.614 0 0 1-4.76-1.05.75.75 0 0 1-.516-.75c.057-1.16.194-2.302.405-3.417a.75.75 0 0 1 1.474.28c-.164.862-.28 1.74-.345 2.634 1.237.371 2.517.642 3.832.803.085-.266.207-.515.359-.742a18.698 18.698 0 0 1-.547-.08c-.664-.11-1.311-.612-1.417-1.404a4.535 4.535 0 0 1 .217-2.103 6.788 6.788 0 0 1-.788-.751.75.75 0 0 1-.187-.583 5.22 5.22 0 0 1 .67-2.04.75.75 0 0 1 1.026-.273Z"
-                  clip-rule="evenodd" />
-              </svg>
-
-              <p class="mt-4 font-display text-white text-lg font-medium"><a
-                  href="https://django-extensions.readthedocs.io/en/latest/">
-                  <span class="absolute -inset-px rounded-xl"></span> Debugging & Extensions</a></p>
-              <p class="mt-1 text-base text-slate-300">
-                <span class="font-semibold text-sky-300">Django debug toolbar</span>, <span
-                  class="font-semibold text-sky-300">Django extensions</span> and <span
-                  class="font-semibold text-sky-300">Sentry</span> for debugging and enhancing the
-                functionality of Django.
-            </div>
-          </div>
         </dl>
       </div>
     </div>
   </main>
+
+  <footer>
+    <div class="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
+      <div class="flex justify-center space-x-6 md:order-2">
+      </div>
+      <div class="mt-8 md:order-1 md:mt-0">
+        <a href="https://github.com/wilfredinni" class="text-gray-400 hover:text-gray-300 flex item-center gap-2">
+          <span class="sr-only">GitHub</span>
+          <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill-rule="evenodd"
+              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+              clip-rule="evenodd" />
+          </svg>
+          <p class="text-center text-lg leading-5 font-medium">Carlos 2024</p>
+        </a>
+      </div>
+    </div>
+  </footer>
 </body>
 
 </html>

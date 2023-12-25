@@ -14,12 +14,12 @@ This template provides a comprehensive and easy-to-use starting point for your n
 - **Automatic File Cleanup**: `django-cleanup` is included to automatically delete uploaded files after a database delete.
 - **Data Seeding**: You can seed your models with `django-seed`.
 - **Debugging & Extensions**: The template includes Django debug toolbar and Django extensions for debugging and enhancing.
-- **Notebook Support**: The template supports Django/Jupiter Notebooks.
+- **Notebook Support**: Supports Django/Jupiter Notebooks.
 - **Error Tracking**: `sentry-sdk` is included for error tracking.
-- **Database**: The template uses Postgresql as the database.
+- **Database**: Postgresql as the database.
 - **Code Formatting & Testing**: VSCode is configured to use `Black` for code formatting, `pytest` for testing, and `flake8` for linting.
 
-## Required
+## Requirements
 
 - VSCode
 - Docker
