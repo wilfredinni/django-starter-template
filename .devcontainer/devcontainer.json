@@ -43,7 +43,9 @@
 				"redhat.vscode-yaml",
 				"ms-python.black-formatter",
 				"ms-python.flake8",
-				"tamasfe.even-better-toml"
+				"tamasfe.even-better-toml",
+				"ms-python.isort",
+				"Gruntfuggly.todo-tree"
 			]
 		}
 	},
