@@ -4,7 +4,7 @@ This template provides a comprehensive and easy-to-use starting point for your n
 
 ## Key features
 
-- **Django 4+**: It will be updated to Django 5 when django-celery-beat supports it.
+- **Django 5+**: Enjoy the latest version of Django with all its features and improvements.
 - **Custom User Model & Django Rest Framework**: It includes a custom user model and Django Rest Framework for creating APIs.
 - **JWT and Token Authentication**: The template uses `dj-rest-auth` for Token and JWT authentication.
 - **Auto Documentation**: `drf-yasg` is included for Swagger and Redoc API auto documentation.
