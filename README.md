@@ -12,7 +12,7 @@ This template provides a comprehensive and easy-to-use starting point for your n
 - **Custom User Model**: You have the flexibility to define your own fields and behaviors specific to your application's requirements.
 - **Django Filters**: You can easily add filters to your views and APIs with `django-filter`.
 - **Asynchronous Tasks & Caching**: `Redis`, `Celery`, `django-celery-beat`, `django-celery-results`, and `django-redis` are included for task scheduling and caching.
-- **Asynchronous Emails**:The template uses `django-celery-email` for out of the box asynchronous emails.
+- **Asynchronous Emails**: The template uses `django-celery-email` for out of the box asynchronous emails.
 - **Automatic File Cleanup**: `django-cleanup` is included to automatically delete uploaded files after a database delete.
 - **Data Seeding**: You can seed your models with `django-seed`.
 - **Debugging & Extensions**: `Django debug toolbar`, `Django extensions` and `Sentry` for debugging and enhancing the functionality of Django.
