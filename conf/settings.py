@@ -1,3 +1,4 @@
+from datetime import timedelta
 from pathlib import Path
 
 import environ
@@ -179,10 +180,10 @@ REST_AUTH = {
     "USER_DETAILS_SERIALIZER": "apps.users.serializers.CustomUserProfileSerializer",
 }
 
-from rest_framework_simplejwt.settings import api_settings
-
-api_settings.ACCESS_TOKEN_LIFETIME = timedelta(minutes=45)
-api_settings.REFRESH_TOKEN_LIFETIME = timedelta(days=6)
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=45),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=6),
+}
 
 # -----------------------------------------------------------------------------
 # Cache
