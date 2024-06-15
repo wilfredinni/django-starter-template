@@ -179,6 +179,11 @@ REST_AUTH = {
     "USER_DETAILS_SERIALIZER": "apps.users.serializers.CustomUserProfileSerializer",
 }
 
+from rest_framework_simplejwt.settings import api_settings
+
+api_settings.ACCESS_TOKEN_LIFETIME = timedelta(minutes=45)
+api_settings.REFRESH_TOKEN_LIFETIME = timedelta(days=6)
+
 # -----------------------------------------------------------------------------
 # Cache
 # -----------------------------------------------------------------------------
