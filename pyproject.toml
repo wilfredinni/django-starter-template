@@ -24,7 +24,7 @@ whitenoise = "^6.5.0"
 gunicorn = "^22.0.0"
 djangorestframework-simplejwt = "^5.2.2"
 django-allauth = "0.59.0"
-dj-rest-auth = "^5.0.1"
+dj-rest-auth = "^6.0.0"
 django-celery-beat = "^2.5.0"
 django-celery-results = "^2.5.1"
 
