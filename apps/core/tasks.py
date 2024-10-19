@@ -1,3 +1,8 @@
+"""
+Celery tasks documentation:
+https://docs.celeryq.dev/en/stable/userguide/tasks.html
+"""
+
 import celery
 from celery import shared_task
 
