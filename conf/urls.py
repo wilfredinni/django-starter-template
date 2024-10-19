@@ -4,9 +4,14 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    #  TODO: Change this to an url of your choice and
-    # avoid using the default admin/ or admin-panel/
+    #
+    #  TODO: Change the admin url to one of your choice.
+    # Please avoid using the default 'admin/' or 'admin-panel/'
     path("admin-panel/", admin.site.urls),
+    #
+    # TODO: Disable the auth endpoints you don't need.
+    # Enabled: create, profile, login, logout, logoutall
+    path("auth/", include("apps.users.urls")),
 ]
 
 if settings.DEBUG:

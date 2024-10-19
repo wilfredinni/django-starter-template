@@ -17,6 +17,7 @@ psycopg2 = "^2.9.10"
 whitenoise = "^6.7.0"
 gunicorn = "^23.0.0"
 sentry-sdk = "^2.17.0"
+django-rest-knox = "^5.0.2"
 
 
 [tool.poetry.group.dev.dependencies]

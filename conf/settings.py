@@ -1,6 +1,8 @@
+from datetime import timedelta
 from pathlib import Path
 
 import environ
+from rest_framework.settings import api_settings
 
 env = environ.Env()
 root_path = environ.Path(__file__) - 2
@@ -59,6 +61,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # 3rd party apps
+    "corsheaders",
+    "rest_framework",
+    "knox",
     # local apps
     "apps.users",
 ]
@@ -94,8 +100,35 @@ TEMPLATES = [
 # -----------------------------------------------------------------------------
 # Rest Framework
 # -----------------------------------------------------------------------------
-# TODO
+KNOX_TOKEN_MODEL = "knox.AuthToken"
+REST_KNOX = {
+    "SECURE_HASH_ALGORITHM": "hashlib.sha512",
+    "AUTH_TOKEN_CHARACTER_LENGTH": 64,
+    "TOKEN_TTL": timedelta(hours=10),
+    "USER_SERIALIZER": "apps.users.serializers.UserProfileSerializer",
+    "TOKEN_LIMIT_PER_USER": None,
+    "AUTO_REFRESH": False,
+    "AUTO_REFRESH_MAX_TTL": None,
+    "MIN_REFRESH_INTERVAL": 60,
+    "AUTH_HEADER_PREFIX": "Token",
+    "EXPIRY_DATETIME_FORMAT": api_settings.DATETIME_FORMAT,
+    "TOKEN_MODEL": "knox.AuthToken",
+}
 
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": ("knox.auth.TokenAuthentication",),
+    "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
+}
+
+if DEBUG:
+    REST_FRAMEWORK["DEFAULT_AUTHENTICATION_CLASSES"] += (
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
+    )
+
+CORS_ALLOW_ALL_ORIGINS = DEBUG
+if not CORS_ALLOW_ALL_ORIGINS:
+    CORS_ALLOWED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS")
 
 # -----------------------------------------------------------------------------
 # Cache
