@@ -15,20 +15,16 @@ class AuthTokenSerializer(serializers.Serializer):
     )
     token = serializers.CharField(label=_("Token"), read_only=True)
 
-    def validate(self, attrs):
+    def validate(self, attrs: dict) -> dict:
         email = attrs.get("email")
         password = attrs.get("password")
 
+        # The authenticate call simply returns None for is_active=False users
         if email and password:
-            user = authenticate(
-                request=self.context.get("request"),
-                email=email,
-                password=password,
+            user: CustomUser = authenticate(
+                request=self.context.get("request"), email=email, password=password
             )
 
-            # The authenticate call simply returns None for is_active=False
-            # users. (Assuming the default ModelBackend authentication
-            # backend.)
             if not user:
                 msg = _("Unable to log in with provided credentials.")
                 raise serializers.ValidationError(msg, code="authorization")
@@ -48,7 +44,7 @@ class AuthSerializer(serializers.Serializer):
         style={"input_type": "password"}, trim_whitespace=False
     )
 
-    def validate(self, attrs):
+    def validate(self, attrs: dict) -> None:
         email = attrs.get("email")
         password = attrs.get("password")
 
@@ -73,13 +69,13 @@ class CreateUserSerializer(serializers.ModelSerializer):
         model = CustomUser
         fields = ("email", "password", "password2")
 
-    def validate(self, data):
+    def validate(self, data: dict) -> dict:
         if data["password"] != data["password2"]:
             raise serializers.ValidationError("Passwords do not match.")
 
         return data
 
-    def create(self, validated_data):
+    def create(self, validated_data: dict) -> CustomUser:
         validated_data.pop("password2")
         return CustomUser.objects.create_user(**validated_data)
 
@@ -91,9 +87,9 @@ class UserProfileSerializer(serializers.ModelSerializer):
         fields = ("email", "password", "first_name", "last_name")
         extra_kwargs = {"password": {"write_only": True, "min_length": 5}}
 
-    def update(self, instance, validated_data):
+    def update(self, instance: CustomUser, validated_data: dict) -> CustomUser:
         password = validated_data.pop("password", None)
-        user = super().update(instance, validated_data)
+        user: CustomUser = super().update(instance, validated_data)
 
         if password:
             user.set_password(password)

@@ -1,7 +1,9 @@
 {
     "cSpell.words": [
+        "appname",
         "corsheaders",
-        "devcontainers"
+        "devcontainers",
+        "logoutall"
     ],
     "todo-tree.highlights.customHighlight": {
         "BUG": {
