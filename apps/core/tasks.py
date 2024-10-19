@@ -4,7 +4,9 @@ from celery import shared_task
 
 class BaseTaskWithRetry(celery.Task):
     """
-    Automatically retry task in case of failure (up to 3 times).
+    Automatically retry task in case of failure (up to 3 times). This class
+    is intended to be used as a base class for other tasks that need to be
+    retried in case of failure.
 
     Attributes:
         autoretry_for (tuple): The list of exceptions that should be caught and retried.
@@ -31,7 +33,7 @@ class BaseTaskWithRetry(celery.Task):
 
 
 @shared_task(bind=True, base=BaseTaskWithRetry)
-def test_task(self):
+def test_task(self) -> None:
     """
     This task can be executed periodically using Celery Beat, and/or on demand.
 
