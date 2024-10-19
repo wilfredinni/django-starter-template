@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+        "ms-python.black-formatter",
+        "tamasfe.even-better-toml",
+        "shardulm94.trailing-spaces",
+        "ms-python.isort",
+        "visualstudioexptteam.vscodeintellicode",
+        "ms-python.flake8",
+        "ms-python.python",
+        "irongeek.vscode-env"
+    ]
+}
