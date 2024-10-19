@@ -37,6 +37,9 @@ def test_task(self) -> None:
     """
     This task can be executed periodically using Celery Beat, and/or on demand.
 
+    Parameters:
+        self: The task instance itself.
+
     Retry strategy
         This task uses the BaseTaskWithRetry class defined above, so it will be
         retried up to 3 times if it fails (by default). The task will be retried
