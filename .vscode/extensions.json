@@ -7,6 +7,7 @@
         "visualstudioexptteam.vscodeintellicode",
         "ms-python.flake8",
         "ms-python.python",
-        "irongeek.vscode-env"
+        "irongeek.vscode-env",
+        "gruntfuggly.todo-tree"
     ]
 }
