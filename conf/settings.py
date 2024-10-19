@@ -8,20 +8,49 @@ env.read_env(str(root_path.path(".env")))
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-wlgjuo53y49%-4y5(!%ksylle_ud%b=7%__@9hh+@$d%_^y3s!"
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+# -----------------------------------------------------------------------------
+# Basic Config
+# -----------------------------------------------------------------------------
+ROOT_URLCONF = "conf.urls"
+WSGI_APPLICATION = "conf.wsgi.application"
+DEBUG = env.bool("DEBUG", default=False)
 
 
-# Application definition
+# -----------------------------------------------------------------------------
+# Time & Language
+# -----------------------------------------------------------------------------
+LANGUAGE_CODE = "en-us"
+TIME_ZONE = "UTC"
+USE_I18N = True
+USE_TZ = True
 
+
+# -----------------------------------------------------------------------------
+# Security and Users
+# -----------------------------------------------------------------------------
+SECRET_KEY = env("DJANGO_SECRET_KEY")
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["*"])
+# AUTH_USER_MODEL = "users.CustomUser"
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
+    },
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
+]
+
+# -----------------------------------------------------------------------------
+# Databases
+# -----------------------------------------------------------------------------
+DJANGO_DATABASE_URL = env.db("DATABASE_URL")
+DATABASES = {"default": DJANGO_DATABASE_URL}
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# -----------------------------------------------------------------------------
+# Applications configuration
+# -----------------------------------------------------------------------------
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -41,12 +70,11 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "conf.urls"
 
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [root_path("templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -59,57 +87,63 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "conf.wsgi.application"
+
+# -----------------------------------------------------------------------------
+# Rest Framework
+# -----------------------------------------------------------------------------
+# TODO
 
 
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-DATABASES = {
+# -----------------------------------------------------------------------------
+# Cache
+# -----------------------------------------------------------------------------
+CACHES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": env("REDIS_URL", default="redis://redis:6379"),
     }
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
-
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",  # noqa
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
-    },
-]
+USER_AGENTS_CACHE = "default"
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/5.1/topics/i18n/
-
-LANGUAGE_CODE = "en-us"
-
-TIME_ZONE = "UTC"
-
-USE_I18N = True
-
-USE_TZ = True
+# -----------------------------------------------------------------------------
+# Celery
+# -----------------------------------------------------------------------------
+# TODO
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
+# -----------------------------------------------------------------------------
+# Email
+# -----------------------------------------------------------------------------
+EMAIL_HOST = env("EMAIL_HOST", default="smtp.gmail.com")
+EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS", default=True)
+EMAIL_PORT = env.int("EMAIL_PORT", default=587)
+EMAIL_HOST_USER = env("EMAIL_HOST_USER", default="")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD", default="")
 
-STATIC_URL = "static/"
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+# -----------------------------------------------------------------------------
+# Sentry and logging
+# -----------------------------------------------------------------------------
+# TODO
 
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# -----------------------------------------------------------------------------
+# Static & Media Files
+# -----------------------------------------------------------------------------
+STATIC_URL = "/static/"
+MEDIA_URL = "/media/"
+STATICFILES_DIRS = [root_path("static")]
+STATIC_ROOT = root_path("static_root")
+MEDIA_ROOT = root_path("media_root")
+ADMIN_MEDIA_PREFIX = STATIC_URL + "admin/"
+
+
+# -----------------------------------------------------------------------------
+# Django Debug Toolbar and Django Extensions
+# -----------------------------------------------------------------------------
+if DEBUG:
+    INSTALLED_APPS += ["debug_toolbar", "django_extensions"]
+    INTERNAL_IPS = ["127.0.0.1"]
+    MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
