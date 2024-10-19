@@ -12,6 +12,7 @@ urlpatterns = [
     # TODO: Disable the auth endpoints you don't need.
     # Enabled: create, profile, login, logout, logoutall
     path("auth/", include("apps.users.urls")),
+    path("core/", include("apps.core.urls")),
 ]
 
 if settings.DEBUG:

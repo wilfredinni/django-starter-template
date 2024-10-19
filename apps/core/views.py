@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from django.http import JsonResponse
 
-# Create your views here.
+
+def ping(request):
+    if request.method == "GET":
+        return JsonResponse({"ping": "pong"})
+
+    return JsonResponse({"error": "Method Not Allowd"}, status=405)
