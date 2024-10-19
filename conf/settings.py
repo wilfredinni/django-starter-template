@@ -65,6 +65,8 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "knox",
+    "django_celery_beat",
+    "django_celery_results",
     # local apps
     "apps.users",
 ]
@@ -146,7 +148,16 @@ USER_AGENTS_CACHE = "default"
 # -----------------------------------------------------------------------------
 # Celery
 # -----------------------------------------------------------------------------
-# TODO
+CELERY_BROKER_URL = env("CELERY_BROKER_URL", default="redis://redis:6379")
+CELERY_RESULT_BACKEND = env("CELERY_RESULT_BACKEND", default="django-db")
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers.DatabaseScheduler"
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TIMEZONE = "America/Santiago"
+CELERY_RESULT_EXTENDED = True
+
+CELERY_BEAT_SCHEDULE = {}
 
 
 # -----------------------------------------------------------------------------
