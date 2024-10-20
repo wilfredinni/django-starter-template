@@ -9,6 +9,7 @@
         "ms-python.python",
         "irongeek.vscode-env",
         "gruntfuggly.todo-tree",
-        "ms-toolsai.jupyter"
+        "ms-toolsai.jupyter",
+        "streetsidesoftware.code-spell-checker"
     ]
 }

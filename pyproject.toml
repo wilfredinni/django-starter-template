@@ -1,4 +1,5 @@
 [tool.poetry]
+# TODO: Change the name, version, description, authors, and license
 name = "django-starter-template"
 version = "0.1.0"
 description = ""

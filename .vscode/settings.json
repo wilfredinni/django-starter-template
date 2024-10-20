@@ -29,6 +29,10 @@
             "icon": "issue-closed"
         }
     },
+    "todo-tree.filtering.excludeGlobs": [
+        "**/.venv/*/**",
+        "**/README.md",
+    ],
     "cSpell.words": [
         "appname",
         "autoretry",
