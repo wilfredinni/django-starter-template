@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-As an open source product, only the latest major version will be patched for security vulnerabilities. Previous versions of Dinero will likely not be retroactively patched.
+As an open source product, only the latest major version will be patched for security vulnerabilities. Previous versions of the Django Starter Template will likely not be retroactively patched.
 
 ## Reporting a Vulnerability
 
