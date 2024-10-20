@@ -29,6 +29,7 @@ django-debug-toolbar = "^4.4.6"
 pytest = "^8.3.3"
 django-extensions = "^3.2.3"
 pytest-django = "^4.9.0"
+ipykernel = "^6.29.5"
 
 [build-system]
 requires = ["poetry-core"]

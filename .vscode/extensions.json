@@ -8,6 +8,7 @@
         "ms-python.flake8",
         "ms-python.python",
         "irongeek.vscode-env",
-        "gruntfuggly.todo-tree"
+        "gruntfuggly.todo-tree",
+        "ms-toolsai.jupyter"
     ]
 }
