@@ -1,6 +1,6 @@
 # Django starter template
 
-A comprehensive, easy-to-use starting point for your new API with **Django** and **DRF**.
+A comprehensive and easy-to-use starting point for your new API with **Django** and **DRF**.
 
 
 ## Key features
