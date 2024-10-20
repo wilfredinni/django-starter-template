@@ -10,7 +10,7 @@ def ping(request):
     if request.method == "GET":
         return JsonResponse({"ping": "pong"})
 
-    return JsonResponse({"error": "Method Not Allow"}, status=405)
+    return JsonResponse({"error": "Method Not Allowed"}, status=405)
 
 
 def fire_task(request):
@@ -23,4 +23,4 @@ def fire_task(request):
         test_task.delay()
         return JsonResponse({"task": "Task fired"})
 
-    return JsonResponse({"error": "Method Not Allow"}, status=405)
+    return JsonResponse({"error": "Method Not Allowed"}, status=405)
