@@ -6,6 +6,10 @@ authors = ["Carlos <carlos@pythoncheatsheet.org>"]
 license = "MIT"
 readme = "README.md"
 
+packages = [
+    { include = "scripts" }
+]
+
 [tool.poetry.dependencies]
 python = "^3.11"
 django = "^5.1.2"
@@ -30,6 +34,13 @@ pytest = "^8.3.3"
 django-extensions = "^3.2.3"
 pytest-django = "^4.9.0"
 ipykernel = "^6.29.5"
+
+[tool.poetry.scripts]
+server = "scripts.django:runserver"
+makemigrations = "scripts.django:makemigrations"
+migrate = "scripts.django:migrate"
+worker = "scripts.celery:run_worker"
+beat = "scripts.celery:run_beat"
 
 [build-system]
 requires = ["poetry-core"]

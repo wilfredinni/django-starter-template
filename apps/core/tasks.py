@@ -51,13 +51,13 @@ def test_task(self) -> None:
         after 5 seconds, and the retry time will be increased exponentially.
 
     To call this task on demand
-        1. Start a Celery worker with 'celery -A conf worker -l info'
-        2. Call the task from a View or another function: test_task.delay()'
+        1. Start a Celery worker with 'poetry run worker'
+        2. Call the task from a View or another function as test_task.delay()'
 
     To set the periodic task
         1. Go the Django Admin and add a new Periodic Task.
-        2. Start a Celery worker with 'celery -A conf worker -l info'
-        3. Start Celery Beat with 'celery -A conf beat -l INFO'
+        2. Start a Celery worker with 'poetry run worker'
+        3. Start Celery Beat with 'poetry run beat'
     """
 
     # 👇 To test the retries uncomment the following line:
