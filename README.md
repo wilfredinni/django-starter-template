@@ -1,5 +1,7 @@
 # Django starter template
 
+![logo](/logo.png | width=100)
+
 A comprehensive and easy-to-use starting point for your new API with **Django** and **DRF**.
 
 
