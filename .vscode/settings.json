@@ -36,6 +36,8 @@
         "devcontainers",
         "levelname",
         "logoutall",
+        "nostatic",
+        "whitenoise",
         "wrongpassword"
     ],
 }
