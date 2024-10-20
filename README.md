@@ -65,6 +65,7 @@ And if you feel like it, you can also use:
 
 ## Todo
 
+- [ ] Index Page with a link to the Django admin
 - [ ] Data seeding
 - [ ] API Versioning
 - [ ] OpenAPI 3 schema auto generation and Swagger
