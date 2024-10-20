@@ -1,12 +1,11 @@
 {
-    "cSpell.words": [
-        "appname",
-        "autoretry",
-        "corsheaders",
-        "devcontainers",
-        "levelname",
-        "logoutall"
+    "python.testing.pytestArgs": [
+        "apps"
     ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    // set fish as default shell
+    "terminal.integrated.defaultProfile.linux": "fish",
     "todo-tree.highlights.customHighlight": {
         "BUG": {
             "icon": "bug"
@@ -29,9 +28,12 @@
             "icon": "issue-closed"
         }
     },
-    "python.testing.pytestArgs": [
-        "apps"
+    "cSpell.words": [
+        "appname",
+        "autoretry",
+        "corsheaders",
+        "devcontainers",
+        "levelname",
+        "logoutall"
     ],
-    "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
 }
