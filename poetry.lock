@@ -600,6 +600,7 @@ files = [
 
 [package.dependencies]
 certifi = "*"
+django = {version = ">=1.8", optional = true, markers = "extra == \"django\""}
 urllib3 = ">=1.26.11"
 
 [package.extras]
@@ -732,4 +733,4 @@ brotli = ["brotli"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "086d8d7c1672a915b5a91d2658eed7b03e2457d248fb4b8fc878c45e9dad645c"
+content-hash = "82e91217486d602bbb825df8314d0ad5a6fa091ace84938b56db0d58e1e456ae"

@@ -4,6 +4,7 @@
         "autoretry",
         "corsheaders",
         "devcontainers",
+        "levelname",
         "logoutall"
     ],
     "todo-tree.highlights.customHighlight": {

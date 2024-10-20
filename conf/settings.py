@@ -2,6 +2,7 @@ from datetime import timedelta
 from pathlib import Path
 
 import environ
+import sentry_sdk
 from rest_framework.settings import api_settings
 
 env = environ.Env()
@@ -156,7 +157,6 @@ CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
 CELERY_TIMEZONE = "America/Santiago"
 CELERY_RESULT_EXTENDED = True
-
 CELERY_BEAT_SCHEDULE = {}
 
 
@@ -173,7 +173,40 @@ EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD", default="")
 # -----------------------------------------------------------------------------
 # Sentry and logging
 # -----------------------------------------------------------------------------
-# TODO
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "console": {"format": "%(name)-12s %(levelname)-8s %(message)s"},
+        "file": {"format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"},
+    },
+    "handlers": {
+        "console": {"class": "logging.StreamHandler", "formatter": "console"},
+        "file": {
+            "level": "ERROR",
+            "class": "logging.handlers.RotatingFileHandler",
+            "formatter": "file",
+            "filename": f"{root_path('logs')}/error.log",
+            "maxBytes": 1000000,
+            "backupCount": 20,
+        },
+    },
+    "loggers": {
+        "": {"level": "ERROR", "handlers": ["console", "file"], "propagate": True},
+    },
+}
+
+if not DEBUG:
+    sentry_sdk.init(
+        dsn=env("SENTRY_DSN"),
+        # Set traces_sample_rate to 1.0 to capture 100%
+        # of transactions for tracing.
+        traces_sample_rate=1.0,
+        # Set profiles_sample_rate to 1.0 to profile 100%
+        # of sampled transactions.
+        # We recommend adjusting this value in production.
+        profiles_sample_rate=1.0,
+    )
 
 
 # -----------------------------------------------------------------------------
