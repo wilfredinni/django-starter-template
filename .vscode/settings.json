@@ -1,50 +1,52 @@
 {
-    "flake8.args": [
-        "--max-line-length=90"
+    "python.testing.pytestArgs": [
+        "apps"
     ],
-    "workbench.colorCustomizations": {
-        "activityBar.activeBackground": "#1f6fd0",
-        "activityBar.activeBorder": "#ee90bb",
-        "activityBar.background": "#1f6fd0",
-        "activityBar.foreground": "#e7e7e7",
-        "activityBar.inactiveForeground": "#e7e7e799",
-        "activityBarBadge.background": "#ee90bb",
-        "activityBarBadge.foreground": "#15202b",
-        "sash.hoverBorder": "#1f6fd0",
-        "statusBar.background": "#1857a4",
-        "statusBar.foreground": "#e7e7e7",
-        "statusBarItem.hoverBackground": "#1f6fd0",
-        "statusBarItem.remoteBackground": "#1857a4",
-        "statusBarItem.remoteForeground": "#e7e7e7",
-        "titleBar.activeBackground": "#1857a4",
-        "titleBar.activeForeground": "#e7e7e7",
-        "titleBar.inactiveBackground": "#1857a499",
-        "titleBar.inactiveForeground": "#e7e7e799",
-        "commandCenter.border": "#e7e7e799"
-    },
-    "peacock.remoteColor": "#1857a4",
-    "sqltools.connections": [
-        {
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 5432,
-            "driver": "PostgreSQL",
-            "name": "django_db",
-            "database": "postgres",
-            "username": "postgres",
-            "password": "postgres"
-        }
-    ],
-    "cSpell.language": "en,es",
-    "cSpell.words": [
-        "allauth",
-        "authtoken",
-        "isort",
-        "levelname",
-        "SOCIALACCOUNT"
-    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "editor.tabSize": 4,
     "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-        "source.organizeImports": "explicit"
+    "terminal.integrated.defaultProfile.linux": "fish",
+    "todo-tree.highlights.customHighlight": {
+        "BUG": {
+            "icon": "bug"
+        },
+        "HACK": {
+            "icon": "tools"
+        },
+        "FIXME": {
+            "icon": "flame",
+            "foreground": "#ffffff",
+            "background": "#ff0000"
+        },
+        "XXX": {
+            "icon": "x"
+        },
+        "[ ]": {
+            "icon": "issue-draft"
+        },
+        "[x]": {
+            "icon": "issue-closed"
+        }
     },
+    "todo-tree.filtering.excludeGlobs": [
+        "**/.venv/*/**",
+        "**/README.md",
+    ],
+    "cSpell.words": [
+        "appname",
+        "autoretry",
+        "corsheaders",
+        "createsuperuser",
+        "devcontainers",
+        "levelname",
+        "logoutall",
+        "makemigrations",
+        "nostatic",
+        "pytest",
+        "querysets",
+        "runserver",
+        "whitenoise",
+        "wrongpassword"
+    ],
 }

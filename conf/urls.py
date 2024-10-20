@@ -1,48 +1,18 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import include, path, re_path
-from drf_yasg import openapi
-from drf_yasg.views import get_schema_view
-from rest_framework import permissions
-
-schema_view = get_schema_view(
-    openapi.Info(
-        title="Snippets API",
-        default_version="v1",
-        description="Test description",
-        terms_of_service="https://www.google.com/policies/terms/",
-        contact=openapi.Contact(email="contact@snippets.local"),
-        license=openapi.License(name="BSD License"),
-    ),
-    public=True,
-    permission_classes=[permissions.IsAuthenticated],
-)
+from django.urls import path, include
 
 urlpatterns = [
+    #
+    #  TODO: Change the admin url to one of your choice.
+    # Please avoid using the default 'admin/' or 'admin-panel/'
     path("admin-panel/", admin.site.urls),
-    path("api-auth/", include("rest_framework.urls")),
-    path("rest-auth/", include("dj_rest_auth.urls")),
-    path(
-        "rest-auth/registration/",
-        include("dj_rest_auth.registration.urls"),
-    ),
-    re_path(
-        r"^swagger(?P<format>\.json|\.yaml)$",
-        schema_view.without_ui(cache_timeout=0),
-        name="schema-json",
-    ),
-    re_path(
-        r"^swagger/$",
-        schema_view.with_ui("swagger", cache_timeout=0),
-        name="schema-swagger-ui",
-    ),
-    re_path(
-        r"^redoc/$",
-        schema_view.with_ui("redoc", cache_timeout=0),
-        name="schema-redoc",
-    ),
-    path("", include("apps.users.urls")),
+    #
+    # TODO: Disable the auth endpoints you don't need.
+    # Enabled: create, profile, login, logout, logoutall
+    path("auth/", include("apps.users.urls")),
+    path("core/", include("apps.core.urls")),
 ]
 
 if settings.DEBUG:

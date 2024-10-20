@@ -1,15 +1,15 @@
 {
     "recommendations": [
-        "irongeek.vscode-env",
-        "ms-python.python",
-        "shardulm94.trailing-spaces",
-        "visualstudioexptteam.vscodeintellicode",
-        "usernamehw.errorlens",
-        "johnpapa.vscode-peacock",
         "ms-python.black-formatter",
-        "ms-python.flake8",
         "tamasfe.even-better-toml",
+        "shardulm94.trailing-spaces",
         "ms-python.isort",
-        "gruntfuggly.todo-tree"
+        "visualstudioexptteam.vscodeintellicode",
+        "ms-python.flake8",
+        "ms-python.python",
+        "irongeek.vscode-env",
+        "gruntfuggly.todo-tree",
+        "ms-toolsai.jupyter",
+        "streetsidesoftware.code-spell-checker"
     ]
 }

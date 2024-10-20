@@ -1,42 +1,47 @@
 [tool.poetry]
+# TODO: Change the name, version, description, authors, and license
 name = "django-starter-template"
 version = "0.1.0"
 description = ""
-authors = ["Carlos Montecinos <carlos.w.montecinos@gmail.com>"]
+authors = ["Carlos <carlos@pythoncheatsheet.org>"]
 license = "MIT"
+readme = "README.md"
+
+packages = [
+    { include = "scripts" }
+]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-Django = "^5.0.3"
-django-celery-email = "^3.0.0"
-django-cors-headers = "^4.0.0"
-django-environ = "^0.11.0"
-django-filter = "^22.1"
-djangorestframework = "^3.13.1"
-django-cleanup = "^8.0.0"
-psycopg2-binary = "^2.9.3"
-requests = "^2.27.1"
-redis = "^5.0.0"
-sentry-sdk = "^2.0.0"
-drf-yasg = { extras = ["validation"], version = "^1.20.0" }
-celery = "^5.2.7"
-whitenoise = "^6.5.0"
-gunicorn = "^22.0.0"
-djangorestframework-simplejwt = "^5.2.2"
-django-allauth = "0.63.3"
-dj-rest-auth = "^6.0.0"
-django-celery-beat = "^2.5.0"
+django = "^5.1.2"
+django-environ = "^0.11.2"
+django-cors-headers = "^4.5.0"
+django-filter = "^24.3"
+djangorestframework = "^3.15.2"
+psycopg2 = "^2.9.10"
+whitenoise = "^6.7.0"
+gunicorn = "^23.0.0"
+django-rest-knox = "^5.0.2"
+redis = "^5.1.1"
+celery = "^5.4.0"
+django-celery-beat = "^2.7.0"
 django-celery-results = "^2.5.1"
+sentry-sdk = {extras = ["django"], version = "^2.17.0"}
+
 
 [tool.poetry.group.dev.dependencies]
-black = "^24.0.0"
-pytest = "^8.0.0"
-django-debug-toolbar = "^4.0.0"
-django-extensions = "^3.1.5"
-flake8 = "^7.0.0"
-ipykernel = "^6.13.0"
-django-seed = "^0.3.1"
-isort = "^5.13.2"
+django-debug-toolbar = "^4.4.6"
+pytest = "^8.3.3"
+django-extensions = "^3.2.3"
+pytest-django = "^4.9.0"
+ipykernel = "^6.29.5"
+
+[tool.poetry.scripts]
+server = "scripts.django:runserver"
+makemigrations = "scripts.django:makemigrations"
+migrate = "scripts.django:migrate"
+worker = "scripts.celery:run_worker"
+beat = "scripts.celery:run_beat"
 
 [build-system]
 requires = ["poetry-core"]
