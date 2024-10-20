@@ -66,11 +66,13 @@ INSTALLED_APPS = [
     # 3rd party apps
     "corsheaders",
     "rest_framework",
+    "django_filters",
     "knox",
     "django_celery_beat",
     "django_celery_results",
     # local apps
     "apps.users",
+    "apps.core",
 ]
 
 MIDDLEWARE = [
@@ -222,9 +224,11 @@ STORAGES = {
 STATIC_URL = "/static/"
 MEDIA_URL = "/media/"
 STATICFILES_DIRS = [root_path("static")]
-STATIC_ROOT = root_path("static_root")
 MEDIA_ROOT = root_path("media_root")
 ADMIN_MEDIA_PREFIX = STATIC_URL + "admin/"
+
+if not DEBUG:
+    STATIC_ROOT = root_path("static_root")
 
 
 # -----------------------------------------------------------------------------
