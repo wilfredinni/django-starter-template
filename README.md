@@ -1,6 +1,6 @@
-# Django starter template
+<img src="https://raw.githubusercontent.com/wilfredinni/django-starter-template/refs/heads/main/logo.png" data-canonical-src="/logo.png" width="80" height="80" />
 
-![logo](/logo.png | width=100)
+#  Django starter template
 
 A comprehensive and easy-to-use starting point for your new API with **Django** and **DRF**.
 
