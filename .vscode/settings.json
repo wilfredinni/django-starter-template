@@ -49,4 +49,7 @@
         "whitenoise",
         "wrongpassword"
     ],
+    "flake8.args": [
+        "--max-line-length=90"
+    ],
 }
