@@ -40,6 +40,8 @@ class BaseTaskWithRetry(celery.Task):
 @shared_task(bind=True, base=BaseTaskWithRetry)
 def test_task(self) -> None:
     """
+    TODO 👇 After testing the task, delete this function, the view, and the route.
+
     This task can be executed periodically using Celery Beat, and/or on demand.
 
     Parameters:
@@ -64,6 +66,3 @@ def test_task(self) -> None:
     # raise KeyError("This is a test error")
 
     print("Hello World from Celery")
-
-    # TODO: After testing the task, you can delete this function,
-    # the view, and the route.

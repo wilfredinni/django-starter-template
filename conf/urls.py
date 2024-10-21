@@ -5,11 +5,11 @@ from django.urls import path, include
 
 urlpatterns = [
     #
-    #  TODO: Change the admin url to one of your choice.
+    #  TODO⚡ Change the admin url to one of your choice.
     # Please avoid using the default 'admin/' or 'admin-panel/'
     path("admin-panel/", admin.site.urls),
     #
-    # TODO: Disable the auth endpoints you don't need.
+    # TODO ⚡ Disable the auth endpoints you don't need.
     # Enabled: create, profile, login, logout, logoutall
     path("auth/", include("apps.users.urls")),
     path("core/", include("apps.core.urls")),

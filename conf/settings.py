@@ -161,7 +161,6 @@ CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
 CELERY_TIMEZONE = "America/Santiago"
 CELERY_RESULT_EXTENDED = True
-CELERY_BEAT_SCHEDULE = {}
 
 
 # -----------------------------------------------------------------------------

@@ -6,7 +6,6 @@ appname = "core"
 
 urlpatterns = [
     path("ping/", views.ping, name="ping"),
-    # TODO: After testing the task, remove the following route 👇,
-    # the view, and the task.
+    # TODO 👇 Remove the route bellow, the view, and the task.
     path("fire-task/", views.fire_task, name="fire_task"),
 ]

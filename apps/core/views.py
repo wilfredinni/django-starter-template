@@ -15,12 +15,12 @@ def ping(request):
 
 def fire_task(request):
     """
+    TODO 👇 After testing the view, remove it with the task and the route.
+
     Handles a request to fire a test Celery task. The task will be retried
     up to 3 times and after 5 seconds if it fails (by default). The retry
     time will be increased exponentially.
     """
-    # TODO: After testing the task, remove the following line, you can
-    # delete the entire view with the route and the task.
     if request.method == "GET":
         test_task.delay()
         return JsonResponse({"task": "Task fired"})

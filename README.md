@@ -9,20 +9,21 @@
 
 - 🧪 Fully tested with [Pytest](https://docs.pytest.org/en/stable/).
 - 🚀 Enjoy the latest version of [Django](https://docs.djangoproject.com/en/5.1/) (5+) with all its features and improvements.
-- 🌐 [Django Rest Framework](https://www.django-rest-framework.org/) for building APIs.
-- ⛃ Start your project with [PostgreSQL](https://www.postgresql.org/) without the need to install and configure it.
+- 🛠️ [Django Rest Framework](https://www.django-rest-framework.org/) for building APIs.
+- 💿 Start your project with [PostgreSQL](https://www.postgresql.org/) without the need to install and configure it.
 - 📦 [Redis](https://redis.io/) caching out of the box.
 - 🔒 Login, Logout, Logout all, User profile and creation with [Knox](https://jazzband.github.io/django-rest-knox/), an easy-to-use authentication for DRF.
-- 👤 Extended user model and a custom manager with the email as the unique identifier. Define your own fields and behaviors specific to your application's requirements.
-- 🔢 A custom [BaseModel](/apps/core/models.py) to easily add `created_at` and `updated_at` fields to your models.
-- 🔢 A custom [SoftDeleteBaseModel](/apps/core/models.py) to add soft delete functionality to the models you choose to.
-- 🕒 Fully configured asynchronous tasks with [Celery](https://docs.celeryq.dev/en/stable/). It also includes a reusable [BaseTaskWithRetry](/apps/core/tasks.py).
-- 🕑 [django_celery_results](https://django-celery-results.readthedocs.io/en/latest/) enables Celery to store task results using Django's database backend.
+- 🙋 Extended user model and a custom manager. Start with the email as the unique identifier.
+- 🗄️ A custom [BaseModel](/apps/core/models.py) to easily add `created_at` and `updated_at` fields to your models.
+- 🗑️ A custom [SoftDeleteBaseModel](/apps/core/models.py) to add soft delete functionality to the models you choose to.
+- ⏳ Fully configured asynchronous tasks with [Celery](https://docs.celeryq.dev/en/stable/). It also includes a reusable [BaseTaskWithRetry](/apps/core/tasks.py).
+- 🗃️ [django_celery_results](https://django-celery-results.readthedocs.io/en/latest/) enables Celery to store task results using Django's database backend.
 - 📅 [django_celery_beat](https://django-celery-beat.readthedocs.io/en/latest/) for periodic task scheduling using the Django admin interface.
-- 🌪️ [django-filter](https://django-filter.readthedocs.io/en/stable/) add support for complex filtering of querysets in Django and DRF views.
-- [Test your queries and code](/notebook.ipynb) interactively with [Jupyter Notebooks](https://jupyter.org/).
+- 🔽 [django-filter](https://django-filter.readthedocs.io/en/stable/) add support for complex filtering of querysets in Django and DRF views.
+- ⚡[Test your queries and code](/notebook.ipynb) interactively with [Jupyter Notebooks](https://jupyter.org/).
 - 🐞 [Django Debug Toolbar](https://django-debug-toolbar.readthedocs.io/en/latest/) for debugging and profiling and [Django Extensions](https://django-extensions.readthedocs.io/en/latest/) for custom management commands and model enhancements.
-- 👨‍💻 Develop with [VS Code](https://code.visualstudio.com/) and [Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers). Get out of the box code formatting with [Black](https://black.readthedocs.io/en/stable/), linting with [Flake8](https://flake8.pycqa.org/en/latest/) and test with [Pytest](https://docs.pytest.org/en/stable/).
+- 🔧 Get out of the box code formatting with [Black](https://black.readthedocs.io/en/stable/), linting with [Flake8](https://flake8.pycqa.org/en/latest/) and test with [Pytest](https://docs.pytest.org/en/stable/).
+- 👨‍💻 Develop with [VS Code](https://code.visualstudio.com/) and [Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers).
 
 
 ## Requirements
@@ -58,7 +59,7 @@ This template comes with some shortcuts so you don't have to memorize how to sta
 - `poetry run worker`: to start a new Celery worker.
 - `poetry run beat`: to start your periodic tasks.
 
-And if you feel like it, you can also use:
+You can also use:
 
 - `poetry run server` instead of `python manage.py runserver`
 - `poetry run makemigrations` instead of `python manage.py makemigrations`
