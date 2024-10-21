@@ -21,14 +21,15 @@
 - 📅 [django_celery_beat](https://django-celery-beat.readthedocs.io/en/latest/) for periodic task scheduling using the Django admin interface.
 - 🔽 [django-filter](https://django-filter.readthedocs.io/en/stable/) add support for complex filtering of querysets in Django and DRF views.
 - ⚡[Test your queries and code](/notebook.ipynb) interactively with [Jupyter Notebooks](https://jupyter.org/).
-- 🐞 [Django Debug Toolbar](https://django-debug-toolbar.readthedocs.io/en/latest/) for debugging and profiling and [Django Extensions](https://django-extensions.readthedocs.io/en/latest/) for custom management commands and model enhancements.
+- 🐞 [Django Debug Toolbar](https://django-debug-toolbar.readthedocs.io/en/latest/) for debugging and profiling
+- 🧩 [Django Extensions](https://django-extensions.readthedocs.io/en/latest/) for custom management commands and model enhancements.
 - 🔧 Get out of the box code formatting with [Black](https://black.readthedocs.io/en/stable/), linting with [Flake8](https://flake8.pycqa.org/en/latest/) and test with [Pytest](https://docs.pytest.org/en/stable/).
 - 👨‍💻 Develop with [VS Code](https://code.visualstudio.com/) and [Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers).
 
 
 ## Requirements
 
-- </> VS Code
+- 💻 VS Code
 - 🐋 Docker
 - 🐳 Docker Compose
 
@@ -36,9 +37,11 @@
 ## How to use
 
 1. Clone the repo or use it as a template to start a new project.
-![Use as template](https://docs.github.com/assets/images/help/repository/use-this-template-button.png)
+<br>
+<img src="https://raw.githubusercontent.com/wilfredinni/django-starter-template/refs/heads/main/static/USE.png" />
 1. Open the project in VS Code.
 1. If you installed the recommended extensions, open `Todo Tree` in the sidebar. It will guide you trough the first steps setting up your project, like changing the name of the container, adjusting your URLS, etc.
+<br>
 ![todo](/static/TODO.png)
 1. Use `env.example` to create a `.env` file.
 1. Hit `CTL/CMD + Shift + p` and select `Reopen in container`. This will:
