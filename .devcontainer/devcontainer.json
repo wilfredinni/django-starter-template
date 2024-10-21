@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/postgres
 {
-	// TODO: Customize the name of the dev container. This will be displayed when starting the container.
+	// TODO 👇 Customize the name of the dev container. This will be displayed when starting the container.
 	"name": "Django Starter",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",

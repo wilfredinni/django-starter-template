@@ -41,12 +41,12 @@
 1. Open the project in VS Code.
 1. If you installed the recommended extensions, open `Todo Tree` in the sidebar. It will guide you trough the first steps setting up your project, like changing the name of the container, adjusting your URLS, etc.
 ![todo](/static/TODO.png)
-1. Use `env.example` to create a `.env` file.
+1. ⚠️ Use `env.example` to create a `.env` file.
 1. Hit `CTL/CMD + Shift + p` and select `Reopen in container`. This will:
     - Create a dev container.
-    - Install the dependencies.
-    - Setup your PostgreSQL database.
     - Setup a Redis server.
+    - Setup your PostgreSQL database.
+    - Install the dependencies.
     - Migrate the database.
 1. Create your super user with `python manage.py createsuperuser`.
 1. Run the project with `python manage.py reserver`.
