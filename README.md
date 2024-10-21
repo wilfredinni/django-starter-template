@@ -37,11 +37,9 @@
 ## How to use
 
 1. Clone the repo or use it as a template to start a new project.
-<br>
-<img src="https://raw.githubusercontent.com/wilfredinni/django-starter-template/refs/heads/main/static/USE.png" />
+![use](/static/USE.png)
 1. Open the project in VS Code.
 1. If you installed the recommended extensions, open `Todo Tree` in the sidebar. It will guide you trough the first steps setting up your project, like changing the name of the container, adjusting your URLS, etc.
-<br>
 ![todo](/static/TODO.png)
 1. Use `env.example` to create a `.env` file.
 1. Hit `CTL/CMD + Shift + p` and select `Reopen in container`. This will:
