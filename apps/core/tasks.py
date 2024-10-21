@@ -64,3 +64,6 @@ def test_task(self) -> None:
     # raise KeyError("This is a test error")
 
     print("Hello World from Celery")
+
+    # TODO: After testing the task, you can delete this function,
+    # the view, and the route.

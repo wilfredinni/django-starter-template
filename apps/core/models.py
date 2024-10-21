@@ -14,11 +14,13 @@ class BaseModel(models.Model):
 
     class Meta:
         """
-        Meta options for the SoftDeleteModel.
+        Meta options for the BaseModel.
 
         Attributes:
             abstract (bool): Indicates that this is an abstract base
             class and should not be used to create any database table.
+            ordering (list): Sets the default ordering of records by
+            the 'created_at' field in descending order.
         """
 
         abstract = True

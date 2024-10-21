@@ -24,10 +24,6 @@ class LoginView(KnoxLoginView):
         return super(LoginView, self).post(request, format=None)
 
 
-class CreateUserView(generics.CreateAPIView):
-    serializer_class = CreateUserSerializer
-
-
 class UserProfileView(generics.RetrieveUpdateAPIView):
     serializer_class = UserProfileSerializer
     authentication_classes = (TokenAuthentication,)
@@ -35,3 +31,7 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
 
     def get_object(self):
         return self.request.user
+
+
+class CreateUserView(generics.CreateAPIView):
+    serializer_class = CreateUserSerializer

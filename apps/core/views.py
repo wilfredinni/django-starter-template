@@ -19,6 +19,8 @@ def fire_task(request):
     up to 3 times and after 5 seconds if it fails (by default). The retry
     time will be increased exponentially.
     """
+    # TODO: After testing the task, remove the following line, you can
+    # delete the entire view with the route and the task.
     if request.method == "GET":
         test_task.delay()
         return JsonResponse({"task": "Task fired"})
