@@ -9,6 +9,9 @@
     "flake8.args": [
         "--max-line-length=90"
     ],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
     "todo-tree.highlights.customHighlight": {
         "BUG": {
             "icon": "bug"
