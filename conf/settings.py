@@ -1,3 +1,4 @@
+import tempfile
 from datetime import timedelta
 from pathlib import Path
 
@@ -220,14 +221,18 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+
 STATIC_URL = "/static/"
-MEDIA_URL = "/media/"
 STATICFILES_DIRS = [root_path("static")]
+
+if DEBUG:
+    STATIC_ROOT = tempfile.mkdtemp()
+else:
+    STATIC_ROOT = root_path("static_root")
+
+MEDIA_URL = "/media/"
 MEDIA_ROOT = root_path("media_root")
 ADMIN_MEDIA_PREFIX = STATIC_URL + "admin/"
-
-if not DEBUG:
-    STATIC_ROOT = root_path("static_root")
 
 
 # -----------------------------------------------------------------------------
