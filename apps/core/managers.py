@@ -1,6 +1,19 @@
 from django.db import models
 
 
+class SoftDeleteQuerySet(models.QuerySet):
+    """
+    Custom QuerySet that overrides the delete method to perform a soft delete.
+    """
+
+    def delete(self):
+        """
+        Override the default delete method to perform a soft delete on each instance.
+        """
+        for obj in self:
+            obj.delete()
+
+
 class SoftDeleteModelManager(models.Manager):
     """
     SoftDeleteModelManager is a custom manager for models that implement soft deletion.
@@ -13,4 +26,6 @@ class SoftDeleteModelManager(models.Manager):
         Take note that this method will be overridden if a custom
         queryset is defined in the model.
         """
-        return super().get_queryset().filter(deleted=False)
+        return SoftDeleteQuerySet(self.model, using=self._db).filter(
+            deleted_at__isnull=True
+        )

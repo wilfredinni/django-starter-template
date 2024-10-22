@@ -13,16 +13,6 @@ class BaseModel(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        """
-        Meta options for the BaseModel.
-
-        Attributes:
-            abstract (bool): Indicates that this is an abstract base
-            class and should not be used to create any database table.
-            ordering (list): Sets the default ordering of records by
-            the 'created_at' field in descending order.
-        """
-
         abstract = True
         ordering = ["-created_at"]
 
@@ -32,7 +22,6 @@ class SoftDeleteBaseModel(BaseModel):
     An abstract base model that provides soft delete functionality.
     """
 
-    deleted = models.BooleanField(default=False)
     deleted_at = models.DateTimeField(null=True, blank=True)
 
     # Override the default manager with a custom one that filters
@@ -41,24 +30,14 @@ class SoftDeleteBaseModel(BaseModel):
     objects = SoftDeleteModelManager()
 
     class Meta:
-        """
-        Meta options for the SoftDeleteModel.
-
-        Attributes:
-            abstract (bool): Indicates that this is an abstract base
-            class and should not be used to create any database table.
-        """
-
         abstract = True
 
     def delete(self):
         """
-        Marks the record as deleted by setting the 'deleted' flag to True.
+        Mark this object as deleted by setting the deleted_at field.
 
-        This method performs a soft delete by updating the 'deleted' attribute
-        to True and then saving the instance. It does not remove the record
-        from the database, allowing for potential recovery or auditing.
+        Note that the object will not be removed from the database. Instead,
+        it will be excluded from the default queryset.
         """
-        self.deleted = True
         self.deleted_at = timezone.now()
         self.save()
