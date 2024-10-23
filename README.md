@@ -70,6 +70,7 @@ You can also use:
 ## Todo
 
 - [ ] Index Page with a link to the Django admin
+- [ ] Add method to restore soft deleted data
 - [ ] Email sending with celery
 - [ ] Data seeding
 - [ ] API Versioning
