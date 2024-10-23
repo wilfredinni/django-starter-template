@@ -4,7 +4,6 @@ from pathlib import Path
 
 import environ
 import sentry_sdk
-from rest_framework.settings import api_settings
 
 env = environ.Env()
 root_path = environ.Path(__file__) - 2
@@ -108,7 +107,6 @@ TEMPLATES = [
 # -----------------------------------------------------------------------------
 # Rest Framework
 # -----------------------------------------------------------------------------
-KNOX_TOKEN_MODEL = "knox.AuthToken"
 REST_KNOX = {
     "SECURE_HASH_ALGORITHM": "hashlib.sha512",
     "AUTH_TOKEN_CHARACTER_LENGTH": 64,
@@ -119,7 +117,6 @@ REST_KNOX = {
     "AUTO_REFRESH_MAX_TTL": None,
     "MIN_REFRESH_INTERVAL": 60,
     "AUTH_HEADER_PREFIX": "Token",
-    "EXPIRY_DATETIME_FORMAT": api_settings.DATETIME_FORMAT,
     "TOKEN_MODEL": "knox.AuthToken",
 }
 
