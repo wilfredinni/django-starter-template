@@ -123,12 +123,17 @@ REST_KNOX = {
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": ("knox.auth.TokenAuthentication",),
     "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
+    "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
 }
 
 if DEBUG:
     REST_FRAMEWORK["DEFAULT_AUTHENTICATION_CLASSES"] += (
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.BasicAuthentication",
+    )
+
+    REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] += (
+        "rest_framework.renderers.BrowsableAPIRenderer",
     )
 
 CORS_ALLOW_ALL_ORIGINS = DEBUG
