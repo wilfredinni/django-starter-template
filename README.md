@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://raw.githubusercontent.com/wilfredinni/django-starter-template/refs/heads/main/logo.png" data-canonical-src="/logo.png" width="130" height="130" />
+    <img src="https://raw.githubusercontent.com/wilfredinni/django-starter-template/refs/heads/main/static/logo.png" data-canonical-src="/logo.png" width="130" height="130" />
 </div>
 
 <h1 align="center">Django starter template</h1>
