@@ -15,7 +15,7 @@ def ping(request):
 
 def fire_task(request):
     """
-    TODO 👇 After testing the view, remove it with the task and the route.
+    TODO 🚫 After testing the view, remove it with the task and the route.
 
     Handles a request to fire a test Celery task. The task will be retried
     up to 3 times and after 5 seconds if it fails (by default). The retry

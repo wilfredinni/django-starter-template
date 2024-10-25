@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.urls import include, path
 
 
-# TODO 👇 Delete the index view, route and template.
+# TODO 🚫 Delete the index view, route and template.
 def index(request):
     base_url = (
         "https://github.com/wilfredinni/django-starter-template?tab=readme-ov-file"
