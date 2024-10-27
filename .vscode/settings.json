@@ -12,6 +12,7 @@
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter"
     },
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
     "todo-tree.highlights.customHighlight": {
         "BUG": {
             "icon": "bug"
