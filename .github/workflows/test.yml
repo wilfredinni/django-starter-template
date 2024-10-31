@@ -16,6 +16,9 @@ jobs:
         python-version: ["3.11", "3.12", "3.13"]
         os: [ubuntu-latest]
 
+    env:
+      DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
