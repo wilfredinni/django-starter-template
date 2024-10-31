@@ -132,7 +132,7 @@ REST_FRAMEWORK = {
 SPECTACULAR_SETTINGS = {
     "TITLE": "Django Starter Template",
     "DESCRIPTION": "A comprehensive starting point for your new API with Django and DRF",
-    "VERSION": "0.1.4",
+    "VERSION": "0.1.0",
     "SERVE_INCLUDE_SCHEMA": False,
 }
 
