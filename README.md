@@ -20,6 +20,7 @@
 - 🗃️ [django_celery_results](https://django-celery-results.readthedocs.io/en/latest/) enables Celery to store task results using Django's database backend.
 - 📅 [django_celery_beat](https://django-celery-beat.readthedocs.io/en/latest/) for periodic task scheduling using the Django admin interface.
 - 🔽 [django-filter](https://django-filter.readthedocs.io/en/stable/) add support for complex filtering of querysets in Django and DRF views.
+- 📖 Auto document your API with [drf-spectacular](https://drf-spectacular.readthedocs.io/en/latest/index.html) and [Swagger](https://swagger.io/).
 - ⚡[Test your queries and code](/notebook.ipynb) interactively with [Jupyter Notebooks](https://jupyter.org/).
 - 🐞 [Django Debug Toolbar](https://django-debug-toolbar.readthedocs.io/en/latest/) for debugging and profiling.
 - 🧩 [Django Extensions](https://django-extensions.readthedocs.io/en/latest/) for custom management commands and model enhancements.
@@ -70,11 +71,11 @@ You can also use:
 ## Todo
 
 - [x] Index Page with a link to the Django admin
+- [x] OpenAPI 3 schema generation and Swagger.
 - [ ] Add method to restore soft deleted data
 - [ ] Email sending with celery
 - [ ] Data seeding
 - [ ] API Versioning
-- [ ] OpenAPI 3 schema auto generation and Swagger
 - [ ] Production Docker file
 - [ ] Production Docker compose file
 - [ ] CI/CD with Github Actions

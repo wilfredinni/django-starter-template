@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     "knox",
     "django_celery_beat",
     "django_celery_results",
+    "drf_spectacular",
     # local apps
     "apps.users",
     "apps.core",
@@ -124,6 +125,15 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": ("knox.auth.TokenAuthentication",),
     "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
     "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+# TODO ⚡ Update the settings for the DRF Spectacular
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Django Starter Template",
+    "DESCRIPTION": "A comprehensive starting point for your new API with Django and DRF",
+    "VERSION": "0.1.4",
+    "SERVE_INCLUDE_SCHEMA": False,
 }
 
 if DEBUG:

@@ -3,6 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.shortcuts import render
 from django.urls import include, path
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 
 # TODO 🚫 Delete the index view, route and template.
@@ -21,11 +22,9 @@ def index(request):
 
 
 urlpatterns = [
-    #
-    #  TODO⚡ Change the admin url to one of your choice.
+    # TODO⚡ Change the admin url to one of your choice.
     # Please avoid using the default 'admin/' or 'admin-panel/'
     path("admin-panel/", admin.site.urls, name="admin"),
-    #
     # TODO ⚡ Disable the auth endpoints you don't need.
     # Enabled: create, profile, login, logout, logoutall
     path("auth/", include("apps.users.urls")),
@@ -36,8 +35,12 @@ urlpatterns = [
 if settings.DEBUG:
     import debug_toolbar
 
-    urlpatterns += (path("__debug__/", include(debug_toolbar.urls)),)
-    urlpatterns += static(
-        settings.MEDIA_URL,
-        document_root=settings.MEDIA_ROOT,
-    )
+    urlpatterns += [
+        path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+        path(
+            "api/schema/swagger-ui/",
+            SpectacularSwaggerView.as_view(url_name="schema"),
+            name="swagger-ui",
+        ),
+        path("__debug__/", include(debug_toolbar.urls)),
+    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
