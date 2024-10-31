@@ -1,9 +1,14 @@
 <div align="center">
     <img src="https://raw.githubusercontent.com/wilfredinni/django-starter-template/refs/heads/main/static/logo.png" data-canonical-src="/logo.png" width="130" height="130" />
-</div>
 
-<h1 align="center">Django starter template</h1>
-<p align="center">A comprehensive and easy-to-use starting point for your new API with <b>Django</b> and <b>DRF</b>.</p>
+# Django starter template
+
+A comprehensive and easy-to-use starting point for your new API with **Django** and **DRF**.
+
+[![Test Status](https://github.com/wilfredinni/django-starter-template/actions/workflows/test.yml/badge.svg)](https://github.com/wilfredinni/django-starter-template/actions/workflows/test.yml)
+[![CodeQL Status](https://github.com/wilfredinni/django-starter-template/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/wilfredinni/django-starter-template/actions/workflows/github-code-scanning/codeql)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wilfredinni/django-starter-template?tab=MIT-1-ov-file#readme)
+</div>
 
 ## Key features
 
@@ -72,10 +77,11 @@ You can also use:
 
 - [x] Index Page with a link to the Django admin
 - [x] OpenAPI 3 schema generation and Swagger.
+- [x] CI with Github Actions
 - [ ] Add method to restore soft deleted data
 - [ ] Email sending with celery
 - [ ] Data seeding
 - [ ] API Versioning
 - [ ] Production Docker file
 - [ ] Production Docker compose file
-- [ ] CI/CD with Github Actions
+- [ ] CD with Github Actions
