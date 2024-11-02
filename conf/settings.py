@@ -117,7 +117,7 @@ REST_KNOX = {
     "AUTO_REFRESH": False,
     "AUTO_REFRESH_MAX_TTL": None,
     "MIN_REFRESH_INTERVAL": 60,
-    "AUTH_HEADER_PREFIX": "Token",
+    "AUTH_HEADER_PREFIX": "Bearer",
     "TOKEN_MODEL": "knox.AuthToken",
 }
 
