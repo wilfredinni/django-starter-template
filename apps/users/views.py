@@ -6,8 +6,10 @@ from rest_framework.response import Response
 
 from .schema import (
     LOGIN_RESPONSE_SCHEMA,
-    PROFILE_RESPONSE_SCHEMA,
     USER_CREATE_RESPONSE_SCHEMA,
+    PROFILE_DETAIL_SCHEMA,
+    PROFILE_PUT_SCHEMA,
+    PROFILE_PATCH_SCHEMA,
 )
 from .serializers import (
     AuthSerializer,
@@ -30,13 +32,24 @@ class LoginView(KnoxLoginView):
         return super(LoginView, self).post(request, format=None)
 
 
-@extend_schema(tags=["User Profile"], responses=PROFILE_RESPONSE_SCHEMA)
 class UserProfileView(generics.RetrieveUpdateAPIView):
     serializer_class = UserProfileSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
     def get_object(self):
         return self.request.user
+
+    @extend_schema(tags=["User Profile"], responses=PROFILE_DETAIL_SCHEMA)
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
+    @extend_schema(tags=["User Profile"], responses=PROFILE_PATCH_SCHEMA)
+    def patch(self, request, *args, **kwargs):
+        return super().patch(request, *args, **kwargs)
+
+    @extend_schema(tags=["User Profile"], responses=PROFILE_PUT_SCHEMA)
+    def put(self, request, *args, **kwargs):
+        return super().put(request, *args, **kwargs)
 
 
 @extend_schema(tags=["User Creation"], responses=USER_CREATE_RESPONSE_SCHEMA)
