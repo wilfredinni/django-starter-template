@@ -96,3 +96,17 @@ class UserProfileSerializer(serializers.ModelSerializer):
             user.save()
 
         return user
+
+
+class LoginResponseSerializer(serializers.Serializer):
+    expiry = serializers.DateTimeField()
+    token = serializers.CharField()
+    user = UserProfileSerializer()
+
+    def get_user(self, obj):
+        user = obj.get("user")
+        return {
+            "email": user.email,
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+        }

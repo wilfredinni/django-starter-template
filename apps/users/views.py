@@ -1,4 +1,5 @@
 from django.contrib.auth import login
+from drf_spectacular.utils import OpenApiResponse, extend_schema
 from knox.views import LoginView as KnoxLoginView
 from rest_framework import generics, permissions
 from rest_framework.response import Response
@@ -8,6 +9,7 @@ from .serializers import (
     AuthTokenSerializer,
     CreateUserSerializer,
     UserProfileSerializer,
+    LoginResponseSerializer,
 )
 
 
@@ -15,6 +17,14 @@ class LoginView(KnoxLoginView):
     serializer_class = AuthSerializer
     permission_classes = (permissions.AllowAny,)
 
+    @extend_schema(
+        responses={
+            200: OpenApiResponse(
+                response=LoginResponseSerializer,
+                description="Successful login response",
+            )
+        }
+    )
     def post(self, request, format=None) -> Response:
         serializer = AuthTokenSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
