@@ -26,6 +26,8 @@ def test_retrieve_user_profile(api_client, create_user):
     response = api_client.get(url)
     assert response.status_code == status.HTTP_200_OK
     assert response.data["email"] == create_user.email
+    assert "first_name" in response.data
+    assert "last_name" in response.data
 
 
 @pytest.mark.django_db

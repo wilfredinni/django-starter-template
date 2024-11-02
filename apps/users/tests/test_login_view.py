@@ -21,7 +21,16 @@ def test_login_success(api_client, create_user):
     data = {"email": "testuser@test.com", "password": "testpassword"}
     response = api_client.post(url, data, format="json")
     assert response.status_code == status.HTTP_200_OK
+    assert "expiry" in response.data
     assert "token" in response.data
+    assert "user" in response.data
+    assert "email" in response.data["user"]
+    assert "first_name" in response.data["user"]
+    assert "last_name" in response.data["user"]
+    assert response.data["expiry"] is not None
+    assert response.data["token"] is not None
+    assert response.data["user"] is not None
+    assert response.data["user"]["email"] == "testuser@test.com"
 
 
 @pytest.mark.django_db
