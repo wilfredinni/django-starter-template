@@ -1,4 +1,5 @@
-from django.db import models
+from django.db import models, transaction
+from django.utils import timezone
 
 
 class SoftDeleteQuerySet(models.QuerySet):
@@ -10,8 +11,8 @@ class SoftDeleteQuerySet(models.QuerySet):
         """
         Override the default delete method to perform a soft delete on each instance.
         """
-        for obj in self:
-            obj.delete()
+        with transaction.atomic():
+            return self.update(deleted_at=timezone.now())
 
 
 class SoftDeleteModelManager(models.Manager):

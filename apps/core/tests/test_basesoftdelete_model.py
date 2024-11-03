@@ -47,3 +47,14 @@ class TestSoftDeleteBaseModel:
         assert instance.created_at is not None
         assert instance.updated_at > instance.created_at
         assert self.model.objects.filter(pk=instance.pk).exists() is False
+
+    def test_queryset_soft_delete(self) -> None:
+        instance = self.model.objects.create(name="Test")
+        instance1 = self.model.objects.create(name="Test2")
+        assert self.model.objects.count() == 2
+
+        self.model.objects.all().delete()
+
+        assert self.model.objects.filter(pk=instance.pk).exists() is False
+        assert self.model.objects.filter(pk=instance1.pk).exists() is False
+        assert self.model.objects.count() == 0
