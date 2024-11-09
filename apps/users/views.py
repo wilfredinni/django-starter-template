@@ -12,7 +12,6 @@ from .schema import (
     PROFILE_PATCH_SCHEMA,
 )
 from .serializers import (
-    AuthSerializer,
     AuthTokenSerializer,
     CreateUserSerializer,
     UserProfileSerializer,
@@ -21,15 +20,21 @@ from .serializers import (
 
 @extend_schema(tags=["User Authentication"], responses=LOGIN_RESPONSE_SCHEMA)
 class LoginView(KnoxLoginView):
-    serializer_class = AuthSerializer
     permission_classes = (permissions.AllowAny,)
 
     def post(self, request, format=None) -> Response:
-        serializer = AuthTokenSerializer(data=request.data)
+        serializer = AuthTokenSerializer(
+            data=request.data, context={"request": request}
+        )
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data["user"]
         login(request, user)
         return super(LoginView, self).post(request, format=None)
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context["request"] = self.request
+        return context
 
 
 class UserProfileView(generics.RetrieveUpdateAPIView):
