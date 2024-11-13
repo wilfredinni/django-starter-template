@@ -37,7 +37,8 @@
 				"ms-python.python",
 				"Gruntfuggly.todo-tree",
 				"shardulm94.trailing-spaces",
-				"usernamehw.errorlens"
+				"usernamehw.errorlens",
+				"github.vscode-github-actions"
 			]
 		}
 	}
