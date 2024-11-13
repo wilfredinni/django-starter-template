@@ -16,7 +16,7 @@ def index(request):
     context["buttons"] = [
         {"title": "🚀 Features", "url": f"{base_url}#key-features"},
         {"title": "📋 Requirements", "url": f"{base_url}#requirements"},
-        {"title": "🛠️ How to use it", "url": f"{base_url}#how-to-use"},
+        {"title": "🛠️ API Schema", "url": "/api/schema/swagger-ui/"},
     ]
     return render(request, "index.html", context)
 
