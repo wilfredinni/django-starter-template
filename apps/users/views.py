@@ -18,7 +18,7 @@ from .serializers import (
 )
 
 
-@extend_schema(tags=["User Authentication"], responses=LOGIN_RESPONSE_SCHEMA)
+@extend_schema(responses=LOGIN_RESPONSE_SCHEMA)
 class LoginView(KnoxLoginView):
     permission_classes = (permissions.AllowAny,)
 
@@ -44,20 +44,20 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
     def get_object(self):
         return self.request.user
 
-    @extend_schema(tags=["User Profile"], responses=PROFILE_DETAIL_SCHEMA)
+    @extend_schema(responses=PROFILE_DETAIL_SCHEMA)
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
 
-    @extend_schema(tags=["User Profile"], responses=PROFILE_PATCH_SCHEMA)
+    @extend_schema(responses=PROFILE_PATCH_SCHEMA)
     def patch(self, request, *args, **kwargs):
         return super().patch(request, *args, **kwargs)
 
-    @extend_schema(tags=["User Profile"], responses=PROFILE_PUT_SCHEMA)
+    @extend_schema(responses=PROFILE_PUT_SCHEMA)
     def put(self, request, *args, **kwargs):
         return super().put(request, *args, **kwargs)
 
 
-@extend_schema(tags=["User Creation"], responses=USER_CREATE_RESPONSE_SCHEMA)
+@extend_schema(responses=USER_CREATE_RESPONSE_SCHEMA)
 class CreateUserView(generics.CreateAPIView):
     permission_classes = (permissions.IsAuthenticated,)
     serializer_class = CreateUserSerializer
