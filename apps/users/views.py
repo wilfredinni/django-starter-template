@@ -21,6 +21,7 @@ from .serializers import (
 @extend_schema(responses=LOGIN_RESPONSE_SCHEMA)
 class LoginView(KnoxLoginView):
     permission_classes = (permissions.AllowAny,)
+    serializer_class = AuthTokenSerializer
 
     def post(self, request, format=None) -> Response:
         serializer = AuthTokenSerializer(
