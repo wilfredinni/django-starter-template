@@ -42,16 +42,14 @@ A comprehensive and easy-to-use starting point for your new API with **Django** 
 
 ## How to use
 
-1. Clone the repo or use it as a template to start a new project.
-![use](/static/USE.png)
+1. [Create a new project with this template](https://github.com/new?template_name=django-starter-template&template_owner=wilfredinni) (recommended) or clone the repository and delete the `.git` folder.
 1. Open the project in VS Code.
-1. If you installed the recommended extensions, open `Todo Tree` in the sidebar. It will guide you trough the first steps setting up your project, like changing the name of the container, adjusting your URLS, etc.
-![todo](/static/TODO.png)
-1. ⚠️ Use `env.example` to create a `.env` file.
+1. If you installed the recommended extensions, open `Todo Tree` in the sidebar. It will [guide you trough the first steps](/static/TODO.png) setting up your project, like changing the name of the container, adjusting your URLS, etc.
 1. Hit `CTL/CMD + Shift + p` and select `Reopen in container`. This will:
     - Create a dev container.
     - Setup a Redis server.
     - Setup your PostgreSQL database.
+    - Add a development `.env` file.
     - Install the dependencies.
     - Migrate the database.
 1. Create your super user with `python manage.py createsuperuser`.
@@ -71,6 +69,7 @@ You can also use:
 - `poetry run server` instead of `python manage.py runserver`
 - `poetry run makemigrations` instead of `python manage.py makemigrations`
 - `poetry run migrate` instead of `python manage.py migrate`
+- `poetry run create_dev_env` to create a development `.env` file
 
 
 ## Todo
