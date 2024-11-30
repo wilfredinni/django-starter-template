@@ -12,25 +12,38 @@ A comprehensive and easy-to-use starting point for your new API with **Django** 
 
 ## Key features
 
-- 🧪 Fully tested with [Pytest](https://docs.pytest.org/en/stable/).
-- 🚀 Enjoy the latest version of [Django](https://docs.djangoproject.com/en/5.1/) (5+) with all its features and improvements.
-- 🛠️ [Django Rest Framework](https://www.django-rest-framework.org/) for building APIs.
-- 💿 Start your project with [PostgreSQL](https://www.postgresql.org/) without the need to install and configure it.
-- 📦 [Redis](https://redis.io/) caching out of the box.
-- 🔒 Login, Logout, Logout all, User profile and creation with [Knox](https://jazzband.github.io/django-rest-knox/), an easy-to-use authentication for DRF.
-- 🙋 Extended user model and a custom manager. Start with the email as the unique identifier.
-- 🗄️ A custom [BaseModel](/apps/core/models.py) to easily add `created_at` and `updated_at` fields to your models.
-- 🗑️ A custom [SoftDeleteBaseModel](/apps/core/models.py) to add soft delete functionality to the models you choose to.
-- ⏳ Fully configured asynchronous tasks with [Celery](https://docs.celeryq.dev/en/stable/). It also includes a reusable [BaseTaskWithRetry](/apps/core/tasks.py).
-- 🗃️ [django_celery_results](https://django-celery-results.readthedocs.io/en/latest/) enables Celery to store task results using Django's database backend.
-- 📅 [django_celery_beat](https://django-celery-beat.readthedocs.io/en/latest/) for periodic task scheduling using the Django admin interface.
-- 🔽 [django-filter](https://django-filter.readthedocs.io/en/stable/) add support for complex filtering of querysets in Django and DRF views.
-- 📖 Auto document your API with [drf-spectacular](https://drf-spectacular.readthedocs.io/en/latest/index.html) and [Swagger](https://swagger.io/).
-- ⚡[Test your queries and code](/notebook.ipynb) interactively with [Jupyter Notebooks](https://jupyter.org/).
-- 🐞 [Django Debug Toolbar](https://django-debug-toolbar.readthedocs.io/en/latest/) for debugging and profiling.
-- 🧩 [Django Extensions](https://django-extensions.readthedocs.io/en/latest/) for custom management commands and model enhancements.
-- 🔧 Get out of the box code formatting with [Black](https://black.readthedocs.io/en/stable/), linting with [Flake8](https://flake8.pycqa.org/en/latest/) and test with [Pytest](https://docs.pytest.org/en/stable/).
-- 👨‍💻 Develop with [VS Code](https://code.visualstudio.com/) and [Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers).
+This template includes battle-tested features for building secure, scalable, and maintainable APIs
+
+### Core Features
+- 🚀 Latest [Django](https://docs.djangoproject.com/en/5.1/) (5+) with full feature set
+- 🛠️ [Django Rest Framework](https://www.django-rest-framework.org/) for API development
+- 📖 API documentation with [drf-spectacular](https://drf-spectacular.readthedocs.io/) and [Swagger](https://swagger.io/)
+
+### Database & Caching
+- 💿 Pre-configured [PostgreSQL](https://www.postgresql.org/) database
+- 📦 [Redis](https://redis.io/) caching system
+- 🗄️ BaseModel with `created_at` and `updated_at` fields
+- 🗑️ Optional SoftDeleteBaseModel for soft deletions
+
+### Authentication & Users
+- 🔒 Complete auth system using [Knox](https://jazzband.github.io/django-rest-knox/)
+- 🙋 Extended user model with email-based authentication
+
+### Task Management
+- ⏳ [Celery](https://docs.celeryq.dev/en/stable/) for async tasks with BaseTaskWithRetry
+- 🗃️ Task results storage with django_celery_results
+- 📅 Task scheduling through django_celery_beat
+
+### Development Tools
+- 🧪 Testing with [Pytest](https://docs.pytest.org/en/stable/)
+- ⚡ Interactive development using Jupyter Notebooks
+- 🐞 Debugging with Django Debug Toolbar
+- 🔧 Code quality tools: [Black](https://black.readthedocs.io/), [Flake8](https://flake8.pycqa.org/)
+- 👨‍💻 [VS Code](https://code.visualstudio.com/) with [Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers)
+
+### Additional Features
+- 🔽 Advanced filtering with django-filter
+- 🧩 Extended functionality with Django Extensions
 
 
 ## Requirements
@@ -42,7 +55,7 @@ A comprehensive and easy-to-use starting point for your new API with **Django** 
 
 ## How to use
 
-1. [Create a new project with this template](https://github.com/new?template_name=django-starter-template&template_owner=wilfredinni) (recommended) or clone the repository and delete the `.git` folder.
+1. Use [GitHub's template feature](https://github.com/new?template_name=django-starter-template&template_owner=wilfredinni) (recommended) or clone repository and delete the `.git` folder.
 1. Open the project in VS Code.
 1. If you installed the recommended extensions, open `Todo Tree` in the sidebar. It will [guide you trough the first steps](/static/TODO.png) setting up your project, like changing the name of the container, adjusting your URLS, etc.
 1. Hit `CTL/CMD + Shift + p` and select `Reopen in container`. This will:
