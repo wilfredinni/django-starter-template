@@ -45,6 +45,7 @@ migrate = "scripts.django:migrate"
 worker = "scripts.celery:run_worker"
 beat = "scripts.celery:run_beat"
 bump = "scripts.bump:bum_version"
+create_dev_env = "scripts.django:create_dev_env"
 
 [build-system]
 requires = ["poetry-core"]
