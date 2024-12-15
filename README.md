@@ -69,15 +69,22 @@ This template includes battle-tested features for building secure, scalable, and
 1. Run the project with `python manage.py reserver`.
 1. Work as usual.
 
+## Commands 🛠️
 
-## Commands
+This section provides a list of useful commands to help you manage and develop your Django project efficiently.
 
-This template comes with some shortcuts so you don't have to memorize how to start the workers:
+### Celery Tasks
 
 - `poetry run worker`: to start a new Celery worker.
 - `poetry run beat`: to start your periodic tasks.
 
-You can also use:
+### Test commands:
+
+- `pytest` to run the tests.
+- `pytest --cov` to run the tests with coverage.
+- `pytest --cov --cov-report=html` to run the tests with coverage and generate a HTML report.
+
+### You can also use
 
 - `poetry run server` instead of `python manage.py runserver`
 - `poetry run makemigrations` instead of `python manage.py makemigrations`
@@ -91,7 +98,6 @@ You can also use:
 - [x] OpenAPI 3 schema generation and Swagger.
 - [x] CI with Github Actions
 - [ ] Add method to restore soft deleted data
-- [ ] Email sending with celery
 - [ ] Data seeding
 - [ ] API Versioning
 - [ ] Production Docker file
