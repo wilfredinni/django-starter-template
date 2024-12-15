@@ -54,8 +54,10 @@
         "makemigrations",
         "nostatic",
         "psycopg",
+        "pycache",
         "pytest",
         "querysets",
+        "repr",
         "runserver",
         "whitenoise",
         "wrongpassword"

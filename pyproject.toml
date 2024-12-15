@@ -37,6 +37,8 @@ pytest = "^8.3.3"
 django-extensions = "^3.2.3"
 pytest-django = "^4.9.0"
 ipykernel = "^6.29.5"
+pytest-mock = "^3.14.0"
+pytest-cov = "^6.0.0"
 
 [tool.poetry.scripts]
 server = "scripts.django:runserver"
