@@ -99,7 +99,6 @@ This section provides a list of useful commands to help you manage and develop y
 - [x] CI with Github Actions
 - [ ] Add method to restore soft deleted data
 - [ ] Data seeding
-- [ ] API Versioning
 - [ ] Production Docker file
 - [ ] Production Docker compose file
 - [ ] CD with Github Actions
