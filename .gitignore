@@ -193,3 +193,8 @@ cython_debug/
 # Support for Project snippet scope
 
 # End of https://www.toptal.com/developers/gitignore/api/python,visualstudiocode,linux
+
+# macos
+.DS_Store
+.AppleDouble
+.LSOverride
