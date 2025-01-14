@@ -32,7 +32,7 @@ drf-spectacular = "^0.28.0"
 
 
 [tool.poetry.group.dev.dependencies]
-django-debug-toolbar = "^4.4.6"
+django-debug-toolbar = "^5.0.0"
 pytest = "^8.3.3"
 django-extensions = "^3.2.3"
 pytest-django = "^4.9.0"
