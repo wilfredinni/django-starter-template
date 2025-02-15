@@ -41,6 +41,7 @@
     ],
     "cSpell.words": [
         "appname",
+        "asgi",
         "autoretry",
         "Browsable",
         "corsheaders",
@@ -60,7 +61,8 @@
         "repr",
         "runserver",
         "whitenoise",
-        "wrongpassword"
+        "wrongpassword",
+        "wsgi"
     ],
     "editor.fontFamily": "'Fira Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'"
 }
