@@ -1,0 +1,11 @@
+Api View Test Generation and Review
+- All tests are written in the tests folder of each app.
+- All tests are written using Pytest.
+- The views must be protected by authentication.
+- The views must be protected by authorization.
+- The views must be rate limited.
+- The views must return appropriate HTTP status codes.
+- The views must return appropriate data.
+- The views must be documented.
+- The views must have tests for POST, GET, PUT, PATCH, and DELETE requests.
+- If the view already exists, ensure well-written, comprehensive, structured tests are in place.
