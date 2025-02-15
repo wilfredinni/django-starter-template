@@ -127,6 +127,11 @@ REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
     "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_THROTTLE_RATES": {
+        "user": "1000/day",
+        "anon": "100/day",
+        "user_login": "5/minute",
+    },
 }
 
 # TODO ⚡ Update the settings for the DRF Spectacular
@@ -139,7 +144,7 @@ SPECTACULAR_SETTINGS = {
 
 if DEBUG:
     REST_FRAMEWORK["DEFAULT_AUTHENTICATION_CLASSES"] += (
-        "rest_framework.authentication.SessionAuthentication",
+        # "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.BasicAuthentication",
     )
 
@@ -202,17 +207,34 @@ LOGGING = {
     },
     "handlers": {
         "console": {"class": "logging.StreamHandler", "formatter": "console"},
-        "file": {
+        "info_file": {
+            "level": "INFO",
+            "class": "logging.handlers.RotatingFileHandler",
+            "formatter": "file",
+            "filename": f"{root_path('logs')}/info.log",
+            "maxBytes": 1000000,
+            "backupCount": 10,
+        },
+        "error_file": {
             "level": "ERROR",
             "class": "logging.handlers.RotatingFileHandler",
             "formatter": "file",
             "filename": f"{root_path('logs')}/error.log",
             "maxBytes": 1000000,
-            "backupCount": 20,
+            "backupCount": 10,
         },
     },
     "loggers": {
-        "": {"level": "ERROR", "handlers": ["console", "file"], "propagate": True},
+        "": {
+            "level": "INFO",
+            "handlers": ["console", "info_file", "error_file"],
+            "propagate": True,
+        },
+        "apps.users.views": {
+            "level": "INFO",
+            "handlers": ["console", "info_file", "error_file"],
+            "propagate": False,
+        },
     },
 }
 
