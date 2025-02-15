@@ -1,6 +1,15 @@
 from django.http import JsonResponse
 from drf_spectacular.utils import extend_schema
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, throttle_classes
+from rest_framework.throttling import AnonRateThrottle
+import logging
+
+logger = logging.getLogger(__name__)
+
+
+class PingRateThrottle(AnonRateThrottle):
+    rate = "10/minute"
+
 
 from .tasks import test_task
 
@@ -21,7 +30,9 @@ from .tasks import test_task
     },
 )
 @api_view(["GET"])
+@throttle_classes([PingRateThrottle])
 def ping(request):
+    logger.info("Ping request received from %s", request.META.get("REMOTE_ADDR"))
     return JsonResponse({"ping": "pong"})
 
 
