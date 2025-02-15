@@ -47,3 +47,33 @@ def test_login_missing_fields(api_client):
     data = {"email": "testuser@test.com"}
     response = api_client.post(url, data, format="json")
     assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+
+@pytest.mark.django_db
+def test_login_get_not_allowed(api_client):
+    url = reverse("users:knox_login")
+    response = api_client.get(url)
+    assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
+
+
+@pytest.mark.django_db
+def test_login_put_not_allowed(api_client):
+    url = reverse("users:knox_login")
+    data = {"email": "testuser@test.com", "password": "testpassword"}
+    response = api_client.put(url, data, format="json")
+    assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
+
+
+@pytest.mark.django_db
+def test_login_patch_not_allowed(api_client):
+    url = reverse("users:knox_login")
+    data = {"email": "testuser@test.com", "password": "testpassword"}
+    response = api_client.patch(url, data, format="json")
+    assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
+
+
+@pytest.mark.django_db
+def test_login_delete_not_allowed(api_client):
+    url = reverse("users:knox_login")
+    response = api_client.delete(url)
+    assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
