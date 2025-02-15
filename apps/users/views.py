@@ -18,6 +18,7 @@ from .serializers import (
     CreateUserSerializer,
     UserProfileSerializer,
 )
+from .throttles import UserLoginRateThrottle
 
 logger = logging.getLogger(__name__)
 
@@ -26,7 +27,7 @@ logger = logging.getLogger(__name__)
 class LoginView(KnoxLoginView):
     permission_classes = (permissions.AllowAny,)
     serializer_class = AuthTokenSerializer
-    throttle_classes = [throttling.AnonRateThrottle]
+    throttle_classes = [UserLoginRateThrottle]
 
     def post(self, request, format=None) -> Response:
         serializer = AuthTokenSerializer(
