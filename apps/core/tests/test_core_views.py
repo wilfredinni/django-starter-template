@@ -1,16 +1,46 @@
+import pytest
 from django.urls import reverse
-from django.test import Client
+from rest_framework import status
+from rest_framework.test import APIClient
 
 
-def test_ping_view():
-    client = Client()
-    response = client.get(reverse("ping"))
-    assert response.status_code == 200
+@pytest.fixture
+def api_client():
+    return APIClient()
+
+
+@pytest.mark.django_db
+def test_ping_view(api_client):
+    url = reverse("ping")
+    response = api_client.get(url)
+    assert response.status_code == status.HTTP_200_OK
     assert response.json() == {"ping": "pong"}
 
 
-def test_ping_view_method_not_allowed():
-    client = Client()
-    response = client.post(reverse("ping"))
-    assert response.status_code == 405
+@pytest.mark.django_db
+def test_ping_view_method_not_allowed(api_client):
+    url = reverse("ping")
+    response = api_client.post(url)
+    assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
     assert response.json() == {"detail": 'Method "POST" not allowed.'}
+
+
+@pytest.mark.django_db
+def test_ping_view_put_not_allowed(api_client):
+    url = reverse("ping")
+    response = api_client.put(url)
+    assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
+
+
+@pytest.mark.django_db
+def test_ping_view_patch_not_allowed(api_client):
+    url = reverse("ping")
+    response = api_client.patch(url)
+    assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
+
+
+@pytest.mark.django_db
+def test_ping_view_delete_not_allowed(api_client):
+    url = reverse("ping")
+    response = api_client.delete(url)
+    assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED

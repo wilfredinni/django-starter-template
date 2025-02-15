@@ -7,6 +7,11 @@ omit =
     /**/migrations/*
     /**/__pycache__/*
     __init__.py
+    /**/urls.py
+    /**/wsgi.py
+    /**/asgi.py
+    manage.py
 exclude_lines =
     def __repr__
     def __str__
+    @extend_schema
