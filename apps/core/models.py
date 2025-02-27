@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.signals import post_delete, pre_delete
 from django.utils import timezone
 
 from .managers import SoftDeleteModelManager
@@ -38,5 +39,11 @@ class SoftDeleteBaseModel(BaseModel):
         Note that the object will not be removed from the database. Instead,
         it will be excluded from the default queryset.
         """
+        # Send pre_delete signal
+        pre_delete.send(sender=self.__class__, instance=self)
+
         self.deleted_at = timezone.now()
         self.save()
+
+        # Send post_delete signal
+        post_delete.send(sender=self.__class__, instance=self)
