@@ -95,9 +95,9 @@ This section provides a list of useful commands to help you manage and develop y
 ## Todo
 
 - [x] Index Page with a link to the Django admin
-- [x] OpenAPI 3 schema generation and Swagger.
+- [x] OpenAPI 3 schema generation and Swagger
 - [x] CI with Github Actions
-- [ ] Add method to restore soft deleted data
+- [x] Add a restore method for soft deleted data
 - [ ] Data seeding
 - [ ] Production Docker file
 - [ ] Production Docker compose file
