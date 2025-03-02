@@ -41,3 +41,17 @@ class SoftDeleteModelManager(models.Manager):
         return SoftDeleteQuerySet(self.model, using=self._db).filter(
             deleted_at__isnull=True
         )
+
+    def deleted(self):
+        """
+        Returns only deleted objects
+        """
+        return SoftDeleteQuerySet(self.model, using=self._db).filter(
+            deleted_at__isnull=False
+        )
+
+    def all_with_deleted(self):
+        """
+        Returns all objects, including deleted ones
+        """
+        return SoftDeleteQuerySet(self.model, using=self._db)

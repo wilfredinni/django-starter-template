@@ -32,18 +32,24 @@ class SoftDeleteBaseModel(BaseModel):
     class Meta:
         abstract = True
 
-    def delete(self):
+    def delete(self, hard_delete=False):
         """
         Mark this object as deleted by setting the deleted_at field.
 
-        Note that the object will not be removed from the database. Instead,
-        it will be excluded from the default queryset.
+        Args:
+            hard_delete (bool): If True, permanently delete the record
         """
-        # Send pre_delete signal
-        pre_delete.send(sender=self.__class__, instance=self)
+        if hard_delete:
+            return super().delete()
 
+        pre_delete.send(sender=self.__class__, instance=self)
         self.deleted_at = timezone.now()
         self.save()
-
-        # Send post_delete signal
         post_delete.send(sender=self.__class__, instance=self)
+
+    def restore(self):
+        """
+        Restore a soft-deleted object
+        """
+        self.deleted_at = None
+        self.save()
