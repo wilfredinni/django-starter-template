@@ -12,7 +12,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.13"
 django = "^5.1.2"
 django-environ = "^0.12.0"
 django-cors-headers = "^4.5.0"
