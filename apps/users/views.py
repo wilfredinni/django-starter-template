@@ -1,7 +1,7 @@
 import logging
 
 from django.contrib.auth import login
-from drf_spectacular.utils import extend_schema
+from drf_spectacular.utils import extend_schema, extend_schema_view
 from knox.views import LoginView as KnoxLoginView
 from rest_framework import generics, permissions, throttling
 from rest_framework.response import Response
@@ -45,6 +45,11 @@ class LoginView(KnoxLoginView):
         return context
 
 
+@extend_schema_view(
+    get=extend_schema(responses=PROFILE_DETAIL_SCHEMA),
+    patch=extend_schema(responses=PROFILE_PATCH_SCHEMA),
+    put=extend_schema(responses=PROFILE_PUT_SCHEMA),
+)
 class UserProfileView(generics.RetrieveUpdateAPIView):
     serializer_class = UserProfileSerializer
     permission_classes = (permissions.IsAuthenticated,)
@@ -52,18 +57,6 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
 
     def get_object(self):
         return self.request.user
-
-    @extend_schema(responses=PROFILE_DETAIL_SCHEMA)
-    def get(self, request, *args, **kwargs):
-        return super().get(request, *args, **kwargs)
-
-    @extend_schema(responses=PROFILE_PATCH_SCHEMA)
-    def patch(self, request, *args, **kwargs):
-        return super().patch(request, *args, **kwargs)
-
-    @extend_schema(responses=PROFILE_PUT_SCHEMA)
-    def put(self, request, *args, **kwargs):
-        return super().put(request, *args, **kwargs)
 
 
 @extend_schema(responses=USER_CREATE_RESPONSE_SCHEMA)

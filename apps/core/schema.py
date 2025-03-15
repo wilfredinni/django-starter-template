@@ -20,4 +20,9 @@ UNAUTHORIZED_EXAMPLES = [
         value={"detail": "Invalid token."},
         status_codes=["401"],
     ),
+    OpenApiExample(
+        "Invalid token header",
+        value={"detail": "Invalid token header. No credentials provided."},
+        status_codes=["401"],
+    ),
 ]
