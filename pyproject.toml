@@ -29,7 +29,8 @@ django-celery-results = "^2.5.1"
 sentry-sdk = {extras = ["django"], version = "^2.17.0"}
 django-redis = "^5.4.0"
 drf-spectacular = "^0.28.0"
-
+faker = "^37.1.0"
+django-seed = "^0.3.1"
 
 [tool.poetry.group.dev.dependencies]
 django-debug-toolbar = "^5.0.0"
@@ -48,6 +49,7 @@ worker = "scripts.celery:run_worker"
 beat = "scripts.celery:run_beat"
 bump = "scripts.bump:bum_version"
 create_dev_env = "scripts.django:create_dev_env"
+seed = "scripts.django:seed"
 
 [build-system]
 requires = ["poetry-core"]

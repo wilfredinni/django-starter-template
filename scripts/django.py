@@ -26,3 +26,7 @@ def create_dev_env():
             "DATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres\n"
         )
     print(".env file created successfully.")
+
+
+def seed():
+    check_call(["python", "manage.py", "seed"])

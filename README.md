@@ -218,6 +218,28 @@ This section provides a list of useful commands to help you manage and develop y
 - `poetry run makemigrations` instead of `python manage.py makemigrations`
 - `poetry run migrate` instead of `python manage.py migrate`
 - `poetry run create_dev_env` to create a development `.env` file
+- `poetry run seed` to seed your database with sample data
+
+### Database Seeding
+
+The template includes a powerful seeding command to populate your database with sample data for development and testing:
+
+```bash
+# Basic seeding with default options (creates 10 users)
+python manage.py seed
+
+# Create specific number of users
+python manage.py seed --users 20
+
+# Create a superuser (admin@admin.com:admin)
+python manage.py seed --superuser
+
+# Clean existing data before seeding
+python manage.py seed --clean
+
+# Combine options
+python manage.py seed --users 50 --superuser --clean
+```
 
 ## Todo
 
@@ -225,7 +247,7 @@ This section provides a list of useful commands to help you manage and develop y
 - [x] OpenAPI 3 schema generation and Swagger
 - [x] CI with Github Actions
 - [x] Add a restore method for soft deleted data
-- [ ] Data seeding
+- [x] Data seeding
 - [ ] Production Docker file
 - [ ] Production Docker compose file
 - [ ] CD with Github Actions
