@@ -72,16 +72,50 @@ This template includes battle-tested features for building secure, scalable, and
 ## Project Structure
 
 ```
-apps/
-├── core/                   # Core functionality and base models
-│   ├── models.py          # Contains BaseModel and SoftDeleteBaseModel
-│   ├── managers.py        # Custom model managers
-│   └── tasks.py          # Celery task base classes and utilities
-└── users/                # User authentication and management
-    ├── models.py         # CustomUser model with email authentication
-    ├── serializers.py    # User-related serializers
-    ├── views.py         # Authentication and user management views
-    └── tests/           # Comprehensive test suite
+├── apps/
+│   ├── core/                   # Core functionality
+│   │   ├── management/         # Custom management commands
+│   │   │   └── commands/
+│   │   │       └── seed.py     # Database seeding utility
+│   │   ├── tests/              # Core app tests
+│   │   ├── models.py           # Base models and abstractions
+│   │   ├── managers.py         # Custom model managers
+│   │   ├── schema.py           # API schema definitions
+│   │   ├── tasks.py            # Celery tasks
+│   │
+│   └── users/                  # User management app
+│       ├── tests/              # User app tests
+│       ├── admin.py            # Admin interface customization
+│       ├── forms.py            # User-related forms
+│       ├── managers.py         # User model managers
+│       ├── models.py           # User model definition
+│       ├── schema.py           # User API schemas
+│       ├── throttles.py        # Rate limiting
+│
+├── conf/                       # Project configuration
+│   ├── settings.py             # Main settings file
+│   ├── test_settings.py        # Test-specific settings
+│   ├── celery.py               # Celery configuration
+│
+├── logs/                       # Application logs
+│
+├── scripts/                    # Utility scripts
+│   ├── bump.py                 # Version management
+│   ├── celery.py               # Celery commands
+│   └── django.py               # Django commands
+│
+├── templates/
+│   ├── 404.html                # 404 Error page
+│   ├── 500.html                # 500 Error pages
+│   └── index.html              # Main template
+│
+├── .devcontainer/              # Dev container config
+│
+├── .github/
+│   └── workflows/              # CI/CD workflows
+│
+├── pyproject.toml              # Project dependencies
+├── pytest.ini                  # Testing configuration
 ```
 
 ## Models
