@@ -69,6 +69,134 @@ This template includes battle-tested features for building secure, scalable, and
 1. Run the project with `python manage.py reserver`.
 1. Work as usual.
 
+## Project Structure
+
+```
+apps/
+├── core/                   # Core functionality and base models
+│   ├── models.py          # Contains BaseModel and SoftDeleteBaseModel
+│   ├── managers.py        # Custom model managers
+│   └── tasks.py          # Celery task base classes and utilities
+└── users/                # User authentication and management
+    ├── models.py         # CustomUser model with email authentication
+    ├── serializers.py    # User-related serializers
+    ├── views.py         # Authentication and user management views
+    └── tests/           # Comprehensive test suite
+```
+
+## Models
+
+### BaseModel
+
+All models in the project can inherit from `BaseModel` which provides:
+
+- `created_at`: Timestamp of record creation
+- `updated_at`: Timestamp of last update
+
+```python
+class MyModel(BaseModel):
+    name = models.CharField(max_length=255)
+```
+
+### SoftDeleteBaseModel
+
+Extends `BaseModel` with soft deletion capability:
+- `deleted_at`: Timestamp of soft deletion
+- Includes `restore()` method to undelete records
+- Custom manager that filters out deleted records by default
+
+```python
+class MyModel(SoftDeleteBaseModel):
+    name = models.CharField(max_length=255)
+```
+
+## Authentication
+
+The template uses Knox for token-based authentication:
+
+### Available Endpoints
+
+- `POST /auth/create/` - Create a new user
+- `POST /auth/login/` - Log in and receive token
+- `POST /auth/logout/` - Invalidate current token
+- `POST /auth/logoutall/` - Invalidate all tokens
+- `GET/PUT/PATCH /auth/profile/` - Manage user profile
+
+### Rate Limiting
+
+- Login attempts: 5 per minute
+- User operations: 1000 per day
+- Anonymous operations: 100 per day
+
+## Advanced Usage
+
+### Celery Tasks
+
+Base task class with retry capabilities:
+
+```python
+from apps.core.tasks import BaseTaskWithRetry
+
+@shared_task(base=BaseTaskWithRetry)
+def my_task():
+    # Will retry 3 times with exponential backoff
+    pass
+```
+
+### Environment Variables
+
+The template supports multiple environment configurations:
+
+- Development: `.env` file created automatically
+- Production: See `.env.example` for required variables
+
+### Testing
+
+- Tests are organized by app in `tests/` directories
+- Uses pytest fixtures for common testing scenarios
+- Includes comprehensive test coverage for authentication
+- Includes examples of API endpoint testing
+
+### API Documentation
+
+- Swagger UI available at `/api/schema/swagger-ui/`
+- Automatic schema generation with drf-spectacular
+- Includes example requests and responses
+- Documents authentication requirements
+
+### Security Features
+
+- Email-based authentication
+- Token-based authorization
+- Rate limiting and throttling
+- CORS configuration
+- Debug mode control
+- Secure password hashing
+
+## Development Best Practices
+
+1. **Model Creation**
+   - Inherit from `BaseModel` for basic timestamping
+   - Use `SoftDeleteBaseModel` when deletion tracking is needed
+   - Implement custom managers in `managers.py` in each app
+
+2. **API Views**
+   - Use DRF class-based views
+   - Implement proper authentication
+   - Add rate limiting
+   - Document with drf-spectacular decorators
+
+3. **Testing**
+   - Write tests for all models and views
+   - Use pytest fixtures
+   - Test both success and failure cases
+   - Test authentication and permissions
+
+4. **Task Processing**
+   - Use `BaseTaskWithRetry` for resilient tasks
+   - Configure retry policies appropriately
+   - Use Celery Beat for scheduled tasks
+
 ## Commands 🛠️
 
 This section provides a list of useful commands to help you manage and develop your Django project efficiently.
@@ -90,7 +218,6 @@ This section provides a list of useful commands to help you manage and develop y
 - `poetry run makemigrations` instead of `python manage.py makemigrations`
 - `poetry run migrate` instead of `python manage.py migrate`
 - `poetry run create_dev_env` to create a development `.env` file
-
 
 ## Todo
 
