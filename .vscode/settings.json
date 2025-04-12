@@ -50,6 +50,7 @@
         "djangorestframework",
         "gunicorn",
         "ipykernel",
+        "ipynb",
         "levelname",
         "logoutall",
         "makemigrations",

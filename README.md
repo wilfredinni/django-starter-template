@@ -11,34 +11,21 @@ A comprehensive and easy-to-use starting point for your new API with **Django** 
 </div>
 
 ## Table of Contents
-- [Quick Start](#quick-start)
 - [Key Features](#key-features)
-- [Project Structure](#project-structure)
+- [Quick Start](#quick-start)
 - [Development Guide](#development-guide)
   - [Models](#models)
   - [Authentication](#authentication)
   - [API Documentation](#api-documentation)
   - [Testing](#testing)
   - [Task Processing](#task-processing)
+    - [Tasks with retry](#tasks-with-retry)
+    - [Scheduled Tasks](#scheduled-tasks)
 - [Useful Commands](#useful-commands)
 - [Environment Setup](#environment-setup)
 - [Security Features](#security-features)
-- [Todo & Roadmap](#todo)
-
-## Quick Start
-
-### Prerequisites
-- 💻 VS Code
-- 🐋 Docker
-- 🐳 Docker Compose
-
-### Setup Steps
-1. Use [GitHub's template feature](https://github.com/new?template_name=django-starter-template&template_owner=wilfredinni) (recommended) or clone repository
-2. Open in VS Code
-3. Check `Todo Tree` in the sidebar for setup guidance
-4. Run `CTL/CMD + Shift + p` and select `Reopen in container`
-5. Create superuser: `python manage.py createsuperuser`
-6. Start server: `python manage.py runserver`
+- [Project Structure](#project-structure)
+- [Todo & Roadmap](#todo--roadmap)
 
 ## Key Features
 
@@ -59,58 +46,27 @@ A comprehensive and easy-to-use starting point for your new API with **Django** 
 - 🔒 Knox authentication system
 - 🔽 Advanced filtering capabilities
 
-## Project Structure
+## Quick Start
 
-```
-├── apps/
-│   ├── core/                   # Core functionality
-│   │   ├── management/         # Custom management commands
-│   │   │   └── commands/
-│   │   │       └── seed.py     # Database seeding utility
-│   │   ├── tests/              # Core app tests
-│   │   ├── schema.py           # API schema definitions
-│   │   ├── tasks.py            # Celery tasks
-│   │
-│   └── users/                  # User management app
-│       ├── tests/              # User app tests
-│       ├── managers.py         # User model managers
-│       ├── models.py           # User model definition
-│       ├── schema.py           # User API schemas
-│       ├── throttles.py        # Rate limiting
-│
-├── conf/                       # Project configuration
-│   ├── settings.py             # Main settings file
-│   ├── test_settings.py        # Test-specific settings
-│   ├── celery.py               # Celery configuration
-│
-├── logs/                       # Application Info and Error logs
-│
-├── scripts/                    # Utility scripts
-│   ├── celery.py               # Celery commands
-│   └── django.py               # Django commands
-│
-├── templates/
-│   ├── 404.html                # 404 Error page
-│   ├── 500.html                # 500 Error pages
-│   └── index.html              # Main template
-│
-├── .devcontainer/              # Dev container config
-│
-├── .github/
-│   └── workflows/              # CI/CD workflows
-│
-├── pyproject.toml              # Project dependencies
-├── pytest.ini                  # Testing configuration
-```
+### Prerequisites
+- 💻 VS Code
+- 🐋 Docker
+- 🐳 Docker Compose
+
+### Setup Steps
+1. Use [GitHub's template feature](https://github.com/new?template_name=django-starter-template&template_owner=wilfredinni) (recommended) or clone repository
+2. Open in VS Code
+3. Check `Todo Tree` in the sidebar for setup guidance
+4. Run `CTL/CMD + Shift + p` and select `Reopen in container`
+5. Create superuser: `python manage.py createsuperuser`
+6. Start server: `python manage.py runserver`
 
 ## Development Guide
 
 ### Authentication
-
 The template uses Knox for token-based authentication:
 
 #### Available Endpoints
-
 - `POST /auth/create/` - Create a new user
 - `POST /auth/login/` - Log in and receive token
 - `POST /auth/logout/` - Invalidate current token
@@ -118,20 +74,17 @@ The template uses Knox for token-based authentication:
 - `GET/PUT/PATCH /auth/profile/` - Manage user profile
 
 #### Rate Limiting
-
 - Login attempts: 5 per minute
 - User operations: 1000 per day
 - Anonymous operations: 100 per day
 
 ### API Documentation
-
 - Swagger UI available at `/api/schema/swagger-ui/`
 - Automatic schema generation with drf-spectacular
 - Includes example requests and responses
 - Documents authentication requirements
 
 ### Testing
-
 - Tests are organized by app in `tests/` directories
 - Uses pytest fixtures for common testing scenarios
 - Includes comprehensive test coverage for authentication
@@ -139,7 +92,8 @@ The template uses Knox for token-based authentication:
 
 ### Task Processing
 
-Base task class with retry capabilities:
+#### Tasks with retry
+The template includes a base task class with retry capabilities. You can use it to create tasks that automatically retry on failure.
 
 ```python
 from apps.core.tasks import BaseTaskWithRetry
@@ -150,23 +104,31 @@ def my_task():
     pass
 ```
 
-## Useful Commands
+#### Scheduled Tasks
+Scheduled tasks are managed with Celery Beat. You can define your periodic tasks in the `tasks.py` file of your app and configure them from the Django admin interface.
 
+```python
+from apps.core.tasks import BaseTask
+@shared_task(base=BaseTask)
+def my_periodic_task():
+    # This task can be scheduled to run at regular intervals
+    # from the Django admin interface
+    pass
+```
+
+## Useful Commands
 This section provides a list of useful commands to help you manage and develop your Django project efficiently.
 
 ### Celery Tasks
-
 - `poetry run worker`: to start a new Celery worker.
 - `poetry run beat`: to start your periodic tasks.
 
 ### Test commands:
-
 - `pytest` to run the tests.
 - `pytest --cov` to run the tests with coverage.
 - `pytest --cov --cov-report=html` to run the tests with coverage and generate a HTML report.
 
 ### You can also use
-
 - `poetry run server` instead of `python manage.py runserver`
 - `poetry run makemigrations` instead of `python manage.py makemigrations`
 - `poetry run migrate` instead of `python manage.py migrate`
@@ -174,7 +136,6 @@ This section provides a list of useful commands to help you manage and develop y
 - `poetry run seed` to seed your database with sample data
 
 ### Database Seeding
-
 The template includes a powerful seeding command to populate your database with sample data for development and testing:
 
 ```bash
@@ -195,12 +156,10 @@ python manage.py seed --users 50 --superuser --clean
 ```
 
 ## Environment Setup
-
 - Development: `.env` file created automatically
 - Production: See `.env.example` for required variables
 
 ## Security Features
-
 - Email-based authentication
 - Token-based authorization
 - Rate limiting and throttling
@@ -208,8 +167,49 @@ python manage.py seed --users 50 --superuser --clean
 - Debug mode control
 - Secure password hashing
 
-## Todo & Roadmap
+## Project Structure
 
+```
+├── .devcontainer/              # Dev container config
+│
+├── .github/                    # GitHub CI/CD workflows
+│
+├── .vscode/                    # VS Code settings
+│
+├── apps/
+│   ├── core/                   # Core functionality
+│   │   ├── management/         # Custom management commands
+│   │   ├── tests/              # Core app tests
+│   │   ├── schema.py           # API schema definitions
+│   │   ├── tasks.py            # Celery base tasks
+│   │
+│   └── users/                  # User Management and Authentication app
+│       ├── tests/              # User app tests
+│       ├── managers.py         # User model managers
+│       ├── models.py           # User model definition
+│       ├── schema.py           # User API schemas
+│       ├── throttles.py        # Rate limiting
+│       ├── views.py            # User API views for authentication
+│
+├── conf/                       # Project configuration
+│   ├── settings.py             # Main settings file
+│   ├── test_settings.py        # Test-specific settings
+│   ├── celery.py               # Celery configuration
+│
+├── logs/                       # Application Info and Error logs
+│
+├── scripts/                    # Utility scripts
+│
+├── .env.example                # Example environment variables
+├── .flake8                     # Flake8 configuration
+├── .gitignore                  # Git ignore file
+├── manage.py                   # Django management script
+├── notebook.ipynb              # Jupyter Notebook
+├── pyproject.toml              # Project dependencies
+├── pytest.ini                  # Testing configuration
+```
+
+## Todo & Roadmap
 - [x] Index Page with a link to the Django admin
 - [x] OpenAPI 3 schema generation and Swagger
 - [x] CI with Github Actions
