@@ -38,7 +38,7 @@ A comprehensive and easy-to-use starting point for your new API with **Django** 
 - ⏳ Celery task management
 
 ### Development Tools & Features
-- 🧪 Pytest testing suite
+- 🧪 Pytest testing suite with code Coverage
 - ⚡ Jupyter Notebooks integration
 - 🐞 Django Debug Toolbar
 - 🔧 Code quality tools (Black, Flake8)
