@@ -61,6 +61,7 @@
         "querysets",
         "repr",
         "runserver",
+        "softdelete",
         "whitenoise",
         "wrongpassword",
         "wsgi"

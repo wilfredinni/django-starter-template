@@ -25,6 +25,7 @@ A comprehensive and easy-to-use starting point for your new API with **Django** 
 - [Environment Setup](#environment-setup)
 - [Security Features](#security-features)
 - [Project Structure](#project-structure)
+- [Recommended Packages](#recommended-packages)
 - [Todo & Roadmap](#todo--roadmap)
 
 ## Key Features
@@ -208,6 +209,11 @@ python manage.py seed --users 50 --superuser --clean
 ├── pyproject.toml              # Project dependencies
 ├── pytest.ini                  # Testing configuration
 ```
+
+## Recommended Packages
+- [django-axes](https://github.com/jazzband/django-axes) Keep track of failed login attempts in Django-powered sites
+- [django-softdelete](https://github.com/scoursen/django-softdelete) Soft delete for Django ORM
+- [django-simple-history](https://github.com/jazzband/django-simple-history) Store model history and view/revert changes from admin site
 
 ## Todo & Roadmap
 - [x] Index Page with a link to the Django admin
