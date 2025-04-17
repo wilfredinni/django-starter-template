@@ -1,7 +1,7 @@
 [tool.poetry]
 # TODO ⚡ Change the name, version, description, authors, and license of the project
 name = "django-starter-template"
-version = "0.2.6"
+version = "0.2.7"
 description = "A comprehensive starting point for your new API with Django and DRF"
 authors = ["Carlos <carlos@pythoncheatsheet.org>"]
 license = "MIT"
