@@ -2,6 +2,7 @@ import logging
 
 from django.contrib.auth import login
 from drf_spectacular.utils import extend_schema, extend_schema_view
+from knox.auth import TokenAuthentication
 from knox.views import LoginView as KnoxLoginView
 from rest_framework import generics, permissions, throttling
 from rest_framework.response import Response
@@ -25,6 +26,7 @@ logger = logging.getLogger(__name__)
 
 @extend_schema(responses=LOGIN_RESPONSE_SCHEMA)
 class LoginView(KnoxLoginView):
+    authentication_classes = (TokenAuthentication,)
     permission_classes = (permissions.AllowAny,)
     serializer_class = AuthTokenSerializer
     throttle_classes = [UserLoginRateThrottle]
