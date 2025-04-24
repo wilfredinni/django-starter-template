@@ -1,7 +1,7 @@
 [tool.poetry]
 # TODO ⚡ Change the name, version, description, authors, and license of the project
 name = "django-starter-template"
-version = "0.2.7"
+version = "0.2.8"
 description = "A comprehensive starting point for your new API with Django and DRF"
 authors = ["Carlos <carlos@pythoncheatsheet.org>"]
 license = "MIT"
@@ -16,7 +16,6 @@ python = "^3.13"
 django = "^5.1.2"
 django-environ = "^0.12.0"
 django-cors-headers = "^4.5.0"
-django-filter = "^24.3"
 djangorestframework = "^3.15.2"
 psycopg2 = "^2.9.10"
 whitenoise = "^6.7.0"
@@ -31,11 +30,12 @@ django-redis = "^5.4.0"
 drf-spectacular = "^0.28.0"
 faker = "^37.1.0"
 django-seed = "^0.3.1"
+django-extensions = "^4.1"
+django-filter = "^25.1"
 
 [tool.poetry.group.dev.dependencies]
 django-debug-toolbar = "^5.0.0"
 pytest = "^8.3.3"
-django-extensions = "^3.2.3"
 pytest-django = "^4.9.0"
 ipykernel = "^6.29.5"
 pytest-mock = "^3.14.0"
