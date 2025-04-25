@@ -38,16 +38,41 @@ class AuthTokenSerializer(serializers.Serializer):
 
 class CreateUserSerializer(serializers.ModelSerializer):
 
-    password = serializers.CharField(write_only=True, min_length=5)
-    password2 = serializers.CharField(write_only=True, min_length=5)
+    password = serializers.CharField(write_only=True, min_length=8)
+    password2 = serializers.CharField(write_only=True, min_length=8)
 
     class Meta:
         model = CustomUser
         fields = ("email", "password", "password2")
 
     def validate(self, data: dict) -> dict:
-        if data["password"] != data["password2"]:
+        password = data["password"]
+
+        # Check password match
+        if password != data["password2"]:
             raise serializers.ValidationError("Passwords do not match.")
+
+        # Check password complexity
+        if len(password) < 8:
+            raise serializers.ValidationError(
+                {"password": "Password must be at least 8 characters long."}
+            )
+        if password.isdigit():
+            raise serializers.ValidationError(
+                {"password": "Password cannot be entirely numeric."}
+            )
+        if password.lower() == "password":
+            raise serializers.ValidationError(
+                {"password": "Password cannot be 'password'."}
+            )
+        email_username = data["email"].split("@")[0].lower()
+        if (
+            email_username in password.lower()
+            or data["email"].lower() in password.lower()
+        ):
+            raise serializers.ValidationError(
+                {"password": "Password cannot contain your email or username."}
+            )
 
         return data
 

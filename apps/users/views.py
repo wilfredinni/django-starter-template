@@ -4,7 +4,7 @@ from django.contrib.auth import login
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from knox.auth import TokenAuthentication
 from knox.views import LoginView as KnoxLoginView
-from rest_framework import generics, permissions, throttling
+from rest_framework import generics, permissions, serializers, status, throttling
 from rest_framework.response import Response
 
 from .schema import (
@@ -67,6 +67,20 @@ class CreateUserView(generics.CreateAPIView):
     serializer_class = CreateUserSerializer
     throttle_classes = [throttling.UserRateThrottle]
 
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        try:
+            # Explicitly validate the data including password complexity checks
+            serializer.is_valid(raise_exception=True)
+            self.perform_create(serializer)
+            headers = self.get_success_headers(serializer.data)
+            logger.info(f"User {serializer.data['email']} created.")
+            return Response(
+                serializer.data, status=status.HTTP_201_CREATED, headers=headers
+            )
+        except serializers.ValidationError as e:
+            logger.warning(f"Failed to create user: {e.detail}")
+            raise
+
     def perform_create(self, serializer):
-        user = serializer.save()
-        logger.info(f"User {user.username} created.")
+        serializer.save()
