@@ -83,11 +83,54 @@ class ProfileViewTests(APITestCase):
                     response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED
                 )
 
-    def test_password_change(self):
-        """Test password can be changed via PATCH"""
+    def test_password_validation_success(self):
+        """Test successful password update with valid password"""
         self.client.force_authenticate(user=self.user)
-        data = {"password": "short", "first_name": "Test"}
+        data = {"email": "testuser@example.com", "password": "ValidPass123!"}
         response = self.client.patch(self.url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.user.refresh_from_db()
-        self.assertTrue(self.user.check_password("short"))
+        self.assertTrue(self.user.check_password("ValidPass123!"))
+
+    def test_password_too_short(self):
+        """Test password update with too short password"""
+        self.client.force_authenticate(user=self.user)
+        data = {"email": "testuser@example.com", "password": "short"}
+        response = self.client.patch(self.url, data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("password", response.data)
+        self.assertEqual(
+            response.data["password"][0], "Ensure this field has at least 8 characters."
+        )
+
+    def test_numeric_only_password(self):
+        """Test password update with numeric-only password"""
+        self.client.force_authenticate(user=self.user)
+        data = {"email": "testuser@example.com", "password": "12345678"}
+        response = self.client.patch(self.url, data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("password", response.data)
+        self.assertEqual(
+            response.data["password"][0], "Password cannot be entirely numeric."
+        )
+
+    def test_common_weak_password(self):
+        """Test password update with common weak password"""
+        self.client.force_authenticate(user=self.user)
+        data = {"email": "testuser@example.com", "password": "password"}
+        response = self.client.patch(self.url, data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("password", response.data)
+        self.assertEqual(response.data["password"][0], "Password cannot be 'password'.")
+
+    def test_password_contains_email(self):
+        """Test password update with password containing email"""
+        self.client.force_authenticate(user=self.user)
+        data = {"email": "testuser@example.com", "password": "testuser123"}
+        response = self.client.patch(self.url, data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("password", response.data)
+        self.assertEqual(
+            response.data["password"][0],
+            "Password cannot contain your email or username.",
+        )

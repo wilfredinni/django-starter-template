@@ -86,7 +86,35 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ("email", "password", "first_name", "last_name")
-        extra_kwargs = {"password": {"write_only": True, "min_length": 5}}
+        extra_kwargs = {"password": {"write_only": True, "min_length": 8}}
+
+    def validate(self, data: dict) -> dict:
+        if "password" in data:
+            password = data["password"]
+
+            # Check password complexity
+            if len(password) < 8:
+                raise serializers.ValidationError(
+                    {"password": "Password must be at least 8 characters long."}
+                )
+            if password.isdigit():
+                raise serializers.ValidationError(
+                    {"password": "Password cannot be entirely numeric."}
+                )
+            if password.lower() == "password":
+                raise serializers.ValidationError(
+                    {"password": "Password cannot be 'password'."}
+                )
+            email_username = data["email"].split("@")[0].lower()
+            if (
+                email_username in password.lower()
+                or data["email"].lower() in password.lower()
+            ):
+                raise serializers.ValidationError(
+                    {"password": "Password cannot contain your email or username."}
+                )
+
+        return data
 
     def update(self, instance: CustomUser, validated_data: dict) -> CustomUser:
         password = validated_data.pop("password", None)
