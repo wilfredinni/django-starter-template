@@ -110,8 +110,9 @@ class ProfileViewTests(APITestCase):
         response = self.client.patch(self.url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIn("password", response.data)
-        self.assertEqual(
-            response.data["password"][0], "Password cannot be entirely numeric."
+        self.assertTrue(
+            any("entirely numeric" in msg for msg in response.data["password"]),
+            "Expected entirely numeric password error not found",
         )
 
     def test_common_weak_password(self):
@@ -121,7 +122,10 @@ class ProfileViewTests(APITestCase):
         response = self.client.patch(self.url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIn("password", response.data)
-        self.assertEqual(response.data["password"][0], "Password cannot be 'password'.")
+        self.assertTrue(
+            any("too common" in msg for msg in response.data["password"]),
+            "Expected password too common error not found",
+        )
 
     def test_password_contains_email(self):
         """Test password update with password containing email"""
@@ -130,7 +134,7 @@ class ProfileViewTests(APITestCase):
         response = self.client.patch(self.url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIn("password", response.data)
-        self.assertEqual(
+        self.assertIn(
+            "The password is too similar to the email address.",
             response.data["password"][0],
-            "Password cannot contain your email or username.",
         )

@@ -1,6 +1,8 @@
 from .models import CustomUser
 from django.contrib.auth import authenticate
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.password_validation import validate_password
+
 
 from rest_framework import serializers
 
@@ -52,27 +54,25 @@ class CreateUserSerializer(serializers.ModelSerializer):
         if password != data["password2"]:
             raise serializers.ValidationError("Passwords do not match.")
 
-        # Check password complexity
-        if len(password) < 8:
-            raise serializers.ValidationError(
-                {"password": "Password must be at least 8 characters long."}
-            )
-        if password.isdigit():
-            raise serializers.ValidationError(
-                {"password": "Password cannot be entirely numeric."}
-            )
-        if password.lower() == "password":
-            raise serializers.ValidationError(
-                {"password": "Password cannot be 'password'."}
-            )
-        email_username = data["email"].split("@")[0].lower()
-        if (
-            email_username in password.lower()
-            or data["email"].lower() in password.lower()
-        ):
-            raise serializers.ValidationError(
-                {"password": "Password cannot contain your email or username."}
-            )
+        user_data = {k: v for k, v in data.items() if k != "password2"}
+        try:
+            validate_password(password, self.Meta.model(**user_data))
+        except Exception as e:
+            import logging
+
+            logger = logging.getLogger(__name__)
+            logger.error(f"Password validation error: {type(e)} - {str(e)}")
+            logger.error(f"Error details: {e.__dict__}")
+            if hasattr(e, "error_list"):
+                errors = []
+                for err in e.error_list:
+                    if hasattr(err, "messages"):
+                        errors.extend(err.messages)
+                    else:
+                        errors.append(str(err))
+            else:
+                errors = [str(e)]
+            raise serializers.ValidationError({"password": errors})
 
         return data
 
@@ -90,29 +90,24 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     def validate(self, data: dict) -> dict:
         if "password" in data:
-            password = data["password"]
+            try:
+                validate_password(data["password"], self.Meta.model(**data))
+            except Exception as e:
+                import logging
 
-            # Check password complexity
-            if len(password) < 8:
-                raise serializers.ValidationError(
-                    {"password": "Password must be at least 8 characters long."}
-                )
-            if password.isdigit():
-                raise serializers.ValidationError(
-                    {"password": "Password cannot be entirely numeric."}
-                )
-            if password.lower() == "password":
-                raise serializers.ValidationError(
-                    {"password": "Password cannot be 'password'."}
-                )
-            email_username = data["email"].split("@")[0].lower()
-            if (
-                email_username in password.lower()
-                or data["email"].lower() in password.lower()
-            ):
-                raise serializers.ValidationError(
-                    {"password": "Password cannot contain your email or username."}
-                )
+                logger = logging.getLogger(__name__)
+                logger.error(f"Password validation error: {type(e)} - {str(e)}")
+                logger.error(f"Error details: {e.__dict__}")
+                if hasattr(e, "error_list"):
+                    errors = []
+                    for err in e.error_list:
+                        if hasattr(err, "messages"):
+                            errors.extend(err.messages)
+                        else:
+                            errors.append(str(err))
+                else:
+                    errors = [str(e)]
+                raise serializers.ValidationError({"password": errors})
 
         return data
 
