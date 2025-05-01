@@ -1,10 +1,12 @@
-from .models import CustomUser
+from django.conf import settings
 from django.contrib.auth import authenticate
-from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.password_validation import validate_password
-
-
+from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
+
+from .models import CustomUser
+
+MIN_PASSWORD_LENGTH = getattr(settings, "MIN_PASSWORD_LENGTH", 8)
 
 
 class AuthTokenSerializer(serializers.Serializer):
@@ -39,9 +41,8 @@ class AuthTokenSerializer(serializers.Serializer):
 
 
 class CreateUserSerializer(serializers.ModelSerializer):
-
-    password = serializers.CharField(write_only=True, min_length=8)
-    password2 = serializers.CharField(write_only=True, min_length=8)
+    password = serializers.CharField(write_only=True, min_length=MIN_PASSWORD_LENGTH)
+    password2 = serializers.CharField(write_only=True, min_length=MIN_PASSWORD_LENGTH)
 
     class Meta:
         model = CustomUser

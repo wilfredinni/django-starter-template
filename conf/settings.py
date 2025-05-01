@@ -35,6 +35,7 @@ USE_TZ = True
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["*"])
 AUTH_USER_MODEL = "users.CustomUser"
+MIN_PASSWORD_LENGTH = env.int("MIN_PASSWORD_LENGTH", default=8)
 PASSWORD_HASHERS = [
     "django.contrib.auth.hashers.ScryptPasswordHasher",
     "django.contrib.auth.hashers.PBKDF2PasswordHasher",
@@ -49,7 +50,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-        "OPTIONS": {"min_length": 12},
+        "OPTIONS": {"min_length": MIN_PASSWORD_LENGTH},
     },
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
