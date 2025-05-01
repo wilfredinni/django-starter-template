@@ -32,6 +32,7 @@ faker = "^37.1.0"
 django-seed = "^0.3.1"
 django-extensions = "^4.1"
 django-filter = "^25.1"
+python-json-logger = "^3.3.0"
 
 [tool.poetry.group.dev.dependencies]
 django-debug-toolbar = "^5.0.0"
