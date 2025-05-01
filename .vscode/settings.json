@@ -58,6 +58,7 @@
         "psycopg",
         "pycache",
         "pytest",
+        "pythonjsonlogger",
         "querysets",
         "repr",
         "runserver",

@@ -19,7 +19,6 @@ ROOT_URLCONF = "conf.urls"
 WSGI_APPLICATION = "conf.wsgi.application"
 DEBUG = env.bool("DEBUG", default=False)
 
-
 # -----------------------------------------------------------------------------
 # Time & Language
 # -----------------------------------------------------------------------------
@@ -27,7 +26,6 @@ LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
-
 
 # -----------------------------------------------------------------------------
 # Security and Users
@@ -62,7 +60,6 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = "DENY"
 CSRF_COOKIE_SECURE = not DEBUG
 SESSION_COOKIE_SECURE = not DEBUG
-
 
 # -----------------------------------------------------------------------------
 # Databases
@@ -128,7 +125,6 @@ TEMPLATES = [
         },
     },
 ]
-
 
 # -----------------------------------------------------------------------------
 # Rest Framework
@@ -200,7 +196,6 @@ CACHES = {
 
 USER_AGENTS_CACHE = "default"
 
-
 # -----------------------------------------------------------------------------
 # Celery
 # -----------------------------------------------------------------------------
@@ -213,7 +208,6 @@ CELERY_RESULT_SERIALIZER = "json"
 CELERY_TIMEZONE = "America/Santiago"
 CELERY_RESULT_EXTENDED = True
 
-
 # -----------------------------------------------------------------------------
 # Email
 # -----------------------------------------------------------------------------
@@ -222,7 +216,6 @@ EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS", default=True)
 EMAIL_PORT = env.int("EMAIL_PORT", default=587)
 EMAIL_HOST_USER = env("EMAIL_HOST_USER", default="")
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD", default="")
-
 
 # -----------------------------------------------------------------------------
 # Sentry and logging
@@ -240,7 +233,7 @@ LOGGING = {
     "filters": {"request_id": {"()": "conf.middleware.RequestIDFilter"}},
     "formatters": {
         "json": {
-            "()": "pythonjsonlogger.jsonlogger.JsonFormatter",
+            "()": "pythonjsonlogger.json.JsonFormatter",
             "format": (
                 "%(asctime)s %(levelname)s %(module)s "
                 "%(process)d %(thread)d %(message)s "
@@ -330,7 +323,6 @@ if not DEBUG:
         profiles_sample_rate=1.0,
     )
 
-
 # -----------------------------------------------------------------------------
 # Static & Media Files
 # -----------------------------------------------------------------------------
@@ -354,7 +346,6 @@ else:
 MEDIA_URL = "/media/"
 MEDIA_ROOT = root_path("media_root")
 ADMIN_MEDIA_PREFIX = STATIC_URL + "admin/"
-
 
 # -----------------------------------------------------------------------------
 # Django Debug Toolbar and Django Extensions
