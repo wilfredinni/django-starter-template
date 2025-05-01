@@ -1,3 +1,4 @@
+import re
 import tempfile
 from datetime import timedelta
 from pathlib import Path
@@ -34,14 +35,33 @@ USE_TZ = True
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["*"])
 AUTH_USER_MODEL = "users.CustomUser"
+MIN_PASSWORD_LENGTH = env.int("MIN_PASSWORD_LENGTH", default=8)
+PASSWORD_HASHERS = [
+    "django.contrib.auth.hashers.ScryptPasswordHasher",
+    "django.contrib.auth.hashers.PBKDF2PasswordHasher",
+    "django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher",
+    "django.contrib.auth.hashers.Argon2PasswordHasher",
+    "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
+]
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
     },
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "OPTIONS": {"min_length": MIN_PASSWORD_LENGTH},
+    },
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
+
+# Security settings
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = "DENY"
+CSRF_COOKIE_SECURE = not DEBUG
+SESSION_COOKIE_SECURE = not DEBUG
 
 
 # -----------------------------------------------------------------------------
@@ -80,6 +100,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -102,6 +123,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ],
+            "builtins": ["django.template.defaultfilters"],
         },
     },
 ]
@@ -204,15 +226,32 @@ EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD", default="")
 # -----------------------------------------------------------------------------
 # Sentry and logging
 # -----------------------------------------------------------------------------
+# Error reporting
+IGNORABLE_404_URLS = [
+    re.compile(r"^/apple-touch-icon.*\.png$"),
+    re.compile(r"^/favicon\.ico$"),
+    re.compile(r"^/robots\.txt$"),
+]
+
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
     "formatters": {
         "console": {"format": "%(name)-12s %(levelname)-8s %(message)s"},
         "file": {"format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"},
+        "security": {
+            "format": "%(asctime)s [%(levelname)s] %(message)s",
+        },
     },
     "handlers": {
         "console": {"class": "logging.StreamHandler", "formatter": "console"},
+        "security": {
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": f"{root_path('logs')}/security.log",
+            "maxBytes": 1000000,
+            "backupCount": 10,
+            "formatter": "security",
+        },
         "info_file": {
             "level": "INFO",
             "class": "logging.handlers.RotatingFileHandler",
@@ -241,8 +280,22 @@ LOGGING = {
             "handlers": ["console", "info_file", "error_file"],
             "propagate": False,
         },
+        "django.security": {
+            "level": "WARNING",
+            "handlers": ["security"],
+            "propagate": False,
+        },
+        "django.request": {
+            "level": "ERROR",
+            "handlers": ["error_file"],
+            "propagate": False,
+        },
     },
 }
+
+# Request logging middleware
+if not DEBUG:
+    MIDDLEWARE.insert(0, "django.middleware.common.BrokenLinkEmailsMiddleware")
 
 if not DEBUG:
     sentry_sdk.init(

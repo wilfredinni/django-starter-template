@@ -1,8 +1,12 @@
-from .models import CustomUser
+from django.conf import settings
 from django.contrib.auth import authenticate
+from django.contrib.auth.password_validation import validate_password
 from django.utils.translation import gettext_lazy as _
-
 from rest_framework import serializers
+
+from .models import CustomUser
+
+MIN_PASSWORD_LENGTH = getattr(settings, "MIN_PASSWORD_LENGTH", 8)
 
 
 class AuthTokenSerializer(serializers.Serializer):
@@ -37,17 +41,41 @@ class AuthTokenSerializer(serializers.Serializer):
 
 
 class CreateUserSerializer(serializers.ModelSerializer):
-
-    password = serializers.CharField(write_only=True, min_length=5)
-    password2 = serializers.CharField(write_only=True, min_length=5)
+    password = serializers.CharField(write_only=True, min_length=MIN_PASSWORD_LENGTH)
+    password2 = serializers.CharField(write_only=True, min_length=MIN_PASSWORD_LENGTH)
 
     class Meta:
         model = CustomUser
         fields = ("email", "password", "password2")
 
     def validate(self, data: dict) -> dict:
-        if data["password"] != data["password2"]:
+        password = data["password"]
+
+        # Check password match
+        if password != data["password2"]:
             raise serializers.ValidationError("Passwords do not match.")
+
+        user_data = {k: v for k, v in data.items() if k != "password2"}
+        try:
+            validate_password(password, self.Meta.model(**user_data))
+        except Exception as e:
+            import logging
+
+            logger = logging.getLogger(__name__)
+            logger.error(f"Password validation error: {type(e)} - {str(e)}")
+            logger.error(f"Error details: {e.__dict__}")
+            if hasattr(e, "error_list"):
+                errors = []
+                for err in e.error_list:
+                    if hasattr(err, "messages"):
+                        errors.extend(err.messages)
+                    else:
+                        errors.append(str(err))
+            else:
+                errors = [
+                    _("An error occurred during password validation. Please try again.")
+                ]
+            raise serializers.ValidationError({"password": errors})
 
         return data
 
@@ -61,7 +89,31 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ("email", "password", "first_name", "last_name")
-        extra_kwargs = {"password": {"write_only": True, "min_length": 5}}
+        extra_kwargs = {"password": {"write_only": True, "min_length": 8}}
+
+    def validate(self, data: dict) -> dict:
+        if "password" in data:
+            try:
+                validate_password(data["password"], self.Meta.model(**data))
+            except Exception as e:
+                import logging
+
+                logger = logging.getLogger(__name__)
+                logger.error(f"Password validation error: {type(e)} - {str(e)}")
+                logger.error(f"Error details: {e.__dict__}")
+                if hasattr(e, "error_list"):
+                    errors = []
+                    for err in e.error_list:
+                        if hasattr(err, "messages"):
+                            errors.extend(err.messages)
+                        else:
+                            errors.append(str(err))
+                else:
+                    errors = ["Password validation error. Please try again."]
+
+                raise serializers.ValidationError({"password": errors})
+
+        return data
 
     def update(self, instance: CustomUser, validated_data: dict) -> CustomUser:
         password = validated_data.pop("password", None)
