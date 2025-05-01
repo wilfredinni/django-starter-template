@@ -107,7 +107,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
                         else:
                             errors.append(str(err))
                 else:
-                    errors = [str(e)]
+                    errors = [_("An error occurred during password validation. Please try again.")]
                 raise serializers.ValidationError({"password": errors})
 
         return data
