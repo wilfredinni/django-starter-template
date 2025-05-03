@@ -54,12 +54,29 @@ class LoginViewTests(APITestCase):
                     response = self.client.post(self.url, invalid_data, format="json")
                     self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
                     self.assertIn("non_field_errors", response.data)
-                    mock_logger.assert_called_once_with(
-                        "%s: %s",
-                        "Bad Request",
-                        self.url,
-                        extra={"status_code": 400, "request": ANY},
-                        exc_info=None,
+                    # Should have two log calls:
+                    # 1. For the failed login attempt (email/IP)
+                    # 2. For the Bad Request response
+                    self.assertEqual(mock_logger.call_count, 2)
+                    self.assertEqual(
+                        mock_logger.call_args_list[0][0][0],
+                        "Failed login attempt for email: "
+                        f"{invalid_data['email']} (IP: 127.0.0.1)",
+                    )
+                    self.assertEqual(
+                        mock_logger.call_args_list[1][0],
+                        (
+                            "%s: %s",
+                            "Bad Request",
+                            self.url,
+                        ),
+                    )
+                    self.assertEqual(
+                        mock_logger.call_args_list[1][1],
+                        {
+                            "extra": {"status_code": 400, "request": ANY},
+                            "exc_info": None,
+                        },
                     )
 
     def test_login_inactive_user(self):
@@ -70,12 +87,25 @@ class LoginViewTests(APITestCase):
             response = self.client.post(self.url, self.valid_credentials, format="json")
             self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
             self.assertIn("non_field_errors", response.data)
-            mock_logger.assert_called_once_with(
-                "%s: %s",
-                "Bad Request",
-                self.url,
-                extra={"status_code": 400, "request": ANY},
-                exc_info=None,
+            # Should have two log calls:
+            # 1. For the failed login attempt (email/IP)
+            # 2. For the Bad Request response
+            self.assertEqual(mock_logger.call_count, 2)
+            self.assertEqual(
+                mock_logger.call_args_list[0][0][0],
+                "Failed login attempt for email: " f"{self.user.email} (IP: 127.0.0.1)",
+            )
+            self.assertEqual(
+                mock_logger.call_args_list[1][0],
+                (
+                    "%s: %s",
+                    "Bad Request",
+                    self.url,
+                ),
+            )
+            self.assertEqual(
+                mock_logger.call_args_list[1][1],
+                {"extra": {"status_code": 400, "request": ANY}, "exc_info": None},
             )
 
     def test_login_missing_fields(self):

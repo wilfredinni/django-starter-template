@@ -19,7 +19,6 @@ ROOT_URLCONF = "conf.urls"
 WSGI_APPLICATION = "conf.wsgi.application"
 DEBUG = env.bool("DEBUG", default=False)
 
-
 # -----------------------------------------------------------------------------
 # Time & Language
 # -----------------------------------------------------------------------------
@@ -27,7 +26,6 @@ LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
-
 
 # -----------------------------------------------------------------------------
 # Security and Users
@@ -62,7 +60,6 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = "DENY"
 CSRF_COOKIE_SECURE = not DEBUG
 SESSION_COOKIE_SECURE = not DEBUG
-
 
 # -----------------------------------------------------------------------------
 # Databases
@@ -100,6 +97,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    "conf.middleware.RequestIDMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "corsheaders.middleware.CorsMiddleware",
@@ -127,7 +125,6 @@ TEMPLATES = [
         },
     },
 ]
-
 
 # -----------------------------------------------------------------------------
 # Rest Framework
@@ -199,7 +196,6 @@ CACHES = {
 
 USER_AGENTS_CACHE = "default"
 
-
 # -----------------------------------------------------------------------------
 # Celery
 # -----------------------------------------------------------------------------
@@ -212,7 +208,6 @@ CELERY_RESULT_SERIALIZER = "json"
 CELERY_TIMEZONE = "America/Santiago"
 CELERY_RESULT_EXTENDED = True
 
-
 # -----------------------------------------------------------------------------
 # Email
 # -----------------------------------------------------------------------------
@@ -221,7 +216,6 @@ EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS", default=True)
 EMAIL_PORT = env.int("EMAIL_PORT", default=587)
 EMAIL_HOST_USER = env("EMAIL_HOST_USER", default="")
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD", default="")
-
 
 # -----------------------------------------------------------------------------
 # Sentry and logging
@@ -236,58 +230,79 @@ IGNORABLE_404_URLS = [
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
+    "filters": {"request_id": {"()": "conf.middleware.RequestIDFilter"}},
     "formatters": {
-        "console": {"format": "%(name)-12s %(levelname)-8s %(message)s"},
-        "file": {"format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"},
-        "security": {
+        "json": {
+            "()": "pythonjsonlogger.json.JsonFormatter",
+            "format": (
+                "%(asctime)s %(levelname)s %(module)s "
+                "%(process)d %(thread)d %(message)s "
+                "%(request_id)s"
+            ),
+        },
+        "simple": {
             "format": "%(asctime)s [%(levelname)s] %(message)s",
         },
     },
     "handlers": {
-        "console": {"class": "logging.StreamHandler", "formatter": "console"},
-        "security": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+        },
+        "file": {
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": f"{root_path('logs')}/app.log",
+            "maxBytes": 10 * 1024 * 1024,  # 10MB
+            "backupCount": 5,
+            "formatter": "json",
+            "filters": ["request_id"],
+        },
+        "security_file": {
             "class": "logging.handlers.RotatingFileHandler",
             "filename": f"{root_path('logs')}/security.log",
-            "maxBytes": 1000000,
-            "backupCount": 10,
-            "formatter": "security",
-        },
-        "info_file": {
-            "level": "INFO",
-            "class": "logging.handlers.RotatingFileHandler",
-            "formatter": "file",
-            "filename": f"{root_path('logs')}/info.log",
-            "maxBytes": 1000000,
-            "backupCount": 10,
+            "maxBytes": 10 * 1024 * 1024,
+            "backupCount": 5,
+            "formatter": "json",
+            "filters": ["request_id"],
         },
         "error_file": {
-            "level": "ERROR",
             "class": "logging.handlers.RotatingFileHandler",
-            "formatter": "file",
             "filename": f"{root_path('logs')}/error.log",
-            "maxBytes": 1000000,
-            "backupCount": 10,
+            "maxBytes": 10 * 1024 * 1024,
+            "backupCount": 5,
+            "formatter": "json",
+            "filters": ["request_id"],
+            "level": "ERROR",
         },
     },
     "loggers": {
         "": {
+            "handlers": ["console", "file"],
             "level": "INFO",
-            "handlers": ["console", "info_file", "error_file"],
-            "propagate": True,
         },
-        "apps.users.views": {
+        "django.utils.autoreload": {
+            "handlers": ["console"],
             "level": "INFO",
-            "handlers": ["console", "info_file", "error_file"],
             "propagate": False,
         },
-        "django.security": {
-            "level": "WARNING",
-            "handlers": ["security"],
+        "django": {
+            "handlers": ["console", "file"],
+            "level": "INFO",
             "propagate": False,
         },
         "django.request": {
-            "level": "ERROR",
-            "handlers": ["error_file"],
+            "handlers": ["file", "error_file"],
+            "level": "WARNING",
+            "propagate": False,
+        },
+        "django.security": {
+            "handlers": ["security_file"],
+            "level": "WARNING",
+            "propagate": False,
+        },
+        "apps": {
+            "handlers": ["console", "file"],
+            "level": "DEBUG" if DEBUG else "INFO",
             "propagate": False,
         },
     },
@@ -308,7 +323,6 @@ if not DEBUG:
         # We recommend adjusting this value in production.
         profiles_sample_rate=1.0,
     )
-
 
 # -----------------------------------------------------------------------------
 # Static & Media Files
@@ -333,7 +347,6 @@ else:
 MEDIA_URL = "/media/"
 MEDIA_ROOT = root_path("media_root")
 ADMIN_MEDIA_PREFIX = STATIC_URL + "admin/"
-
 
 # -----------------------------------------------------------------------------
 # Django Debug Toolbar and Django Extensions

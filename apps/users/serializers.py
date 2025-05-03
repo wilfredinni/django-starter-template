@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.password_validation import validate_password
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
+import logging
 
 from .models import CustomUser
 
@@ -31,6 +32,12 @@ class AuthTokenSerializer(serializers.Serializer):
 
             if not user:
                 msg = _("Unable to log in with provided credentials.")
+                security_logger = logging.getLogger("django.security")
+                request = self.context.get("request")
+                ip_address = request.META.get("REMOTE_ADDR") if request else "unknown"
+                security_logger.warning(
+                    f"Failed login attempt for email: {email} (IP: {ip_address})"
+                )
                 raise serializers.ValidationError(msg, code="authorization")
         else:
             msg = _('Must include "email" and "password".')
