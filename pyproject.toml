@@ -1,7 +1,7 @@
 [tool.poetry]
 # TODO ⚡ Change the name, version, description, authors, and license of the project
 name = "django-starter-template"
-version = "0.2.8"
+version = "0.2.9"
 description = "A comprehensive starting point for your new API with Django and DRF"
 authors = ["Carlos <carlos@pythoncheatsheet.org>"]
 license = "MIT"
@@ -21,7 +21,7 @@ psycopg2 = "^2.9.10"
 whitenoise = "^6.7.0"
 gunicorn = "^23.0.0"
 django-rest-knox = "^5.0.2"
-redis = "^5.1.1"
+redis = "^6.0.0"
 celery = "^5.4.0"
 django-celery-beat = "^2.7.0"
 django-celery-results = "^2.5.1"
