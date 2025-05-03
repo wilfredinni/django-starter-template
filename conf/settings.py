@@ -262,7 +262,8 @@ LOGGING = {
             "filename": f"{root_path('logs')}/security.log",
             "maxBytes": 10 * 1024 * 1024,
             "backupCount": 5,
-            "formatter": "simple",
+            "formatter": "json",
+            "filters": ["request_id"],
         },
         "error_file": {
             "class": "logging.handlers.RotatingFileHandler",
