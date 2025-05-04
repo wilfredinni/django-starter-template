@@ -45,7 +45,7 @@ class LoginViewTests(APITestCase):
             {
                 "email": "wrong@example.com",
                 "password": self.valid_credentials["password"],
-            },  # Correct password
+            },
         ]
 
         for invalid_data in invalid_cases:
@@ -60,8 +60,7 @@ class LoginViewTests(APITestCase):
                     self.assertEqual(mock_logger.call_count, 2)
                     self.assertEqual(
                         mock_logger.call_args_list[0][0][0],
-                        "Failed login attempt for email: "
-                        f"{invalid_data['email']} (IP: 127.0.0.1)",
+                        "Failed login attempt for email: " f"{invalid_data['email']}",
                     )
                     self.assertEqual(
                         mock_logger.call_args_list[1][0],
@@ -93,7 +92,7 @@ class LoginViewTests(APITestCase):
             self.assertEqual(mock_logger.call_count, 2)
             self.assertEqual(
                 mock_logger.call_args_list[0][0][0],
-                "Failed login attempt for email: " f"{self.user.email} (IP: 127.0.0.1)",
+                "Failed login attempt for email: " f"{self.user.email}",
             )
             self.assertEqual(
                 mock_logger.call_args_list[1][0],

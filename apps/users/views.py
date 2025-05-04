@@ -21,7 +21,7 @@ from .serializers import (
 )
 from .throttles import UserLoginRateThrottle
 
-logger = logging.getLogger(__name__)
+security_logger = logging.getLogger("django.security")
 
 
 @extend_schema(responses=LOGIN_RESPONSE_SCHEMA)
@@ -38,7 +38,7 @@ class LoginView(KnoxLoginView):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data["user"]
         login(request, user)
-        logger.info(f"User {user.email} logged in.")
+        security_logger.info(f"User {user.email} logged in.")
         return super(LoginView, self).post(request, format=None)
 
     def get_serializer_context(self):
@@ -74,12 +74,12 @@ class CreateUserView(generics.CreateAPIView):
             serializer.is_valid(raise_exception=True)
             self.perform_create(serializer)
             headers = self.get_success_headers(serializer.data)
-            logger.info(f"User {serializer.data['email']} created.")
+            security_logger.info(f"User {serializer.data['email']} created.")
             return Response(
                 serializer.data, status=status.HTTP_201_CREATED, headers=headers
             )
         except serializers.ValidationError as e:
-            logger.warning(f"Failed to create user: {e.detail}")
+            security_logger.warning(f"Failed to create user: {e.detail}")
             raise
 
     def perform_create(self, serializer):

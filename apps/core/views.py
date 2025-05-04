@@ -4,8 +4,6 @@ from rest_framework.decorators import api_view, throttle_classes
 from rest_framework.throttling import AnonRateThrottle
 import logging
 
-logger = logging.getLogger(__name__)
-
 
 class PingRateThrottle(AnonRateThrottle):
     rate = "10/minute"
@@ -32,7 +30,8 @@ from .tasks import test_task
 @api_view(["GET"])
 @throttle_classes([PingRateThrottle])
 def ping(request):
-    logger.info("Ping request received from %s", request.META.get("REMOTE_ADDR"))
+    logger = logging.getLogger("django.info")
+    logger.info("Ping request received")
     return JsonResponse({"ping": "pong"})
 
 
