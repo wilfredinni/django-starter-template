@@ -97,13 +97,13 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    "conf.middleware.RequestIDMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "apps.core.middleware.RequestIDMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -230,14 +230,18 @@ IGNORABLE_404_URLS = [
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
-    "filters": {"request_id": {"()": "conf.middleware.RequestIDFilter"}},
+    "filters": {
+        "request_id": {"()": "apps.core.middleware.RequestIDFilter"},
+        "timed_log": {"()": "apps.core.middleware.TimeLogFilter"},
+    },
     "formatters": {
         "json": {
             "()": "pythonjsonlogger.json.JsonFormatter",
             "format": (
                 "%(asctime)s %(levelname)s %(module)s "
                 "%(process)d %(thread)d %(message)s "
-                "%(request_id)s"
+                "%(client)s %(request_id)s %(path)s "
+                "%(user_id)s %(status_code)d %(response_time).3f "
             ),
         },
         "simple": {
@@ -263,7 +267,7 @@ LOGGING = {
             "maxBytes": 10 * 1024 * 1024,
             "backupCount": 5,
             "formatter": "json",
-            "filters": ["request_id"],
+            "filters": ["request_id", "timed_log"],
         },
         "error_file": {
             "class": "logging.handlers.RotatingFileHandler",
@@ -271,8 +275,17 @@ LOGGING = {
             "maxBytes": 10 * 1024 * 1024,
             "backupCount": 5,
             "formatter": "json",
-            "filters": ["request_id"],
+            "filters": ["request_id", "timed_log"],
             "level": "ERROR",
+        },
+        "info_file": {
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": f"{root_path('logs')}/info.log",
+            "maxBytes": 10 * 1024 * 1024,
+            "backupCount": 5,
+            "formatter": "json",
+            "filters": ["request_id", "timed_log"],
+            "level": "INFO",
         },
     },
     "loggers": {
@@ -290,14 +303,19 @@ LOGGING = {
             "level": "INFO",
             "propagate": False,
         },
+        "django.info": {
+            "handlers": ["console", "file", "info_file"],
+            "level": "INFO",
+            "propagate": False,
+        },
         "django.request": {
-            "handlers": ["file", "error_file"],
+            "handlers": ["console", "file", "error_file"],
             "level": "WARNING",
             "propagate": False,
         },
         "django.security": {
-            "handlers": ["security_file"],
-            "level": "WARNING",
+            "handlers": ["console", "file", "security_file"],
+            "level": "INFO",
             "propagate": False,
         },
         "apps": {
@@ -307,10 +325,6 @@ LOGGING = {
         },
     },
 }
-
-# Request logging middleware
-if not DEBUG:
-    MIDDLEWARE.insert(0, "django.middleware.common.BrokenLinkEmailsMiddleware")
 
 if not DEBUG:
     sentry_sdk.init(
@@ -338,11 +352,7 @@ STORAGES = {
 
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [root_path("static")]
-
-if DEBUG:
-    STATIC_ROOT = tempfile.mkdtemp()
-else:
-    STATIC_ROOT = root_path("static_root")
+STATIC_ROOT = tempfile.mkdtemp() if DEBUG else root_path("static_root")
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = root_path("media_root")

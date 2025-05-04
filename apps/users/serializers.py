@@ -6,7 +6,9 @@ from rest_framework import serializers
 import logging
 
 from .models import CustomUser
+from .utils import get_errors
 
+security_logger = logging.getLogger("django.security")
 MIN_PASSWORD_LENGTH = getattr(settings, "MIN_PASSWORD_LENGTH", 8)
 
 
@@ -32,12 +34,7 @@ class AuthTokenSerializer(serializers.Serializer):
 
             if not user:
                 msg = _("Unable to log in with provided credentials.")
-                security_logger = logging.getLogger("django.security")
-                request = self.context.get("request")
-                ip_address = request.META.get("REMOTE_ADDR") if request else "unknown"
-                security_logger.warning(
-                    f"Failed login attempt for email: {email} (IP: {ip_address})"
-                )
+                security_logger.warning(f"Failed login attempt for email: {email}")
                 raise serializers.ValidationError(msg, code="authorization")
         else:
             msg = _('Must include "email" and "password".')
@@ -66,18 +63,10 @@ class CreateUserSerializer(serializers.ModelSerializer):
         try:
             validate_password(password, self.Meta.model(**user_data))
         except Exception as e:
-            import logging
-
-            logger = logging.getLogger(__name__)
-            logger.error(f"Password validation error: {type(e)} - {str(e)}")
-            logger.error(f"Error details: {e.__dict__}")
+            security_logger.error(f"Password validation error: {type(e)} - {str(e)}")
+            security_logger.error(f"Error details: {e.__dict__}")
             if hasattr(e, "error_list"):
-                errors = []
-                for err in e.error_list:
-                    if hasattr(err, "messages"):
-                        errors.extend(err.messages)
-                    else:
-                        errors.append(str(err))
+                errors = get_errors(e)
             else:
                 errors = [
                     _("An error occurred during password validation. Please try again.")
@@ -103,18 +92,12 @@ class UserProfileSerializer(serializers.ModelSerializer):
             try:
                 validate_password(data["password"], self.Meta.model(**data))
             except Exception as e:
-                import logging
-
-                logger = logging.getLogger(__name__)
-                logger.error(f"Password validation error: {type(e)} - {str(e)}")
-                logger.error(f"Error details: {e.__dict__}")
+                security_logger.error(
+                    f"Password validation error: {type(e)} - {str(e)}"
+                )
+                security_logger.error(f"Error details: {e.__dict__}")
                 if hasattr(e, "error_list"):
-                    errors = []
-                    for err in e.error_list:
-                        if hasattr(err, "messages"):
-                            errors.extend(err.messages)
-                        else:
-                            errors.append(str(err))
+                    errors = get_errors(e)
                 else:
                     errors = ["Password validation error. Please try again."]
 
