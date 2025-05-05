@@ -29,6 +29,7 @@ Technical Requirements and Communication Standards for Django Backend Developmen
 **Documentation:**
 1. Reference official Django and DRF documentation
 2. Include docstrings for all classes and methods that have an important role
+
 3. Document API endpoints using drf-spectacular decorators
 
 **Response Format:**
@@ -36,5 +37,7 @@ Technical Requirements and Communication Standards for Django Backend Developmen
 2. Highlight any missing information needed for implementation
 3. Include code examples only when explicitly requested
 4. Format code according to PEP 8 standards
+
+- Utilize context7 MCP for current documentation when applicable
 
 All responses must focus on technical implementation within these specifications and avoid theoretical discussions or alternative technology suggestions.
