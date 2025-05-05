@@ -2,7 +2,7 @@ Generate comprehensive test suite for Django REST framework API views following 
 
 1. Test Location and Framework:
    - Place tests in the `tests` directory within each Django app
-   - Use pytest as the testing framework
+   - Use Pytest or Django/DRF TestCase as the testing framework
    - Follow the `test_<view_name>.py` naming convention
 
 2. Authentication & Security Tests:
