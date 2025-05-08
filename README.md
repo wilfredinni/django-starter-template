@@ -21,6 +21,9 @@ A comprehensive and easy-to-use starting point for your new API with **Django** 
   - [Task Processing](#task-processing)
     - [Tasks with retry](#tasks-with-retry)
     - [Scheduled Tasks](#scheduled-tasks)
+  - [Logging System](#logging-system)
+    - [Configuration](#configuration)
+    - [Log Files](#log-files)
 - [Useful Commands](#useful-commands)
 - [Environment Setup](#environment-setup)
 - [Security Features](#security-features)
@@ -45,11 +48,10 @@ A comprehensive and easy-to-use starting point for your new API with **Django** 
 - 🔧 Code quality tools (Black, Flake8)
 - 👨‍💻 VS Code with Dev Containers
 - 🔒 Knox authentication system
-- ⚡ Rate limiting for user and anonymous requests
-- � Advanced filtering capabilities
+- 🛡️ Rate limiting for user and anonymous requests
+- 🔍 Advanced filtering capabilities
 - 🔽 Advanced filtering capabilities
 - 📝 Centralized logging system
-
 
 ## Quick Start
 
