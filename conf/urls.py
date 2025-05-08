@@ -12,7 +12,7 @@ def index(request):
         "https://github.com/wilfredinni/django-starter-template?tab=readme-ov-file"
     )
     context = {}
-    context["version"] = "0.3.1"
+    context["version"] = "0.3.2"
     context["buttons"] = [
         {"title": "🚀 Features", "url": f"{base_url}#key-features"},
         {"title": "📋 Requirements", "url": f"{base_url}#requirements"},
