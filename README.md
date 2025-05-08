@@ -21,6 +21,9 @@ A comprehensive and easy-to-use starting point for your new API with **Django** 
   - [Task Processing](#task-processing)
     - [Tasks with retry](#tasks-with-retry)
     - [Scheduled Tasks](#scheduled-tasks)
+  - [Logging System](#logging-system)
+    - [Configuration](#configuration)
+    - [Log Files](#log-files)
 - [Useful Commands](#useful-commands)
 - [Environment Setup](#environment-setup)
 - [Security Features](#security-features)
@@ -45,7 +48,10 @@ A comprehensive and easy-to-use starting point for your new API with **Django** 
 - 🔧 Code quality tools (Black, Flake8)
 - 👨‍💻 VS Code with Dev Containers
 - 🔒 Knox authentication system
+- 🛡️ Rate limiting for user and anonymous requests
+- 🔍 Advanced filtering capabilities
 - 🔽 Advanced filtering capabilities
+- 📝 Centralized logging system
 
 ## Quick Start
 
@@ -67,6 +73,12 @@ A comprehensive and easy-to-use starting point for your new API with **Django** 
 ### Authentication
 The template uses Knox for token-based authentication:
 
+- **Knox Token Auth**: SHA-512 hashed tokens with 10-hour expiration
+- **Custom User Model**: Email-only authentication (no usernames)
+- **Password Security**:
+  - Complexity validation
+  - Multiple hashing algorithms (Argon2, PBKDF2, BCrypt)
+
 #### Available Endpoints
 - `POST /auth/create/` - Create a new user
 - `POST /auth/login/` - Log in and receive token
@@ -74,7 +86,7 @@ The template uses Knox for token-based authentication:
 - `POST /auth/logoutall/` - Invalidate all tokens
 - `GET/PUT/PATCH /auth/profile/` - Manage user profile
 
-#### Rate Limiting
+### Configurable Rate Limiting
 - Login attempts: 5 per minute
 - User operations: 1000 per day
 - Anonymous operations: 100 per day
@@ -115,6 +127,41 @@ def my_periodic_task():
     # This task can be scheduled to run at regular intervals
     # from the Django admin interface
     pass
+```
+
+### Logging System
+
+### Configuration
+- **JSON Format**: Structured logs for parsing
+- **Multiple Handlers**:
+  - Console output (development)
+  - Rotating files (10MB max, 5 backups)
+  - Separate security/error logs
+- **Request Tracing**: Unique IDs per request
+- **Security Logging**: Tracks auth events
+
+### Log Files
+- `logs/app.log`: General application logs
+- `logs/security.log`: Authentication events
+- `logs/error.log`: Error tracking
+- `logs/info.log`: Info-level events
+
+Example Log Entry:
+```json
+{
+    "asctime": "2025-05-04 14:17:22,365",
+    "levelname": "INFO",
+    "module": "views",
+    "process": 5929,
+    "thread": 281473186128320,
+    "message": "Ping request received",
+    "client": "127.0.0.1",
+    "request_id": "0d7344bd-0e6f-426d-aeed-46b9d1ca36bc",
+    "path": "/core/ping/",
+    "user_id": 1,
+    "status_code": 401,
+    "response_time": 0.0019102096557617188
+}
 ```
 
 ## Useful Commands
@@ -159,14 +206,6 @@ python manage.py seed --users 50 --superuser --clean
 ## Environment Setup
 - Development: `.env` file created automatically
 - Production: See `.env.example` for required variables
-
-## Security Features
-- Email-based authentication
-- Token-based authorization
-- Rate limiting and throttling
-- CORS configuration
-- Debug mode control
-- Secure password hashing
 
 ## Project Structure
 
