@@ -620,22 +620,22 @@ Django = ">=4.2"
 
 [[package]]
 name = "django-redis"
-version = "5.4.0"
+version = "6.0.0"
 description = "Full featured redis cache backend for Django."
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "django-redis-5.4.0.tar.gz", hash = "sha256:6a02abaa34b0fea8bf9b707d2c363ab6adc7409950b2db93602e6cb292818c42"},
-    {file = "django_redis-5.4.0-py3-none-any.whl", hash = "sha256:ebc88df7da810732e2af9987f7f426c96204bf89319df4c6da6ca9a2942edd5b"},
+    {file = "django_redis-6.0.0-py3-none-any.whl", hash = "sha256:20bf0063a8abee567eb5f77f375143c32810c8700c0674ced34737f8de4e36c0"},
+    {file = "django_redis-6.0.0.tar.gz", hash = "sha256:2d9cb12a20424a4c4dde082c6122f486628bae2d9c2bee4c0126a4de7fda00dd"},
 ]
 
 [package.dependencies]
-Django = ">=3.2"
-redis = ">=3,<4.0.0 || >4.0.0,<4.0.1 || >4.0.1"
+Django = ">=4.2"
+redis = ">=4.0.2"
 
 [package.extras]
-hiredis = ["redis[hiredis] (>=3,!=4.0.0,!=4.0.1)"]
+hiredis = ["redis[hiredis] (>=4.0.2)"]
 
 [[package]]
 name = "django-rest-knox"
@@ -1947,4 +1947,4 @@ brotli = ["brotli"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.13"
-content-hash = "83a1c34225743c8a95b1f4738658ac600f876b3a83a5f5950e91c7a88411d39c"
+content-hash = "393f7026c47df6c8af4f7df6f1c115c513b8d17342d35e733f3e57c69048cdec"
