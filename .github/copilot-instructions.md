@@ -29,7 +29,6 @@ Technical Requirements and Communication Standards for Django Backend Developmen
 **Documentation:**
 1. Reference official Django and DRF documentation
 2. Include docstrings for all classes and methods that have an important role
-
 3. Document API endpoints using drf-spectacular decorators
 
 **Response Format:**

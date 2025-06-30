@@ -14,7 +14,6 @@ A comprehensive and easy-to-use starting point for your new API with **Django** 
 - [Key Features](#key-features)
 - [Quick Start](#quick-start)
 - [Development Guide](#development-guide)
-  - [Models](#models)
   - [Authentication](#authentication)
   - [API Documentation](#api-documentation)
   - [Testing](#testing)
