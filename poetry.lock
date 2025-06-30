@@ -188,17 +188,8 @@ name = "certifi"
 version = "2025.6.15"
 description = "Python package for providing Mozilla's CA Bundle."
 optional = false
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-python-versions = ">=3.6"
-=======
-python-versions = ">=3.7"
->>>>>>> main
-groups = ["main"]
-=======
 python-versions = ">=3.7"
 groups = ["main", "dev"]
->>>>>>> Stashed changes
 files = [
     {file = "certifi-2025.6.15-py3-none-any.whl", hash = "sha256:2e0c7ce7cb5d8f8634ca55d2ba7e6ec2689a2fd6537d8dec1296a477a4910057"},
     {file = "certifi-2025.6.15.tar.gz", hash = "sha256:d747aa5a8b9bbbb1bb8c22bb13e22bd1f18e9796defa16bab421f7f7a317323b"},
@@ -392,17 +383,8 @@ name = "click"
 version = "8.2.1"
 description = "Composable command line interface toolkit"
 optional = false
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-python-versions = ">=3.7"
-=======
-python-versions = ">=3.10"
->>>>>>> main
-groups = ["main"]
-=======
 python-versions = ">=3.10"
 groups = ["main", "dev"]
->>>>>>> Stashed changes
 files = [
     {file = "click-8.2.1-py3-none-any.whl", hash = "sha256:61a3265b914e850b85317d0b3109c7f8cd35a670f963866005d6ef1d5175a12b"},
     {file = "click-8.2.1.tar.gz", hash = "sha256:27c491cc05d968d271d5a1db13e3b5a184636d9d930f148c50b038f0d0646202"},
@@ -2469,12 +2451,4 @@ brotli = ["brotli"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.13"
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-content-hash = "83a1c34225743c8a95b1f4738658ac600f876b3a83a5f5950e91c7a88411d39c"
-=======
 content-hash = "9c789ff5a0b88eaef996c4a2fc270fa2a8b98c41f6ea2d967b7304aba52c8e0e"
->>>>>>> Stashed changes
-=======
-content-hash = "393f7026c47df6c8af4f7df6f1c115c513b8d17342d35e733f3e57c69048cdec"
->>>>>>> main
