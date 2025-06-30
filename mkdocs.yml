@@ -2,10 +2,29 @@
 site_name: Django Starter Template
 theme:
   name: material
+  logo: assets/logo.png
+  extra_css:
+    - assets/custom.css
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
 nav:
   - Home: index.md
   - Development: development.md
+  - Project Structure: project_structure.md
   - Project Settings: settings.md
+  - Dependencies: dependencies.md
   - Auto Documentation: auto_documentation.md
   - Authentication: authentication.md
   - Core App: core_endpoints.md
@@ -15,5 +34,4 @@ nav:
   - Database Seeding: database_seeding.md
   - Testing: testing.md
   - Environment Setup: environment_setup.md
-  - Project Structure: project_structure.md
-  - Useful Commands: useful_commands.md
+  

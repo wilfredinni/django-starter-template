@@ -1,77 +1,73 @@
-# Development Guide
+# Development Workflow
 
-This guide provides detailed instructions for setting up your development environment, running the application, and utilizing the various features of the Django Starter Template.
+This guide covers the essential commands and practices for developing your application after you have completed the initial setup using the Dev Container.
 
-## Quick Start
+## Core Development Commands
 
-### Prerequisites
+The project includes convenient scripts in `pyproject.toml` to simplify common development tasks. You should use these `poetry run` commands from the terminal inside your VS Code dev container.
 
-*   **VS Code**: The recommended code editor.
-*   **Docker**: For containerizing the application.
-*   **Docker Compose**: For managing multi-container Docker applications.
+| Command | Description |
+| :--- | :--- |
+| `poetry run server` | Starts the Django development server. |
+| `poetry run makemigrations` | Creates new database migrations based on model changes. |
+| `poetry run migrate` | Applies pending database migrations. |
+| `poetry run test` | Runs the test suite using `pytest`. |
+| `poetry run test-cov`| Runs the test suite and generates a coverage report. |
 
-### Setup Steps
+### Testing
 
-1.  **Use the Template**: Click the "Use this template" button on the GitHub repository page to create your own repository.
-2.  **Open in VS Code**: Clone your new repository and open it in Visual Studio Code.
-3.  **Reopen in Container**: Open the command palette (`Ctrl+Shift+P` or `Cmd+Shift+P`) and select "Remote-Containers: Reopen in Container". This will build the development container and install all the necessary dependencies.
-4.  **Create a Superuser**: Once the container is running, open a new terminal in VS Code and run the following command to create a superuser:
+The project uses `pytest` for testing.
 
-    ```bash
-    python manage.py createsuperuser
-    ```
+- **Run all tests:**
+  ```bash
+  poetry run pytest
+  ```
+- **Run tests with coverage:**
+  ```bash
+  poetry run pytest --cov
+  ```
+- **Generate an HTML coverage report:**
+  ```bash
+  poetry run pytest --cov --cov-report=html
+  ```
+  The report will be generated in the `htmlcov/` directory.
 
-5.  **Start the Server**: Start the Django development server:
+## Database Seeding
 
-    ```bash
-    python manage.py runserver
-    ```
-
-## Useful Commands
-
-This section provides a list of useful commands to help you manage and develop your Django project efficiently.
-
-### Celery Tasks
-
-*   `poetry run worker`: to start a new Celery worker.
-*   `poetry run beat`: to start your periodic tasks.
-
-### Test commands:
-
-*   `pytest` to run the tests.
-*   `pytest --cov` to run the tests with coverage.
-*   `pytest --cov --cov-report=html` to run the tests with coverage and generate a HTML report.
-
-### You can also use
-
-*   `poetry run server` instead of `python manage.py runserver`
-*   `poetry run makemigrations` instead of `python manage.py makemigrations`
-*   `poetry run migrate` instead of `python manage.py migrate`
-*   `poetry run create_dev_env` to create a development `.env` file
-*   `poetry run seed` to seed your database with sample data
-
-### Database Seeding
-
-The template includes a powerful seeding command to populate your database with sample data for development and testing:
+The template includes a powerful seeding command to populate your database with sample data for development and testing.
 
 ```bash
 # Basic seeding with default options (creates 10 users)
-python manage.py seed
+poetry run seed
 
-# Create specific number of users
-python manage.py seed --users 20
+# Create a specific number of users
+poetry run seed --users 20
 
 # Create a superuser (admin@admin.com:admin)
-python manage.py seed --superuser
+poetry run seed --superuser
 
 # Clean existing data before seeding
-python manage.py seed --clean
+poetry run seed --clean
 
 # Combine options
-python manage.py seed --users 50 --superuser --clean
+poetry run seed --users 50 --superuser --clean
 ```
 
-## Environment Setup
+## Asynchronous Tasks (Celery)
 
-*   **Development**: A `.env` file is created automatically when you run `poetry run create_dev_env` or when you first open the project in the dev container.
-*   **Production**: See the `.env.example` file for the required environment variables.
+For handling background tasks, the project uses Celery.
+
+- **Start the Celery worker:**
+  ```bash
+  poetry run worker
+  ```
+- **Start the Celery beat scheduler (for periodic tasks):**
+  ```bash
+  poetry run beat
+  ```
+
+## Environment Variables
+
+- The project uses a `.env` file to manage environment variables.
+- The `poetry run create_dev_env` command can be used to generate a new development `.env` file if needed.
+- For production, refer to `.env.example` for the full list of required variables.

@@ -3,45 +3,65 @@
 Understanding the project's directory structure is key to navigating and contributing to the Django Starter Template. This document provides a detailed overview of the main directories and files, explaining their purpose and contents.
 
 ```
+├── .clinerules/                # Gemini CLI rules
+├── .coveragerc                 # Coverage.py configuration
 ├── .devcontainer/              # Dev container configuration
+├── .env.example                # Example environment variables file
+├── .flake8                     # Flake8 linter configuration
 ├── .github/                    # GitHub CI/CD workflows and issue templates
+├── .gitignore                  # Git ignore file
+├── .pytest_cache/              # Pytest cache
+├── .venv/                      # Virtual environment
 ├── .vscode/                    # VS Code settings and recommended extensions
 ├── apps/                       # Django applications (core logic)
 │   ├── core/                   # Core functionalities and shared components
+│   │   ├── __init__.py         # Initializes the core app
+│   │   ├── admin.py            # Django admin configuration for core app
+│   │   ├── apps.py             # App configuration for core app
 │   │   ├── management/         # Custom Django management commands
-│   │   ├── tests/              # Unit and integration tests for core app
+│   │   ├── middleware.py       # Custom middleware for core app
+│   │   ├── migrations/         # Database migrations for core app
 │   │   ├── schema.py           # OpenAPI schema definitions for core app
 │   │   ├── tasks.py            # Celery task definitions for core app
-│   │
+│   │   ├── tests/              # Unit and integration tests for core app
+│   │   └── urls.py             # URL routing for core app
 │   └── users/                  # User management and authentication app
-│       ├── tests/              # Unit and integration tests for users app
+│       ├── __init__.py         # Initializes the users app
+│       ├── admin.py            # Django admin configuration for users app
+│       ├── apps.py             # App configuration for users app
+│       ├── forms.py            # Custom forms for users app
 │       ├── managers.py         # Custom managers for user models
+│       ├── migrations/         # Database migrations for users app
 │       ├── models.py           # User model definition
 │       ├── schema.py           # OpenAPI schema definitions for users app
+│       ├── serializers.py      # Serializers for users app
+│       ├── tests/              # Unit and integration tests for users app
 │       ├── throttles.py        # Rate limiting configurations for user-related views
-│       ├── views.py            # API views for user authentication and profile management
-│
+│       ├── urls.py             # URL routing for users app
+│       ├── utils.py            # Utility functions for users app
+│       └── views.py            # API views for user authentication and profile management
 ├── conf/                       # Project-wide configuration
+│   ├── __init__.py             # Initializes the conf module
+│   ├── asgi.py                 # ASGI application entry point
+│   ├── celery.py               # Celery application configuration
 │   ├── settings.py             # Main Django settings file
 │   ├── test_settings.py        # Settings specifically for running tests
-│   ├── celery.py               # Celery application configuration
+│   ├── test_utils.py           # Test utilities
 │   ├── urls.py                 # Main URL routing for the project
-│   ├── wsgi.py                 # WSGI application entry point
-│
+│   └── wsgi.py                 # WSGI application entry point
+├── docs/                       # Documentation files
 ├── logs/                       # Application log files
-├── scripts/                    # Utility scripts for various development tasks
-├── static/                     # Static files (CSS, JavaScript, images)
-├── templates/                  # Project-wide HTML templates
-├── .env.example                # Example environment variables file
-├── .flake8                     # Flake8 linter configuration
-├── .gitignore                  # Git ignore file
 ├── manage.py                   # Django's command-line utility
+├── mkdocs.yml                  # MkDocs configuration
 ├── notebook.ipynb              # Jupyter Notebook for interactive development
+├── poetry.lock                 # Poetry lock file
 ├── pyproject.toml              # Project dependencies and metadata (Poetry)
 ├── pytest.ini                  # Pytest configuration
 ├── README.md                   # Project README file
 ├── renovate.json               # Renovate Bot configuration for dependency updates
-├── SECURITY.md                 # Security policy and guidelines
+├── scripts/                    # Utility scripts for various development tasks
+├── static/                     # Static files (CSS, JavaScript, images)
+└── templates/                  # Project-wide HTML templates
 ```
 
 ## Key Directories and Their Purpose

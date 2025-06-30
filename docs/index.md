@@ -1,50 +1,104 @@
-# Django Starter Template Documentation
+# Welcome to the Django Starter Template!
 
-Welcome to the documentation for the Django Starter Template. This document provides a comprehensive guide to understanding, developing, and using this template.
+<p align="center">
+  <img src="assets/logo.png" alt="Django Starter Template Logo" width="200"/>
+</p>
 
-# Explanation
+<p align="center">
+  <strong>A comprehensive starting point for your new API with Django and DRF.</strong>
+</p>
 
-This document provides a detailed explanation of the Django Starter Template's architecture, key components, and core concepts.
+---
 
-## Project Structure
+## 🚀 Quick Start
 
-The project is organized into several directories, each with a specific purpose:
+The recommended way to get started is by using the Dev Container feature in VS Code.
 
-*   **`.devcontainer/`**: Contains configuration for developing inside a Docker container, ensuring a consistent development environment.
-*   **`.github/`**: Holds GitHub-specific files, including CI/CD workflows and issue templates.
-*   **`.vscode/`**: Stores VS Code settings for the project.
-*   **`apps/`**: This is where the core application logic resides. It's divided into smaller, reusable Django apps:
-    *   **`core/`**: Contains core functionality, such as custom management commands, base Celery tasks, and API schema definitions.
-    *   **`users/`**: Manages user authentication and related models, views, and schemas.
-*   **`conf/`**: The project's configuration hub. It includes the main settings file, Celery configuration, and test-specific settings.
-*   **`logs/`**: Stores application logs, including general, error, and security logs.
-*   **`scripts/`**: Contains utility scripts for various development tasks.
+### Prerequisites
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) for VS Code.
 
-## Key Technologies
+### Setup Steps
 
-The template is built on a foundation of modern and robust technologies:
+1.  **Use the GitHub Template:**
+    - Click the green `Use this template` button on the [GitHub repository page](https://github.com/wilfredinni/django-starter-template) to create your own repository.
 
-*   **Django**: A high-level Python web framework that encourages rapid development and clean, pragmatic design.
-*   **Django Rest Framework (DRF)**: A powerful and flexible toolkit for building Web APIs.
-*   **PostgreSQL**: A powerful, open-source object-relational database system.
-*   **Redis**: An in-memory data structure store, used as a message broker for Celery and for caching.
-*   **Celery**: An asynchronous task queue/job queue based on distributed message passing.
-*   **drf-spectacular**: A library for generating OpenAPI 3 schemas for Django Rest Framework APIs.
+2.  **Open in VS Code:**
+    - Clone your new repository and open its folder in Visual Studio Code.
 
-## Core Concepts
+3.  **Check the Setup Guide:**
+    - Before proceeding, check the **`Todo Tree`** view in the VS Code sidebar for a guided list of initial setup tasks.
 
-### Custom User Model
+4.  **Reopen in Container:**
+    - When prompted, click **"Reopen in Container"** to build and start the dev environment.
 
-The template uses a custom user model that authenticates users with their email address instead of a username. This is a common practice in modern web applications.
+5.  **Create a Superuser:**
+    - Once the container is running, open a new VS Code terminal (`Ctrl+` or `Terminal > New Terminal`).
+    - Run the following command:
+    ```bash
+    python manage.py createsuperuser
+    ```
 
-### Token-Based Authentication
+6.  **Start the Server:**
+    - In the same terminal, run:
+    ```bash
+    python manage.py runserver
+    ```
 
-Authentication is handled by `knox`, which provides a secure and scalable token-based authentication system. Tokens are SHA-512 hashed and have a configurable expiration time.
+Your API is now running and accessible at `http://127.0.0.1:8000`.
 
-### Background Tasks
+3.  **Set up your environment:**
 
-Asynchronous tasks are managed by Celery, with Redis as the message broker. The template includes a base task class with automatic retry capabilities, making it easy to create robust and reliable background tasks.
+    ```bash
+    cp .env.example .env
+    # Edit .env with your settings
+    ```
 
-### Centralized Logging
+4.  **Install dependencies and run migrations:**
 
-The project features a centralized logging system that outputs structured logs in JSON format. This makes it easy to parse, search, and analyze logs, especially in a production environment.
+    ```bash
+    poetry install
+    poetry run migrate
+    ```
+
+5.  **Launch the development server:**
+
+    ```bash
+    poetry run server
+    ```
+
+That's it! Your new Django project is live at `http://127.0.0.1:8000`.
+
+---
+
+## ✨ Key Features
+
+This template is packed with features to help you build amazing APIs:
+
+-   **User Authentication:** Secure token-based authentication with `django-rest-knox`.
+-   **Background Tasks:** Asynchronous task processing with `Celery` and `Redis`.
+-   **API Documentation:** Automatic OpenAPI 3 schema generation with `drf-spectacular`.
+-   **Centralized Logging:** Structured JSON logging for easy monitoring.
+-   **Custom User Model:** Email-based authentication for a modern user experience.
+-   **And much more!** Explore the documentation to discover all the features.
+
+---
+
+## 📖 Explore the Documentation
+
+This documentation is your guide to building amazing applications with the Django Starter Template. Use the navigation on the left to explore the different sections.
+
+-   **[Development](development.md):** Learn about the development workflow, including how to run tests, and use the provided scripts.
+-   **[Project Structure](project_structure.md):** Get an overview of the project's directory structure.
+-   **[Project Settings](settings.md):** Understand the available settings and how to configure your project.
+-   **[Dependencies](dependencies.md):** See a list of all the project's dependencies.
+-   **[Authentication](authentication.md):** Learn how to use the authentication and user management endpoints.
+-   **[Core App](core_endpoints.md):** Discover the core functionalities and API endpoints.
+-   **[Logging](logging.md):** Understand the logging system and how to use it.
+-   **[Celery Tasks](tasks.md):** Learn how to create and manage background tasks.
+-   **[Rate Limiting](rate_limiting.md):** Configure rate limiting to protect your API.
+-   **[Database Seeding](database_seeding.md):** Learn how to seed your database with initial data.
+-   **[Testing](testing.md):** Understand how to run and write tests for your project.
+-   **[Environment Setup](environment_setup.md):** Learn how to set up your development environment.
+-   **[Useful Commands](useful_commands.md):** A list of useful commands for development.
