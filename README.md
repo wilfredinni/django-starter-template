@@ -10,46 +10,6 @@ A comprehensive and easy-to-use starting point for your new API with **Django** 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wilfredinni/django-starter-template?tab=MIT-1-ov-file#readme)
 </div>
 
----
-
-## 🚀 Quick Start
-
-The recommended way to get started is by using the Dev Container feature in VS Code.
-
-### Prerequisites
-- [Visual Studio Code](https://code.visualstudio.com/)
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-- [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) for VS Code.
-
-### Setup Steps
-
-1.  **Use the GitHub Template:**
-
-    Click the green `Use this template` button on the [GitHub repository page](https://github.com/wilfredinni/django-starter-template) to create your own repository.
-
-2.  **Open in VS Code:**
-
-    Clone your new repository and open its folder in Visual Studio Code.
-
-3.  **Check the Setup Guide:**
-
-    Before proceeding, check the **`Todo Tree`** view in the VS Code sidebar for a guided list of initial setup tasks.
-
-4.  **Reopen in Container:**
-
-    When prompted, click **"Reopen in Container"** to build and start the dev environment. This will configure Redis, Celery, PostgreSQL, install dependencies, and migrate the database.
-
-5.  **Create a Superuser:**
-
-    Run python `manage.py createsuperuser` to create an admin user for accessing the Django admin interface.
-
-6.  **Start the Server:**
-
-    Run `python manage.py runserver` to start the development server.
-
-Your API is now running and accessible at `http://127.0.0.1:8000`.
-
----
 
 ## ✨ Key Features
 
@@ -62,7 +22,20 @@ This template is packed with features to help you build amazing APIs:
 -   **Custom User Model:** Email-based authentication for a modern user experience.
 -   **And much more!** Explore the documentation to discover all the features.
 
----
+## Quick Start
+
+### Prerequisites
+- 💻 VS Code
+- 🐋 Docker
+- 🐳 Docker Compose
+
+### Setup Steps
+1. Use [GitHub's template feature](https://github.com/new?template_name=django-starter-template&template_owner=wilfredinni) (recommended) or clone repository
+2. Open in VS Code
+3. Check [Todo Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree) in the sidebar for setup guidance
+4. Run `CTL/CMD + Shift + p` and select `Reopen in container`
+5. Create superuser: `python manage.py createsuperuser`
+6. Start server: `python manage.py runserver`
 
 ## 📖 Explore the Documentation
 
