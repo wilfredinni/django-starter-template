@@ -1,9 +1,14 @@
-
 site_name: Django Starter Template
+repo_name: Django Starter Template
+repo_url: https://github.com/wilfredinni/django-starter-template
 theme:
   name: material
   logo: assets/logo.png
   favicon: assets/logo.png
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - content.action.view
   palette:
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
