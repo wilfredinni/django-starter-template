@@ -322,18 +322,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#key-directories-and-their-purpose" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Key Directories and Their Purpose
+      Overview
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-files-and-their-purpose" class="md-nav__link">
+  <a href="#key-directories" class="md-nav__link">
     <span class="md-ellipsis">
-      Key Files and Their Purpose
+      Key Directories
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Files
     </span>
   </a>
   
@@ -595,18 +604,133 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    AI Tools and CLI Agents
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            AI Tools and CLI Agents
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../copilot_prompts/" class="md-nav__link">
+      <a href="../ai_tools/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    GitHub Copilot Prompts
+    Overview
     
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai_tools/gemini/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gemini CLI Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai_tools/copilot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GitHub Copilot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai_tools/cline_roocode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roo Code and Cline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -638,18 +762,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#key-directories-and-their-purpose" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Key Directories and Their Purpose
+      Overview
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-files-and-their-purpose" class="md-nav__link">
+  <a href="#key-directories" class="md-nav__link">
     <span class="md-ellipsis">
-      Key Files and Their Purpose
+      Key Directories
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Files
     </span>
   </a>
   
@@ -672,7 +805,8 @@
 
 
 <h1 id="project-structure">Project Structure</h1>
-<p>Understanding the project's directory structure is key to navigating and contributing to the Django Starter Template. This document provides a detailed overview of the main directories and files, explaining their purpose and contents.</p>
+<h2 id="overview">Overview</h2>
+<p>Understanding the project's directory structure is fundamental for navigating, developing, and maintaining the Django Starter Template. This document provides a detailed overview of the main directories and files, explaining their purpose and contents to help you quickly grasp the project's organization.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>├── .clinerules/                # Gemini CLI rules
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── .coveragerc                 # Coverage.py configuration
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── .devcontainer/              # Dev container configuration
@@ -733,56 +867,58 @@
 <a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>├── static/                     # Static files (CSS, JavaScript, images)
 <a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>└── templates/                  # Project-wide HTML templates
 </code></pre></div>
-<h2 id="key-directories-and-their-purpose">Key Directories and Their Purpose</h2>
+<h2 id="key-directories">Key Directories</h2>
+<p>This section describes the primary directories within the project and their respective purposes:</p>
 <ul>
 <li>
-<p><strong><code>.devcontainer/</code></strong>: Contains configuration files for Visual Studio Code Dev Containers. This ensures a consistent and reproducible development environment across different machines.</p>
+<p><strong><code>.devcontainer/</code></strong>: Contains configuration files for Visual Studio Code Dev Containers. This ensures a consistent and reproducible development environment across different machines, pre-configured with all necessary tools and dependencies.</p>
 </li>
 <li>
-<p><strong><code>.github/</code></strong>: Stores GitHub-specific files, including GitHub Actions workflows for Continuous Integration (CI), issue templates, and other repository settings.</p>
+<p><strong><code>.github/</code></strong>: Stores GitHub-specific files, including GitHub Actions workflows for Continuous Integration (CI) and Continuous Deployment (CD), issue templates, and other repository settings. This directory automates various development processes.</p>
 </li>
 <li>
-<p><strong><code>.vscode/</code></strong>: Holds Visual Studio Code workspace settings and recommended extensions for the project, enhancing the development experience.</p>
+<p><strong><code>.vscode/</code></strong>: Holds Visual Studio Code workspace settings and recommended extensions for the project. These settings enhance the development experience by providing consistent formatting, linting, and debugging configurations.</p>
 </li>
 <li>
-<p><strong><code>apps/</code></strong>: This is the core of your Django project, where individual Django applications reside. Each app is a self-contained module responsible for a specific feature or set of features.</p>
+<p><strong><code>apps/</code></strong>: This is the core of your Django project, where individual Django applications (modules) reside. Each app is designed to be a self-contained unit responsible for a specific feature or set of features, promoting modularity and reusability.</p>
 <ul>
-<li><strong><code>core/</code></strong>: Houses fundamental functionalities and shared components that are used across different parts of the application. This includes custom management commands, base Celery tasks, and common API schema definitions.</li>
-<li><strong><code>users/</code></strong>: Manages all aspects of user authentication and authorization, including user models, serializers, views, and related utilities.</li>
+<li><strong><code>core/</code></strong>: Houses fundamental functionalities and shared components that are used across different parts of the application. This includes custom management commands, base Celery tasks, and common API schema definitions, serving as a foundational app.</li>
+<li><strong><code>users/</code></strong>: Manages all aspects of user authentication and authorization. This includes user models, serializers, views, and related utilities for user registration, login, and profile management.</li>
 </ul>
 </li>
 <li>
-<p><strong><code>conf/</code></strong>: Contains project-wide configuration files that apply to the entire Django project, rather than a specific app. This includes the main <code>settings.py</code>, URL routing, WSGI configuration, and Celery setup.</p>
+<p><strong><code>conf/</code></strong>: Contains project-wide configuration files that apply to the entire Django project, rather than being specific to a single app. This includes the main <code>settings.py</code>, URL routing (<code>urls.py</code>), ASGI/WSGI configurations, and Celery setup.</p>
 </li>
 <li>
-<p><strong><code>logs/</code></strong>: The designated directory for application log files. Different log levels and types (e.g., general, security, error) are typically written to separate files within this directory.</p>
+<p><strong><code>logs/</code></strong>: The designated directory for application log files. Different log levels and types (e.g., general application logs, security events, error logs) are typically written to separate files within this directory for easier monitoring and debugging.</p>
 </li>
 <li>
-<p><strong><code>scripts/</code></strong>: A collection of utility scripts that automate various development and maintenance tasks, such as running the server, migrations, or custom commands.</p>
+<p><strong><code>scripts/</code></strong>: A collection of utility scripts that automate various development and maintenance tasks. These scripts can include commands for running the server, managing migrations, or executing custom project-specific operations.</p>
 </li>
 <li>
-<p><strong><code>static/</code></strong>: Stores static assets like CSS, JavaScript, and images that are served directly by the web server.</p>
+<p><strong><code>static/</code></strong>: Stores static assets such as CSS stylesheets, JavaScript files, and images. These files are typically served directly by the web server and are essential for the frontend of the application.</p>
 </li>
 <li>
-<p><strong><code>templates/</code></strong>: Contains project-wide HTML templates that are not specific to any single Django application.</p>
+<p><strong><code>templates/</code></strong>: Contains project-wide HTML templates that are not specific to any single Django application. These templates can be used for common pages like error pages or base layouts.</p>
 </li>
 </ul>
-<h2 id="key-files-and-their-purpose">Key Files and Their Purpose</h2>
+<h2 id="key-files">Key Files</h2>
+<p>This section outlines the most important files at the project root and their functions:</p>
 <ul>
 <li>
-<p><strong><code>.env.example</code></strong>: A template file that outlines all the environment variables required by the project. Developers should copy this to <code>.env</code> and fill in their specific values.</p>
+<p><strong><code>.env.example</code></strong>: A template file that outlines all the environment variables required by the project. Developers should copy this to a <code>.env</code> file and fill in their specific values for local development, ensuring sensitive information is not hardcoded.</p>
 </li>
 <li>
-<p><strong><code>manage.py</code></strong>: Django's command-line utility for administrative tasks. You'll use this for running the development server, migrations, and custom management commands.</p>
+<p><strong><code>manage.py</code></strong>: Django's command-line utility for administrative tasks. This script is used for running the development server, performing database migrations, creating superusers, and executing custom management commands.</p>
 </li>
 <li>
-<p><strong><code>pyproject.toml</code></strong>: Used by Poetry (the dependency management tool) to define project metadata, dependencies, and build configurations.</p>
+<p><strong><code>pyproject.toml</code></strong>: Used by Poetry (the dependency management tool) to define project metadata, dependencies, and build configurations. It serves as the central point for managing the project's Python environment.</p>
 </li>
 <li>
-<p><strong><code>pytest.ini</code></strong>: Configuration file for <code>pytest</code>, specifying how tests should be discovered and run, including settings for code coverage.</p>
+<p><strong><code>pytest.ini</code></strong>: The configuration file for <code>pytest</code>, the testing framework used in this project. It specifies how tests should be discovered and run, including settings for code coverage analysis.</p>
 </li>
 <li>
-<p><strong><code>README.md</code></strong>: The main project documentation, providing a high-level overview, quick start instructions, and key features.</p>
+<p><strong><code>README.md</code></strong>: The main project documentation file, providing a high-level overview, quick start instructions, key features, and links to more detailed documentation. It's the first file new contributors typically read.</p>
 </li>
 </ul>
 <p>By adhering to this structured layout, the project promotes modularity, maintainability, and scalability, making it easier for developers to understand and contribute to the codebase.</p>

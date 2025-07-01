@@ -344,9 +344,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#environment-variables-django-environ" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Environment Variables (django-environ)
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Variables
     </span>
   </a>
   
@@ -432,27 +441,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#rest_knox" class="md-nav__link">
+  <a href="#token-based-authentication" class="md-nav__link">
     <span class="md-ellipsis">
-      REST_KNOX
+      Token-Based Authentication
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#rest_framework" class="md-nav__link">
+  <a href="#general-drf-settings" class="md-nav__link">
     <span class="md-ellipsis">
-      REST_FRAMEWORK
+      General DRF Settings
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#spectacular_settings" class="md-nav__link">
+  <a href="#openapi-schema-generation" class="md-nav__link">
     <span class="md-ellipsis">
-      SPECTACULAR_SETTINGS
+      OpenAPI Schema Generation
     </span>
   </a>
   
@@ -760,18 +769,133 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    AI Tools and CLI Agents
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            AI Tools and CLI Agents
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../copilot_prompts/" class="md-nav__link">
+      <a href="../ai_tools/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    GitHub Copilot Prompts
+    Overview
     
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai_tools/gemini/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gemini CLI Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai_tools/copilot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GitHub Copilot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai_tools/cline_roocode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roo Code and Cline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -803,9 +927,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#environment-variables-django-environ" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Environment Variables (django-environ)
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Variables
     </span>
   </a>
   
@@ -891,27 +1024,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#rest_knox" class="md-nav__link">
+  <a href="#token-based-authentication" class="md-nav__link">
     <span class="md-ellipsis">
-      REST_KNOX
+      Token-Based Authentication
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#rest_framework" class="md-nav__link">
+  <a href="#general-drf-settings" class="md-nav__link">
     <span class="md-ellipsis">
-      REST_FRAMEWORK
+      General DRF Settings
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#spectacular_settings" class="md-nav__link">
+  <a href="#openapi-schema-generation" class="md-nav__link">
     <span class="md-ellipsis">
-      SPECTACULAR_SETTINGS
+      OpenAPI Schema Generation
     </span>
   </a>
   
@@ -1002,184 +1135,191 @@
 
 
 <h1 id="project-settings">Project Settings</h1>
-<p>This document provides an extensive guide to the <code>conf/settings.py</code> file, which centralizes the configuration for the Django Starter Template. Understanding these settings is crucial for customizing and deploying your application.</p>
-<h2 id="environment-variables-django-environ">Environment Variables (<code>django-environ</code>)</h2>
-<p>The project uses <code>django-environ</code> to manage environment variables, allowing sensitive information and deployment-specific configurations to be kept out of version control. Variables are loaded from a <code>.env</code> file in the project root.</p>
+<h2 id="overview">Overview</h2>
+<p>This document provides a comprehensive guide to the <code>conf/settings.py</code> file, which centralizes the configuration for the Django Starter Template. Understanding these settings is crucial for customizing and deploying your application effectively. The settings are organized into logical sections to facilitate navigation and comprehension.</p>
+<h2 id="environment-variables">Environment Variables</h2>
+<p>The project leverages <code>django-environ</code> to manage environment variables, ensuring that sensitive information and deployment-specific configurations are kept out of version control. Variables are loaded from a <code>.env</code> file located in the project root.</p>
+<p><strong>Configuration Snippet:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">environ</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">env</span> <span class="o">=</span> <span class="n">environ</span><span class="o">.</span><span class="n">Env</span><span class="p">()</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">root_path</span> <span class="o">=</span> <span class="n">environ</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">env</span><span class="o">.</span><span class="n">read_env</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">root_path</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="s2">&quot;.env&quot;</span><span class="p">)))</span>
 </code></pre></div>
+<p><strong>Explanation:</strong></p>
 <ul>
-<li><code>env = environ.Env()</code>: Initializes the environment reader.</li>
-<li><code>root_path</code>: Defines the base directory for relative paths, calculated as two levels up from the <code>settings.py</code> file.</li>
-<li><code>env.read_env()</code>: Reads variables from the <code>.env</code> file. This function is called without arguments, so it looks for <code>.env</code> in the current working directory or parent directories.</li>
+<li><code>env = environ.Env()</code>: Initializes the environment reader, which provides methods to access environment variables with type casting.</li>
+<li><code>root_path</code>: Defines the base directory for resolving relative paths within the project. It's calculated as two levels up from the <code>settings.py</code> file's location.</li>
+<li><code>env.read_env()</code>: Reads variables from the <code>.env</code> file. When called without arguments, it automatically searches for a <code>.env</code> file in the current working directory or its parent directories.</li>
 </ul>
 <h2 id="basic-configuration">Basic Configuration</h2>
-<p>These are fundamental Django settings.</p>
+<p>These are fundamental Django settings that define the core behavior of the application:</p>
 <ul>
-<li><code>ROOT_URLCONF</code>: Specifies the root URL configuration module. <strong>Default:</strong> <code>conf.urls</code>. This tells Django where to find the main URL patterns for your project.</li>
-<li><code>WSGI_APPLICATION</code>: The full Python path to the WSGI application object. <strong>Default:</strong> <code>conf.wsgi.application</code>. This is the entry point for WSGI-compatible web servers.</li>
-<li><code>DEBUG</code>: A boolean that turns debug mode on or off. <strong>Default:</strong> <code>False</code> (loaded from <code>env.bool("DEBUG", default=False)</code>). When <code>True</code>, Django provides detailed error pages, reloads code on changes, and enables other development-specific features. <strong>Must be <code>False</code> in production for security and performance reasons.</strong></li>
+<li><code>ROOT_URLCONF</code>: Specifies the root URL configuration module for the project. <strong>Default:</strong> <code>conf.urls</code>. This tells Django where to find the main URL patterns that route incoming requests.</li>
+<li><code>WSGI_APPLICATION</code>: The full Python path to the WSGI application object. <strong>Default:</strong> <code>conf.wsgi.application</code>. This is the entry point for WSGI-compatible web servers (e.g., Gunicorn) to serve the Django application.</li>
+<li><code>DEBUG</code>: A boolean that controls Django's debug mode. <strong>Default:</strong> <code>False</code> (loaded from <code>env.bool("DEBUG", default=False)</code>). When <code>True</code>, Django provides detailed error pages, automatically reloads code on changes, and enables other development-specific features. <strong>It is critical to set this to <code>False</code> in production environments for security and performance reasons.</strong></li>
 </ul>
 <h2 id="time-language">Time &amp; Language</h2>
-<p>Standard settings for localization and time zones.</p>
+<p>These settings control the localization and time zone behavior of the Django application:</p>
 <ul>
-<li><code>LANGUAGE_CODE</code>: The language code for this installation. <strong>Default:</strong> <code>en-us</code>. This affects the default language for Django's built-in messages and templates.</li>
-<li><code>TIME_ZONE</code>: The time zone for this installation. <strong>Default:</strong> <code>UTC</code>. This is the time zone that Django will use for all datetime objects unless a specific timezone is activated.</li>
-<li><code>USE_I18N</code>: A boolean that specifies whether Django's internationalization system should be enabled. <strong>Default:</strong> <code>True</code>. When <code>True</code>, Django will look for translation files.</li>
-<li><code>USE_TZ</code>: A boolean that specifies whether Django's timezone support should be enabled. <strong>Default:</strong> <code>True</code>. When <code>True</code>, Django stores datetimes in UTC in the database and converts them to the user's local time zone for display.</li>
+<li><code>LANGUAGE_CODE</code>: The language code for this Django installation. <strong>Default:</strong> <code>en-us</code>. This setting influences the default language for Django's built-in messages, forms, and templates.</li>
+<li><code>TIME_ZONE</code>: The time zone for this installation. <strong>Default:</strong> <code>UTC</code>. Django uses this time zone for all datetime objects unless a specific timezone is explicitly activated (e.g., for a user's local time).</li>
+<li><code>USE_I18N</code>: A boolean that determines whether Django's internationalization system should be enabled. <strong>Default:</strong> <code>True</code>. When <code>True</code>, Django will look for translation files to provide localized content.</li>
+<li><code>USE_TZ</code>: A boolean that specifies whether Django's timezone support should be enabled. <strong>Default:</strong> <code>True</code>. When <code>True</code>, Django stores datetimes in UTC in the database and converts them to the appropriate local time zone for display, based on <code>TIME_ZONE</code> or user-specific settings.</li>
 </ul>
 <h2 id="security-and-users">Security and Users</h2>
-<p>This section covers critical security configurations and user model settings.</p>
+<p>This section covers critical security configurations and user model settings, essential for protecting your application and managing user accounts:</p>
 <ul>
 <li>
-<p><code>SECRET_KEY</code>: A secret key for a particular Django installation. <strong>Default:</strong> Loaded from the <code>DJANGO_SECRET_KEY</code> environment variable. This is used to provide cryptographic signing and should be a unique, unpredictable value. <strong>Must be kept secret and loaded from environment variables.</strong></p>
+<p><code>SECRET_KEY</code>: A unique secret key used for cryptographic signing in Django. <strong>Default:</strong> Loaded from the <code>DJANGO_SECRET_KEY</code> environment variable. <strong>This key must be kept absolutely secret and never hardcoded in version control.</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="n">env</span><span class="p">(</span><span class="s2">&quot;DJANGO_SECRET_KEY&quot;</span><span class="p">)</span>
 </code></pre></div>
 </li>
 <li>
-<p><code>ALLOWED_HOSTS</code>: A list of strings representing the host/domain names that this Django site can serve. <strong>Default:</strong> <code>["*"]</code> (loaded from <code>env.list("ALLOWED_HOSTS", default=["*"])</code>). This is a security measure to prevent HTTP Host header attacks. <strong>In production, specify your exact domain names (e.g., <code>["example.com", "www.example.com"]</code>) and never use <code>"*"</code> for security.</strong></p>
+<p><code>ALLOWED_HOSTS</code>: A list of strings representing the host/domain names that this Django site can serve. <strong>Default:</strong> <code>["*"]</code> (loaded from <code>env.list("ALLOWED_HOSTS", default=["*"])</code>). This is a crucial security measure to prevent HTTP Host header attacks. <strong>In production, always specify your exact domain names (e.g., <code>["api.example.com"]</code>) and never use <code>"*"</code> for security reasons.</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="s2">&quot;ALLOWED_HOSTS&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">])</span>
 </code></pre></div>
 </li>
 <li>
-<p><code>AUTH_USER_MODEL</code>: Specifies the custom user model to use. <strong>Default:</strong> <code>users.CustomUser</code>. This allows you to extend Django's default user model with custom fields and behaviors.</p>
+<p><code>AUTH_USER_MODEL</code>: Specifies the custom user model to be used by Django's authentication system. <strong>Default:</strong> <code>users.CustomUser</code>. This allows for extending Django's default user model with custom fields and behaviors tailored to your application's needs.</p>
 </li>
-<li><code>MIN_PASSWORD_LENGTH</code>: Minimum length for user passwords. <strong>Default:</strong> <code>8</code> (loaded from <code>env.int("MIN_PASSWORD_LENGTH", default=8)</code>). This is used by the password validation system.</li>
-<li><code>PASSWORD_HASHERS</code>: A list of password hashing algorithms used for storing user passwords. Django will try them in order until one works. <strong>Default:</strong> A list including <code>ScryptPasswordHasher</code>, <code>PBKDF2PasswordHasher</code>, <code>PBKDF2SHA1PasswordHasher</code>, <code>Argon2PasswordHasher</code>, and <code>BCryptSHA256PasswordHasher</code>. This provides strong password security.</li>
-<li><code>AUTH_PASSWORD_VALIDATORS</code>: Configures password validation rules. <strong>Default:</strong> Includes validators for user attribute similarity, minimum length, common passwords, and numeric passwords. You can customize these to enforce stronger password policies.</li>
+<li><code>MIN_PASSWORD_LENGTH</code>: Defines the minimum length required for user passwords. <strong>Default:</strong> <code>8</code> (loaded from <code>env.int("MIN_PASSWORD_LENGTH", default=8)</code>). This setting is integrated with Django's password validation system to enforce stronger password policies.</li>
+<li><code>PASSWORD_HASHERS</code>: A list of password hashing algorithms used for storing user passwords. Django attempts to use them in the order specified. <strong>Default:</strong> Includes <code>ScryptPasswordHasher</code>, <code>PBKDF2PasswordHasher</code>, <code>PBKDF2SHA1PasswordHasher</code>, <code>Argon2PasswordHasher</code>, and <code>BCryptSHA256PasswordHasher</code>. This provides robust password security by using modern, secure hashing algorithms.</li>
+<li><code>AUTH_PASSWORD_VALIDATORS</code>: Configures the rules for password validation. <strong>Default:</strong> Includes validators for user attribute similarity, minimum length, common passwords, and numeric passwords. These can be customized to enforce more stringent password policies.</li>
 </ul>
 <h3 id="security-headers">Security Headers</h3>
+<p>These settings configure various HTTP security headers to protect against common web vulnerabilities:</p>
 <ul>
-<li><code>SECURE_BROWSER_XSS_FILTER</code>: A boolean that enables the X-XSS-Protection header. <strong>Default:</strong> <code>True</code>. This helps protect against Cross-Site Scripting (XSS) attacks.</li>
-<li><code>SECURE_CONTENT_TYPE_NOSNIFF</code>: A boolean that enables the X-Content-Type-Options header. <strong>Default:</strong> <code>True</code>. This prevents browsers from MIME-sniffing a response away from the declared content-type.</li>
-<li><code>X_FRAME_OPTIONS</code>: Prevents clickjacking by setting the X-Frame-Options header. <strong>Default:</strong> <code>DENY</code>. This means the page cannot be displayed in a frame.</li>
-<li><code>CSRF_COOKIE_SECURE</code>: A boolean that determines whether the CSRF cookie should be sent only over HTTPS. <strong>Default:</strong> <code>True</code> if <code>DEBUG</code> is <code>False</code>, <code>False</code> otherwise. <strong>Should be <code>True</code> in production.</strong></li>
-<li><code>SESSION_COOKIE_SECURE</code>: A boolean that determines whether the session cookie should be sent only over HTTPS. <strong>Default:</strong> <code>True</code> if <code>DEBUG</code> is <code>False</code>, <code>False</code> otherwise. <strong>Should be <code>True</code> in production.</strong></li>
+<li><code>SECURE_BROWSER_XSS_FILTER</code>: Enables the <code>X-XSS-Protection</code> header. <strong>Default:</strong> <code>True</code>. This helps protect against Cross-Site Scripting (XSS) attacks by enabling the browser's built-in XSS filter.</li>
+<li><code>SECURE_CONTENT_TYPE_NOSNIFF</code>: Enables the <code>X-Content-Type-Options</code> header. <strong>Default:</strong> <code>True</code>. This prevents browsers from MIME-sniffing a response away from the declared <code>Content-Type</code>, mitigating certain types of attacks.</li>
+<li><code>X_FRAME_OPTIONS</code>: Controls the <code>X-Frame-Options</code> header to prevent clickjacking attacks. <strong>Default:</strong> <code>DENY</code>. This means the page cannot be displayed in a frame, iframe, or object tag.</li>
+<li><code>CSRF_COOKIE_SECURE</code>: A boolean that determines whether the CSRF cookie should only be sent over HTTPS. <strong>Default:</strong> <code>True</code> if <code>DEBUG</code> is <code>False</code>, <code>False</code> otherwise. <strong>This should always be <code>True</code> in production environments to prevent cookie interception.</strong></li>
+<li><code>SESSION_COOKIE_SECURE</code>: A boolean that determines whether the session cookie should only be sent over HTTPS. <strong>Default:</strong> <code>True</code> if <code>DEBUG</code> is <code>False</code>, <code>False</code> otherwise. <strong>Similar to <code>CSRF_COOKIE_SECURE</code>, this must be <code>True</code> in production for secure session management.</strong></li>
 </ul>
 <h2 id="databases">Databases</h2>
-<p>Database connection settings are configured via the <code>DATABASE_URL</code> environment variable.</p>
+<p>Database connection settings are managed through the <code>DATABASE_URL</code> environment variable, which <code>django-environ</code> parses to configure the database connection.</p>
+<p><strong>Configuration Snippet:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">DJANGO_DATABASE_URL</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">db</span><span class="p">(</span><span class="s2">&quot;DATABASE_URL&quot;</span><span class="p">)</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="n">DJANGO_DATABASE_URL</span><span class="p">}</span>
 </code></pre></div>
+<p><strong>Explanation:</strong></p>
 <ul>
-<li><code>DJANGO_DATABASE_URL</code>: The database connection string, parsed by <code>django-environ</code>. <strong>Default:</strong> Loaded from the <code>DATABASE_URL</code> environment variable.</li>
-<li><code>DATABASES</code>: A dictionary containing the database configurations. The <code>default</code> key holds the primary database connection.</li>
-<li><code>DEFAULT_AUTO_FIELD</code>: The type of primary key to use for models that don't explicitly specify one. <strong>Default:</strong> <code>django.db.models.BigAutoField</code>. This uses a 64-bit integer, which is generally preferred over <code>AutoField</code> (32-bit) to avoid overflow issues in large applications.</li>
+<li><code>DJANGO_DATABASE_URL</code>: This variable holds the database connection string, which is parsed by <code>django-environ</code> to extract database credentials and settings. <strong>Default:</strong> Loaded from the <code>DATABASE_URL</code> environment variable.</li>
+<li><code>DATABASES</code>: A dictionary that contains all database configurations for the project. The <code>default</code> key specifies the primary database connection used by the application.</li>
+<li><code>DEFAULT_AUTO_FIELD</code>: Defines the type of primary key to use for models that do not explicitly specify one. <strong>Default:</strong> <code>django.db.models.BigAutoField</code>. This uses a 64-bit integer, which is generally preferred over the default <code>AutoField</code> (32-bit) to prevent potential integer overflow issues in large-scale applications.</li>
 </ul>
 <h2 id="applications-configuration">Applications Configuration</h2>
-<p>This section lists all installed Django applications and middleware.</p>
+<p>This section details the configuration of installed Django applications and middleware, which are crucial for defining the project's functionalities and request-response processing flow:</p>
 <ul>
 <li>
-<p><code>INSTALLED_APPS</code>: A list of strings designating all applications that are enabled in this Django installation. <strong>Default:</strong> Includes Django's built-in apps (admin, auth, contenttypes, sessions, messages, staticfiles), third-party libraries (whitenoise, corsheaders, rest_framework, django_filters, knox, django_celery_beat, django_celery_results, drf_spectacular, django_extensions), and local project apps (apps.users, apps.core). This setting tells Django which applications are active in your project.</p>
+<p><code>INSTALLED_APPS</code>: A list of strings specifying all Django applications enabled in this project. <strong>Default:</strong> This includes Django's built-in applications (e.g., <code>django.contrib.admin</code>, <code>django.contrib.auth</code>), essential third-party libraries (e.g., <code>whitenoise</code>, <code>rest_framework</code>, <code>knox</code>, <code>drf_spectacular</code>), and the project's local applications (<code>apps.users</code>, <code>apps.core</code>). This setting informs Django which application modules are active and should be loaded.</p>
 </li>
 <li>
-<p><code>MIDDLEWARE</code>: A list of middleware classes to use. Middleware components process requests and responses globally. <strong>Default:</strong> Includes security, static files, session, CORS, common, CSRF, authentication, custom <code>RequestIDMiddleware</code>, and messages middleware. The order of middleware is important as they are processed in the order they appear in this list.</p>
+<p><code>MIDDLEWARE</code>: A list of middleware classes that process requests and responses globally across your Django application. <strong>Default:</strong> This typically includes security middleware, static files handling, session management, CORS headers, common utilities, CSRF protection, authentication, and custom middleware like <code>RequestIDMiddleware</code>. The order of middleware is critically important, as they are executed sequentially for incoming requests and in reverse order for outgoing responses.</p>
 </li>
 </ul>
 <h2 id="templates">Templates</h2>
-<p>Configuration for Django's template engine.</p>
+<p>These settings configure Django's template engine, which is responsible for rendering HTML and other content:</p>
 <ul>
-<li><code>BACKEND</code>: The template engine to use. <strong>Default:</strong> <code>django.template.backends.django.DjangoTemplates</code>.</li>
-<li><code>DIRS</code>: A list of directories where Django should look for template files. <strong>Default:</strong> <code>[root_path("templates")]</code>. This allows you to place project-wide templates outside of specific app directories.</li>
-<li><code>APP_DIRS</code>: A boolean that tells Django to look for templates inside the <code>templates</code> subdirectory of installed applications. <strong>Default:</strong> <code>True</code>. This is a convenient way to organize app-specific templates.</li>
-<li><code>OPTIONS</code>: A dictionary of options for the template engine. <strong>Default:</strong> Includes <code>context_processors</code> (which add variables to the template context, such as <code>debug</code>, <code>request</code>, <code>auth</code>, <code>messages</code>) and <code>builtins</code> (which register built-in template tags and filters).</li>
+<li><code>BACKEND</code>: Specifies the template engine to be used. <strong>Default:</strong> <code>django.template.backends.django.DjangoTemplates</code>.</li>
+<li><code>DIRS</code>: A list of absolute paths to directories where Django should search for template files. <strong>Default:</strong> <code>[root_path("templates")]</code>. This allows for project-wide templates to be organized outside of individual application directories.</li>
+<li><code>APP_DIRS</code>: A boolean that instructs Django to look for templates within the <code>templates</code> subdirectory of installed applications. <strong>Default:</strong> <code>True</code>. This is a convenient way to organize app-specific templates alongside their respective applications.</li>
+<li><code>OPTIONS</code>: A dictionary of additional options for the template engine. <strong>Default:</strong> Includes <code>context_processors</code> (functions that add variables to the template context, such as <code>debug</code>, <code>request</code>, <code>auth</code>, <code>messages</code>) and <code>builtins</code> (which register built-in template tags and filters for use in templates).</li>
 </ul>
 <h2 id="rest-framework">REST Framework</h2>
-<p>Settings for Django REST Framework (DRF) and related authentication/API schema tools.</p>
-<h3 id="rest_knox"><code>REST_KNOX</code></h3>
-<p>Configuration for <code>django-rest-knox</code>, the token-based authentication system.</p>
+<p>This section details the settings for Django REST Framework (DRF) and related tools for API development, authentication, and schema generation.</p>
+<h3 id="token-based-authentication">Token-Based Authentication</h3>
+<p>Configuration for <code>django-rest-knox</code>, the token-based authentication system used for secure API access:</p>
 <ul>
-<li><code>SECURE_HASH_ALGORITHM</code>: The hashing algorithm used for tokens. <strong>Default:</strong> <code>hashlib.sha512</code>.</li>
-<li><code>AUTH_TOKEN_CHARACTER_LENGTH</code>: The length of the authentication token. <strong>Default:</strong> <code>64</code>.</li>
-<li><code>TOKEN_TTL</code>: Token time-to-live. <strong>Default:</strong> <code>timedelta(hours=10)</code>. This defines how long a token is valid.</li>
-<li><code>USER_SERIALIZER</code>: The serializer used for user profiles. <strong>Default:</strong> <code>apps.users.serializers.UserProfileSerializer</code>.</li>
-<li><code>TOKEN_LIMIT_PER_USER</code>: Limits the number of active tokens per user. <strong>Default:</strong> <code>None</code> (no limit).</li>
-<li><code>AUTO_REFRESH</code>: Whether tokens should be automatically refreshed. <strong>Default:</strong> <code>False</code>.</li>
-<li><code>AUTO_REFRESH_MAX_TTL</code>: Maximum time-to-live for auto-refreshed tokens. <strong>Default:</strong> <code>None</code>.</li>
-<li><code>MIN_REFRESH_INTERVAL</code>: Minimum interval between token refreshes. <strong>Default:</strong> <code>60</code> seconds.</li>
-<li><code>AUTH_HEADER_PREFIX</code>: The prefix for the Authorization header. <strong>Default:</strong> <code>Bearer</code>.</li>
-<li><code>TOKEN_MODEL</code>: The token model used. <strong>Default:</strong> <code>knox.AuthToken</code>.</li>
+<li><code>SECURE_HASH_ALGORITHM</code>: The hashing algorithm employed for generating and verifying authentication tokens. <strong>Default:</strong> <code>hashlib.sha512</code>.</li>
+<li><code>AUTH_TOKEN_CHARACTER_LENGTH</code>: Defines the length of the generated authentication tokens. <strong>Default:</strong> <code>64</code>.</li>
+<li><code>TOKEN_TTL</code>: Sets the time-to-live (TTL) for authentication tokens, determining how long a token remains valid after issuance. <strong>Default:</strong> <code>timedelta(hours=10)</code>.</li>
+<li><code>USER_SERIALIZER</code>: Specifies the serializer class used for user profiles when returning user-related data with tokens. <strong>Default:</strong> <code>apps.users.serializers.UserProfileSerializer</code>.</li>
+<li><code>TOKEN_LIMIT_PER_USER</code>: Allows limiting the number of active tokens a single user can possess simultaneously. <strong>Default:</strong> <code>None</code> (no limit).</li>
+<li><code>AUTO_REFRESH</code>: A boolean indicating whether tokens should be automatically refreshed upon use, extending their validity. <strong>Default:</strong> <code>False</code>.</li>
+<li><code>AUTO_REFRESH_MAX_TTL</code>: The maximum time-to-live for tokens that are automatically refreshed. <strong>Default:</strong> <code>None</code>.</li>
+<li><code>MIN_REFRESH_INTERVAL</code>: The minimum time interval (in seconds) that must pass between token refreshes. <strong>Default:</strong> <code>60</code> seconds.</li>
+<li><code>AUTH_HEADER_PREFIX</code>: The prefix expected in the <code>Authorization</code> HTTP header for token authentication (e.g., <code>Bearer &lt;token&gt;</code>). <strong>Default:</strong> <code>Bearer</code>.</li>
+<li><code>TOKEN_MODEL</code>: Refers to the Django model used by <code>django-rest-knox</code> to store authentication tokens. <strong>Default:</strong> <code>knox.AuthToken</code>.</li>
 </ul>
-<h3 id="rest_framework"><code>REST_FRAMEWORK</code></h3>
-<p>General DRF settings.</p>
+<h3 id="general-drf-settings">General DRF Settings</h3>
+<p>Core settings for Django REST Framework, influencing how APIs behave, including authentication, filtering, and rendering:</p>
 <ul>
-<li><code>DEFAULT_AUTHENTICATION_CLASSES</code>: Defines authentication methods. <strong>Default:</strong> <code>knox.auth.TokenAuthentication</code>. In <code>DEBUG</code> mode, <code>SessionAuthentication</code> and <code>BasicAuthentication</code> are also added.</li>
-<li><code>DEFAULT_FILTER_BACKENDS</code>: Enables filtering, searching, and ordering capabilities. <strong>Default:</strong> <code>django_filters.rest_framework.DjangoFilterBackend</code>, <code>rest_framework.filters.SearchFilter</code>, <code>rest_framework.filters.OrderingFilter</code>.</li>
-<li><code>DEFAULT_RENDERER_CLASSES</code>: Specifies how API responses are rendered. <strong>Default:</strong> <code>rest_framework.renderers.JSONRenderer</code>. In <code>DEBUG</code> mode, <code>BrowsableAPIRenderer</code> is also added.</li>
-<li><code>DEFAULT_SCHEMA_CLASS</code>: Integrates <code>drf-spectacular</code> for OpenAPI schema generation. <strong>Default:</strong> <code>drf_spectacular.openapi.AutoSchema</code>.</li>
-<li><code>DEFAULT_THROTTLE_RATES</code>: Configures rate limiting for different user types. <strong>Default:</strong> <code>user: "1000/day"</code>, <code>anon: "100/day"</code>, <code>user_login: "5/minute"</code>. These can be adjusted based on your application's needs.</li>
+<li><code>DEFAULT_AUTHENTICATION_CLASSES</code>: Defines the authentication methods available for API endpoints. <strong>Default:</strong> <code>knox.auth.TokenAuthentication</code>. In <code>DEBUG</code> mode, <code>SessionAuthentication</code> and <code>BasicAuthentication</code> are also included for development convenience.</li>
+<li><code>DEFAULT_FILTER_BACKENDS</code>: Specifies the default filter backends used for enabling filtering, searching, and ordering capabilities on API list views. <strong>Default:</strong> <code>django_filters.rest_framework.DjangoFilterBackend</code>, <code>rest_framework.filters.SearchFilter</code>, <code>rest_framework.filters.OrderingFilter</code>.</li>
+<li><code>DEFAULT_RENDERER_CLASSES</code>: Determines how API responses are rendered. <strong>Default:</strong> <code>rest_framework.renderers.JSONRenderer</code>. In <code>DEBUG</code> mode, <code>BrowsableAPIRenderer</code> is also added, providing a user-friendly HTML interface for API interaction.</li>
+<li><code>DEFAULT_SCHEMA_CLASS</code>: Integrates <code>drf-spectacular</code> for automatic OpenAPI schema generation. <strong>Default:</strong> <code>drf_spectacular.openapi.AutoSchema</code>.</li>
+<li><code>DEFAULT_THROTTLE_RATES</code>: Configures rate limiting for different types of users or requests, helping to prevent API abuse. <strong>Default:</strong> <code>user: "1000/day"</code> (authenticated users), <code>anon: "100/day"</code> (unauthenticated users), <code>user_login: "5/minute"</code> (specific throttle for login attempts).</li>
 </ul>
-<h3 id="spectacular_settings"><code>SPECTACULAR_SETTINGS</code></h3>
-<p>Settings for <code>drf-spectacular</code>, used for generating OpenAPI 3 documentation.</p>
+<h3 id="openapi-schema-generation">OpenAPI Schema Generation</h3>
+<p>Settings for <code>drf-spectacular</code>, which generates OpenAPI 3 documentation for your API:</p>
 <ul>
-<li><code>TITLE</code>: The title of your API documentation. <strong>Default:</strong> <code>Django Starter Template</code>.</li>
-<li><code>DESCRIPTION</code>: A description of your API. <strong>Default:</strong> <code>A comprehensive starting point for your new API with Django and DRF</code>.</li>
-<li><code>VERSION</code>: The version of your API. <strong>Default:</strong> <code>0.1.0</code>.</li>
-<li><code>SERVE_INCLUDE_SCHEMA</code>: Whether to include the schema endpoint in the generated documentation. <strong>Default:</strong> <code>False</code>. Set to <code>True</code> if you want the raw OpenAPI schema to be accessible.</li>
+<li><code>TITLE</code>: The title displayed in your API documentation. <strong>Default:</strong> <code>Django Starter Template</code>.</li>
+<li><code>DESCRIPTION</code>: A brief description of your API, providing context for users of the documentation. <strong>Default:</strong> <code>A comprehensive starting point for your new API with Django and DRF</code>.</li>
+<li><code>VERSION</code>: The version number of your API. <strong>Default:</strong> <code>0.1.0</code>.</li>
+<li><code>SERVE_INCLUDE_SCHEMA</code>: A boolean indicating whether the raw OpenAPI schema endpoint should be included in the generated documentation. <strong>Default:</strong> <code>False</code>. Set to <code>True</code> if you want the raw schema to be directly accessible.</li>
 </ul>
 <h3 id="cors-headers">CORS Headers</h3>
+<p>Settings related to Cross-Origin Resource Sharing (CORS), managed by <code>django-cors-headers</code>:</p>
 <ul>
-<li><code>CORS_ALLOW_ALL_ORIGINS</code>: A boolean that allows all origins for CORS requests in debug mode. <strong>Default:</strong> <code>True</code> if <code>DEBUG</code> is <code>True</code>, <code>False</code> otherwise. <strong>Should be <code>False</code> in production for security.</strong></li>
-<li><code>CORS_ALLOWED_ORIGINS</code>: A list of allowed origins for CORS requests when <code>CORS_ALLOW_ALL_ORIGINS</code> is <code>False</code>. <strong>Default:</strong> Loaded from the <code>CORS_ALLOWED_ORIGINS</code> environment variable.</li>
+<li><code>CORS_ALLOW_ALL_ORIGINS</code>: A boolean that, when <code>True</code>, allows requests from all origins. <strong>Default:</strong> <code>True</code> if <code>DEBUG</code> is <code>True</code>, <code>False</code> otherwise. <strong>For production environments, this should always be <code>False</code> for security reasons.</strong></li>
+<li><code>CORS_ALLOWED_ORIGINS</code>: A list of allowed origins for CORS requests. This setting is active when <code>CORS_ALLOW_ALL_ORIGINS</code> is <code>False</code>. <strong>Default:</strong> Loaded from the <code>CORS_ALLOWED_ORIGINS</code> environment variable, allowing you to specify trusted domains.</li>
 </ul>
 <h2 id="cache">Cache</h2>
-<p>Configuration for caching, using Redis.</p>
+<p>These settings configure the caching mechanism, primarily utilizing Redis for efficient data storage and retrieval:</p>
 <ul>
-<li><code>CACHES</code>: Defines cache backends. <strong>Default:</strong> A dictionary with a <code>default</code> cache using <code>django_redis.cache.RedisCache</code>.</li>
-<li><code>LOCATION</code>: The connection URL for the Redis server. <strong>Default:</strong> <code>redis://redis:6379</code> (loaded from <code>env("REDIS_URL", default="redis://redis:6379")</code>).</li>
-<li><code>OPTIONS</code>: Additional options for the Redis client. <strong>Default:</strong> <code>{"CLIENT_CLASS": "django_redis.client.DefaultClient"}</code>.</li>
-<li><code>USER_AGENTS_CACHE</code>: The cache alias to use for user agent caching. <strong>Default:</strong> <code>default</code>.</li>
+<li><code>CACHES</code>: A dictionary defining the cache backends available to the project. <strong>Default:</strong> Includes a <code>default</code> cache configured to use <code>django_redis.cache.RedisCache</code>.</li>
+<li><code>LOCATION</code>: The connection URL for the Redis server. <strong>Default:</strong> <code>redis://redis:6379</code> (loaded from <code>env("REDIS_URL", default="redis://redis:6379")</code>). This specifies the address and port of your Redis instance.</li>
+<li><code>OPTIONS</code>: Additional options passed to the Redis client. <strong>Default:</strong> <code>{"CLIENT_CLASS": "django_redis.client.DefaultClient"}</code>. This can be used to customize the Redis client's behavior.</li>
+<li><code>USER_AGENTS_CACHE</code>: The cache alias to be used for caching user agent information. <strong>Default:</strong> <code>default</code>. This allows for efficient storage and retrieval of user agent strings.</li>
 </ul>
 <h2 id="celery">Celery</h2>
-<p>Settings for Celery, the asynchronous task queue.</p>
+<p>These settings configure Celery, the distributed task queue used for handling asynchronous tasks and periodic jobs:</p>
 <ul>
-<li><code>CELERY_BROKER_URL</code>: The URL for the Celery message broker. <strong>Default:</strong> <code>redis://redis:6379</code> (loaded from <code>env("CELERY_BROKER_URL", default="redis://redis:6379")</code>).</li>
-<li><code>CELERY_RESULT_BACKEND</code>: Where Celery task results are stored. <strong>Default:</strong> <code>django-db</code> (loaded from <code>env("CELERY_RESULT_BACKEND", default="django-db")</code>).</li>
-<li><code>CELERY_BEAT_SCHEDULER</code>: Specifies the scheduler for periodic tasks. <strong>Default:</strong> <code>django_celery_beat.schedulers.DatabaseScheduler</code>. This enables managing periodic tasks via the Django admin.</li>
-<li><code>CELERY_ACCEPT_CONTENT</code>: A list of accepted content types for tasks. <strong>Default:</strong> <code>["application/json"]</code>.</li>
-<li><code>CELERY_TASK_SERIALIZER</code>: The default serialization method for tasks. <strong>Default:</strong> <code>json</code>.</li>
-<li><code>CELERY_RESULT_SERIALIZER</code>: The default serialization method for task results. <strong>Default:</strong> <code>json</code>.</li>
-<li><code>CELERY_TIMEZONE</code>: The timezone for Celery. <strong>Default:</strong> <code>America/Santiago</code>.</li>
-<li><code>CELERY_RESULT_EXTENDED</code>: Whether to store extended result information. <strong>Default:</strong> <code>True</code>.</li>
+<li><code>CELERY_BROKER_URL</code>: The URL for the Celery message broker, which facilitates communication between the application and Celery workers. <strong>Default:</strong> <code>redis://redis:6379</code> (loaded from <code>env("CELERY_BROKER_URL", default="redis://redis:6379")</code>).</li>
+<li><code>CELERY_RESULT_BACKEND</code>: Specifies where Celery task results are stored after a task completes. <strong>Default:</strong> <code>django-db</code> (loaded from <code>env("CELERY_RESULT_BACKEND", default="django-db")</code>). This means results are stored in the Django database.</li>
+<li><code>CELERY_BEAT_SCHEDULER</code>: Defines the scheduler for periodic tasks. <strong>Default:</strong> <code>django_celery_beat.schedulers.DatabaseScheduler</code>. This allows you to manage and schedule recurring tasks directly from the Django admin interface.</li>
+<li><code>CELERY_ACCEPT_CONTENT</code>: A list of accepted content types for tasks, ensuring secure deserialization. <strong>Default:</strong> <code>["application/json"]</code>.</li>
+<li><code>CELERY_TASK_SERIALIZER</code>: The default serialization method used for tasks when they are sent to the broker. <strong>Default:</strong> <code>json</code>.</li>
+<li><code>CELERY_RESULT_SERIALIZER</code>: The default serialization method for task results when they are stored. <strong>Default:</strong> <code>json</code>.</li>
+<li><code>CELERY_TIMEZONE</code>: The timezone used by Celery for scheduling and executing tasks. <strong>Default:</strong> <code>America/Santiago</code>.</li>
+<li><code>CELERY_RESULT_EXTENDED</code>: A boolean that, when <code>True</code>, stores extended result information for tasks, providing more details about their execution. <strong>Default:</strong> <code>True</code>.</li>
 </ul>
 <h2 id="email">Email</h2>
-<p>Email backend settings for sending emails.</p>
+<p>These settings configure the email backend, enabling the application to send emails for various purposes (e.g., user registration, password resets):</p>
 <ul>
-<li><code>EMAIL_HOST</code>: The hostname of the SMTP server. <strong>Default:</strong> <code>smtp.gmail.com</code> (loaded from <code>env("EMAIL_HOST", default="smtp.gmail.com")</code>).</li>
-<li><code>EMAIL_USE_TLS</code>: Whether to use TLS (Transport Layer Security) for the connection. <strong>Default:</strong> <code>True</code> (loaded from <code>env.bool("EMAIL_USE_TLS", default=True)</code>).</li>
-<li><code>EMAIL_PORT</code>: The port number for the SMTP server. <strong>Default:</strong> <code>587</code> (loaded from <code>env.int("EMAIL_PORT", default=587)</code>).</li>
-<li><code>EMAIL_HOST_USER</code>: The username for the SMTP server. <strong>Default:</strong> <code>""</code> (loaded from <code>env("EMAIL_HOST_USER", default="")</code>).</li>
-<li><code>EMAIL_HOST_PASSWORD</code>: The password for the SMTP server. <strong>Default:</strong> <code>""</code> (loaded from <code>env("EMAIL_HOST_PASSWORD", default="")</code>).</li>
+<li><code>EMAIL_HOST</code>: The hostname or IP address of the SMTP server used for sending emails. <strong>Default:</strong> <code>smtp.gmail.com</code> (loaded from <code>env("EMAIL_HOST", default="smtp.gmail.com")</code>).</li>
+<li><code>EMAIL_USE_TLS</code>: A boolean that determines whether to use TLS (Transport Layer Security) for a secure connection to the SMTP server. <strong>Default:</strong> <code>True</code> (loaded from <code>env.bool("EMAIL_USE_TLS", default=True)</code>). It is highly recommended to keep this <code>True</code> for production.</li>
+<li><code>EMAIL_PORT</code>: The port number for the SMTP server. <strong>Default:</strong> <code>587</code> (loaded from <code>env.int("EMAIL_PORT", default=587)</code>). Common ports are 587 (for TLS) or 465 (for SSL).</li>
+<li><code>EMAIL_HOST_USER</code>: The username for authenticating with the SMTP server. <strong>Default:</strong> <code>""</code> (loaded from <code>env("EMAIL_HOST_USER", default="")</code>). This should be set to your email account username.</li>
+<li><code>EMAIL_HOST_PASSWORD</code>: The password for authenticating with the SMTP server. <strong>Default:</strong> <code>""</code> (loaded from <code>env("EMAIL_HOST_PASSWORD", default="")</code>). This should be set to your email account password or an application-specific password.</li>
 </ul>
 <h2 id="sentry-and-logging">Sentry and Logging</h2>
-<p>While logging has its own dedicated documentation page, this section briefly covers Sentry integration.</p>
+<p>While the logging system has its own dedicated documentation page (<a href="../logging/">Logging System</a>), this section briefly covers settings related to error tracking with Sentry and general logging configurations:</p>
 <ul>
-<li><code>IGNORABLE_404_URLS</code>: A list of regular expressions for URLs that should not trigger 404 errors in logging/error reporting. <strong>Default:</strong> Includes patterns for common favicon and Apple touch icon requests.</li>
-<li><code>LOGGING</code>: Detailed logging configuration (refer to the <a href="../logging/">Logging System</a> documentation for more).</li>
-<li><code>sentry_sdk.init()</code>: Initializes Sentry for error tracking and performance monitoring in production environments. <strong>Default:</strong> Initialized with <code>dsn</code>, <code>traces_sample_rate=1.0</code>, and <code>profiles_sample_rate=1.0</code> when <code>DEBUG</code> is <code>False</code>.</li>
+<li><code>IGNORABLE_404_URLS</code>: A list of regular expressions for URLs that should not trigger 404 errors in logging or error reporting systems (like Sentry). <strong>Default:</strong> Includes patterns for common favicon and Apple touch icon requests, reducing noise in logs.</li>
+<li><code>LOGGING</code>: This dictionary contains the detailed configuration for the project's logging system. For a comprehensive understanding of how logging is set up and used, refer to the <a href="../logging/">Logging System</a> documentation.</li>
+<li><code>sentry_sdk.init()</code>: This function initializes the Sentry SDK for error tracking and performance monitoring. <strong>Default:</strong> It is conditionally initialized in production environments (when <code>DEBUG</code> is <code>False</code>) with parameters such as <code>dsn</code> (your Sentry project DSN), <code>traces_sample_rate=1.0</code> (for performance monitoring), and <code>profiles_sample_rate=1.0</code> (for profiling).</li>
 </ul>
 <h2 id="static-media-files">Static &amp; Media Files</h2>
-<p>Settings for serving static and user-uploaded media files.</p>
+<p>These settings govern how static files (CSS, JavaScript, images) and user-uploaded media files are handled and served by the Django application:</p>
 <ul>
-<li><code>STORAGES</code>: Defines storage backends for default and static files. <strong>Default:</strong> <code>FileSystemStorage</code> for default and <code>whitenoise.storage.CompressedManifestStaticFilesStorage</code> for static files.</li>
-<li><code>STATIC_URL</code>: The URL to use when referring to static files located in <code>STATIC_ROOT</code>. <strong>Default:</strong> <code>/static/</code>.</li>
-<li><code>STATICFILES_DIRS</code>: A list of directories where Django will look for additional static files. <strong>Default:</strong> <code>[root_path("static")]</code>.</li>
-<li><code>STATIC_ROOT</code>: The absolute path to the directory where <code>collectstatic</code> will gather all static files for deployment. <strong>Default:</strong> A temporary directory if <code>DEBUG</code> is <code>True</code>, otherwise <code>static_root</code> within the project root.</li>
-<li><code>MEDIA_URL</code>: The URL that handles the media served from <code>MEDIA_ROOT</code>. <strong>Default:</strong> <code>/media/</code>.</li>
-<li><code>MEDIA_ROOT</code>: The absolute path to the directory where user-uploaded media files are stored. <strong>Default:</strong> <code>media_root</code> within the project root.</li>
-<li><code>ADMIN_MEDIA_PREFIX</code>: The URL prefix for admin media files. <strong>Default:</strong> <code>/static/admin/</code>.</li>
+<li><code>STORAGES</code>: Defines the storage backends for different types of files. <strong>Default:</strong> Uses <code>FileSystemStorage</code> for default file storage and <code>whitenoise.storage.CompressedManifestStaticFilesStorage</code> for static files, which handles compression and caching for production.</li>
+<li><code>STATIC_URL</code>: The URL prefix to use when referring to static files. <strong>Default:</strong> <code>/static/</code>. For example, if you have a static file <code>my_app/static/css/style.css</code>, it would be accessible at <code>/static/css/style.css</code>.</li>
+<li><code>STATICFILES_DIRS</code>: A list of directories where Django will search for additional static files, beyond those found within individual app's <code>static/</code> directories. <strong>Default:</strong> <code>[root_path("static")]</code>.</li>
+<li><code>STATIC_ROOT</code>: The absolute path to the directory where Django's <code>collectstatic</code> command will gather all static files for deployment. <strong>Default:</strong> A temporary directory if <code>DEBUG</code> is <code>True</code>, otherwise a <code>static_root</code> directory within the project root. <strong>This directory should be served directly by your web server in production.</strong></li>
+<li><code>MEDIA_URL</code>: The URL prefix that handles media files served from <code>MEDIA_ROOT</code>. <strong>Default:</strong> <code>/media/</code>. This is used for user-uploaded content.</li>
+<li><code>MEDIA_ROOT</code>: The absolute path to the directory where user-uploaded media files are stored. <strong>Default:</strong> A <code>media_root</code> directory within the project root. <strong>This directory should be configured for serving by your web server.</strong></li>
+<li><code>ADMIN_MEDIA_PREFIX</code>: The URL prefix for Django admin's static media files. <strong>Default:</strong> <code>/static/admin/</code>.</li>
 </ul>
 <h2 id="django-debug-toolbar-and-django-extensions">Django Debug Toolbar and Django Extensions</h2>
-<p>These tools are enabled only in <code>DEBUG</code> mode for development purposes.</p>
+<p>These development-centric tools are conditionally enabled only when Django's <code>DEBUG</code> mode is active, providing valuable insights and utilities during development:</p>
 <ul>
-<li><code>debug_toolbar</code>: Provides a customizable debug panel for Django projects. <strong>Default:</strong> Added to <code>INSTALLED_APPS</code> and <code>MIDDLEWARE</code> if <code>DEBUG</code> is <code>True</code>.</li>
-<li><code>INTERNAL_IPS</code>: A list of IP addresses that are considered "internal" for the Debug Toolbar. <strong>Default:</strong> <code>["127.0.0.1"]</code>.</li>
-<li><code>django_extensions</code>: Offers a collection of custom extensions for Django, including useful management commands. <strong>Default:</strong> Added to <code>INSTALLED_APPS</code> if <code>DEBUG</code> is <code>True</code>.</li>
+<li><code>debug_toolbar</code>: Integrates the Django Debug Toolbar, which provides a customizable debug panel for inspecting various aspects of your Django application (e.g., SQL queries, request/response headers, templates). <strong>Default:</strong> Automatically added to <code>INSTALLED_APPS</code> and <code>MIDDLEWARE</code> if <code>DEBUG</code> is <code>True</code>.</li>
+<li><code>INTERNAL_IPS</code>: A list of IP addresses that are considered "internal" for the Django Debug Toolbar. Requests originating from these IP addresses will display the debug toolbar. <strong>Default:</strong> <code>["127.0.0.1"]</code>.</li>
+<li><code>django_extensions</code>: Provides a collection of custom extensions for Django, including a variety of useful management commands (e.g., <code>runserver_plus</code>, <code>shell_plus</code>). <strong>Default:</strong> Automatically added to <code>INSTALLED_APPS</code> if <code>DEBUG</code> is <code>True</code>.</li>
 </ul>
-<p>These settings are conditionally added to <code>INSTALLED_APPS</code> and <code>MIDDLEWARE</code> when <code>DEBUG</code> is <code>True</code>.</p>
+<p>These settings are dynamically included in <code>INSTALLED_APPS</code> and <code>MIDDLEWARE</code> when <code>DEBUG</code> is <code>True</code>, ensuring they are only active in development environments.</p>
 
 
 

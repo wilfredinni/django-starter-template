@@ -517,18 +517,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-default_throttle_rates-in-confsettingspy" class="md-nav__link">
+  <a href="#1-default-throttle-rates" class="md-nav__link">
     <span class="md-ellipsis">
-      1. DEFAULT_THROTTLE_RATES in conf/settings.py
+      1. Default Throttle Rates
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-custom-throttle-class-userloginratethrottle" class="md-nav__link">
+  <a href="#2-custom-throttle-class" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Custom Throttle Class (UserLoginRateThrottle)
+      2. Custom Throttle Class
     </span>
   </a>
   
@@ -637,18 +637,133 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    AI Tools and CLI Agents
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            AI Tools and CLI Agents
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../copilot_prompts/" class="md-nav__link">
+      <a href="../ai_tools/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    GitHub Copilot Prompts
+    Overview
     
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai_tools/gemini/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gemini CLI Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai_tools/copilot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GitHub Copilot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai_tools/cline_roocode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roo Code and Cline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -699,18 +814,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-default_throttle_rates-in-confsettingspy" class="md-nav__link">
+  <a href="#1-default-throttle-rates" class="md-nav__link">
     <span class="md-ellipsis">
-      1. DEFAULT_THROTTLE_RATES in conf/settings.py
+      1. Default Throttle Rates
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-custom-throttle-class-userloginratethrottle" class="md-nav__link">
+  <a href="#2-custom-throttle-class" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Custom Throttle Class (UserLoginRateThrottle)
+      2. Custom Throttle Class
     </span>
   </a>
   
@@ -765,7 +880,7 @@
 </ul>
 <h2 id="how-its-implemented">How it's Implemented</h2>
 <p>This project uses Django REST Framework's built-in throttling mechanisms, along with a custom throttle class, to implement rate limiting.</p>
-<h3 id="1-default_throttle_rates-in-confsettingspy">1. <code>DEFAULT_THROTTLE_RATES</code> in <code>conf/settings.py</code></h3>
+<h3 id="1-default-throttle-rates">1. Default Throttle Rates</h3>
 <p>Global throttle rates are defined in <code>conf/settings.py</code> under the <code>REST_FRAMEWORK</code> dictionary. These rates are applied based on different scopes:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Example from conf/settings.py</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">REST_FRAMEWORK</span> <span class="o">=</span> <span class="p">{</span>
@@ -782,7 +897,7 @@
 <li><code>anon</code>: Applies to unauthenticated (anonymous) users. <strong>Default:</strong> <code>100 requests per day</code>.</li>
 <li><code>user_login</code>: A custom scope specifically for login attempts. <strong>Default:</strong> <code>5 requests per minute</code>.</li>
 </ul>
-<h3 id="2-custom-throttle-class-userloginratethrottle">2. Custom Throttle Class (<code>UserLoginRateThrottle</code>)</h3>
+<h3 id="2-custom-throttle-class">2. Custom Throttle Class</h3>
 <p>For specific scenarios, like limiting login attempts, a custom throttle class (<code>apps/users/throttles.py</code>) is used. This allows for more granular control over how requests are identified and limited.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Example from apps/users/throttles.py</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rest_framework.throttling</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleRateThrottle</span>

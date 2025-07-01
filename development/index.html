@@ -300,6 +300,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#core-development-commands" class="md-nav__link">
     <span class="md-ellipsis">
       Core Development Commands
@@ -628,18 +637,133 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    AI Tools and CLI Agents
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            AI Tools and CLI Agents
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../copilot_prompts/" class="md-nav__link">
+      <a href="../ai_tools/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    GitHub Copilot Prompts
+    Overview
     
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai_tools/gemini/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gemini CLI Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai_tools/copilot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GitHub Copilot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai_tools/cline_roocode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roo Code and Cline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -669,6 +793,15 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#core-development-commands" class="md-nav__link">
@@ -738,8 +871,10 @@
 
 
 <h1 id="development-workflow">Development Workflow</h1>
-<p>This guide covers the essential commands and practices for developing your application after you have completed the initial setup using the Dev Container.</p>
+<h2 id="overview">Overview</h2>
+<p>This guide outlines the essential commands and best practices for developing your application within the Django Starter Template. It assumes you have completed the initial environment setup, ideally using the provided Dev Container.</p>
 <h2 id="core-development-commands">Core Development Commands</h2>
+<p>The project provides a set of convenient <code>poetry run</code> commands to streamline common development tasks. These commands should be executed from your terminal within the VS Code Dev Container or your activated Poetry shell.</p>
 <p>The project includes convenient scripts in <code>pyproject.toml</code> to simplify common development tasks. You should use these <code>poetry run</code> commands from the terminal inside your VS Code dev container.</p>
 <table>
 <thead>
@@ -772,21 +907,30 @@
 </tbody>
 </table>
 <h3 id="testing">Testing</h3>
-<p>The project uses <code>pytest</code> for testing.</p>
+<p>The project utilizes <code>pytest</code> for its test suite. Below are common commands for running tests and generating coverage reports:</p>
 <ul>
-<li><strong>Run all tests:</strong>
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>poetry<span class="w"> </span>run<span class="w"> </span>pytest
-</code></pre></div></li>
-<li><strong>Run tests with coverage:</strong>
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>--cov
-</code></pre></div></li>
-<li><strong>Generate an HTML coverage report:</strong>
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>--cov<span class="w"> </span>--cov-report<span class="o">=</span>html
+<li>
+<p><strong>Run all tests:</strong>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>poetry<span class="w"> </span>run<span class="w"> </span>pytest
 </code></pre></div>
-  The report will be generated in the <code>htmlcov/</code> directory.</li>
+    Executes the entire test suite.</p>
+</li>
+<li>
+<p><strong>Run tests with coverage:</strong>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>--cov
+</code></pre></div>
+    Runs all tests and collects code coverage information.</p>
+</li>
+<li>
+<p><strong>Generate an HTML coverage report:</strong>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>--cov<span class="w"> </span>--cov-report<span class="o">=</span>html
+</code></pre></div>
+    Generates a detailed HTML report of code coverage, which can be found in the <code>htmlcov/</code> directory. This report helps identify untested parts of the codebase.</p>
+</li>
 </ul>
 <h2 id="database-seeding">Database Seeding</h2>
-<p>The template includes a powerful seeding command to populate your database with sample data for development and testing.</p>
+<p>The template includes a powerful management command to populate your database with sample data, which is invaluable for development and testing. This command is part of the <code>apps/core/management/commands/seed.py</code> module.</p>
+<p><strong>Usage:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Basic seeding with default options (creates 10 users)</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>poetry<span class="w"> </span>run<span class="w"> </span>seed
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
@@ -802,21 +946,33 @@
 <a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="c1"># Combine options</span>
 <a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>poetry<span class="w"> </span>run<span class="w"> </span>seed<span class="w"> </span>--users<span class="w"> </span><span class="m">50</span><span class="w"> </span>--superuser<span class="w"> </span>--clean
 </code></pre></div>
-<h2 id="asynchronous-tasks-celery">Asynchronous Tasks (Celery)</h2>
-<p>For handling background tasks, the project uses Celery.</p>
+<p><strong>Options:</strong></p>
 <ul>
-<li><strong>Start the Celery worker:</strong>
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>poetry<span class="w"> </span>run<span class="w"> </span>worker
-</code></pre></div></li>
-<li><strong>Start the Celery beat scheduler (for periodic tasks):</strong>
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>poetry<span class="w"> </span>run<span class="w"> </span>beat
-</code></pre></div></li>
+<li><code>--users &lt;number&gt;</code>: Specifies the number of regular users to create. Default is 10.</li>
+<li><code>--superuser</code>: Creates a default superuser (<code>admin@admin.com</code> with password <code>admin</code>).</li>
+<li><code>--clean</code>: Cleans (deletes) existing seeded data before generating new data. Use with caution as this will remove all existing users and related data.</li>
+</ul>
+<h2 id="asynchronous-tasks-celery">Asynchronous Tasks (Celery)</h2>
+<p>For handling background tasks and asynchronous operations, the project integrates Celery. To run Celery workers and schedulers, use the following commands:</p>
+<ul>
+<li>
+<p><strong>Start the Celery worker:</strong>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>poetry<span class="w"> </span>run<span class="w"> </span>worker
+</code></pre></div>
+    This command starts a Celery worker process that executes tasks from the message queue.</p>
+</li>
+<li>
+<p><strong>Start the Celery beat scheduler:</strong>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>poetry<span class="w"> </span>run<span class="w"> </span>beat
+</code></pre></div>
+    This command starts the Celery beat scheduler, which is responsible for periodically executing scheduled tasks.</p>
+</li>
 </ul>
 <h2 id="environment-variables">Environment Variables</h2>
+<p>Environment variables are managed using a <code>.env</code> file, which is crucial for configuring application settings without hardcoding sensitive information. The project uses <code>django-environ</code> to load these variables.</p>
 <ul>
-<li>The project uses a <code>.env</code> file to manage environment variables.</li>
-<li>The <code>poetry run create_dev_env</code> command can be used to generate a new development <code>.env</code> file if needed.</li>
-<li>For production, refer to <code>.env.example</code> for the full list of required variables.</li>
+<li><strong>Development <code>.env</code> file:</strong> The <code>poetry run create_dev_env</code> command can be used to generate a new <code>.env</code> file tailored for development purposes if it's missing or needs to be reset.</li>
+<li><strong>Production <code>.env</code> file:</strong> For production deployments, refer to the <code>.env.example</code> file at the project root for a comprehensive list of all required environment variables and their descriptions. This file serves as a template for setting up your production environment.</li>
 </ul>
 
 

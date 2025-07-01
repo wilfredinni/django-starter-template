@@ -366,6 +366,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#main-dependencies" class="md-nav__link">
     <span class="md-ellipsis">
       Main Dependencies
@@ -595,18 +604,133 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    AI Tools and CLI Agents
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            AI Tools and CLI Agents
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../copilot_prompts/" class="md-nav__link">
+      <a href="../ai_tools/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    GitHub Copilot Prompts
+    Overview
     
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai_tools/gemini/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gemini CLI Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai_tools/copilot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GitHub Copilot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai_tools/cline_roocode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roo Code and Cline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -636,6 +760,15 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#main-dependencies" class="md-nav__link">
@@ -672,30 +805,32 @@
 
 
 <h1 id="project-dependencies">Project Dependencies</h1>
-<p>This project uses <a href="https://python-poetry.org/">Poetry</a> to manage its dependencies. The main dependencies are listed in the <code>[tool.poetry.dependencies]</code> section of the <code>pyproject.toml</code> file, while development dependencies are in the <code>[tool.poetry.group.dev.dependencies]</code> section.</p>
+<h2 id="overview">Overview</h2>
+<p>This project utilizes <a href="https://python-poetry.org/">Poetry</a> as its dependency management tool. Poetry ensures consistent project environments by managing dependencies, virtual environments, and packaging. All project dependencies are defined in the <code>pyproject.toml</code> file, categorized into main dependencies and development-specific dependencies.</p>
 <h2 id="main-dependencies">Main Dependencies</h2>
+<p>The following are the primary dependencies required for the application to run in production:</p>
 <ul>
-<li><strong>python</strong>: ^3.13</li>
-<li><strong>django</strong>: ^5.1.2</li>
-<li><strong>django-environ</strong>: ^0.12.0</li>
-<li><strong>django-cors-headers</strong>: ^4.5.0</li>
-<li><strong>djangorestframework</strong>: ^3.15.2</li>
-<li><strong>psycopg2</strong>: ^2.9.10</li>
-<li><strong>whitenoise</strong>: ^6.7.0</li>
-<li><strong>gunicorn</strong>: ^23.0.0</li>
-<li><strong>django-rest-knox</strong>: ^5.0.2</li>
-<li><strong>redis</strong>: ^6.0.0</li>
-<li><strong>celery</strong>: ^5.4.0</li>
-<li><strong>django-celery-beat</strong>: ^2.7.0</li>
-<li><strong>django-celery-results</strong>: ^2.5.1</li>
-<li><strong>sentry-sdk</strong>: ^2.17.0 (with <code>django</code> extra)</li>
-<li><strong>django-redis</strong>: ^6.0.0</li>
-<li><strong>drf-spectacular</strong>: ^0.28.0</li>
-<li><strong>faker</strong>: ^37.1.0</li>
-<li><strong>django-seed</strong>: ^0.3.1</li>
-<li><strong>django-extensions</strong>: ^4.1</li>
-<li><strong>django-filter</strong>: ^25.1</li>
-<li><strong>python-json-logger</strong>: ^3.3.0</li>
+<li><strong><code>python</code></strong>: Specifies the compatible Python version. <strong>Version:</strong> <code>^3.13</code></li>
+<li><strong><code>django</code></strong>: The web framework for perfectionists with deadlines. <strong>Version:</strong> <code>^5.1.2</code></li>
+<li><strong><code>django-environ</code></strong>: Manages environment variables for Django settings. <strong>Version:</strong> <code>^0.12.0</code></li>
+<li><strong><code>django-cors-headers</code></strong>: Handles Cross-Origin Resource Sharing (CORS) headers. <strong>Version:</strong> <code>^4.5.0</code></li>
+<li><strong><code>djangorestframework</code></strong>: A powerful and flexible toolkit for building Web APIs. <strong>Version:</strong> <code>^3.15.2</code></li>
+<li><strong><code>psycopg2</code></strong>: PostgreSQL adapter for Python. <strong>Version:</strong> <code>^2.9.10</code></li>
+<li><strong><code>whitenoise</code></strong>: Serves static files efficiently in production. <strong>Version:</strong> <code>^6.7.0</code></li>
+<li><strong><code>gunicorn</code></strong>: A Python WSGI HTTP Server for UNIX. <strong>Version:</strong> <code>^23.0.0</code></li>
+<li><strong><code>django-rest-knox</code></strong>: Token-based authentication for Django REST Framework. <strong>Version:</strong> <code>^5.0.2</code></li>
+<li><strong><code>redis</code></strong>: Python client for Redis. <strong>Version:</strong> <code>^6.0.0</code></li>
+<li><strong><code>celery</code></strong>: Distributed task queue. <strong>Version:</strong> <code>^5.4.0</code></li>
+<li><strong><code>django-celery-beat</code></strong>: A periodic task scheduler for Celery. <strong>Version:</strong> <code>^2.7.0</code></li>
+<li><strong><code>django-celery-results</code></strong>: Stores Celery task results in Django models. <strong>Version:</strong> <code>^2.5.1</code></li>
+<li><strong><code>sentry-sdk</code></strong>: Official Sentry SDK for Python, with Django integration. <strong>Version:</strong> <code>^2.17.0</code></li>
+<li><strong><code>django-redis</code></strong>: Full-featured Redis cache backend for Django. <strong>Version:</strong> <code>^6.0.0</code></li>
+<li><strong><code>drf-spectacular</code></strong>: OpenAPI 3 schema generation for Django REST Framework. <strong>Version:</strong> <code>^0.28.0</code></li>
+<li><strong><code>faker</code></strong>: Generates fake data for testing and development. <strong>Version:</strong> <code>^37.1.0</code></li>
+<li><strong><code>django-seed</code></strong>: Populates Django database with random data. <strong>Version:</strong> <code>^0.3.1</code></li>
+<li><strong><code>django-extensions</code></strong>: A collection of custom extensions for Django. <strong>Version:</strong> <code>^4.1</code></li>
+<li><strong><code>django-filter</code></strong>: Reusable Django application for filtering querysets. <strong>Version:</strong> <code>^25.1</code></li>
+<li><strong><code>python-json-logger</code></strong>: A JSON formatter for Python logging. <strong>Version:</strong> <code>^3.3.0</code></li>
 </ul>
 <h2 id="development-dependencies">Development Dependencies</h2>
 <ul>

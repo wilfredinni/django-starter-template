@@ -515,7 +515,7 @@
           <li class="md-nav__item">
   <a href="#basetaskwithretry-attributes" class="md-nav__link">
     <span class="md-ellipsis">
-      BaseTaskWithRetry Attributes:
+      BaseTaskWithRetry Attributes
     </span>
   </a>
   
@@ -524,7 +524,7 @@
           <li class="md-nav__item">
   <a href="#example-usage" class="md-nav__link">
     <span class="md-ellipsis">
-      Example Usage:
+      Example Usage
     </span>
   </a>
   
@@ -545,19 +545,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#periodic-tasks-celery-beat" class="md-nav__link">
+  <a href="#periodic-tasks" class="md-nav__link">
     <span class="md-ellipsis">
-      Periodic Tasks (Celery Beat)
+      Periodic Tasks
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Periodic Tasks (Celery Beat)">
+    <nav class="md-nav" aria-label="Periodic Tasks">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#steps-to-configure-a-periodic-task" class="md-nav__link">
     <span class="md-ellipsis">
-      Steps to Configure a Periodic Task:
+      Steps to Configure a Periodic Task
     </span>
   </a>
   
@@ -566,7 +566,7 @@
           <li class="md-nav__item">
   <a href="#example-periodic-task" class="md-nav__link">
     <span class="md-ellipsis">
-      Example Periodic Task:
+      Example Periodic Task
     </span>
   </a>
   
@@ -679,18 +679,133 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    AI Tools and CLI Agents
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            AI Tools and CLI Agents
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../copilot_prompts/" class="md-nav__link">
+      <a href="../ai_tools/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    GitHub Copilot Prompts
+    Overview
     
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai_tools/gemini/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gemini CLI Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai_tools/copilot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GitHub Copilot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai_tools/cline_roocode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roo Code and Cline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -761,7 +876,7 @@
           <li class="md-nav__item">
   <a href="#basetaskwithretry-attributes" class="md-nav__link">
     <span class="md-ellipsis">
-      BaseTaskWithRetry Attributes:
+      BaseTaskWithRetry Attributes
     </span>
   </a>
   
@@ -770,7 +885,7 @@
           <li class="md-nav__item">
   <a href="#example-usage" class="md-nav__link">
     <span class="md-ellipsis">
-      Example Usage:
+      Example Usage
     </span>
   </a>
   
@@ -791,19 +906,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#periodic-tasks-celery-beat" class="md-nav__link">
+  <a href="#periodic-tasks" class="md-nav__link">
     <span class="md-ellipsis">
-      Periodic Tasks (Celery Beat)
+      Periodic Tasks
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Periodic Tasks (Celery Beat)">
+    <nav class="md-nav" aria-label="Periodic Tasks">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#steps-to-configure-a-periodic-task" class="md-nav__link">
     <span class="md-ellipsis">
-      Steps to Configure a Periodic Task:
+      Steps to Configure a Periodic Task
     </span>
   </a>
   
@@ -812,7 +927,7 @@
           <li class="md-nav__item">
   <a href="#example-periodic-task" class="md-nav__link">
     <span class="md-ellipsis">
-      Example Periodic Task:
+      Example Periodic Task
     </span>
   </a>
   
@@ -863,14 +978,14 @@
 <p>Place your task definitions in <code>tasks.py</code> files within your Django apps (e.g., <code>apps/core/tasks.py</code>). Celery is configured to automatically discover tasks in installed apps.</p>
 <h2 id="task-retries">Task Retries</h2>
 <p>The template provides a custom base task class, <code>BaseTaskWithRetry</code>, located in <code>apps/core/tasks.py</code>, which simplifies implementing retry logic for your tasks.</p>
-<h3 id="basetaskwithretry-attributes"><code>BaseTaskWithRetry</code> Attributes:</h3>
+<h3 id="basetaskwithretry-attributes"><code>BaseTaskWithRetry</code> Attributes</h3>
 <ul>
 <li><code>autoretry_for</code>: A tuple of exception types that should trigger a retry. If any of these exceptions occur during task execution, Celery will automatically retry the task.</li>
 <li><code>retry_kwargs</code>: A dictionary of keyword arguments passed to the <code>retry()</code> method. The most common is <code>max_retries</code>, which defines the maximum number of times the task will be retried.</li>
 <li><code>retry_backoff</code>: The initial delay in seconds before the first retry attempt. Subsequent retries will have an exponentially increasing delay.</li>
 <li><code>retry_jitter</code>: A boolean that, when <code>True</code>, adds a random component to the retry delay. This helps prevent all failed tasks from retrying simultaneously, which can lead to a "thundering herd" problem.</li>
 </ul>
-<h3 id="example-usage">Example Usage:</h3>
+<h3 id="example-usage">Example Usage</h3>
 <p>To use <code>BaseTaskWithRetry</code> for your task, simply set its <code>base</code> argument in the <code>@shared_task</code> decorator:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">celery</span><span class="w"> </span><span class="kn">import</span> <span class="n">shared_task</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">apps.core.tasks</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseTaskWithRetry</span>
@@ -907,9 +1022,9 @@
 </code></pre></div>
 </li>
 </ul>
-<h2 id="periodic-tasks-celery-beat">Periodic Tasks (Celery Beat)</h2>
+<h2 id="periodic-tasks">Periodic Tasks</h2>
 <p>Celery Beat is a scheduler that kicks off tasks periodically. In this project, periodic tasks are managed through the Django Admin interface.</p>
-<h3 id="steps-to-configure-a-periodic-task">Steps to Configure a Periodic Task:</h3>
+<h3 id="steps-to-configure-a-periodic-task">Steps to Configure a Periodic Task</h3>
 <ol>
 <li>
 <p><strong>Start Celery Worker</strong>: Ensure your Celery worker is running:</p>
@@ -930,7 +1045,7 @@
 </ul>
 </li>
 </ol>
-<h3 id="example-periodic-task">Example Periodic Task:</h3>
+<h3 id="example-periodic-task">Example Periodic Task</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">celery</span><span class="w"> </span><span class="kn">import</span> <span class="n">shared_task</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nd">@shared_task</span>
