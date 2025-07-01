@@ -41,7 +41,7 @@ This template is packed with features to help you build amazing APIs:
 
 This documentation is your guide to building amazing applications with the Django Starter Template. Use the navigation on the left to explore the different sections.
 
--   **[Development](development.md):** Learn about the development workflow, including how to run tests, and use the provided scripts.
+-   **[Development](development.md):** Learn about the development workflow, including how to run tests, and use the scripts.
 -   **[Project Structure](project_structure.md):** Get an overview of the project's directory structure.
 -   **[Project Settings](settings.md):** Understand the available settings and how to configure your project.
 -   **[Dependencies](dependencies.md):** See a list of all the project's dependencies.
