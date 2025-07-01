@@ -1,7 +1,7 @@
-# Welcome to the Django Starter Template!
+<h1 align="center">Welcome to the Django Starter Template!</h1>
 
 <p align="center">
-  <img src="assets/logo.png" alt="Django Starter Template Logo" width="200"/>
+  <img src="assets/logo.png" alt="Django Starter Template Logo" width="150"/>
 </p>
 
 <p align="center">
@@ -22,53 +22,30 @@ The recommended way to get started is by using the Dev Container feature in VS C
 ### Setup Steps
 
 1.  **Use the GitHub Template:**
-    - Click the green `Use this template` button on the [GitHub repository page](https://github.com/wilfredinni/django-starter-template) to create your own repository.
+
+    Click the green `Use this template` button on the [GitHub repository page](https://github.com/wilfredinni/django-starter-template) to create your own repository.
 
 2.  **Open in VS Code:**
-    - Clone your new repository and open its folder in Visual Studio Code.
+
+    Clone your new repository and open its folder in Visual Studio Code.
 
 3.  **Check the Setup Guide:**
-    - Before proceeding, check the **`Todo Tree`** view in the VS Code sidebar for a guided list of initial setup tasks.
+
+    Before proceeding, check the **`Todo Tree`** view in the VS Code sidebar for a guided list of initial setup tasks.
 
 4.  **Reopen in Container:**
-    - When prompted, click **"Reopen in Container"** to build and start the dev environment.
+
+    When prompted, click **"Reopen in Container"** to build and start the dev environment. This will configure Redis, Celery, PostgreSQL, install dependencies, and migrate the database.
 
 5.  **Create a Superuser:**
-    - Once the container is running, open a new VS Code terminal (`Ctrl+` or `Terminal > New Terminal`).
-    - Run the following command:
-    ```bash
-    python manage.py createsuperuser
-    ```
+
+    Run python `manage.py createsuperuser` to create an admin user for accessing the Django admin interface.
 
 6.  **Start the Server:**
-    - In the same terminal, run:
-    ```bash
-    python manage.py runserver
-    ```
+
+    Run `python manage.py runserver` to start the development server.
 
 Your API is now running and accessible at `http://127.0.0.1:8000`.
-
-3.  **Set up your environment:**
-
-    ```bash
-    cp .env.example .env
-    # Edit .env with your settings
-    ```
-
-4.  **Install dependencies and run migrations:**
-
-    ```bash
-    poetry install
-    poetry run migrate
-    ```
-
-5.  **Launch the development server:**
-
-    ```bash
-    poetry run server
-    ```
-
-That's it! Your new Django project is live at `http://127.0.0.1:8000`.
 
 ---
 
