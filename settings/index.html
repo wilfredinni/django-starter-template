@@ -1,0 +1,1238 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../project_structure/">
+      
+      
+        <link rel="next" href="../dependencies/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Project Settings - Django Starter Template</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#project-settings" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Django Starter Template" class="md-header__button md-logo" aria-label="Django Starter Template" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Django Starter Template
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Project Settings
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Django Starter Template" class="md-nav__button md-logo" aria-label="Django Starter Template" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    Django Starter Template
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Development
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../project_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Project Structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Project Settings
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Project Settings
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#environment-variables-django-environ" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Variables (django-environ)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      Time &amp; Language
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-and-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security and Users
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security and Users">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#security-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Headers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Databases
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#applications-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Applications Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Templates
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rest-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      REST Framework
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="REST Framework">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rest_knox" class="md-nav__link">
+    <span class="md-ellipsis">
+      REST_KNOX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rest_framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      REST_FRAMEWORK
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spectacular_settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      SPECTACULAR_SETTINGS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cors-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      CORS Headers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cache
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#celery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Celery
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#email" class="md-nav__link">
+    <span class="md-ellipsis">
+      Email
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sentry-and-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sentry and Logging
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-media-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Static &amp; Media Files
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#django-debug-toolbar-and-django-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Django Debug Toolbar and Django Extensions
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dependencies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auto_documentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Auto Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Authentication
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core_endpoints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Core App
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Logging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Celery Tasks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rate_limiting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rate Limiting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database_seeding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database Seeding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Testing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../environment_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environment Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../copilot_prompts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GitHub Copilot Prompts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#environment-variables-django-environ" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Variables (django-environ)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      Time &amp; Language
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-and-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security and Users
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security and Users">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#security-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Headers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Databases
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#applications-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Applications Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Templates
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rest-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      REST Framework
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="REST Framework">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rest_knox" class="md-nav__link">
+    <span class="md-ellipsis">
+      REST_KNOX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rest_framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      REST_FRAMEWORK
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spectacular_settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      SPECTACULAR_SETTINGS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cors-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      CORS Headers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cache
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#celery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Celery
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#email" class="md-nav__link">
+    <span class="md-ellipsis">
+      Email
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sentry-and-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sentry and Logging
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-media-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Static &amp; Media Files
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#django-debug-toolbar-and-django-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Django Debug Toolbar and Django Extensions
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="project-settings">Project Settings</h1>
+<p>This document provides an extensive guide to the <code>conf/settings.py</code> file, which centralizes the configuration for the Django Starter Template. Understanding these settings is crucial for customizing and deploying your application.</p>
+<h2 id="environment-variables-django-environ">Environment Variables (<code>django-environ</code>)</h2>
+<p>The project uses <code>django-environ</code> to manage environment variables, allowing sensitive information and deployment-specific configurations to be kept out of version control. Variables are loaded from a <code>.env</code> file in the project root.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">environ</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">env</span> <span class="o">=</span> <span class="n">environ</span><span class="o">.</span><span class="n">Env</span><span class="p">()</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">root_path</span> <span class="o">=</span> <span class="n">environ</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">env</span><span class="o">.</span><span class="n">read_env</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">root_path</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="s2">&quot;.env&quot;</span><span class="p">)))</span>
+</code></pre></div>
+<ul>
+<li><code>env = environ.Env()</code>: Initializes the environment reader.</li>
+<li><code>root_path</code>: Defines the base directory for relative paths, calculated as two levels up from the <code>settings.py</code> file.</li>
+<li><code>env.read_env()</code>: Reads variables from the <code>.env</code> file. This function is called without arguments, so it looks for <code>.env</code> in the current working directory or parent directories.</li>
+</ul>
+<h2 id="basic-configuration">Basic Configuration</h2>
+<p>These are fundamental Django settings.</p>
+<ul>
+<li><code>ROOT_URLCONF</code>: Specifies the root URL configuration module. <strong>Default:</strong> <code>conf.urls</code>. This tells Django where to find the main URL patterns for your project.</li>
+<li><code>WSGI_APPLICATION</code>: The full Python path to the WSGI application object. <strong>Default:</strong> <code>conf.wsgi.application</code>. This is the entry point for WSGI-compatible web servers.</li>
+<li><code>DEBUG</code>: A boolean that turns debug mode on or off. <strong>Default:</strong> <code>False</code> (loaded from <code>env.bool("DEBUG", default=False)</code>). When <code>True</code>, Django provides detailed error pages, reloads code on changes, and enables other development-specific features. <strong>Must be <code>False</code> in production for security and performance reasons.</strong></li>
+</ul>
+<h2 id="time-language">Time &amp; Language</h2>
+<p>Standard settings for localization and time zones.</p>
+<ul>
+<li><code>LANGUAGE_CODE</code>: The language code for this installation. <strong>Default:</strong> <code>en-us</code>. This affects the default language for Django's built-in messages and templates.</li>
+<li><code>TIME_ZONE</code>: The time zone for this installation. <strong>Default:</strong> <code>UTC</code>. This is the time zone that Django will use for all datetime objects unless a specific timezone is activated.</li>
+<li><code>USE_I18N</code>: A boolean that specifies whether Django's internationalization system should be enabled. <strong>Default:</strong> <code>True</code>. When <code>True</code>, Django will look for translation files.</li>
+<li><code>USE_TZ</code>: A boolean that specifies whether Django's timezone support should be enabled. <strong>Default:</strong> <code>True</code>. When <code>True</code>, Django stores datetimes in UTC in the database and converts them to the user's local time zone for display.</li>
+</ul>
+<h2 id="security-and-users">Security and Users</h2>
+<p>This section covers critical security configurations and user model settings.</p>
+<ul>
+<li>
+<p><code>SECRET_KEY</code>: A secret key for a particular Django installation. <strong>Default:</strong> Loaded from the <code>DJANGO_SECRET_KEY</code> environment variable. This is used to provide cryptographic signing and should be a unique, unpredictable value. <strong>Must be kept secret and loaded from environment variables.</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="n">env</span><span class="p">(</span><span class="s2">&quot;DJANGO_SECRET_KEY&quot;</span><span class="p">)</span>
+</code></pre></div>
+</li>
+<li>
+<p><code>ALLOWED_HOSTS</code>: A list of strings representing the host/domain names that this Django site can serve. <strong>Default:</strong> <code>["*"]</code> (loaded from <code>env.list("ALLOWED_HOSTS", default=["*"])</code>). This is a security measure to prevent HTTP Host header attacks. <strong>In production, specify your exact domain names (e.g., <code>["example.com", "www.example.com"]</code>) and never use <code>"*"</code> for security.</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="s2">&quot;ALLOWED_HOSTS&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">])</span>
+</code></pre></div>
+</li>
+<li>
+<p><code>AUTH_USER_MODEL</code>: Specifies the custom user model to use. <strong>Default:</strong> <code>users.CustomUser</code>. This allows you to extend Django's default user model with custom fields and behaviors.</p>
+</li>
+<li><code>MIN_PASSWORD_LENGTH</code>: Minimum length for user passwords. <strong>Default:</strong> <code>8</code> (loaded from <code>env.int("MIN_PASSWORD_LENGTH", default=8)</code>). This is used by the password validation system.</li>
+<li><code>PASSWORD_HASHERS</code>: A list of password hashing algorithms used for storing user passwords. Django will try them in order until one works. <strong>Default:</strong> A list including <code>ScryptPasswordHasher</code>, <code>PBKDF2PasswordHasher</code>, <code>PBKDF2SHA1PasswordHasher</code>, <code>Argon2PasswordHasher</code>, and <code>BCryptSHA256PasswordHasher</code>. This provides strong password security.</li>
+<li><code>AUTH_PASSWORD_VALIDATORS</code>: Configures password validation rules. <strong>Default:</strong> Includes validators for user attribute similarity, minimum length, common passwords, and numeric passwords. You can customize these to enforce stronger password policies.</li>
+</ul>
+<h3 id="security-headers">Security Headers</h3>
+<ul>
+<li><code>SECURE_BROWSER_XSS_FILTER</code>: A boolean that enables the X-XSS-Protection header. <strong>Default:</strong> <code>True</code>. This helps protect against Cross-Site Scripting (XSS) attacks.</li>
+<li><code>SECURE_CONTENT_TYPE_NOSNIFF</code>: A boolean that enables the X-Content-Type-Options header. <strong>Default:</strong> <code>True</code>. This prevents browsers from MIME-sniffing a response away from the declared content-type.</li>
+<li><code>X_FRAME_OPTIONS</code>: Prevents clickjacking by setting the X-Frame-Options header. <strong>Default:</strong> <code>DENY</code>. This means the page cannot be displayed in a frame.</li>
+<li><code>CSRF_COOKIE_SECURE</code>: A boolean that determines whether the CSRF cookie should be sent only over HTTPS. <strong>Default:</strong> <code>True</code> if <code>DEBUG</code> is <code>False</code>, <code>False</code> otherwise. <strong>Should be <code>True</code> in production.</strong></li>
+<li><code>SESSION_COOKIE_SECURE</code>: A boolean that determines whether the session cookie should be sent only over HTTPS. <strong>Default:</strong> <code>True</code> if <code>DEBUG</code> is <code>False</code>, <code>False</code> otherwise. <strong>Should be <code>True</code> in production.</strong></li>
+</ul>
+<h2 id="databases">Databases</h2>
+<p>Database connection settings are configured via the <code>DATABASE_URL</code> environment variable.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">DJANGO_DATABASE_URL</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">db</span><span class="p">(</span><span class="s2">&quot;DATABASE_URL&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="n">DJANGO_DATABASE_URL</span><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><code>DJANGO_DATABASE_URL</code>: The database connection string, parsed by <code>django-environ</code>. <strong>Default:</strong> Loaded from the <code>DATABASE_URL</code> environment variable.</li>
+<li><code>DATABASES</code>: A dictionary containing the database configurations. The <code>default</code> key holds the primary database connection.</li>
+<li><code>DEFAULT_AUTO_FIELD</code>: The type of primary key to use for models that don't explicitly specify one. <strong>Default:</strong> <code>django.db.models.BigAutoField</code>. This uses a 64-bit integer, which is generally preferred over <code>AutoField</code> (32-bit) to avoid overflow issues in large applications.</li>
+</ul>
+<h2 id="applications-configuration">Applications Configuration</h2>
+<p>This section lists all installed Django applications and middleware.</p>
+<ul>
+<li>
+<p><code>INSTALLED_APPS</code>: A list of strings designating all applications that are enabled in this Django installation. <strong>Default:</strong> Includes Django's built-in apps (admin, auth, contenttypes, sessions, messages, staticfiles), third-party libraries (whitenoise, corsheaders, rest_framework, django_filters, knox, django_celery_beat, django_celery_results, drf_spectacular, django_extensions), and local project apps (apps.users, apps.core). This setting tells Django which applications are active in your project.</p>
+</li>
+<li>
+<p><code>MIDDLEWARE</code>: A list of middleware classes to use. Middleware components process requests and responses globally. <strong>Default:</strong> Includes security, static files, session, CORS, common, CSRF, authentication, custom <code>RequestIDMiddleware</code>, and messages middleware. The order of middleware is important as they are processed in the order they appear in this list.</p>
+</li>
+</ul>
+<h2 id="templates">Templates</h2>
+<p>Configuration for Django's template engine.</p>
+<ul>
+<li><code>BACKEND</code>: The template engine to use. <strong>Default:</strong> <code>django.template.backends.django.DjangoTemplates</code>.</li>
+<li><code>DIRS</code>: A list of directories where Django should look for template files. <strong>Default:</strong> <code>[root_path("templates")]</code>. This allows you to place project-wide templates outside of specific app directories.</li>
+<li><code>APP_DIRS</code>: A boolean that tells Django to look for templates inside the <code>templates</code> subdirectory of installed applications. <strong>Default:</strong> <code>True</code>. This is a convenient way to organize app-specific templates.</li>
+<li><code>OPTIONS</code>: A dictionary of options for the template engine. <strong>Default:</strong> Includes <code>context_processors</code> (which add variables to the template context, such as <code>debug</code>, <code>request</code>, <code>auth</code>, <code>messages</code>) and <code>builtins</code> (which register built-in template tags and filters).</li>
+</ul>
+<h2 id="rest-framework">REST Framework</h2>
+<p>Settings for Django REST Framework (DRF) and related authentication/API schema tools.</p>
+<h3 id="rest_knox"><code>REST_KNOX</code></h3>
+<p>Configuration for <code>django-rest-knox</code>, the token-based authentication system.</p>
+<ul>
+<li><code>SECURE_HASH_ALGORITHM</code>: The hashing algorithm used for tokens. <strong>Default:</strong> <code>hashlib.sha512</code>.</li>
+<li><code>AUTH_TOKEN_CHARACTER_LENGTH</code>: The length of the authentication token. <strong>Default:</strong> <code>64</code>.</li>
+<li><code>TOKEN_TTL</code>: Token time-to-live. <strong>Default:</strong> <code>timedelta(hours=10)</code>. This defines how long a token is valid.</li>
+<li><code>USER_SERIALIZER</code>: The serializer used for user profiles. <strong>Default:</strong> <code>apps.users.serializers.UserProfileSerializer</code>.</li>
+<li><code>TOKEN_LIMIT_PER_USER</code>: Limits the number of active tokens per user. <strong>Default:</strong> <code>None</code> (no limit).</li>
+<li><code>AUTO_REFRESH</code>: Whether tokens should be automatically refreshed. <strong>Default:</strong> <code>False</code>.</li>
+<li><code>AUTO_REFRESH_MAX_TTL</code>: Maximum time-to-live for auto-refreshed tokens. <strong>Default:</strong> <code>None</code>.</li>
+<li><code>MIN_REFRESH_INTERVAL</code>: Minimum interval between token refreshes. <strong>Default:</strong> <code>60</code> seconds.</li>
+<li><code>AUTH_HEADER_PREFIX</code>: The prefix for the Authorization header. <strong>Default:</strong> <code>Bearer</code>.</li>
+<li><code>TOKEN_MODEL</code>: The token model used. <strong>Default:</strong> <code>knox.AuthToken</code>.</li>
+</ul>
+<h3 id="rest_framework"><code>REST_FRAMEWORK</code></h3>
+<p>General DRF settings.</p>
+<ul>
+<li><code>DEFAULT_AUTHENTICATION_CLASSES</code>: Defines authentication methods. <strong>Default:</strong> <code>knox.auth.TokenAuthentication</code>. In <code>DEBUG</code> mode, <code>SessionAuthentication</code> and <code>BasicAuthentication</code> are also added.</li>
+<li><code>DEFAULT_FILTER_BACKENDS</code>: Enables filtering, searching, and ordering capabilities. <strong>Default:</strong> <code>django_filters.rest_framework.DjangoFilterBackend</code>, <code>rest_framework.filters.SearchFilter</code>, <code>rest_framework.filters.OrderingFilter</code>.</li>
+<li><code>DEFAULT_RENDERER_CLASSES</code>: Specifies how API responses are rendered. <strong>Default:</strong> <code>rest_framework.renderers.JSONRenderer</code>. In <code>DEBUG</code> mode, <code>BrowsableAPIRenderer</code> is also added.</li>
+<li><code>DEFAULT_SCHEMA_CLASS</code>: Integrates <code>drf-spectacular</code> for OpenAPI schema generation. <strong>Default:</strong> <code>drf_spectacular.openapi.AutoSchema</code>.</li>
+<li><code>DEFAULT_THROTTLE_RATES</code>: Configures rate limiting for different user types. <strong>Default:</strong> <code>user: "1000/day"</code>, <code>anon: "100/day"</code>, <code>user_login: "5/minute"</code>. These can be adjusted based on your application's needs.</li>
+</ul>
+<h3 id="spectacular_settings"><code>SPECTACULAR_SETTINGS</code></h3>
+<p>Settings for <code>drf-spectacular</code>, used for generating OpenAPI 3 documentation.</p>
+<ul>
+<li><code>TITLE</code>: The title of your API documentation. <strong>Default:</strong> <code>Django Starter Template</code>.</li>
+<li><code>DESCRIPTION</code>: A description of your API. <strong>Default:</strong> <code>A comprehensive starting point for your new API with Django and DRF</code>.</li>
+<li><code>VERSION</code>: The version of your API. <strong>Default:</strong> <code>0.1.0</code>.</li>
+<li><code>SERVE_INCLUDE_SCHEMA</code>: Whether to include the schema endpoint in the generated documentation. <strong>Default:</strong> <code>False</code>. Set to <code>True</code> if you want the raw OpenAPI schema to be accessible.</li>
+</ul>
+<h3 id="cors-headers">CORS Headers</h3>
+<ul>
+<li><code>CORS_ALLOW_ALL_ORIGINS</code>: A boolean that allows all origins for CORS requests in debug mode. <strong>Default:</strong> <code>True</code> if <code>DEBUG</code> is <code>True</code>, <code>False</code> otherwise. <strong>Should be <code>False</code> in production for security.</strong></li>
+<li><code>CORS_ALLOWED_ORIGINS</code>: A list of allowed origins for CORS requests when <code>CORS_ALLOW_ALL_ORIGINS</code> is <code>False</code>. <strong>Default:</strong> Loaded from the <code>CORS_ALLOWED_ORIGINS</code> environment variable.</li>
+</ul>
+<h2 id="cache">Cache</h2>
+<p>Configuration for caching, using Redis.</p>
+<ul>
+<li><code>CACHES</code>: Defines cache backends. <strong>Default:</strong> A dictionary with a <code>default</code> cache using <code>django_redis.cache.RedisCache</code>.</li>
+<li><code>LOCATION</code>: The connection URL for the Redis server. <strong>Default:</strong> <code>redis://redis:6379</code> (loaded from <code>env("REDIS_URL", default="redis://redis:6379")</code>).</li>
+<li><code>OPTIONS</code>: Additional options for the Redis client. <strong>Default:</strong> <code>{"CLIENT_CLASS": "django_redis.client.DefaultClient"}</code>.</li>
+<li><code>USER_AGENTS_CACHE</code>: The cache alias to use for user agent caching. <strong>Default:</strong> <code>default</code>.</li>
+</ul>
+<h2 id="celery">Celery</h2>
+<p>Settings for Celery, the asynchronous task queue.</p>
+<ul>
+<li><code>CELERY_BROKER_URL</code>: The URL for the Celery message broker. <strong>Default:</strong> <code>redis://redis:6379</code> (loaded from <code>env("CELERY_BROKER_URL", default="redis://redis:6379")</code>).</li>
+<li><code>CELERY_RESULT_BACKEND</code>: Where Celery task results are stored. <strong>Default:</strong> <code>django-db</code> (loaded from <code>env("CELERY_RESULT_BACKEND", default="django-db")</code>).</li>
+<li><code>CELERY_BEAT_SCHEDULER</code>: Specifies the scheduler for periodic tasks. <strong>Default:</strong> <code>django_celery_beat.schedulers.DatabaseScheduler</code>. This enables managing periodic tasks via the Django admin.</li>
+<li><code>CELERY_ACCEPT_CONTENT</code>: A list of accepted content types for tasks. <strong>Default:</strong> <code>["application/json"]</code>.</li>
+<li><code>CELERY_TASK_SERIALIZER</code>: The default serialization method for tasks. <strong>Default:</strong> <code>json</code>.</li>
+<li><code>CELERY_RESULT_SERIALIZER</code>: The default serialization method for task results. <strong>Default:</strong> <code>json</code>.</li>
+<li><code>CELERY_TIMEZONE</code>: The timezone for Celery. <strong>Default:</strong> <code>America/Santiago</code>.</li>
+<li><code>CELERY_RESULT_EXTENDED</code>: Whether to store extended result information. <strong>Default:</strong> <code>True</code>.</li>
+</ul>
+<h2 id="email">Email</h2>
+<p>Email backend settings for sending emails.</p>
+<ul>
+<li><code>EMAIL_HOST</code>: The hostname of the SMTP server. <strong>Default:</strong> <code>smtp.gmail.com</code> (loaded from <code>env("EMAIL_HOST", default="smtp.gmail.com")</code>).</li>
+<li><code>EMAIL_USE_TLS</code>: Whether to use TLS (Transport Layer Security) for the connection. <strong>Default:</strong> <code>True</code> (loaded from <code>env.bool("EMAIL_USE_TLS", default=True)</code>).</li>
+<li><code>EMAIL_PORT</code>: The port number for the SMTP server. <strong>Default:</strong> <code>587</code> (loaded from <code>env.int("EMAIL_PORT", default=587)</code>).</li>
+<li><code>EMAIL_HOST_USER</code>: The username for the SMTP server. <strong>Default:</strong> <code>""</code> (loaded from <code>env("EMAIL_HOST_USER", default="")</code>).</li>
+<li><code>EMAIL_HOST_PASSWORD</code>: The password for the SMTP server. <strong>Default:</strong> <code>""</code> (loaded from <code>env("EMAIL_HOST_PASSWORD", default="")</code>).</li>
+</ul>
+<h2 id="sentry-and-logging">Sentry and Logging</h2>
+<p>While logging has its own dedicated documentation page, this section briefly covers Sentry integration.</p>
+<ul>
+<li><code>IGNORABLE_404_URLS</code>: A list of regular expressions for URLs that should not trigger 404 errors in logging/error reporting. <strong>Default:</strong> Includes patterns for common favicon and Apple touch icon requests.</li>
+<li><code>LOGGING</code>: Detailed logging configuration (refer to the <a href="../logging/">Logging System</a> documentation for more).</li>
+<li><code>sentry_sdk.init()</code>: Initializes Sentry for error tracking and performance monitoring in production environments. <strong>Default:</strong> Initialized with <code>dsn</code>, <code>traces_sample_rate=1.0</code>, and <code>profiles_sample_rate=1.0</code> when <code>DEBUG</code> is <code>False</code>.</li>
+</ul>
+<h2 id="static-media-files">Static &amp; Media Files</h2>
+<p>Settings for serving static and user-uploaded media files.</p>
+<ul>
+<li><code>STORAGES</code>: Defines storage backends for default and static files. <strong>Default:</strong> <code>FileSystemStorage</code> for default and <code>whitenoise.storage.CompressedManifestStaticFilesStorage</code> for static files.</li>
+<li><code>STATIC_URL</code>: The URL to use when referring to static files located in <code>STATIC_ROOT</code>. <strong>Default:</strong> <code>/static/</code>.</li>
+<li><code>STATICFILES_DIRS</code>: A list of directories where Django will look for additional static files. <strong>Default:</strong> <code>[root_path("static")]</code>.</li>
+<li><code>STATIC_ROOT</code>: The absolute path to the directory where <code>collectstatic</code> will gather all static files for deployment. <strong>Default:</strong> A temporary directory if <code>DEBUG</code> is <code>True</code>, otherwise <code>static_root</code> within the project root.</li>
+<li><code>MEDIA_URL</code>: The URL that handles the media served from <code>MEDIA_ROOT</code>. <strong>Default:</strong> <code>/media/</code>.</li>
+<li><code>MEDIA_ROOT</code>: The absolute path to the directory where user-uploaded media files are stored. <strong>Default:</strong> <code>media_root</code> within the project root.</li>
+<li><code>ADMIN_MEDIA_PREFIX</code>: The URL prefix for admin media files. <strong>Default:</strong> <code>/static/admin/</code>.</li>
+</ul>
+<h2 id="django-debug-toolbar-and-django-extensions">Django Debug Toolbar and Django Extensions</h2>
+<p>These tools are enabled only in <code>DEBUG</code> mode for development purposes.</p>
+<ul>
+<li><code>debug_toolbar</code>: Provides a customizable debug panel for Django projects. <strong>Default:</strong> Added to <code>INSTALLED_APPS</code> and <code>MIDDLEWARE</code> if <code>DEBUG</code> is <code>True</code>.</li>
+<li><code>INTERNAL_IPS</code>: A list of IP addresses that are considered "internal" for the Debug Toolbar. <strong>Default:</strong> <code>["127.0.0.1"]</code>.</li>
+<li><code>django_extensions</code>: Offers a collection of custom extensions for Django, including useful management commands. <strong>Default:</strong> Added to <code>INSTALLED_APPS</code> if <code>DEBUG</code> is <code>True</code>.</li>
+</ul>
+<p>These settings are conditionally added to <code>INSTALLED_APPS</code> and <code>MIDDLEWARE</code> when <code>DEBUG</code> is <code>True</code>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
