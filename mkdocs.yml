@@ -39,5 +39,8 @@ nav:
   - Database Seeding: database_seeding.md
   - Testing: testing.md
   - Environment Setup: environment_setup.md
-  - GitHub Copilot Prompts: copilot_prompts.md
-  
+  - AI Tools and CLI Agents:
+    - Overview: ai_tools/index.md
+    - Gemini CLI Agent: ai_tools/gemini.md
+    - GitHub Copilot: ai_tools/copilot.md
+    - Roo Code and Cline: ai_tools/cline_roocode.md

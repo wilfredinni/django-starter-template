@@ -21,7 +21,7 @@ This template is packed with features to help you build amazing APIs:
 -   **Centralized Logging:** Structured JSON logging for easy monitoring.
 -   **Custom User Model:** Email-based authentication for a modern user experience.
 -   **And much more!** Explore the documentation to discover all the features.
--   **Github Copilot Prompts:** Useful prompts to enhance your development experience with GitHub Copilot.
+-   **AI Tools:** Useful prompts to enhance your development experience with GitHub Copilot, Gemini CLI agent, and Roo Code.
 
 ## Quick Start
 
@@ -42,8 +42,8 @@ This template is packed with features to help you build amazing APIs:
 
 This documentation is your guide to building amazing applications with the Django Starter Template. Use the navigation on the left to explore the different sections.
 
--   **[Copilot Prompts](https://wilfredinni.github.io/django-starter-template/copilot_prompts):** Explore useful prompts to enhance your development experience with GitHub Copilot.
 -   **[Development](https://wilfredinni.github.io/django-starter-template/development):** Learn about the development workflow, including how to run tests, and use the scripts.
+-   **[AI Tools](https://wilfredinni.github.io/django-starter-template/ai_tools):** Explore useful prompts to enhance your development experience with GitHub Copilot.
 -   **[Project Structure](https://wilfredinni.github.io/django-starter-template/project_structure):** Get an overview of the project's directory structure.
 -   **[Project Settings](https://wilfredinni.github.io/django-starter-template/settings):** Understand the available settings and how to configure your project.
 -   **[Dependencies](https://wilfredinni.github.io/django-starter-template/dependencies):** See a list of all the project's dependencies.

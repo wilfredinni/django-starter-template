@@ -1,10 +1,10 @@
-# GitHub Copilot Prompts and Guidelines
+# GitHub Copilot
 
-This document outlines the technical requirements and communication standards for Django backend development within this project, and explains how to leverage specific GitHub Copilot prompts to streamline your workflow.
+This page provides detailed information and guidelines for using GitHub Copilot within this project.
 
 ## Technical Requirements and Communication Standards
 
-These guidelines ensure consistency, quality, and adherence to best practices when working with GitHub Copilot:
+This project adheres to specific technical requirements and communication standards for Django backend development when using GitHub Copilot:
 
 **Framework & Core Dependencies:**
 - Django 5.2+ with Django REST Framework
@@ -47,9 +47,7 @@ These guidelines ensure consistency, quality, and adherence to best practices wh
 
 All responses must focus on technical implementation within these specifications and avoid theoretical discussions or alternative technology suggestions.
 
-## Using GitHub Copilot Prompts
 
-These specialized prompts are designed to guide GitHub Copilot towards generating more relevant and accurate responses for specific development tasks within this project. To use them, copy the content of the desired prompt file and paste it into your GitHub Copilot chat window, followed by your specific request.
 
 ### Feature Prompt (`feature.prompt.md`)
 
@@ -274,3 +272,12 @@ Generate comprehensive test suite for Django REST framework API views following 
 Reference Django REST framework testing documentation for best practices:
 https://www.django-rest-framework.org/api-guide/testing/
 ```
+
+## Reusable Prompts
+
+Specific reusable prompts for various tasks are located in the [.github/prompts/](../../.github/prompts/) directory:
+*   `feature.prompt.md`
+*   `refactor.prompt.md`
+*   `security.prompt.md`
+*   `test-model.prompt.md`
+*   `test-view.prompt.md
