@@ -58,6 +58,7 @@ This template is packed with features to help you build amazing APIs:
 -   **API Documentation:** Automatic OpenAPI 3 schema generation with `drf-spectacular`.
 -   **Centralized Logging:** Structured JSON logging for easy monitoring.
 -   **Custom User Model:** Email-based authentication for a modern user experience.
+-   **Github Copilot Prompts:** Useful prompts to enhance your development experience.
 -   **And much more!** Explore the documentation to discover all the features.
 
 ---
@@ -78,4 +79,4 @@ This documentation is your guide to building amazing applications with the Djang
 -   **[Database Seeding](database_seeding.md):** Learn how to seed your database with initial data.
 -   **[Testing](testing.md):** Understand how to run and write tests for your project.
 -   **[Environment Setup](environment_setup.md):** Learn how to set up your development environment.
--   **[Useful Commands](useful_commands.md):** A list of useful commands for development.
+-   **[Copilot Prompts](copilot_prompts.md):** Explore useful prompts to enhance your development experience with GitHub Copilot.
