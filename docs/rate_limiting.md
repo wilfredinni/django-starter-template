@@ -12,7 +12,7 @@ Rate limiting is a crucial security and performance feature that controls the nu
 
 This project uses Django REST Framework's built-in throttling mechanisms, along with a custom throttle class, to implement rate limiting.
 
-### 1. `DEFAULT_THROTTLE_RATES` in `conf/settings.py`
+### 1. Default Throttle Rates
 
 Global throttle rates are defined in `conf/settings.py` under the `REST_FRAMEWORK` dictionary. These rates are applied based on different scopes:
 
@@ -32,7 +32,7 @@ REST_FRAMEWORK = {
 *   `anon`: Applies to unauthenticated (anonymous) users. **Default:** `100 requests per day`.
 *   `user_login`: A custom scope specifically for login attempts. **Default:** `5 requests per minute`.
 
-### 2. Custom Throttle Class (`UserLoginRateThrottle`)
+### 2. Custom Throttle Class
 
 For specific scenarios, like limiting login attempts, a custom throttle class (`apps/users/throttles.py`) is used. This allows for more granular control over how requests are identified and limited.
 

@@ -1,8 +1,12 @@
 # Development Workflow
 
-This guide covers the essential commands and practices for developing your application after you have completed the initial setup using the Dev Container.
+## Overview
+
+This guide outlines the essential commands and best practices for developing your application within the Django Starter Template. It assumes you have completed the initial environment setup, ideally using the provided Dev Container.
 
 ## Core Development Commands
+
+The project provides a set of convenient `poetry run` commands to streamline common development tasks. These commands should be executed from your terminal within the VS Code Dev Container or your activated Poetry shell.
 
 The project includes convenient scripts in `pyproject.toml` to simplify common development tasks. You should use these `poetry run` commands from the terminal inside your VS Code dev container.
 
@@ -16,25 +20,31 @@ The project includes convenient scripts in `pyproject.toml` to simplify common d
 
 ### Testing
 
-The project uses `pytest` for testing.
+The project utilizes `pytest` for its test suite. Below are common commands for running tests and generating coverage reports:
 
-- **Run all tests:**
-  ```bash
-  poetry run pytest
-  ```
-- **Run tests with coverage:**
-  ```bash
-  poetry run pytest --cov
-  ```
-- **Generate an HTML coverage report:**
-  ```bash
-  poetry run pytest --cov --cov-report=html
-  ```
-  The report will be generated in the `htmlcov/` directory.
+*   **Run all tests:**
+    ```bash
+    poetry run pytest
+    ```
+    Executes the entire test suite.
+
+*   **Run tests with coverage:**
+    ```bash
+    poetry run pytest --cov
+    ```
+    Runs all tests and collects code coverage information.
+
+*   **Generate an HTML coverage report:**
+    ```bash
+    poetry run pytest --cov --cov-report=html
+    ```
+    Generates a detailed HTML report of code coverage, which can be found in the `htmlcov/` directory. This report helps identify untested parts of the codebase.
 
 ## Database Seeding
 
-The template includes a powerful seeding command to populate your database with sample data for development and testing.
+The template includes a powerful management command to populate your database with sample data, which is invaluable for development and testing. This command is part of the `apps/core/management/commands/seed.py` module.
+
+**Usage:**
 
 ```bash
 # Basic seeding with default options (creates 10 users)
@@ -53,21 +63,31 @@ poetry run seed --clean
 poetry run seed --users 50 --superuser --clean
 ```
 
+**Options:**
+
+*   `--users <number>`: Specifies the number of regular users to create. Default is 10.
+*   `--superuser`: Creates a default superuser (`admin@admin.com` with password `admin`).
+*   `--clean`: Cleans (deletes) existing seeded data before generating new data. Use with caution as this will remove all existing users and related data.
+
 ## Asynchronous Tasks (Celery)
 
-For handling background tasks, the project uses Celery.
+For handling background tasks and asynchronous operations, the project integrates Celery. To run Celery workers and schedulers, use the following commands:
 
-- **Start the Celery worker:**
-  ```bash
-  poetry run worker
-  ```
-- **Start the Celery beat scheduler (for periodic tasks):**
-  ```bash
-  poetry run beat
-  ```
+*   **Start the Celery worker:**
+    ```bash
+    poetry run worker
+    ```
+    This command starts a Celery worker process that executes tasks from the message queue.
+
+*   **Start the Celery beat scheduler:**
+    ```bash
+    poetry run beat
+    ```
+    This command starts the Celery beat scheduler, which is responsible for periodically executing scheduled tasks.
 
 ## Environment Variables
 
-- The project uses a `.env` file to manage environment variables.
-- The `poetry run create_dev_env` command can be used to generate a new development `.env` file if needed.
-- For production, refer to `.env.example` for the full list of required variables.
+Environment variables are managed using a `.env` file, which is crucial for configuring application settings without hardcoding sensitive information. The project uses `django-environ` to load these variables.
+
+*   **Development `.env` file:** The `poetry run create_dev_env` command can be used to generate a new `.env` file tailored for development purposes if it's missing or needs to be reset.
+*   **Production `.env` file:** For production deployments, refer to the `.env.example` file at the project root for a comprehensive list of all required environment variables and their descriptions. This file serves as a template for setting up your production environment.

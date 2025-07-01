@@ -1,6 +1,8 @@
 # Project Structure
 
-Understanding the project's directory structure is key to navigating and contributing to the Django Starter Template. This document provides a detailed overview of the main directories and files, explaining their purpose and contents.
+## Overview
+
+Understanding the project's directory structure is fundamental for navigating, developing, and maintaining the Django Starter Template. This document provides a detailed overview of the main directories and files, explaining their purpose and contents to help you quickly grasp the project's organization.
 
 ```
 ├── .clinerules/                # Gemini CLI rules
@@ -64,38 +66,42 @@ Understanding the project's directory structure is key to navigating and contrib
 └── templates/                  # Project-wide HTML templates
 ```
 
-## Key Directories and Their Purpose
+## Key Directories
 
-*   **`.devcontainer/`**: Contains configuration files for Visual Studio Code Dev Containers. This ensures a consistent and reproducible development environment across different machines.
+This section describes the primary directories within the project and their respective purposes:
 
-*   **`.github/`**: Stores GitHub-specific files, including GitHub Actions workflows for Continuous Integration (CI), issue templates, and other repository settings.
+*   **`.devcontainer/`**: Contains configuration files for Visual Studio Code Dev Containers. This ensures a consistent and reproducible development environment across different machines, pre-configured with all necessary tools and dependencies.
 
-*   **`.vscode/`**: Holds Visual Studio Code workspace settings and recommended extensions for the project, enhancing the development experience.
+*   **`.github/`**: Stores GitHub-specific files, including GitHub Actions workflows for Continuous Integration (CI) and Continuous Deployment (CD), issue templates, and other repository settings. This directory automates various development processes.
 
-*   **`apps/`**: This is the core of your Django project, where individual Django applications reside. Each app is a self-contained module responsible for a specific feature or set of features.
-    *   **`core/`**: Houses fundamental functionalities and shared components that are used across different parts of the application. This includes custom management commands, base Celery tasks, and common API schema definitions.
-    *   **`users/`**: Manages all aspects of user authentication and authorization, including user models, serializers, views, and related utilities.
+*   **`.vscode/`**: Holds Visual Studio Code workspace settings and recommended extensions for the project. These settings enhance the development experience by providing consistent formatting, linting, and debugging configurations.
 
-*   **`conf/`**: Contains project-wide configuration files that apply to the entire Django project, rather than a specific app. This includes the main `settings.py`, URL routing, WSGI configuration, and Celery setup.
+*   **`apps/`**: This is the core of your Django project, where individual Django applications (modules) reside. Each app is designed to be a self-contained unit responsible for a specific feature or set of features, promoting modularity and reusability.
+    *   **`core/`**: Houses fundamental functionalities and shared components that are used across different parts of the application. This includes custom management commands, base Celery tasks, and common API schema definitions, serving as a foundational app.
+    *   **`users/`**: Manages all aspects of user authentication and authorization. This includes user models, serializers, views, and related utilities for user registration, login, and profile management.
 
-*   **`logs/`**: The designated directory for application log files. Different log levels and types (e.g., general, security, error) are typically written to separate files within this directory.
+*   **`conf/`**: Contains project-wide configuration files that apply to the entire Django project, rather than being specific to a single app. This includes the main `settings.py`, URL routing (`urls.py`), ASGI/WSGI configurations, and Celery setup.
 
-*   **`scripts/`**: A collection of utility scripts that automate various development and maintenance tasks, such as running the server, migrations, or custom commands.
+*   **`logs/`**: The designated directory for application log files. Different log levels and types (e.g., general application logs, security events, error logs) are typically written to separate files within this directory for easier monitoring and debugging.
 
-*   **`static/`**: Stores static assets like CSS, JavaScript, and images that are served directly by the web server.
+*   **`scripts/`**: A collection of utility scripts that automate various development and maintenance tasks. These scripts can include commands for running the server, managing migrations, or executing custom project-specific operations.
 
-*   **`templates/`**: Contains project-wide HTML templates that are not specific to any single Django application.
+*   **`static/`**: Stores static assets such as CSS stylesheets, JavaScript files, and images. These files are typically served directly by the web server and are essential for the frontend of the application.
 
-## Key Files and Their Purpose
+*   **`templates/`**: Contains project-wide HTML templates that are not specific to any single Django application. These templates can be used for common pages like error pages or base layouts.
 
-*   **`.env.example`**: A template file that outlines all the environment variables required by the project. Developers should copy this to `.env` and fill in their specific values.
+## Key Files
 
-*   **`manage.py`**: Django's command-line utility for administrative tasks. You'll use this for running the development server, migrations, and custom management commands.
+This section outlines the most important files at the project root and their functions:
 
-*   **`pyproject.toml`**: Used by Poetry (the dependency management tool) to define project metadata, dependencies, and build configurations.
+*   **`.env.example`**: A template file that outlines all the environment variables required by the project. Developers should copy this to a `.env` file and fill in their specific values for local development, ensuring sensitive information is not hardcoded.
 
-*   **`pytest.ini`**: Configuration file for `pytest`, specifying how tests should be discovered and run, including settings for code coverage.
+*   **`manage.py`**: Django's command-line utility for administrative tasks. This script is used for running the development server, performing database migrations, creating superusers, and executing custom management commands.
 
-*   **`README.md`**: The main project documentation, providing a high-level overview, quick start instructions, and key features.
+*   **`pyproject.toml`**: Used by Poetry (the dependency management tool) to define project metadata, dependencies, and build configurations. It serves as the central point for managing the project's Python environment.
+
+*   **`pytest.ini`**: The configuration file for `pytest`, the testing framework used in this project. It specifies how tests should be discovered and run, including settings for code coverage analysis.
+
+*   **`README.md`**: The main project documentation file, providing a high-level overview, quick start instructions, key features, and links to more detailed documentation. It's the first file new contributors typically read.
 
 By adhering to this structured layout, the project promotes modularity, maintainability, and scalability, making it easier for developers to understand and contribute to the codebase.

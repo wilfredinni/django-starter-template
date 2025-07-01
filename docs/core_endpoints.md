@@ -1,44 +1,56 @@
-# Core App
+# Core Application
 
-This section details the functionalities and API endpoints provided by the Core application (`apps/core/`). The Core app serves as a foundation for common utilities, middleware, and base tasks within the Django Starter Template.
+## Overview
 
-## Functionalities
+This section provides an overview of the Core application (`apps/core/`), which serves as a foundational component within the Django Starter Template. It encapsulates common utilities, middleware, base tasks, and essential API endpoints.
 
-The `apps/core` directory contains:
+## Key Functionalities
 
-*   **Middleware**: Custom middleware, such as `RequestIDMiddleware`, for adding request-specific information (e.g., request ID, client IP, response time) to logs and responses.
-*   **Tasks**: Base Celery task classes, like `BaseTaskWithRetry`, which provide common functionalities such as automatic retries for background tasks.
-*   **Schema**: Common OpenAPI schema definitions and examples used across different API endpoints.
-*   **Management Commands**: Custom Django management commands (e.g., `seed` command for populating the database with sample data).
+The `apps/core/` directory includes the following key functionalities:
 
-## Endpoints
+*   **Middleware**: Contains custom middleware, such as `RequestIDMiddleware`, which enriches logs and responses with request-specific details like `request_id`, client IP, and response time.
+*   **Tasks**: Provides base Celery task classes, including `BaseTaskWithRetry`, which offers common functionalities like automatic retries for background tasks, enhancing task reliability.
+*   **Schema**: Defines common OpenAPI schema components and examples, promoting reusability and consistency across API documentation.
+*   **Management Commands**: Includes custom Django management commands, such as the `seed` command, designed for populating the database with sample data for development and testing purposes.
 
-These endpoints are prefixed with `/core/`.
+## API Endpoints
+
+The Core application exposes the following API endpoints, all prefixed with `/core/`:
 
 ### Ping
 
-GET /core/ping/
+This is a simple endpoint designed to verify that the server is operational and responsive.
 
-A simple endpoint to check if the server is running.
+**Request:**
 
-**Success Response (200 OK):**
+*   **Method:** `GET`
+*   **URL:** `/core/ping/`
 
-```json
-{
-    "ping": "pong"
-}
-```
+**Responses:**
+
+*   **Success (200 OK):**
+    ```json
+    {
+        "ping": "pong"
+    }
+    ```
+    *   Returns a JSON object with a `ping` key and `pong` value, indicating a successful response.
 
 ### Fire Task
 
-GET /core/fire-task/
+This endpoint triggers a sample Celery task in the background. It's useful for testing the Celery setup and task execution.
 
-Triggers a sample Celery task.
+**Request:**
 
-**Success Response (200 OK):**
+*   **Method:** `GET`
+*   **URL:** `/core/fire-task/`
 
-```json
-{
-    "task": "Task fired"
-}
-```
+**Responses:**
+
+*   **Success (200 OK):**
+    ```json
+    {
+        "task": "Task fired"
+    }
+    ```
+    *   Returns a confirmation that the task has been successfully initiated.

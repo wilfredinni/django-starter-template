@@ -35,14 +35,14 @@ Place your task definitions in `tasks.py` files within your Django apps (e.g., `
 
 The template provides a custom base task class, `BaseTaskWithRetry`, located in `apps/core/tasks.py`, which simplifies implementing retry logic for your tasks.
 
-### `BaseTaskWithRetry` Attributes:
+### `BaseTaskWithRetry` Attributes
 
 *   `autoretry_for`: A tuple of exception types that should trigger a retry. If any of these exceptions occur during task execution, Celery will automatically retry the task.
 *   `retry_kwargs`: A dictionary of keyword arguments passed to the `retry()` method. The most common is `max_retries`, which defines the maximum number of times the task will be retried.
 *   `retry_backoff`: The initial delay in seconds before the first retry attempt. Subsequent retries will have an exponentially increasing delay.
 *   `retry_jitter`: A boolean that, when `True`, adds a random component to the retry delay. This helps prevent all failed tasks from retrying simultaneously, which can lead to a "thundering herd" problem.
 
-### Example Usage:
+### Example Usage
 
 To use `BaseTaskWithRetry` for your task, simply set its `base` argument in the `@shared_task` decorator:
 
@@ -85,11 +85,11 @@ Tasks can be called in a few ways:
     my_new_task.apply_async((arg1_value, arg2_value), eta=eta_time)
     ```
 
-## Periodic Tasks (Celery Beat)
+## Periodic Tasks
 
 Celery Beat is a scheduler that kicks off tasks periodically. In this project, periodic tasks are managed through the Django Admin interface.
 
-### Steps to Configure a Periodic Task:
+### Steps to Configure a Periodic Task
 
 1.  **Start Celery Worker**: Ensure your Celery worker is running:
 
@@ -108,7 +108,7 @@ Celery Beat is a scheduler that kicks off tasks periodically. In this project, p
     *   The schedule (e.g., every 5 minutes, daily, etc.).
     *   Any arguments or keyword arguments for the task.
 
-### Example Periodic Task:
+### Example Periodic Task
 
 ```python
 from celery import shared_task

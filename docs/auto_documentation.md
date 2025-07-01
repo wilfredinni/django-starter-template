@@ -1,8 +1,10 @@
-# Auto Documentation (drf-spectacular)
+# API Auto-Documentation
 
-This project leverages `drf-spectacular` to automatically generate OpenAPI 3 (Swagger) documentation for its REST APIs. This approach ensures that your API documentation is always up-to-date with your codebase, reducing manual effort and potential discrepancies.
+## Overview
 
-## What is drf-spectacular?
+This section details the automatic API documentation system implemented in the Django Starter Template, which leverages `drf-spectacular` to generate OpenAPI 3 (Swagger) documentation. This ensures that your API documentation remains synchronized with your codebase, minimizing manual effort and potential inconsistencies.
+
+## What is `drf-spectacular`?
 
 `drf-spectacular` is a powerful library that integrates seamlessly with Django REST Framework to generate a comprehensive OpenAPI schema from your DRF views, serializers, and other components. This schema can then be used to render interactive API documentation (like Swagger UI) or generate client SDKs.
 
