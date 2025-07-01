@@ -38,4 +38,5 @@ nav:
   - Database Seeding: database_seeding.md
   - Testing: testing.md
   - Environment Setup: environment_setup.md
+  - GitHub Copilot Prompts: copilot_prompts.md
   
