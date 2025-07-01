@@ -42,17 +42,16 @@ This template is packed with features to help you build amazing APIs:
 
 This documentation is your guide to building amazing applications with the Django Starter Template. Use the navigation on the left to explore the different sections.
 
--   **[Copilot Prompts](copilot_prompts.md):** Explore useful prompts to enhance your development experience with GitHub Copilot.
--   **[Development](development.md):** Learn about the development workflow, including how to run tests, and use the scripts.
--   **[Project Structure](project_structure.md):** Get an overview of the project's directory structure.
--   **[Project Settings](settings.md):** Understand the available settings and how to configure your project.
--   **[Dependencies](dependencies.md):** See a list of all the project's dependencies.
--   **[Authentication](authentication.md):** Learn how to use the authentication and user management endpoints.
--   **[Core App](core_endpoints.md):** Discover the core functionalities and API endpoints.
--   **[Logging](logging.md):** Understand the logging system and how to use it.
--   **[Celery Tasks](tasks.md):** Learn how to create and manage background tasks.
--   **[Rate Limiting](rate_limiting.md):** Configure rate limiting to protect your API.
--   **[Database Seeding](database_seeding.md):** Learn how to seed your database with initial data.
--   **[Testing](testing.md):** Understand how to run and write tests for your project.
--   **[Environment Setup](environment_setup.md):** Learn how to set up your development environment.
--   **[Useful Commands](useful_commands.md):** A list of useful commands for development.
+-   **[Copilot Prompts](https://wilfredinni.github.io/django-starter-template/copilot_prompts):** Explore useful prompts to enhance your development experience with GitHub Copilot.
+-   **[Development](https://wilfredinni.github.io/django-starter-template/development):** Learn about the development workflow, including how to run tests, and use the scripts.
+-   **[Project Structure](https://wilfredinni.github.io/django-starter-template/project_structure):** Get an overview of the project's directory structure.
+-   **[Project Settings](https://wilfredinni.github.io/django-starter-template/settings):** Understand the available settings and how to configure your project.
+-   **[Dependencies](https://wilfredinni.github.io/django-starter-template/dependencies):** See a list of all the project's dependencies.
+-   **[Authentication](https://wilfredinni.github.io/django-starter-template/authentication):** Learn how to use the authentication and user management endpoints.
+-   **[Core App](https://wilfredinni.github.io/django-starter-template/core_endpoints):** Discover the core functionalities and API endpoints.
+-   **[Logging](https://wilfredinni.github.io/django-starter-template/logging):** Understand the logging system and how to use it.
+-   **[Celery Tasks](https://wilfredinni.github.io/django-starter-template/tasks):** Learn how to create and manage background tasks.
+-   **[Rate Limiting](https://wilfredinni.github.io/django-starter-template/rate_limiting):** Configure rate limiting to protect your API.
+-   **[Database Seeding](https://wilfredinni.github.io/django-starter-template/database_seeding):** Learn how to seed your database with initial data.
+-   **[Testing](https://wilfredinni.github.io/django-starter-template/testing):** Understand how to run and write tests for your project.
+-   **[Environment Setup](https://wilfredinni.github.io/django-starter-template/environment_setup):** Learn how to set up your development environment.
