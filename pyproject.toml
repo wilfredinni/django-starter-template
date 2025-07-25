@@ -35,7 +35,7 @@ django-filter = "^25.1"
 python-json-logger = "^3.3.0"
 
 [tool.poetry.group.dev.dependencies]
-django-debug-toolbar = "^5.0.0"
+django-debug-toolbar = "^6.0.0"
 pytest = "^8.3.3"
 pytest-django = "^4.9.0"
 ipykernel = "^6.29.5"
