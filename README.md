@@ -55,7 +55,3 @@ This documentation is your guide to building amazing applications with the Djang
 -   **[Database Seeding](https://wilfredinni.github.io/django-starter-template/database_seeding):** Learn how to seed your database with initial data.
 -   **[Testing](https://wilfredinni.github.io/django-starter-template/testing):** Understand how to run and write tests for your project.
 -   **[Environment Setup](https://wilfredinni.github.io/django-starter-template/environment_setup):** Learn how to set up your development environment.
-
-
-- [ ] TEST
-- [x] TEST
