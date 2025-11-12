@@ -36,7 +36,7 @@ python-json-logger = "^4.0.0"
 
 [tool.poetry.group.dev.dependencies]
 django-debug-toolbar = "^6.0.0"
-pytest = "^8.3.3"
+pytest = "^9.0.0"
 pytest-django = "^4.9.0"
 ipykernel = "^7.0.0"
 pytest-mock = "^3.14.0"
