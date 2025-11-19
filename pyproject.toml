@@ -28,7 +28,7 @@ django-celery-results = "^2.5.1"
 sentry-sdk = {extras = ["django"], version = "^2.17.0"}
 django-redis = "^6.0.0"
 drf-spectacular = "^0.28.0"
-faker = "^37.1.0"
+faker = "^38.0.0"
 django-seed = "^0.3.1"
 django-extensions = "^4.1"
 django-filter = "^25.1"
