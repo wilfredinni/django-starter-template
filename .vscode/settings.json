@@ -55,6 +55,7 @@
         "levelname",
         "logoutall",
         "makemigrations",
+        "mkdocs",
         "nostatic",
         "psycopg",
         "pycache",

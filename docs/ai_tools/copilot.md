@@ -275,9 +275,9 @@ https://www.django-rest-framework.org/api-guide/testing/
 
 ## Reusable Prompts
 
-Specific reusable prompts for various tasks are located in the [.github/prompts/](../../.github/prompts/) directory:
-*   `feature.prompt.md`
-*   `refactor.prompt.md`
-*   `security.prompt.md`
-*   `test-model.prompt.md`
-*   `test-view.prompt.md
+Specific reusable prompts for various tasks are located in the `.github/prompts/` directory of the repository:
+*   `feature.prompt.md` - For planning and implementing new features
+*   `refactor.prompt.md` - For code refactoring improvements
+*   `security.prompt.md` - For security analysis and hardening
+*   `test-model.prompt.md` - For model testing
+*   `test-view.prompt.md` - For view testing

@@ -72,4 +72,4 @@ This documentation is your comprehensive guide to building robust applications w
 *   **[Database Seeding](database_seeding.md):** Learn how to populate your database with initial data for development and testing.
 *   **[Testing](testing.md):** Understand how to write and run tests for your project to ensure code quality and reliability.
 *   **[Environment Setup](environment_setup.md):** Get detailed instructions on setting up your development environment.
-*   **[AI Tools](ai_tools):** Explore useful prompts to enhance your development experience with GitHub Copilot, Gemini CLI agent, and Roo Code.
+*   **[AI Tools](ai_tools/index.md):** Explore useful prompts to enhance your development experience with GitHub Copilot, Gemini CLI agent, and Roo Code.
