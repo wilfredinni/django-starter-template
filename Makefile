@@ -102,7 +102,8 @@ docs-build:
 	docker compose exec backend mkdocs build
 
 docs-deploy:
-	docker compose exec backend mkdocs gh-deploy
+	@echo "Note: Deployment requires local git credentials"
+	uv run --with mkdocs-material mkdocs gh-deploy
 
 # Maintenance
 clean:
