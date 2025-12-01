@@ -47,7 +47,7 @@ services:
 
   worker:
     build: .
-    command: celery -A conf worker -l info
+    command: sh -c "./scripts/wait-for-migrations.sh celery -A conf worker -l info"
     volumes:
       - .:/app
     environment:
@@ -61,10 +61,12 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+      backend:
+        condition: service_started
 
   beat:
     build: .
-    command: celery -A conf beat -l info
+    command: sh -c "./scripts/wait-for-migrations.sh celery -A conf beat -l info"
     volumes:
       - .:/app
     environment:
@@ -78,6 +80,8 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+      backend:
+        condition: service_started
 
 volumes:
   postgres_data:

@@ -10,8 +10,8 @@ This project is a Django REST Framework API template designed for rapid developm
 
 *   **Framework**: Django 5.x
 *   **API Framework**: Django REST Framework (DRF)
-*   **Dependency Management**: [Poetry](https://python-poetry.org/)
-    *   Dependencies are defined in `pyproject.toml` and managed by `poetry.lock`.
+*   **Dependency Management**: [uv](https://docs.astral.sh/uv/)
+    *   Dependencies are defined in `pyproject.toml` and managed by `uv.lock`.
     *   Use `docker compose exec backend` to run commands in the Django container.
 *   **Testing**: [Pytest](https://docs.pytest.org/en/stable/)
     *   Test files are typically located in `apps/<app_name>/tests/`.
@@ -39,7 +39,7 @@ This project is a Django REST Framework API template designed for rapid developm
 ## General Instructions for Gemini
 
 *   **Adhere to existing code style**: When modifying or adding code, always match the surrounding code's formatting, naming conventions, and architectural patterns.
-*   **Verify dependencies**: Before suggesting or implementing new libraries, check `pyproject.toml` and `poetry.lock` to see if they are already in use. If not, propose adding them via Poetry.
+*   **Verify dependencies**: Before suggesting or implementing new libraries, check `pyproject.toml` and `uv.lock` to see if they are already in use. If not, propose adding them via uv.
 *   **Prioritize existing solutions**: Leverage existing project features (e.g., `drf-spectacular` for API docs, Celery for background tasks) before introducing new tools or patterns.
 *   **Explain shell commands**: For any `run_shell_command` that modifies the file system or project state, provide a brief explanation of its purpose and potential impact.
 *   **Testing**: If a change involves logic, consider if new or updated tests are appropriate. Use `docker compose exec backend pytest` to verify changes.

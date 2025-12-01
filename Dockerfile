@@ -14,16 +14,15 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Poetry
-RUN curl -sSL https://install.python-poetry.org | python3 -
-ENV PATH="/root/.local/bin:$PATH"
+# Install uv
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
 # Copy dependency files
-COPY pyproject.toml poetry.lock ./
+COPY pyproject.toml uv.lock ./
 
-# Install dependencies globally (no venv)
-RUN poetry config virtualenvs.create false \
-    && poetry install --no-interaction --no-ansi --no-root
+# Export and install dependencies from lock file (including dev, excluding project itself)
+RUN uv export --no-hashes --all-extras --no-emit-project > requirements.txt && \
+    uv pip install --system --no-cache -r requirements.txt
 
 # Copy project
 COPY . .

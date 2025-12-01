@@ -7,6 +7,7 @@ This is a **production-ready Django 5.1+ API template** with:
 - **Async task processing** via Celery + Redis with automatic retry patterns
 - **Structured JSON logging** with request ID tracking and performance metrics
 - **Auto-generated OpenAPI docs** via `drf-spectacular`
+- **Ultra-fast dependency management** with `uv` (10-100x faster than pip/Poetry)
 
 ## Key Development Patterns
 

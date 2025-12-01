@@ -29,7 +29,7 @@ This template is packed with features to help you build amazing APIs:
 - 💻 VS Code
 - 🐋 Docker
 - 🐳 Docker Compose
-- 🎵 Poetry (for IDE support)
+- ⚡ uv (for IDE support)
 
 ### Setup Steps
 
@@ -42,7 +42,7 @@ This template is packed with features to help you build amazing APIs:
 
 **For IDE support (IntelliSense, autocomplete):**
 ```bash
-poetry install
+uv sync
 ```
 This installs dependencies locally so VS Code can provide code completion while your code runs in Docker.
 

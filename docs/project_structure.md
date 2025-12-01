@@ -55,8 +55,8 @@ Understanding the project's directory structure is fundamental for navigating, d
 ├── manage.py                   # Django's command-line utility
 ├── mkdocs.yml                  # MkDocs configuration
 ├── notebook.ipynb              # Jupyter Notebook for interactive development
-├── poetry.lock                 # Poetry lock file
-├── pyproject.toml              # Project dependencies and metadata (Poetry)
+├── uv.lock                     # uv lock file
+├── pyproject.toml              # Project dependencies and metadata (uv)
 ├── pytest.ini                  # Pytest configuration
 ├── README.md                   # Project README file
 ├── renovate.json               # Renovate Bot configuration for dependency updates
@@ -95,7 +95,7 @@ This section outlines the most important files at the project root and their fun
 
 *   **`manage.py`**: Django's command-line utility for administrative tasks. This script is used for running the development server, performing database migrations, creating superusers, and executing custom management commands.
 
-*   **`pyproject.toml`**: Used by Poetry (the dependency management tool) to define project metadata, dependencies, and build configurations. It serves as the central point for managing the project's Python environment.
+*   **`pyproject.toml`**: Used by uv (the dependency management tool) to define project metadata, dependencies, and build configurations. It serves as the central point for managing the project's Python environment.
 
 *   **`pytest.ini`**: The configuration file for `pytest`, the testing framework used in this project. It specifies how tests should be discovered and run, including settings for code coverage analysis.
 

@@ -74,7 +74,7 @@ When using Docker Compose for development:
 The `.env` file is automatically loaded by Docker Compose. For IDE support (IntelliSense, code completion), also run:
 
 ```bash
-poetry install
+uv sync
 ```
 
 This installs dependencies locally so your IDE can provide autocomplete while your application runs in Docker containers.

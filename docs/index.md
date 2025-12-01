@@ -22,7 +22,7 @@ To get started, ensure you have the following installed:
 
 *   [Visual Studio Code](https://code.visualstudio.com/)
 *   [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-*   [Poetry](https://python-poetry.org/) (optional, for local IDE support)
+*   [uv](https://docs.astral.sh/uv/) (optional, for local IDE support)
 
 ### Setup Steps
 
@@ -38,7 +38,7 @@ Follow these steps to set up your development environment:
 
 5.  **Create a Superuser:** Create an administrative user for accessing the Django admin interface by running: `docker compose exec backend python manage.py createsuperuser`.
 
-6.  **Install Local Dependencies (Optional):** For IDE support (IntelliSense, autocomplete), run: `poetry install`.
+6.  **Install Local Dependencies (Optional):** For IDE support (IntelliSense, autocomplete), run: `uv sync`.
 
 Your API should now be running and accessible at `http://127.0.0.1:8000`.
 

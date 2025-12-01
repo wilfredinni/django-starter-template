@@ -35,7 +35,7 @@ This starts:
 For VS Code to recognize dependencies, install them locally:
 
 ```bash
-poetry install
+uv sync
 ```
 
 This creates a local virtual environment that VS Code uses for:
