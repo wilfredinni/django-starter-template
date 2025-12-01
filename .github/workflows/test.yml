@@ -65,9 +65,8 @@ jobs:
       - name: Install dependencies
         run: |
           export PATH="$HOME/.local/bin:$PATH"
-          uv sync --no-install-project
+          uv export --no-hashes --all-extras --no-emit-project > requirements.txt
+          uv pip install --system --no-cache -r requirements.txt
 
       - name: Run Tests
-        run: |
-            export PATH="$HOME/.local/bin:$PATH"
-            uv run pytest
+        run: pytest
