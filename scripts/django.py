@@ -22,10 +22,10 @@ def create_dev_env():
     with open(".env", "w") as f:
         f.write(
             "DEBUG=True\n"
-            "DJANGO_SECRET_KEY=django-insecure-wlgjuo53y49%-4y5(!%ksylle_ud%b=7%__@9hh+@$d%_^y3s!\n"  # noqa
+            "DJANGO_SECRET_KEY=django-insecure-wlgjuo53y49%-4y5(!%ksylle_ud%b=7%__@9hh+@$$d%_^y3s!\n"  # noqa
             "DATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres\n"
         )
-    print(".env file created successfully.")
+    print(".env file created successfully for DevContainer.")
 
 
 def seed():

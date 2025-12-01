@@ -29,12 +29,31 @@ This template is packed with features to help you build amazing APIs:
 - 💻 VS Code
 - 🐋 Docker
 - 🐳 Docker Compose
+- 🎵 Poetry (for IDE support)
 
 ### Setup Steps
+
+#### Option 1: Docker Compose (Recommended)
+
+1. Use [GitHub's template feature](https://github.com/new?template_name=django-starter-template&template_owner=wilfredinni) (recommended) or clone repository
+2. Open in VS Code
+3. Start services: `docker compose up`
+4. In another terminal, run migrations: `docker compose exec backend python manage.py migrate`
+5. Create superuser: `docker compose exec backend python manage.py createsuperuser`
+6. Access API at `http://localhost:8000`
+
+**For IDE support (IntelliSense, autocomplete):**
+```bash
+poetry install
+```
+This installs dependencies locally so VS Code can provide code completion while your code runs in Docker.
+
+#### Option 2: Dev Container
+
 1. Use [GitHub's template feature](https://github.com/new?template_name=django-starter-template&template_owner=wilfredinni) (recommended) or clone repository
 2. Open in VS Code
 3. Check [Todo Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree) in the sidebar for setup guidance
-4. Run `CTL/CMD + Shift + p` and select `Reopen in container`
+4. Run `Ctrl/Cmd + Shift + P` and select `Dev Containers: Reopen in Container`
 5. Create superuser: `python manage.py createsuperuser`
 6. Start server: `python manage.py runserver`
 

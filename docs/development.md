@@ -2,11 +2,111 @@
 
 ## Overview
 
-This guide outlines the essential commands and best practices for developing your application within the Django Starter Template. It assumes you have completed the initial environment setup, ideally using the provided Dev Container.
+This guide outlines the essential commands and best practices for developing your application within the Django Starter Template. You can choose between two development approaches:
+
+1. **Dev Container** (recommended for beginners) - Everything runs in a container with VS Code attached
+2. **Docker Compose** (recommended for standard development) - Services run in containers, you work on your local machine
+
+## Development Setup Options
+
+### Option 1: Docker Compose (Recommended)
+
+This approach runs all services (PostgreSQL, Redis, Django, Celery) in Docker containers while you work on your local machine with full IDE support.
+
+**1. (Optional) Create `.env` file:**
+
+Docker Compose already defines environment variables, but if you need a local `.env` file:
+
+```bash
+cp .env.example .env
+```
+
+**2. Start services:**
+```bash
+docker compose up
+```
+
+This starts:
+- `db` - PostgreSQL database on port 5432
+- `redis` - Redis cache on port 6379
+- `backend` - Django development server on port 8000
+- `worker` - Celery worker for background tasks
+- `beat` - Celery beat scheduler
+
+**3. Enable IDE support (IntelliSense, autocomplete):**
+
+For VS Code to recognize dependencies, install them locally:
+
+```bash
+poetry install
+```
+
+This creates a local virtual environment that VS Code uses for:
+- Code completion and IntelliSense
+- Import resolution
+- Type checking
+- Linting and formatting
+
+**Note:** Your code still runs in Docker containers, but VS Code uses the local environment for editor features.
+
+**4. Common tasks:**
+
+```bash
+# Run migrations in the backend container
+docker compose exec backend python manage.py migrate
+
+# Create migrations
+docker compose exec backend python manage.py makemigrations
+
+# Create superuser
+docker compose exec backend python manage.py createsuperuser
+
+# Run Django shell
+docker compose exec backend python manage.py shell
+
+# View logs
+docker compose logs -f backend
+
+# Rebuild containers after dependency changes
+docker compose up --build
+
+# Stop all services
+docker compose down
+```
+
+**Important:** If your `.env` file contains special characters like `$` in values (e.g., in `DJANGO_SECRET_KEY`), escape them with `$$` to prevent Docker Compose from treating them as variables:
+
+```ini
+# Bad - Docker Compose interprets $d as a variable
+DJANGO_SECRET_KEY=secret-key-with-$d-in-it
+
+# Good - Escaped with $$
+DJANGO_SECRET_KEY=secret-key-with-$$d-in-it
+```
+
+### Option 2: Dev Container
+
+This approach runs VS Code itself inside a container.
+
+**Setup:**
+1. Open VS Code
+2. Press `Ctrl/Cmd + Shift + P`
+3. Select "Dev Containers: Reopen in Container"
+4. Wait for the container to build and VS Code to reload
+
+**Advantages:**
+- Everything is containerized
+- Consistent environment across all developers
+- No local Python installation needed
+
+**Disadvantages:**
+- Slower file system performance on macOS/Windows
+- More resource intensive
+- Less flexible for running multiple projects
 
 ## Core Development Commands
 
-The project provides a set of convenient `poetry run` commands to streamline common development tasks. These commands should be executed from your terminal within the VS Code Dev Container or your activated Poetry shell.
+When working locally (with Docker Compose) or inside the Dev Container, use these `poetry run` commands:
 
 The project includes convenient scripts in `pyproject.toml` to simplify common development tasks. You should use these `poetry run` commands from the terminal inside your VS Code dev container.
 
@@ -71,7 +171,16 @@ poetry run seed --users 50 --superuser --clean
 
 ## Asynchronous Tasks (Celery)
 
-For handling background tasks and asynchronous operations, the project integrates Celery. To run Celery workers and schedulers, use the following commands:
+For handling background tasks and asynchronous operations, the project integrates Celery.
+
+**With Docker Compose:**
+Celery worker and beat are automatically started as separate services. Check their logs:
+```bash
+docker compose logs -f worker
+docker compose logs -f beat
+```
+
+**With Dev Container or local Poetry:**
 
 *   **Start the Celery worker:**
     ```bash
