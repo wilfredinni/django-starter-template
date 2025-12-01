@@ -32,6 +32,7 @@ services:
       - .:/app
     ports:
       - "8000:8000"
+      - "8001:8001"
     environment:
       - DEBUG=True
       - DJANGO_SECRET_KEY=insecure-dev-key
