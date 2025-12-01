@@ -7,7 +7,6 @@ This is a **production-ready Django 5.1+ API template** with:
 - **Async task processing** via Celery + Redis with automatic retry patterns
 - **Structured JSON logging** with request ID tracking and performance metrics
 - **Auto-generated OpenAPI docs** via `drf-spectacular`
-- **DevContainer setup** for consistent development environments
 
 ## Key Development Patterns
 
@@ -17,7 +16,6 @@ apps/                    # Django apps (users, core)
 ├── users/               # Custom user model with email auth
 ├── core/                # Shared utilities, middleware, tasks
 conf/                    # Django settings and configuration
-scripts/                 # Poetry-managed CLI commands
 ```
 
 ### Custom User Implementation
@@ -47,27 +45,43 @@ def your_task(self):
 
 ## Essential Commands
 
-### Poetry Scripts (use these over direct manage.py)
+### Docker Compose Commands
 ```bash
-poetry run server           # python manage.py runserver
-poetry run makemigrations   # python manage.py makemigrations
-poetry run migrate          # python manage.py migrate
-poetry run worker           # Start Celery worker
-poetry run beat             # Start Celery beat scheduler
-poetry run create_dev_env   # Generate .env file
-poetry run seed             # Seed database with test data
+# Start all services
+docker compose up
+
+# Run migrations
+docker compose exec backend python manage.py migrate
+
+# Create migrations
+docker compose exec backend python manage.py makemigrations
+
+# Create superuser
+docker compose exec backend python manage.py createsuperuser
+
+# Seed database
+docker compose exec backend python manage.py seed
+
+# Run Django shell
+docker compose exec backend python manage.py shell
+
+# View logs
+docker compose logs -f backend
+docker compose logs -f worker
+docker compose logs -f beat
 ```
 
 ### Testing
 - Use **pytest** with `pytest.ini` configuration
 - Tests in `apps/{app}/tests/` directories
+- Run tests: `docker compose exec backend pytest`
+- Coverage: `docker compose exec backend pytest --cov`
 - Example pattern: `test_create_user_view.py` with `APITestCase`
 - Mock logging calls in tests for verification
 
 ### Environment Setup
-- **DevContainer required** - use "Reopen in Container"
-- Auto-generates `.env` with `create_dev_env` script
-- PostgreSQL + Redis containers included
+- Use `.env.example` as template for `.env` file
+- PostgreSQL + Redis containers included via Docker Compose
 - Uses `DATABASE_URL` environment variable pattern
 
 ## Integration Points
@@ -98,7 +112,7 @@ poetry run seed             # Seed database with test data
 
 ## Critical Implementation Notes
 - **Never use username** - all user references should use email
-- **Always use Poetry scripts** instead of direct `python manage.py`
+- **Use docker compose exec** for running Django commands in containers
 - **Test authentication flows** - most endpoints require Knox tokens
 - **Document APIs** - use `drf-spectacular` decorators for schema generation
 - **Handle task failures** - leverage `BaseTaskWithRetry` for resilience

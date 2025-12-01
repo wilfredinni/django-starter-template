@@ -47,7 +47,6 @@
         "Browsable",
         "corsheaders",
         "createsuperuser",
-        "devcontainers",
         "djangorestframework",
         "gunicorn",
         "ipykernel",

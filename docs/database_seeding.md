@@ -14,7 +14,13 @@ This project includes a powerful custom Django management command, `seed`, locat
 
 ### Usage
 
-To use the `seed` command, you typically run it via `python manage.py seed` or `poetry run seed`.
+To use the `seed` command with Docker Compose:
+
+```bash
+docker compose exec backend python manage.py seed [options]
+```
+
+Or if running locally:
 
 ```bash
 python manage.py seed [options]
@@ -26,7 +32,7 @@ The `seed` command supports the following arguments:
 
 *   `--users <count>`: Specifies the number of fake users to create. If not provided, it defaults to 10 users.
 
-    *   **Example:** `python manage.py seed --users 50` (Creates 50 fake users)
+    *   **Example:** `docker compose exec backend python manage.py seed --users 50` (Creates 50 fake users)
 
 *   `--superuser`: A flag that, when present, creates a superuser with predefined credentials (`admin@admin.com` / `admin`).
 

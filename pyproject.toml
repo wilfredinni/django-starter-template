@@ -7,10 +7,6 @@ authors = ["Carlos <carlos@pythoncheatsheet.org>"]
 license = "MIT"
 readme = "README.md"
 
-packages = [
-    { include = "scripts" }
-]
-
 [tool.poetry.dependencies]
 python = "^3.13"
 django = "^5.1.2"
@@ -43,17 +39,6 @@ pytest-mock = "^3.14.0"
 pytest-cov = "^7.0.0"
 mkdocs = "^1.6.0"
 mkdocs-material = "^9.5.26"
-
-[tool.poetry.scripts]
-server = "scripts.django:runserver"
-makemigrations = "scripts.django:makemigrations"
-migrate = "scripts.django:migrate"
-worker = "scripts.celery:run_worker"
-beat = "scripts.celery:run_beat"
-bump = "scripts.bump:bum_version"
-create_dev_env = "scripts.django:create_dev_env"
-create_compose_env = "scripts.django:create_compose_env"
-seed = "scripts.django:seed"
 
 [build-system]
 requires = ["poetry-core"]

@@ -59,9 +59,9 @@ This prevents Docker Compose from interpreting parts of your values as variable 
 
 ## Development Environment
 
-For local development, you have two options:
+For local development:
 
-### 1. Docker Compose (Recommended)
+### Docker Compose
 
 When using Docker Compose for development:
 
@@ -79,9 +79,7 @@ poetry install
 
 This installs dependencies locally so your IDE can provide autocomplete while your application runs in Docker containers.
 
-### 2. Dev Container
 
-When using the Dev Container setup (recommended for beginners), the `.env` file is automatically created and configured for a development environment. All services run inside containers, including VS Code itself.
 
 ## Production Environment
 

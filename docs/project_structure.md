@@ -7,7 +7,6 @@ Understanding the project's directory structure is fundamental for navigating, d
 ```
 ├── .clinerules/                # Gemini CLI rules
 ├── .coveragerc                 # Coverage.py configuration
-├── .devcontainer/              # Dev container configuration
 ├── .env.example                # Example environment variables file
 ├── .flake8                     # Flake8 linter configuration
 ├── .github/                    # GitHub CI/CD workflows and issue templates
@@ -69,8 +68,6 @@ Understanding the project's directory structure is fundamental for navigating, d
 ## Key Directories
 
 This section describes the primary directories within the project and their respective purposes:
-
-*   **`.devcontainer/`**: Contains configuration files for Visual Studio Code Dev Containers. This ensures a consistent and reproducible development environment across different machines, pre-configured with all necessary tools and dependencies.
 
 *   **`.github/`**: Stores GitHub-specific files, including GitHub Actions workflows for Continuous Integration (CI) and Continuous Deployment (CD), issue templates, and other repository settings. This directory automates various development processes.
 
