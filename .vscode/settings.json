@@ -51,6 +51,7 @@
         "gunicorn",
         "ipykernel",
         "ipynb",
+        "knox",
         "levelname",
         "logoutall",
         "makemigrations",

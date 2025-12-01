@@ -17,14 +17,14 @@ RUN apt-get update \
 # Install uv
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
-# Copy dependency files
+# Copy ONLY dependency files first (better caching - changes infrequently)
 COPY pyproject.toml uv.lock ./
 
-# Export and install dependencies from lock file (including dev, excluding project itself)
+# Export and install dependencies from lock file (cached layer when deps don't change)
 RUN uv export --no-hashes --all-extras --no-emit-project > requirements.txt && \
     uv pip install --system --no-cache -r requirements.txt
 
-# Copy project
+# Copy application code (changes frequently - separate layer)
 COPY . .
 
 EXPOSE 8000

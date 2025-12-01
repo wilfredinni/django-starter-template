@@ -21,6 +21,8 @@ cp .env.example .env
 **2. Start services:**
 ```bash
 docker compose up
+# Or using make:
+make up
 ```
 
 This starts:
@@ -48,8 +50,39 @@ This creates a local virtual environment that VS Code uses for:
 
 **4. Common tasks:**
 
+The project includes a `Makefile` with shortcuts for common operations. Run `make help` to see all available commands.
+
 ```bash
-# Run migrations in the backend container
+# Service Management
+make up              # Start all services
+make down            # Stop all services
+make build           # Build Docker image
+make rebuild         # Rebuild and restart
+make ps              # Show running containers
+
+# Django Commands
+make shell           # Open Django shell
+make migrate         # Run migrations
+make makemigrations  # Create migrations
+make superuser       # Create superuser
+make seed            # Seed database with test data
+
+# Testing & Debugging
+make test            # Run all tests
+make test-cov        # Run tests with coverage
+make logs            # View backend logs
+make logs-worker     # View Celery worker logs
+make logs-beat       # View Celery beat logs
+
+# Maintenance
+make clean           # Stop services and remove volumes
+make prune           # Remove unused Docker resources
+```
+
+**Traditional docker compose commands still work:**
+
+```bash
+# Run migrations
 docker compose exec backend python manage.py migrate
 
 # Create migrations
@@ -83,7 +116,26 @@ DJANGO_SECRET_KEY=secret-key-with-$$d-in-it
 
 ## Core Development Commands
 
-When working with Docker Compose, use these commands:
+### Using Make (Recommended)
+
+For faster development, use the provided `Makefile` shortcuts:
+
+| Make Command | Description |
+| :--- | :--- |
+| `make help` | Show all available commands |
+| `make up` | Start all services |
+| `make down` | Stop all services |
+| `make migrate` | Apply database migrations |
+| `make makemigrations` | Create new migrations |
+| `make shell` | Open Django shell |
+| `make test` | Run test suite |
+| `make test-cov` | Run tests with coverage |
+| `make logs` | View backend logs |
+| `make seed` | Seed database with test data |
+
+### Using Docker Compose Directly
+
+You can also use docker compose commands directly:
 
 | Command | Description |
 | :--- | :--- |
@@ -97,29 +149,48 @@ When working with Docker Compose, use these commands:
 
 The project utilizes `pytest` for its test suite. Below are common commands for running tests and generating coverage reports:
 
-*   **Run all tests:**
+*   **Run all tests (using make):**
     ```bash
-    docker compose exec backend pytest
+    make test
     ```
     Executes the entire test suite.
 
-*   **Run tests with coverage:**
+*   **Run tests with coverage (using make):**
     ```bash
-    docker compose exec backend pytest --cov
+    make test-cov
     ```
     Runs all tests and collects code coverage information.
 
-*   **Generate an HTML coverage report:**
+*   **Generate an HTML coverage report (using make):**
     ```bash
+    make test-html
+    ```
+    Generates a detailed HTML report of code coverage in the `htmlcov/` directory.
+
+*   **Using docker compose directly:**
+    ```bash
+    # Run all tests
+    docker compose exec backend pytest
+    
+    # Run tests with coverage
+    docker compose exec backend pytest --cov
+    
+    # Generate HTML coverage report
     docker compose exec backend pytest --cov --cov-report=html
     ```
-    Generates a detailed HTML report of code coverage, which can be found in the `htmlcov/` directory. This report helps identify untested parts of the codebase.
 
 ## Database Seeding
 
 The template includes a powerful management command to populate your database with sample data, which is invaluable for development and testing. This command is part of the `apps/core/management/commands/seed.py` module.
 
-**Usage:**
+**Usage with make (recommended):**
+
+```bash
+# Seed with 20 users + superuser, cleaning existing data
+make seed
+```
+
+**Usage with docker compose:**
 
 ```bash
 # Basic seeding with default options (creates 10 users)
@@ -151,6 +222,11 @@ For handling background tasks and asynchronous operations, the project integrate
 **With Docker Compose:**
 Celery worker and beat are automatically started as separate services. Check their logs:
 ```bash
+# Using make (recommended)
+make logs-worker
+make logs-beat
+
+# Using docker compose
 docker compose logs -f worker
 docker compose logs -f beat
 ```

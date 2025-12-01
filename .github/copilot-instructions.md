@@ -69,7 +69,36 @@ def your_task(self):
 
 ## Essential Commands
 
-### Docker Compose Workflow
+### Make Shortcuts (Recommended)
+```bash
+# Service Management
+make up              # Start all services (backend, db, redis, worker, beat)
+make down            # Stop all services
+make build           # Build Docker image
+make rebuild         # Rebuild and restart services
+make ps              # Show running containers
+
+# Django Management
+make migrate         # Run database migrations
+make makemigrations  # Create new migrations
+make superuser       # Create a superuser
+make seed            # Seed database (20 users + superuser)
+make shell           # Open Django shell
+
+# Testing and Debugging
+make test            # Run all tests
+make test-cov        # Run tests with coverage
+make test-html       # Run tests with HTML coverage report
+make logs            # View backend logs (follow mode)
+make logs-worker     # View Celery worker logs
+make logs-beat       # View Celery beat logs
+
+# Maintenance
+make clean           # Stop services and remove volumes
+make prune           # Remove unused Docker resources
+```
+
+### Docker Compose Workflow (Alternative)
 ```bash
 # Start all services (backend, db, redis, worker, beat)
 docker compose up
@@ -97,6 +126,9 @@ uv sync
 
 ### Database Seeding
 ```bash
+# Using make (recommended)
+make seed
+
 # Custom management command in apps/core/management/commands/seed.py
 docker compose exec backend python manage.py seed --users 10 --superuser --clean
 ```

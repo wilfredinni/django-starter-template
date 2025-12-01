@@ -27,6 +27,7 @@ services:
 
   backend:
     build: .
+    image: django-starter-template:dev
     command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/app
@@ -47,7 +48,8 @@ services:
         condition: service_healthy
 
   worker:
-    build: .
+    image: django-starter-template:dev
+    pull_policy: never
     command: sh -c "./scripts/wait-for-migrations.sh celery -A conf worker -l info"
     volumes:
       - .:/app
@@ -66,7 +68,8 @@ services:
         condition: service_started
 
   beat:
-    build: .
+    image: django-starter-template:dev
+    pull_policy: never
     command: sh -c "./scripts/wait-for-migrations.sh celery -A conf beat -l info"
     volumes:
       - .:/app
