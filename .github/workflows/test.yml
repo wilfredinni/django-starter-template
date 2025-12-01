@@ -65,7 +65,7 @@ jobs:
       - name: Install dependencies
         run: |
           export PATH="$HOME/.local/bin:$PATH"
-          uv sync
+          uv sync --no-install-project
 
       - name: Run Tests
         run: |
