@@ -91,16 +91,16 @@ Celery Beat is a scheduler that kicks off tasks periodically. In this project, p
 
 ### Steps to Configure a Periodic Task
 
-1.  **Start Celery Worker**: Ensure your Celery worker is running:
+1.  **Start Celery Worker**: Ensure your Celery worker is running (automatic with Docker Compose):
 
     ```bash
-    poetry run worker
+    docker compose logs -f worker
     ```
 
-2.  **Start Celery Beat**: Start the Celery Beat scheduler:
+2.  **Start Celery Beat**: Ensure the Celery Beat scheduler is running (automatic with Docker Compose):
 
     ```bash
-    poetry run beat
+    docker compose logs -f beat
     ```
 
 3.  **Configure in Django Admin**: Navigate to the Django Admin interface (`/admin-panel/`). Under the `DJANGO CELERY BEAT` section, you can add and manage `Periodic tasks`. You'll need to specify:

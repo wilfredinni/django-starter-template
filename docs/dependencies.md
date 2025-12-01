@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project utilizes [Poetry](https://python-poetry.org/) as its dependency management tool. Poetry ensures consistent project environments by managing dependencies, virtual environments, and packaging. All project dependencies are defined in the `pyproject.toml` file, categorized into main dependencies and development-specific dependencies.
+This project utilizes [uv](https://docs.astral.sh/uv/) as its dependency management tool. uv is an extremely fast Python package installer and resolver written in Rust by Astral (creators of Ruff). It ensures consistent project environments by managing dependencies, virtual environments, and packaging with 10-100x faster performance than traditional tools. All project dependencies are defined in the `pyproject.toml` file, categorized into main dependencies and development-specific dependencies.
 
 ## Main Dependencies
 

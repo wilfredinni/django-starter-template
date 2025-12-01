@@ -45,15 +45,41 @@ To set up your environment, copy `.env.example` to `.env` and fill in the approp
 cp .env.example .env
 ```
 
+**Important:** If your environment variable values contain special characters like `$`, you must escape them with `$$` in the `.env` file when using Docker Compose. For example:
+
+```ini
+# Incorrect - Docker Compose treats $d as a variable
+DJANGO_SECRET_KEY=django-insecure-abc@$d123
+
+# Correct - Escape $ with $$
+DJANGO_SECRET_KEY=django-insecure-abc@$$d123
+```
+
+This prevents Docker Compose from interpreting parts of your values as variable references.
+
 ## Development Environment
 
-For local development, the following environment variables are typically set:
+For local development:
 
-*   `DEBUG=True`: Enables Django's debug mode, providing detailed error pages and auto-reloading.
-*   `DATABASE_URL`: Specifies the connection string for your local database (e.g., PostgreSQL running in Docker).
-*   `DJANGO_SECRET_KEY`: A secret key for development purposes. You can use the example one provided in `.env.example`.
+### Docker Compose
 
-When using the Dev Container setup (recommended), the `.env` file is automatically created and configured for a development environment.
+When using Docker Compose for development:
+
+*   `DEBUG=True`: Enables Django's debug mode
+*   `DATABASE_URL=postgres://postgres:postgres@db:5432/postgres`: Uses the containerized PostgreSQL service
+*   `REDIS_URL=redis://redis:6379/0`: Uses the containerized Redis service
+*   `CELERY_BROKER_URL=redis://redis:6379/0`: Celery connects to containerized Redis
+*   `DJANGO_SECRET_KEY`: Use the development key from `.env.example`
+
+The `.env` file is automatically loaded by Docker Compose. For IDE support (IntelliSense, code completion), also run:
+
+```bash
+uv sync
+```
+
+This installs dependencies locally so your IDE can provide autocomplete while your application runs in Docker containers.
+
+
 
 ## Production Environment
 

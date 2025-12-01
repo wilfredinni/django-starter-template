@@ -13,7 +13,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:18
+        image: postgres:alpine
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -26,7 +26,7 @@ jobs:
           --health-timeout 5s
           --health-retries 5
       redis:
-        image: redis:latest
+        image: redis:7-alpine
         ports:
           - 6379:6379
         options:
@@ -37,7 +37,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: ["3.13"]
+        python-version: ["3.14"]
         os: [ubuntu-latest]
 
     env:
@@ -52,24 +52,21 @@ jobs:
         with:
           python-version: "${{ matrix.python-version }}"
 
-      - uses: snok/install-poetry@v1
-        with:
-          version: 1.8.4
-          virtualenvs-create: true
-          virtualenvs-in-project: true
+      - name: Install uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
 
       - name: cache deps
         id: cache-deps
         uses: actions/cache@v4
         with:
           path: .venv
-          key: pydeps-${{ hashFiles('**/poetry.lock') }}
+          key: pydeps-${{ hashFiles('**/uv.lock') }}
 
-      - run: poetry install --no-interaction --no-root
-        if: steps.cache-deps.outputs.cache-hit != 'true'
-
-      - run: poetry install --no-interaction
+      - name: Install dependencies
+        run: |
+          export PATH="$HOME/.local/bin:$PATH"
+          uv export --no-hashes --all-extras --no-emit-project > requirements.txt
+          uv pip install --system --no-cache -r requirements.txt
 
       - name: Run Tests
-        run: |
-            poetry run pytest
+        run: pytest

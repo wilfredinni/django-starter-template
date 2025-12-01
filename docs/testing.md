@@ -37,14 +37,14 @@ This structure keeps tests co-located with the code they test, making it easier 
 
 ## Running Tests
 
-To run tests, use the `poetry run pytest` command. The `pytest.ini` configuration will automatically apply the necessary options.
+To run tests with Docker Compose, use `docker compose exec backend pytest`. The `pytest.ini` configuration will automatically apply the necessary options.
 
 ### Basic Test Run
 
 To run all tests:
 
 ```bash
-poetry run pytest
+docker compose exec backend pytest
 ```
 
 ### Running Tests with Coverage
@@ -52,13 +52,13 @@ poetry run pytest
 To run tests and generate a code coverage report:
 
 ```bash
-poetry run pytest --cov
+docker compose exec backend pytest --cov
 ```
 
 This will output a summary of code coverage in the terminal. To generate a detailed HTML report (which you can open in your browser for a visual representation of coverage):
 
 ```bash
-poetry run pytest --cov --cov-report=html
+docker compose exec backend pytest --cov --cov-report=html
 ```
 
 The HTML report will be generated in the `htmlcov/` directory in your project root.
@@ -70,13 +70,13 @@ You can run specific test files or even individual test functions:
 *   **Run tests in a specific file:**
 
     ```bash
-    poetry run pytest apps/users/tests/test_user_model.py
+    docker compose exec backend pytest apps/users/tests/test_user_model.py
     ```
 
 *   **Run a specific test function:**
 
     ```bash
-    poetry run pytest apps/users/tests/test_user_model.py::test_create_user
+    docker compose exec backend pytest apps/users/tests/test_user_model.py::test_create_user
     ```
 
 ## Best Practices

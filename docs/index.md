@@ -14,31 +14,31 @@ This documentation provides a comprehensive guide to the Django Starter Template
 
 ## Quick Start
 
-The recommended way to get started is by using the Dev Container feature in VS Code.
+The recommended way to get started is by using Docker Compose.
 
 ### Prerequisites
 
-To get started with the Dev Container, ensure you have the following installed:
+To get started, ensure you have the following installed:
 
 *   [Visual Studio Code](https://code.visualstudio.com/)
 *   [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-*   [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) for VS Code
+*   [uv](https://docs.astral.sh/uv/) (optional, for local IDE support)
 
 ### Setup Steps
 
-Follow these steps to set up your development environment using the Dev Container:
+Follow these steps to set up your development environment:
 
 1.  **Use the GitHub Template:** Begin by creating your own repository from the [Django Starter Template GitHub page](https://github.com/wilfredinni/django-starter-template) by clicking the green `Use this template` button.
 
 2.  **Open in VS Code:** Clone your newly created repository to your local machine and open the project folder in Visual Studio Code.
 
-3.  **Check the Setup Guide:** Before proceeding, consult the **`Todo Tree`** view in the VS Code sidebar. This provides a guided checklist of initial setup tasks to ensure a smooth start.
+3.  **Start Services:** Run `docker compose up` to start all services (PostgreSQL, Redis, Django, Celery).
 
-4.  **Reopen in Container:** Upon opening the project, VS Code will prompt you to "Reopen in Container." Click this option to build and launch the development environment. This process automatically configures essential services like Redis, Celery, and PostgreSQL, installs all project dependencies, and applies database migrations.
+4.  **Run Migrations:** In another terminal, run: `docker compose exec backend python manage.py migrate`.
 
-5.  **Create a Superuser:** Once the container is ready, create an administrative user for accessing the Django admin interface by running: `python manage.py createsuperuser`.
+5.  **Create a Superuser:** Create an administrative user for accessing the Django admin interface by running: `docker compose exec backend python manage.py createsuperuser`.
 
-6.  **Start the Server:** Launch the Django development server with: `python manage.py runserver`.
+6.  **Install Local Dependencies (Optional):** For IDE support (IntelliSense, autocomplete), run: `uv sync`.
 
 Your API should now be running and accessible at `http://127.0.0.1:8000`.
 
@@ -72,4 +72,4 @@ This documentation is your comprehensive guide to building robust applications w
 *   **[Database Seeding](database_seeding.md):** Learn how to populate your database with initial data for development and testing.
 *   **[Testing](testing.md):** Understand how to write and run tests for your project to ensure code quality and reliability.
 *   **[Environment Setup](environment_setup.md):** Get detailed instructions on setting up your development environment.
-*   **[AI Tools](ai_tools):** Explore useful prompts to enhance your development experience with GitHub Copilot, Gemini CLI agent, and Roo Code.
+*   **[AI Tools](ai_tools/index.md):** Explore useful prompts to enhance your development experience with GitHub Copilot, Gemini CLI agent, and Roo Code.
