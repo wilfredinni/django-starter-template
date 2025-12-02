@@ -37,7 +37,7 @@ This starts:
 For VS Code to recognize dependencies, install them locally:
 
 ```bash
-uv sync
+uv sync --all-extras
 ```
 
 This creates a local virtual environment that VS Code uses for:

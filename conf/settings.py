@@ -362,6 +362,12 @@ ADMIN_MEDIA_PREFIX = STATIC_URL + "admin/"
 # Django Debug Toolbar and Django Extensions
 # -----------------------------------------------------------------------------
 if DEBUG:
+    import socket
+
     INSTALLED_APPS += ["debug_toolbar"]
     INTERNAL_IPS = ["127.0.0.1"]
+
+    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    INTERNAL_IPS += [".".join(ip.split(".")[:-1] + ["1"]) for ip in ips]
+
     MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
