@@ -1,15 +1,15 @@
+import logging
+
 from django.http import JsonResponse
 from drf_spectacular.utils import extend_schema
 from rest_framework.decorators import api_view, throttle_classes
 from rest_framework.throttling import AnonRateThrottle
-import logging
+
+from .tasks import test_task
 
 
 class PingRateThrottle(AnonRateThrottle):
     rate = "10/minute"
-
-
-from .tasks import test_task
 
 
 @extend_schema(
