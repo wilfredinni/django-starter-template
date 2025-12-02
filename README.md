@@ -26,7 +26,6 @@ This template is packed with features to help you build amazing APIs:
 ## Quick Start
 
 ### Prerequisites
-- 💻 VS Code
 - 🐋 Docker
 - 🐳 Docker Compose
 - ⚡ uv (for IDE support)
@@ -35,11 +34,10 @@ This template is packed with features to help you build amazing APIs:
 ### Setup Steps
 
 1. Use [GitHub's template feature](https://github.com/new?template_name=django-starter-template&template_owner=wilfredinni) (recommended) or clone repository
-2. Open in VS Code
-3. Start services: `make up` (or `docker compose up`)
-4. In another terminal, run migrations: `make migrate` (or `docker compose exec backend python manage.py migrate`)
-5. Create superuser: `make superuser` (or `docker compose exec backend python manage.py createsuperuser`)
-6. Access API at `http://localhost:8000`
+2. Start services: `make up` (or `docker compose up`)
+3. In another terminal, run migrations: `make migrate` (or `docker compose exec backend python manage.py migrate`)
+4. Create superuser: `make superuser` (or `docker compose exec backend python manage.py createsuperuser`)
+5. Access API at `http://localhost:8000`
 
 **Quick Commands:**
 ```bash
@@ -51,9 +49,9 @@ make logs          # View application logs
 
 **For IDE support (IntelliSense, autocomplete):**
 ```bash
-uv sync
+uv sync --all-extras
 ```
-This installs dependencies locally so VS Code can provide code completion while your code runs in Docker.
+This installs dependencies locally so your IDE can provide code completion while your code runs in Docker.
 
 ## 📖 Explore the Documentation
 

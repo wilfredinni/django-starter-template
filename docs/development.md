@@ -34,19 +34,19 @@ This starts:
 
 **3. Enable IDE support (IntelliSense, autocomplete):**
 
-For VS Code to recognize dependencies, install them locally:
+For your IDE to recognize dependencies, install them locally:
 
 ```bash
 uv sync --all-extras
 ```
 
-This creates a local virtual environment that VS Code uses for:
+This creates a local virtual environment that your IDE uses for:
 - Code completion and IntelliSense
 - Import resolution
 - Type checking
 - Linting and formatting
 
-**Note:** Your code still runs in Docker containers, but VS Code uses the local environment for editor features.
+**Note:** Your code still runs in Docker containers, but your IDE uses the local environment for editor features.
 
 **4. Common tasks:**
 

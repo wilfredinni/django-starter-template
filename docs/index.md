@@ -20,7 +20,6 @@ The recommended way to get started is by using Docker Compose.
 
 To get started, ensure you have the following installed:
 
-*   [Visual Studio Code](https://code.visualstudio.com/)
 *   [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 *   [uv](https://docs.astral.sh/uv/) (optional, for local IDE support)
 
@@ -30,7 +29,7 @@ Follow these steps to set up your development environment:
 
 1.  **Use the GitHub Template:** Begin by creating your own repository from the [Django Starter Template GitHub page](https://github.com/wilfredinni/django-starter-template) by clicking the green `Use this template` button.
 
-2.  **Open in VS Code:** Clone your newly created repository to your local machine and open the project folder in Visual Studio Code.
+2.  **Clone Repository:** Clone your newly created repository to your local machine.
 
 3.  **Start Services:** Run `docker compose up` to start all services (PostgreSQL, Redis, Django, Celery).
 

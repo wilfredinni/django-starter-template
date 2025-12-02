@@ -13,7 +13,7 @@ Understanding the project's directory structure is fundamental for navigating, d
 ├── .gitignore                  # Git ignore file
 ├── .pytest_cache/              # Pytest cache
 ├── .venv/                      # Virtual environment
-├── .vscode/                    # VS Code settings and recommended extensions
+├── .vscode/                    # IDE settings (VS Code configuration)
 ├── apps/                       # Django applications (core logic)
 │   ├── core/                   # Core functionalities and shared components
 │   │   ├── __init__.py         # Initializes the core app
@@ -71,7 +71,7 @@ This section describes the primary directories within the project and their resp
 
 *   **`.github/`**: Stores GitHub-specific files, including GitHub Actions workflows for Continuous Integration (CI) and Continuous Deployment (CD), issue templates, and other repository settings. This directory automates various development processes.
 
-*   **`.vscode/`**: Holds Visual Studio Code workspace settings and recommended extensions for the project. These settings enhance the development experience by providing consistent formatting, linting, and debugging configurations.
+*   **`.vscode/`**: Contains IDE configuration files for Visual Studio Code (optional). These settings can enhance the development experience by providing consistent formatting, linting, and debugging configurations for those using VS Code.
 
 *   **`apps/`**: This is the core of your Django project, where individual Django applications (modules) reside. Each app is designed to be a self-contained unit responsible for a specific feature or set of features, promoting modularity and reusability.
     *   **`core/`**: Houses fundamental functionalities and shared components that are used across different parts of the application. This includes custom management commands, base Celery tasks, and common API schema definitions, serving as a foundational app.
