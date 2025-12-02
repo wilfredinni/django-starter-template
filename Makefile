@@ -1,4 +1,4 @@
-.PHONY: help up down build rebuild shell migrate makemigrations test test-cov logs logs-worker logs-beat superuser seed clean prune ps docs docs-serve docs-build docs-deploy
+.PHONY: help up down build rebuild shell migrate makemigrations test test-cov logs logs-worker logs-beat superuser seed clean prune ps docs docs-serve docs-build docs-deploy bump
 
 # Default target - show help
 help:
@@ -32,6 +32,9 @@ help:
 	@echo "  docs-serve      Serve documentation with live reload"
 	@echo "  docs-build      Build documentation site"
 	@echo "  docs-deploy     Deploy documentation to GitHub Pages"
+	@echo ""
+	@echo "Version Management:"
+	@echo "  bump            Bump patch version in pyproject.toml and urls.py"
 	@echo ""
 	@echo "Maintenance:"
 	@echo "  clean           Stop services and remove volumes"
@@ -104,6 +107,10 @@ docs-build:
 docs-deploy:
 	@echo "Note: Deployment requires local git credentials"
 	uv run --with mkdocs-material mkdocs gh-deploy
+
+# Version Management
+bump:
+	uv run python scripts/bump.py
 
 # Maintenance
 clean:

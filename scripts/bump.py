@@ -51,3 +51,7 @@ def bum_version():
     update_urls_version(urls_file, new_version)
 
     print(f"Version updated to {new_version} in both pyproject.toml and urls.py")
+
+
+if __name__ == "__main__":
+    bum_version()
