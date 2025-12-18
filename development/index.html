@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../assets/logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
@@ -27,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -1102,15 +1102,15 @@
 - <code>worker</code> - Celery worker for background tasks
 - <code>beat</code> - Celery beat scheduler</p>
 <p><strong>3. Enable IDE support (IntelliSense, autocomplete):</strong></p>
-<p>For VS Code to recognize dependencies, install them locally:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>uv<span class="w"> </span>sync
+<p>For your IDE to recognize dependencies, install them locally:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>uv<span class="w"> </span>sync<span class="w"> </span>--all-extras
 </code></pre></div>
-<p>This creates a local virtual environment that VS Code uses for:
+<p>This creates a local virtual environment that your IDE uses for:
 - Code completion and IntelliSense
 - Import resolution
 - Type checking
 - Linting and formatting</p>
-<p><strong>Note:</strong> Your code still runs in Docker containers, but VS Code uses the local environment for editor features.</p>
+<p><strong>Note:</strong> Your code still runs in Docker containers, but your IDE uses the local environment for editor features.</p>
 <p><strong>4. Common tasks:</strong></p>
 <p>The project includes a <code>Makefile</code> with shortcuts for common operations. Run <code>make help</code> to see all available commands.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Service Management</span>
@@ -1134,9 +1134,14 @@
 <a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>make<span class="w"> </span>logs-worker<span class="w">     </span><span class="c1"># View Celery worker logs</span>
 <a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>make<span class="w"> </span>logs-beat<span class="w">       </span><span class="c1"># View Celery beat logs</span>
 <a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>
-<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="c1"># Maintenance</span>
-<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>make<span class="w"> </span>clean<span class="w">           </span><span class="c1"># Stop services and remove volumes</span>
-<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>make<span class="w"> </span>prune<span class="w">           </span><span class="c1"># Remove unused Docker resources</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="c1"># Dependency Management</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>make<span class="w"> </span>update-deps<span class="w">     </span><span class="c1"># Update all dependencies</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>make<span class="w"> </span>add-dep<span class="w">         </span><span class="c1"># Add a new dependency (pkg=name)</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>make<span class="w"> </span>remove-dep<span class="w">      </span><span class="c1"># Remove a dependency (pkg=name)</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="c1"># Maintenance</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>make<span class="w"> </span>clean<span class="w">           </span><span class="c1"># Stop services and remove volumes</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>make<span class="w"> </span>prune<span class="w">           </span><span class="c1"># Remove unused Docker resources</span>
 </code></pre></div>
 <p><strong>Traditional docker compose commands still work:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Run migrations</span>
@@ -1396,10 +1401,10 @@ Celery worker and beat are automatically started as separate services. Check the
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.action.view"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.action.view"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
