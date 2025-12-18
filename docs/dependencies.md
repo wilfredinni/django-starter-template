@@ -41,3 +41,67 @@ The following are the primary dependencies required for the application to run i
 - **pytest-cov**: ^6.0.0
 - **mkdocs**: ^1.6.0
 - **mkdocs-material**: ^9.5.26
+
+## Managing Dependencies
+
+You can manage dependencies using the provided `make` shortcuts or directly with `uv`.
+
+### Adding a Dependency
+
+To add a new package to the project:
+
+**Using Make:**
+```bash
+make add-dep pkg=package_name
+```
+
+**Using uv:**
+```bash
+uv add package_name
+```
+
+Both methods will:
+1. Add the package to `pyproject.toml`
+2. Update `uv.lock`
+
+### Removing a Dependency
+
+To remove a package from the project:
+
+**Using Make:**
+```bash
+make remove-dep pkg=package_name
+```
+
+**Using uv:**
+```bash
+uv remove package_name
+```
+
+Both methods will:
+1. Remove the package from `pyproject.toml`
+2. Update `uv.lock`
+
+### Updating Dependencies
+
+To update all dependencies to their latest allowed versions (respecting constraints in `pyproject.toml`):
+
+**Using Make:**
+```bash
+make update-deps
+```
+
+**Using uv:**
+```bash
+uv lock --upgrade
+```
+
+Both methods will update `uv.lock` with the latest versions.
+
+### Applying Changes
+
+After any dependency change, you must rebuild the Docker container to install the new packages:
+
+```bash
+make rebuild
+```

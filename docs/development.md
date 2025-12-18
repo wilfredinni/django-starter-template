@@ -74,6 +74,11 @@ make logs            # View backend logs
 make logs-worker     # View Celery worker logs
 make logs-beat       # View Celery beat logs
 
+# Dependency Management
+make update-deps     # Update all dependencies
+make add-dep         # Add a new dependency (pkg=name)
+make remove-dep      # Remove a dependency (pkg=name)
+
 # Maintenance
 make clean           # Stop services and remove volumes
 make prune           # Remove unused Docker resources
