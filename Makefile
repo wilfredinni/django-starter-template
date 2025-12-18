@@ -1,4 +1,4 @@
-.PHONY: help up down build rebuild shell migrate makemigrations test test-cov logs logs-worker logs-beat superuser seed clean prune ps docs docs-serve docs-build docs-deploy bump
+.PHONY: help up down build rebuild shell migrate makemigrations test test-cov logs logs-worker logs-beat superuser seed clean prune ps docs docs-serve docs-build docs-deploy bump update-deps add-dep remove-dep
 
 # Default target - show help
 help:
@@ -35,6 +35,11 @@ help:
 	@echo ""
 	@echo "Version Management:"
 	@echo "  bump            Bump patch version in pyproject.toml and urls.py"
+	@echo ""
+	@echo "Dependency Management:"
+	@echo "  update-deps     Update all dependencies to latest allowed versions"
+	@echo "  add-dep         Add a new dependency (usage: make add-dep pkg=package_name)"
+	@echo "  remove-dep      Remove a dependency (usage: make remove-dep pkg=package_name)"
 	@echo ""
 	@echo "Maintenance:"
 	@echo "  clean           Stop services and remove volumes"
@@ -111,6 +116,20 @@ docs-deploy:
 # Version Management
 bump:
 	uv run python scripts/bump.py
+
+# Dependency Management
+update-deps:
+	uv lock --upgrade
+	@echo "Lock file updated. Run 'make rebuild' to apply changes."
+add-dep:
+	@if [ -z "$(pkg)" ]; then echo "Usage: make add-dep pkg=package_name"; exit 1; fi
+	uv add $(pkg)
+	@echo "Dependency added. Run 'make rebuild' to apply changes."
+
+remove-dep:
+	@if [ -z "$(pkg)" ]; then echo "Usage: make remove-dep pkg=package_name"; exit 1; fi
+	uv remove $(pkg)
+	@echo "Dependency removed. Run 'make rebuild' to apply changes."
 
 # Maintenance
 clean:
