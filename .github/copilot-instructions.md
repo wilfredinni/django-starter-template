@@ -42,14 +42,12 @@ def your_task(self):
 
 ### Logging & Request Tracking
 - All requests get unique IDs via `RequestIDMiddleware` in `apps/core/middleware.py`
-- Thread-local storage tracks: `request_id`, `client_ip`, `path`, `user_id`, `response_time`, `status_code`
-- Use structured logging: `logger = logging.getLogger("django.security")` for auth events
-- Four separate log files with JSON formatting:
-  - `logs/app.log` - general application logs
-  - `logs/error.log` - ERROR level and above
-  - `logs/info.log` - INFO level events
-  - `logs/security.log` - authentication/authorization events
-- Custom filters: `RequestIDFilter` adds request context, `TimeLogFilter` requires response_time
+- **Async-safe** ContextVars track: `request_id`, `client_ip`, `path`, `user_id`, `response_time`
+- Standard logging: `logger = logging.getLogger(__name__)` (avoid custom logger names)
+- **12-Factor Logging**: All logs stream to `stdout` in JSON format (no local files)
+- Automatic context injection via `RequestIDFilter` for all log levels
+- **No manual error logging**: Uncaught exceptions are automatically logged by Django
+
 
 ### API Development Standards
 - **Always use `@extend_schema()` decorators** from `drf-spectacular` for auto-documentation

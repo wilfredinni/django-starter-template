@@ -1,9 +1,15 @@
 import logging
 import time
 import uuid
-from threading import local
+from contextvars import ContextVar
 
-_thread_locals = local()
+# ContextVars to replace threading.local for async safety
+request_id_var = ContextVar("request_id", default="none")
+client_ip_var = ContextVar("client_ip", default="")
+user_id_var = ContextVar("user_id", default="anonymous")
+path_var = ContextVar("path", default="")
+response_time_var = ContextVar("response_time", default=0.0)
+status_code_var = ContextVar("status_code", default=0)
 
 
 def get_client_ip(request):
@@ -21,43 +27,59 @@ class RequestIDMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        request.id = str(uuid.uuid4())
-        _thread_locals.request_id = request.id
-        _thread_locals.client = get_client_ip(request)
-        _thread_locals.path = request.path
-        _thread_locals.user_id = (
-            getattr(request.user, "id", None)
-            if hasattr(request.user, "is_authenticated")
-            and request.user.is_authenticated
-            else None
-        )
+        request_id = str(uuid.uuid4())
+        request.id = request_id
+
+        request_id_var.set(request_id)
+        client_ip_var.set(get_client_ip(request))
+        path_var.set(request.path)
+
+        if hasattr(request, "user") and request.user.is_authenticated:
+            user_id_var.set(str(getattr(request.user, "id", "anonymous")))
+        else:
+            user_id_var.set("anonymous")
 
         start_time = time.time()
-        response = self.get_response(request)
-        response_time = time.time() - start_time
 
-        _thread_locals.response_time = response_time
-        _thread_locals.status_code = response.status_code
-        response["X-Request-ID"] = request.id
-        response["X-Response-Time"] = f"{response_time:.3f}s"
-        return response
+        try:
+            response = self.get_response(request)
+
+            response_time = time.time() - start_time
+            response_time_var.set(response_time)
+            status_code_var.set(response.status_code)
+
+            response["X-Request-ID"] = request_id
+            response["X-Response-Time"] = f"{response_time:.3f}s"
+
+            return response
+
+        except Exception:
+            response_time = time.time() - start_time
+            response_time_var.set(response_time)
+            status_code_var.set(500)
+            raise
 
 
 class TimeLogFilter(logging.Filter):
-    def filter(self, record):
-        response_time = getattr(_thread_locals, "response_time", None)
-        if response_time is None:
-            return False
+    """
+    Filter to ensure we only log records that have a response_time.
+    Useful for access logs, but DANGEROUS for error logs.
+    """
 
-        return True
+    def filter(self, record):
+        return response_time_var.get() != 0.0
 
 
 class RequestIDFilter(logging.Filter):
+    """
+    Injects context variables into the log record.
+    """
+
     def filter(self, record):
-        record.request_id = getattr(_thread_locals, "request_id", "none")
-        record.client = getattr(_thread_locals, "client", "")
-        record.path = getattr(_thread_locals, "path", "")
-        record.user_id = getattr(_thread_locals, "user_id", "anonymous")
-        record.response_time = getattr(_thread_locals, "response_time", 0)
-        record.status_code = getattr(_thread_locals, "status_code", 0)
+        record.request_id = request_id_var.get()
+        record.client = client_ip_var.get()
+        record.path = path_var.get()
+        record.user_id = user_id_var.get()
+        record.response_time = response_time_var.get()
+        record.status_code = status_code_var.get()
         return True

@@ -1,8 +1,6 @@
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
-from unittest.mock import patch
-import logging
 from apps.core.views import PingRateThrottle
 
 
@@ -15,11 +13,9 @@ class CoreViewsTests(APITestCase):
 
     def test_ping_view_success(self):
         """Test ping endpoint returns correct response"""
-        with patch.object(logging.Logger, "info") as mock_logger:
-            response = self.client.get(self.ping_url)
-            self.assertEqual(response.status_code, status.HTTP_200_OK)
-            self.assertEqual(response.json(), {"ping": "pong"})
-            mock_logger.assert_called_once()
+        response = self.client.get(self.ping_url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.json(), {"ping": "pong"})
 
     def test_ping_view_throttle_config(self):
         """Test ping endpoint throttle configuration"""

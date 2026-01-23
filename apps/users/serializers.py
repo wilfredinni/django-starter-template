@@ -8,7 +8,7 @@ import logging
 from .models import CustomUser
 from .utils import get_errors
 
-security_logger = logging.getLogger("django.security")
+logger = logging.getLogger(__name__)
 MIN_PASSWORD_LENGTH = getattr(settings, "MIN_PASSWORD_LENGTH", 8)
 
 
@@ -34,7 +34,7 @@ class AuthTokenSerializer(serializers.Serializer):
 
             if not user:
                 msg = _("Unable to log in with provided credentials.")
-                security_logger.warning(f"Failed login attempt for email: {email}")
+                logger.warning("Failed login attempt for email: %s", email)
                 raise serializers.ValidationError(msg, code="authorization")
         else:
             msg = _('Must include "email" and "password".')
@@ -63,8 +63,6 @@ class CreateUserSerializer(serializers.ModelSerializer):
         try:
             validate_password(password, self.Meta.model(**user_data))
         except Exception as e:
-            security_logger.error(f"Password validation error: {type(e)} - {str(e)}")
-            security_logger.error(f"Error details: {e.__dict__}")
             if hasattr(e, "error_list"):
                 errors = get_errors(e)
             else:
@@ -92,10 +90,6 @@ class UserProfileSerializer(serializers.ModelSerializer):
             try:
                 validate_password(data["password"], self.Meta.model(**data))
             except Exception as e:
-                security_logger.error(
-                    f"Password validation error: {type(e)} - {str(e)}"
-                )
-                security_logger.error(f"Error details: {e.__dict__}")
                 if hasattr(e, "error_list"):
                     errors = get_errors(e)
                 else:
