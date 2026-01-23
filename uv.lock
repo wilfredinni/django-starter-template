@@ -493,17 +493,6 @@ wheels = [
 ]
 
 [[package]]
-name = "django-seed"
-version = "0.3.1"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "django" },
-    { name = "faker" },
-    { name = "toposort" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/5a/19/0423c1a8adb10c9e246f3a0e661165a7851bb7f4253eb338624081343e76/django-seed-0.3.1.tar.gz", hash = "sha256:93e65d2c10449c464b83e9031be02763ec10e786aa064d649c4dd5ad06fa0eea", size = 18336, upload-time = "2021-10-08T16:30:29.522Z" }
-
-[[package]]
 name = "django-starter-template"
 version = "0.4.2"
 source = { editable = "." }
@@ -514,14 +503,11 @@ dependencies = [
     { name = "django-celery-results" },
     { name = "django-cors-headers" },
     { name = "django-environ" },
-    { name = "django-extensions" },
     { name = "django-filter" },
     { name = "django-redis" },
     { name = "django-rest-knox" },
-    { name = "django-seed" },
     { name = "djangorestframework" },
     { name = "drf-spectacular" },
-    { name = "faker" },
     { name = "gunicorn" },
     { name = "psycopg2-binary" },
     { name = "python-json-logger" },
@@ -533,6 +519,8 @@ dependencies = [
 [package.optional-dependencies]
 dev = [
     { name = "django-debug-toolbar" },
+    { name = "django-extensions" },
+    { name = "faker" },
     { name = "ipykernel" },
     { name = "mkdocs" },
     { name = "mkdocs-material" },
@@ -551,14 +539,13 @@ requires-dist = [
     { name = "django-cors-headers", specifier = ">=4.5.0" },
     { name = "django-debug-toolbar", marker = "extra == 'dev'", specifier = ">=6.0.0" },
     { name = "django-environ", specifier = ">=0.12.0" },
-    { name = "django-extensions", specifier = ">=4.1" },
+    { name = "django-extensions", marker = "extra == 'dev'", specifier = ">=4.1" },
     { name = "django-filter", specifier = ">=25.1" },
     { name = "django-redis", specifier = ">=6.0.0" },
     { name = "django-rest-knox", specifier = ">=5.0.2" },
-    { name = "django-seed", specifier = ">=0.3.1" },
     { name = "djangorestframework", specifier = ">=3.15.2" },
     { name = "drf-spectacular", specifier = ">=0.29.0" },
-    { name = "faker", specifier = ">=38.0.0" },
+    { name = "faker", marker = "extra == 'dev'", specifier = ">=38.0.0" },
     { name = "gunicorn", specifier = ">=23.0.0" },
     { name = "ipykernel", marker = "extra == 'dev'", specifier = ">=7.0.0" },
     { name = "mkdocs", marker = "extra == 'dev'", specifier = ">=1.6.0" },
@@ -1511,15 +1498,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/28/e3/55dcc2cfbc3ca9c29519eb6884dd1415ecb53b0e934862d3559ddcb7e20b/stack_data-0.6.3.tar.gz", hash = "sha256:836a778de4fec4dcd1dcd89ed8abff8a221f58308462e1c4aa2a3cf30148f0b9", size = 44707, upload-time = "2023-09-30T13:58:05.479Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/f1/7b/ce1eafaf1a76852e2ec9b22edecf1daa58175c090266e9f6c64afcd81d91/stack_data-0.6.3-py3-none-any.whl", hash = "sha256:d5558e0c25a4cb0853cddad3d77da9891a08cb85dd9f9f91b9f8cd66e511e695", size = 24521, upload-time = "2023-09-30T13:58:03.53Z" },
-]
-
-[[package]]
-name = "toposort"
-version = "1.10"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/69/19/8e955d90985ecbd3b9adb2a759753a6840da2dff3c569d412b2c9217678b/toposort-1.10.tar.gz", hash = "sha256:bfbb479c53d0a696ea7402601f4e693c97b0367837c8898bc6471adfca37a6bd", size = 11132, upload-time = "2023-02-27T13:59:51.834Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/f6/17/57b444fd314d5e1593350b9a31d000e7411ba8e17ce12dc7ad54ca76b810/toposort-1.10-py3-none-any.whl", hash = "sha256:cbdbc0d0bee4d2695ab2ceec97fe0679e9c10eab4b2a87a9372b929e70563a87", size = 8500, upload-time = "2023-02-25T20:07:06.538Z" },
 ]
 
 [[package]]
