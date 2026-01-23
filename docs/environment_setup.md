@@ -17,8 +17,15 @@ The `.env.example` file serves as a template for your `.env` file. It lists all 
 # ⚡ Basic Config: for development and testing.
 # --------------------------------------------------------------------------------
 DEBUG=True
-DATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres
 DJANGO_SECRET_KEY=django-insecure-wlgjuo53y49%-4y5(!%ksylle_ud%b=7%__@9hh+@$$d%_^y3s!
+
+# --------------------------------------------------------------------------------
+# 🗄️ Database
+# --------------------------------------------------------------------------------
+POSTGRES_DB=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:5432/${POSTGRES_DB}
 
 # --------------------------------------------------------------------------------
 # 📧 Email Config: optional and can be copied if needed.
@@ -62,13 +69,11 @@ DJANGO_SECRET_KEY=django-insecure-abc@$$d123
 This prevents Docker Compose from interpreting parts of your values as variable references.
 
 ## Development Environment
+, `POSTGRES_PASSWORD`, and other settings.
+2.  **Explicit Overrides:** The `docker-compose.yml` file explicitly defines environment variables for the services, overriding the connection URLs to point to the correct container names using the credentials from your `.env` file.
 
-For local development:
-
-### Docker Compose
-
-When using Docker Compose for development, the project uses a "Hybrid" strategy:
-
+*   `DEBUG=True`: Enables Django's debug mode
+*   `DATABASE_URL`: Automatically pointed to `db:5432` inside Docker using `POSTGRES_USER` and `POSTGRES_DB` variables
 1.  **Shared Secrets (.env):** Docker Compose loads your local `.env` file to get secrets like `DJANGO_SECRET_KEY` and passwords.
 2.  **Auto-Wiring (Overrides):** It automatically overrides connection URLs (like database and Redis) to point to the docker container names (`db` and `redis`) instead of `localhost`.
 
