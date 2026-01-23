@@ -5,13 +5,11 @@
 Understanding the project's directory structure is fundamental for navigating, developing, and maintaining the Django Starter Template. This document provides a detailed overview of the main directories and files, explaining their purpose and contents to help you quickly grasp the project's organization.
 
 ```
-├── .clinerules/                # Gemini CLI rules
 ├── .coveragerc                 # Coverage.py configuration
 ├── .env.example                # Example environment variables file
 ├── .flake8                     # Flake8 linter configuration
 ├── .github/                    # GitHub CI/CD workflows and issue templates
 ├── .gitignore                  # Git ignore file
-├── .pytest_cache/              # Pytest cache
 ├── .venv/                      # Virtual environment
 ├── .vscode/                    # IDE settings (VS Code configuration)
 ├── apps/                       # Django applications (core logic)
@@ -51,7 +49,6 @@ Understanding the project's directory structure is fundamental for navigating, d
 │   ├── urls.py                 # Main URL routing for the project
 │   └── wsgi.py                 # WSGI application entry point
 ├── docs/                       # Documentation files
-├── logs/                       # Application log files
 ├── manage.py                   # Django's command-line utility
 ├── mkdocs.yml                  # MkDocs configuration
 ├── notebook.ipynb              # Jupyter Notebook for interactive development
@@ -78,8 +75,6 @@ This section describes the primary directories within the project and their resp
     *   **`users/`**: Manages all aspects of user authentication and authorization. This includes user models, serializers, views, and related utilities for user registration, login, and profile management.
 
 *   **`conf/`**: Contains project-wide configuration files that apply to the entire Django project, rather than being specific to a single app. This includes the main `settings.py`, URL routing (`urls.py`), ASGI/WSGI configurations, and Celery setup.
-
-*   **`logs/`**: The designated directory for application log files. Different log levels and types (e.g., general application logs, security events, error logs) are typically written to separate files within this directory for easier monitoring and debugging.
 
 *   **`scripts/`**: A collection of utility scripts that automate various development and maintenance tasks. These scripts can include commands for running the server, managing migrations, or executing custom project-specific operations.
 

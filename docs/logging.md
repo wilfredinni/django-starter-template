@@ -1,65 +1,61 @@
 # Logging System
 
-This section details the logging system implemented in the Django Starter Template, covering its configuration, features, and how to interpret the generated logs.
+This section details the logging system implemented in the Django Starter Template, which is designed for high-performance production environments using 12-Factor App methodology.
 
 ## Overview
 
-The template utilizes a centralized logging system configured within `conf/settings.py`. It's designed to provide comprehensive and structured logs, making it easier to monitor, debug, and analyze application behavior, especially in production environments.
+The logging system is configured in `conf/settings.py` to stream all events to `stdout` (Console) in structured JSON format. This eliminates the need for managing local log files and integrating easily with modern container logging drivers (Docker, Kubernetes) and aggregators (Datadog, Splunk, CloudWatch).
 
 ## Key Features
 
-*   **JSON Format**: All logs are formatted as JSON, enabling easy parsing and integration with log management tools.
-*   **Multiple Handlers**: Different types of logs are directed to specific handlers and files:
-    *   `console`: Outputs logs to the console, primarily used during development.
-    *   `app.log`: General application logs.
-    *   `security.log`: Specifically captures authentication events and security-related messages.
-    *   `error.log`: Records all error-level messages.
-    *   `info.log`: Records all info-level messages.
-*   **Rotating Files**: To prevent log files from growing indefinitely, they are configured to rotate. Each log file has a maximum size of 10MB, and up to 5 backup files are kept.
-*   **Request Tracing**: A custom middleware (`apps.core.middleware.RequestIDMiddleware`) assigns a unique `request_id` to each incoming request. This ID, along with other request-specific details (client IP, request path, authenticated user ID, response time, and HTTP status code), is automatically injected into every log record. This allows for end-to-end tracing of requests.
-*   **Sentry Integration**: In production environments, Sentry is integrated for advanced error tracking and performance monitoring.
+*   **JSON Format**: All logs are formatted as JSON, enabling machine readability and easier parsing.
+*   **Console Only**: Adheres to "logs as event streams" philosophy. No files are written to disk.
+*   **Unified Logger**: Centralized logger strategy simplifies configuration and prevents "lost" logs.
+*   **Request Tracing**: A modern, async-safe `RequestIDMiddleware` assigns a unique `request_id` to each request. This is stored in `ContextVars` (immune to thread-bleeding issues) and injected into every log line.
+*   **Automatic Context**: Every log entry automatically includes:
+    *   `request_id`
+    *   `client_ip`
+    *   `user_id` (if authenticated)
+    *   `path`
+    *   `response_time` (for completed requests)
 
-## Log File Locations
+## Log Levels & Categories
 
-All log files are stored in the `logs/` directory at the root of the project:
+The system uses three primary logger categories:
 
-*   `logs/app.log`: General application logs.
-*   `logs/security.log`: Authentication and security events.
-*   `logs/error.log`: Error-level logs.
-*   `logs/info.log`: Info-level logs.
+1.  **Root (`""`)**: format catching all third-party libraries.
+2.  **Framework (`"django"`)**: Captures internal framework events (DB queries, generic errors).
+3.  **Application (`"apps"`)**: Captures your business logic logs.
+
+## How to Log in Your Code
+
+Do not use `print()`. Use the standard Python logging module with the `__name__` convention:
+
+```python
+import logging
+logger = logging.getLogger(__name__)
+
+def my_view(request):
+    logger.info("Processing order %s", order_id)
+    try:
+        ...
+    except ValueError as e:
+        logger.warning("Invalid input received: %s", e)
+```
+
+**Note:** Always use lazy interpolation (e.g., `logger.info("Msg %s", var)`), NOT f-strings, to improve performance.
 
 ## Example Log Entry
 
-Log entries are in JSON format, providing rich context for each event. Here's an example:
-
 ```json
 {
-    "asctime": "2025-05-04 14:17:22,365",
-    "levelname": "INFO",
-    "module": "views",
-    "process": 5929,
-    "thread": 281473186128320,
-    "message": "Ping request received",
-    "client": "127.0.0.1",
-    "request_id": "0d7344bd-0e6f-426d-aeed-46b9d1ca36bc",
-    "path": "/core/ping/",
-    "user_id": 1,
-    "status_code": 401,
-    "response_time": 0.0019102096557617188
+    "asctime": "2026-01-23 20:29:08,372",
+    "levelname": "INFO", 
+    "module": "apps.users.views", 
+    "message": "User admin@admin.com logged in.", 
+    "request_id": "2cecc66f-6cf1-4417-bbc8-af862bba999e", 
+    "user_id": "anonymous", 
+    "client": "192.168.97.1",
+    "path": "/auth/login/"
 }
 ```
-
-Each field in the JSON provides specific information:
-
-*   `asctime`: Timestamp of the log entry.
-*   `levelname`: The logging level (e.g., INFO, WARNING, ERROR).
-*   `module`: The Python module where the log originated.
-*   `process`: The process ID.
-*   `thread`: The thread ID.
-*   `message`: The actual log message.
-*   `client`: The IP address of the client making the request.
-*   `request_id`: A unique identifier for the request, useful for tracing.
-*   `path`: The URL path of the request.
-*   `user_id`: The ID of the authenticated user (or "anonymous" if not authenticated).
-*   `status_code`: The HTTP status code of the response.
-*   `response_time`: The time taken to process the request in seconds.
