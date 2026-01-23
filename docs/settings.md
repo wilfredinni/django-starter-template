@@ -12,17 +12,20 @@ The project leverages `django-environ` to manage environment variables, ensuring
 
 ```python
 import environ
+from pathlib import Path
 
 env = environ.Env()
 root_path = environ.Path(__file__) - 2
-env.read_env(str(root_path.path(".env")))
+env_file = Path(root_path(".env"))
+if env_file.is_file():
+    env.read_env(str(env_file))
 ```
 
 **Explanation:**
 
 *   `env = environ.Env()`: Initializes the environment reader, which provides methods to access environment variables with type casting.
 *   `root_path`: Defines the base directory for resolving relative paths within the project. It's calculated as two levels up from the `settings.py` file's location.
-*   `env.read_env()`: Reads variables from the `.env` file. When called without arguments, it automatically searches for a `.env` file in the current working directory or its parent directories.
+*   `env.read_env()`: Reads variables from the `.env` file ONLY if it exists. We check `if env_file.is_file()` to to prevent crashes in production environments (like AWS/Heroku) where environment variables are injected directly by the platform and no `.env` file is present.
 
 ## Basic Configuration
 

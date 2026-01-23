@@ -3,10 +3,8 @@ services:
     image: postgres:alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+    env_file:
+      - .env
     ports:
       - "5432:5432"
     healthcheck:
@@ -34,13 +32,12 @@ services:
     ports:
       - "8000:8000"
       - "8001:8001"
+    env_file:
+      - .env
     environment:
-      - DEBUG=True
-      - DJANGO_SECRET_KEY=insecure-dev-key
-      - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
       - REDIS_URL=redis://redis:6379/0
       - CELERY_BROKER_URL=redis://redis:6379/0
-      - ALLOWED_HOSTS=*
     depends_on:
       db:
         condition: service_healthy
@@ -53,10 +50,10 @@ services:
     command: sh -c "./scripts/wait-for-migrations.sh celery -A conf worker -l info"
     volumes:
       - .:/app
+    env_file:
+      - .env
     environment:
-      - DEBUG=True
-      - DJANGO_SECRET_KEY=insecure-dev-key
-      - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
       - REDIS_URL=redis://redis:6379/0
       - CELERY_BROKER_URL=redis://redis:6379/0
     depends_on:
@@ -64,8 +61,6 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
-      backend:
-        condition: service_started
 
   beat:
     image: django-starter-template:dev
@@ -73,10 +68,10 @@ services:
     command: sh -c "./scripts/wait-for-migrations.sh celery -A conf beat -l info"
     volumes:
       - .:/app
+    env_file:
+      - .env
     environment:
-      - DEBUG=True
-      - DJANGO_SECRET_KEY=insecure-dev-key
-      - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
       - REDIS_URL=redis://redis:6379/0
       - CELERY_BROKER_URL=redis://redis:6379/0
     depends_on:

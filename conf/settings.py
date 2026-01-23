@@ -8,7 +8,9 @@ import sentry_sdk
 
 env = environ.Env()
 root_path = environ.Path(__file__) - 2
-env.read_env(str(root_path.path(".env")))
+env_file = Path(root_path(".env"))
+if env_file.is_file():
+    env.read_env(str(env_file))
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 

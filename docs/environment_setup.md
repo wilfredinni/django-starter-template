@@ -18,8 +18,7 @@ The `.env.example` file serves as a template for your `.env` file. It lists all 
 # --------------------------------------------------------------------------------
 DEBUG=True
 DATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres
-DJANGO_SECRET_KEY=django-insecure-wlgjuo53y49%-4y5(!%ksylle_ud%b=7%__@9hh+@$d%_^y3s!
-
+DJANGO_SECRET_KEY=django-insecure-wlgjuo53y49%-4y5(!%ksylle_ud%b=7%__@9hh+@$$d%_^y3s!
 
 # --------------------------------------------------------------------------------
 # 📧 Email Config: optional and can be copied if needed.
@@ -30,6 +29,11 @@ EMAIL_PORT=587
 EMAIL_HOST_USER=user@user.com
 EMAIL_HOST_PASSWORD=myverystrongpassword
 
+# --------------------------------------------------------------------------------
+# 🧠 Celery & Redis
+# --------------------------------------------------------------------------------
+REDIS_URL=redis://localhost:6379/0
+CELERY_BROKER_URL=redis://localhost:6379/0
 
 # --------------------------------------------------------------------------------
 # 🔐 Security Config: for production or testing the production settings locally.
@@ -63,15 +67,19 @@ For local development:
 
 ### Docker Compose
 
-When using Docker Compose for development:
+When using Docker Compose for development, the project uses a "Hybrid" strategy:
+
+1.  **Shared Secrets (.env):** Docker Compose loads your local `.env` file to get secrets like `DJANGO_SECRET_KEY` and passwords.
+2.  **Auto-Wiring (Overrides):** It automatically overrides connection URLs (like database and Redis) to point to the docker container names (`db` and `redis`) instead of `localhost`.
+
+Means you don't need to change your `.env` file when switching between local binaries and Docker.
 
 *   `DEBUG=True`: Enables Django's debug mode
-*   `DATABASE_URL=postgres://postgres:postgres@db:5432/postgres`: Uses the containerized PostgreSQL service
-*   `REDIS_URL=redis://redis:6379/0`: Uses the containerized Redis service
-*   `CELERY_BROKER_URL=redis://redis:6379/0`: Celery connects to containerized Redis
-*   `DJANGO_SECRET_KEY`: Use the development key from `.env.example`
+*   `DATABASE_URL`: Automatically pointed to `db:5432` inside Docker.
+*   `REDIS_URL`: Automatically pointed to `redis:6379` inside Docker.
+*   `CELERY_BROKER_URL`: Automatically pointed to `redis:6379` inside Docker.
 
-The `.env` file is automatically loaded by Docker Compose. For IDE support (IntelliSense, code completion), also run:
+The `.env` file is automatically loaded by Docker Compose via `env_file`. For IDE support (IntelliSense, code completion), also run:
 
 ```bash
 uv sync
