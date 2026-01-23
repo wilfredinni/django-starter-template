@@ -15,7 +15,7 @@ The `apps/core/` directory includes the following key functionalities:
 
 ## API Endpoints
 
-The Core application exposes the following API endpoints, all prefixed with `/core/`:
+The Core application exposes the following API endpoints, all prefixed with `/api/v1/core/`:
 
 ### Ping
 
@@ -24,7 +24,7 @@ This is a simple endpoint designed to verify that the server is operational and 
 **Request:**
 
 *   **Method:** `GET`
-*   **URL:** `/core/ping/`
+*   **URL:** `/api/v1/core/ping/`
 
 **Responses:**
 
@@ -43,7 +43,7 @@ This endpoint triggers a sample Celery task in the background. It's useful for t
 **Request:**
 
 *   **Method:** `GET`
-*   **URL:** `/core/fire-task/`
+*   **URL:** `/api/v1/core/fire-task/`
 
 **Responses:**
 

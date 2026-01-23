@@ -133,6 +133,10 @@ Configuration for `django-rest-knox`, the token-based authentication system used
 Core settings for Django REST Framework, influencing how APIs behave, including authentication, filtering, and rendering:
 
 *   `DEFAULT_AUTHENTICATION_CLASSES`: Defines the authentication methods available for API endpoints. **Default:** `knox.auth.TokenAuthentication`. In `DEBUG` mode, `SessionAuthentication` and `BasicAuthentication` are also included for development convenience.
+*   `DEFAULT_VERSIONING_CLASS`: Controls API versioning. **Default:** `rest_framework.versioning.URLPathVersioning`.
+*   `DEFAULT_VERSION`: The default API version. **Default:** `v1`.
+*   `ALLOWED_VERSIONS`: A list of allowed API versions. **Default:** `["v1"]`.
+*   `VERSION_PARAM`: The URL parameter used for versioning. **Default:** `version`.
 *   `DEFAULT_FILTER_BACKENDS`: Specifies the default filter backends used for enabling filtering, searching, and ordering capabilities on API list views. **Default:** `django_filters.rest_framework.DjangoFilterBackend`, `rest_framework.filters.SearchFilter`, `rest_framework.filters.OrderingFilter`.
 *   `DEFAULT_RENDERER_CLASSES`: Determines how API responses are rendered. **Default:** `rest_framework.renderers.JSONRenderer`. In `DEBUG` mode, `BrowsableAPIRenderer` is also added, providing a user-friendly HTML interface for API interaction.
 *   `DEFAULT_SCHEMA_CLASS`: Integrates `drf-spectacular` for automatic OpenAPI schema generation. **Default:** `drf_spectacular.openapi.AutoSchema`.
