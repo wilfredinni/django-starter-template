@@ -1,5 +1,3 @@
-import logging
-
 from django.http import JsonResponse
 from drf_spectacular.utils import extend_schema
 from rest_framework.decorators import api_view, throttle_classes
@@ -30,8 +28,6 @@ class PingRateThrottle(AnonRateThrottle):
 @api_view(["GET"])
 @throttle_classes([PingRateThrottle])
 def ping(request):
-    logger = logging.getLogger("django.info")
-    logger.info("Ping request received")
     return JsonResponse({"ping": "pong"})
 
 

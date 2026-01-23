@@ -95,6 +95,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "apps.core.middleware.RequestIDMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -103,7 +104,6 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "apps.core.middleware.RequestIDMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -251,75 +251,22 @@ LOGGING = {
     "handlers": {
         "console": {
             "class": "logging.StreamHandler",
-            "formatter": "simple",
-        },
-        "file": {
-            "class": "logging.handlers.RotatingFileHandler",
-            "filename": f"{root_path('logs')}/app.log",
-            "maxBytes": 10 * 1024 * 1024,  # 10MB
-            "backupCount": 5,
             "formatter": "json",
             "filters": ["request_id"],
-        },
-        "security_file": {
-            "class": "logging.handlers.RotatingFileHandler",
-            "filename": f"{root_path('logs')}/security.log",
-            "maxBytes": 10 * 1024 * 1024,
-            "backupCount": 5,
-            "formatter": "json",
-            "filters": ["request_id", "timed_log"],
-        },
-        "error_file": {
-            "class": "logging.handlers.RotatingFileHandler",
-            "filename": f"{root_path('logs')}/error.log",
-            "maxBytes": 10 * 1024 * 1024,
-            "backupCount": 5,
-            "formatter": "json",
-            "filters": ["request_id", "timed_log"],
-            "level": "ERROR",
-        },
-        "info_file": {
-            "class": "logging.handlers.RotatingFileHandler",
-            "filename": f"{root_path('logs')}/info.log",
-            "maxBytes": 10 * 1024 * 1024,
-            "backupCount": 5,
-            "formatter": "json",
-            "filters": ["request_id", "timed_log"],
-            "level": "INFO",
         },
     },
     "loggers": {
         "": {
-            "handlers": ["console", "file"],
+            "handlers": ["console"],
             "level": "INFO",
         },
-        "django.utils.autoreload": {
+        "django": {
             "handlers": ["console"],
             "level": "INFO",
             "propagate": False,
         },
-        "django": {
-            "handlers": ["console", "file"],
-            "level": "INFO",
-            "propagate": False,
-        },
-        "django.info": {
-            "handlers": ["console", "file", "info_file"],
-            "level": "INFO",
-            "propagate": False,
-        },
-        "django.request": {
-            "handlers": ["console", "file", "error_file"],
-            "level": "WARNING",
-            "propagate": False,
-        },
-        "django.security": {
-            "handlers": ["console", "file", "security_file"],
-            "level": "INFO",
-            "propagate": False,
-        },
         "apps": {
-            "handlers": ["console", "file"],
+            "handlers": ["console"],
             "level": "DEBUG" if DEBUG else "INFO",
             "propagate": False,
         },
