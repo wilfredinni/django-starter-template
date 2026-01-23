@@ -90,7 +90,6 @@ INSTALLED_APPS = [
     "django_celery_beat",
     "django_celery_results",
     "drf_spectacular",
-    "django_extensions",
     # local apps
     "apps.users",
     "apps.core",
@@ -174,6 +173,13 @@ SPECTACULAR_SETTINGS = {
 }
 
 if DEBUG:
+    try:
+        import django_extensions  # noqa
+
+        INSTALLED_APPS += ["django_extensions"]
+    except ImportError:
+        pass
+
     REST_FRAMEWORK["DEFAULT_AUTHENTICATION_CLASSES"] += (
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.BasicAuthentication",

@@ -1,9 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.db import transaction
-from faker import Faker
 from apps.users.models import CustomUser
-
-fake = Faker()
 
 
 class Command(BaseCommand):
@@ -45,6 +42,17 @@ class Command(BaseCommand):
             self.stdout.write(self.style.WARNING(f"Superuser already exists - {e}"))
 
     def create_users(self, count):
+        try:
+            from faker import Faker
+        except ImportError:
+            self.stdout.write(
+                self.style.ERROR(
+                    "Faker is not installed. Please install it to seed users."
+                )
+            )
+            return
+
+        fake = Faker()
         self.stdout.write(f"Creating {count} users...")
 
         for _ in range(count):
