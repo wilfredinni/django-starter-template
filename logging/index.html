@@ -552,10 +552,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#log-file-locations" class="md-nav__link">
+  <a href="#log-levels-categories" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Log File Locations
+        Log Levels &amp; Categories
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-log-in-your-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Log in Your Code
       
     </span>
   </a>
@@ -875,10 +886,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#log-file-locations" class="md-nav__link">
+  <a href="#log-levels-categories" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Log File Locations
+        Log Levels &amp; Categories
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-log-in-your-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Log in Your Code
       
     </span>
   </a>
@@ -925,64 +947,56 @@
 
 
 <h1 id="logging-system">Logging System</h1>
-<p>This section details the logging system implemented in the Django Starter Template, covering its configuration, features, and how to interpret the generated logs.</p>
+<p>This section details the logging system implemented in the Django Starter Template, which is designed for high-performance production environments using 12-Factor App methodology.</p>
 <h2 id="overview">Overview</h2>
-<p>The template utilizes a centralized logging system configured within <code>conf/settings.py</code>. It's designed to provide comprehensive and structured logs, making it easier to monitor, debug, and analyze application behavior, especially in production environments.</p>
+<p>The logging system is configured in <code>conf/settings.py</code> to stream all events to <code>stdout</code> (Console) in structured JSON format. This eliminates the need for managing local log files and integrating easily with modern container logging drivers (Docker, Kubernetes) and aggregators (Datadog, Splunk, CloudWatch).</p>
 <h2 id="key-features">Key Features</h2>
 <ul>
-<li><strong>JSON Format</strong>: All logs are formatted as JSON, enabling easy parsing and integration with log management tools.</li>
-<li><strong>Multiple Handlers</strong>: Different types of logs are directed to specific handlers and files:<ul>
-<li><code>console</code>: Outputs logs to the console, primarily used during development.</li>
-<li><code>app.log</code>: General application logs.</li>
-<li><code>security.log</code>: Specifically captures authentication events and security-related messages.</li>
-<li><code>error.log</code>: Records all error-level messages.</li>
-<li><code>info.log</code>: Records all info-level messages.</li>
+<li><strong>JSON Format</strong>: All logs are formatted as JSON, enabling machine readability and easier parsing.</li>
+<li><strong>Console Only</strong>: Adheres to "logs as event streams" philosophy. No files are written to disk.</li>
+<li><strong>Unified Logger</strong>: Centralized logger strategy simplifies configuration and prevents "lost" logs.</li>
+<li><strong>Request Tracing</strong>: A modern, async-safe <code>RequestIDMiddleware</code> assigns a unique <code>request_id</code> to each request. This is stored in <code>ContextVars</code> (immune to thread-bleeding issues) and injected into every log line.</li>
+<li><strong>Automatic Context</strong>: Every log entry automatically includes:<ul>
+<li><code>request_id</code></li>
+<li><code>client_ip</code></li>
+<li><code>user_id</code> (if authenticated)</li>
+<li><code>path</code></li>
+<li><code>response_time</code> (for completed requests)</li>
 </ul>
 </li>
-<li><strong>Rotating Files</strong>: To prevent log files from growing indefinitely, they are configured to rotate. Each log file has a maximum size of 10MB, and up to 5 backup files are kept.</li>
-<li><strong>Request Tracing</strong>: A custom middleware (<code>apps.core.middleware.RequestIDMiddleware</code>) assigns a unique <code>request_id</code> to each incoming request. This ID, along with other request-specific details (client IP, request path, authenticated user ID, response time, and HTTP status code), is automatically injected into every log record. This allows for end-to-end tracing of requests.</li>
-<li><strong>Sentry Integration</strong>: In production environments, Sentry is integrated for advanced error tracking and performance monitoring.</li>
 </ul>
-<h2 id="log-file-locations">Log File Locations</h2>
-<p>All log files are stored in the <code>logs/</code> directory at the root of the project:</p>
-<ul>
-<li><code>logs/app.log</code>: General application logs.</li>
-<li><code>logs/security.log</code>: Authentication and security events.</li>
-<li><code>logs/error.log</code>: Error-level logs.</li>
-<li><code>logs/info.log</code>: Info-level logs.</li>
-</ul>
-<h2 id="example-log-entry">Example Log Entry</h2>
-<p>Log entries are in JSON format, providing rich context for each event. Here's an example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nt">&quot;asctime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-05-04 14:17:22,365&quot;</span><span class="p">,</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">&quot;levelname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;INFO&quot;</span><span class="p">,</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">&quot;module&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;views&quot;</span><span class="p">,</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nt">&quot;process&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5929</span><span class="p">,</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nt">&quot;thread&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">281473186128320</span><span class="p">,</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ping request received&quot;</span><span class="p">,</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">&quot;client&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nt">&quot;request_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0d7344bd-0e6f-426d-aeed-46b9d1ca36bc&quot;</span><span class="p">,</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/core/ping/&quot;</span><span class="p">,</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="nt">&quot;user_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="nt">&quot;status_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">401</span><span class="p">,</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="nt">&quot;response_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0019102096557617188</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">}</span>
+<h2 id="log-levels-categories">Log Levels &amp; Categories</h2>
+<p>The system uses three primary logger categories:</p>
+<ol>
+<li><strong>Root (<code>""</code>)</strong>: format catching all third-party libraries.</li>
+<li><strong>Framework (<code>"django"</code>)</strong>: Captures internal framework events (DB queries, generic errors).</li>
+<li><strong>Application (<code>"apps"</code>)</strong>: Captures your business logic logs.</li>
+</ol>
+<h2 id="how-to-log-in-your-code">How to Log in Your Code</h2>
+<p>Do not use <code>print()</code>. Use the standard Python logging module with the <code>__name__</code> convention:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">my_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Processing order </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">order_id</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="o">...</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Invalid input received: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
 </code></pre></div>
-<p>Each field in the JSON provides specific information:</p>
-<ul>
-<li><code>asctime</code>: Timestamp of the log entry.</li>
-<li><code>levelname</code>: The logging level (e.g., INFO, WARNING, ERROR).</li>
-<li><code>module</code>: The Python module where the log originated.</li>
-<li><code>process</code>: The process ID.</li>
-<li><code>thread</code>: The thread ID.</li>
-<li><code>message</code>: The actual log message.</li>
-<li><code>client</code>: The IP address of the client making the request.</li>
-<li><code>request_id</code>: A unique identifier for the request, useful for tracing.</li>
-<li><code>path</code>: The URL path of the request.</li>
-<li><code>user_id</code>: The ID of the authenticated user (or "anonymous" if not authenticated).</li>
-<li><code>status_code</code>: The HTTP status code of the response.</li>
-<li><code>response_time</code>: The time taken to process the request in seconds.</li>
-</ul>
+<p><strong>Note:</strong> Always use lazy interpolation (e.g., <code>logger.info("Msg %s", var)</code>), NOT f-strings, to improve performance.</p>
+<h2 id="example-log-entry">Example Log Entry</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nt">&quot;asctime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-23 20:29:08,372&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">&quot;levelname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;INFO&quot;</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">&quot;module&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;apps.users.views&quot;</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;User admin@admin.com logged in.&quot;</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="nt">&quot;request_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2cecc66f-6cf1-4417-bbc8-af862bba999e&quot;</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="nt">&quot;user_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;anonymous&quot;</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nt">&quot;client&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.97.1&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/auth/login/&quot;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="p">}</span>
+</code></pre></div>
 
 
 

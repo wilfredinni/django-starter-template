@@ -905,64 +905,63 @@
 <h1 id="project-structure">Project Structure</h1>
 <h2 id="overview">Overview</h2>
 <p>Understanding the project's directory structure is fundamental for navigating, developing, and maintaining the Django Starter Template. This document provides a detailed overview of the main directories and files, explaining their purpose and contents to help you quickly grasp the project's organization.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>├── .clinerules/                # Gemini CLI rules
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── .coveragerc                 # Coverage.py configuration
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── .env.example                # Example environment variables file
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── .flake8                     # Flake8 linter configuration
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── .github/                    # GitHub CI/CD workflows and issue templates
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── .gitignore                  # Git ignore file
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>├── .pytest_cache/              # Pytest cache
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>├── .venv/                      # Virtual environment
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>├── .vscode/                    # IDE settings (VS Code configuration)
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>├── apps/                       # Django applications (core logic)
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│   ├── core/                   # Core functionalities and shared components
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│   │   ├── __init__.py         # Initializes the core app
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│   │   ├── admin.py            # Django admin configuration for core app
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│   │   ├── apps.py             # App configuration for core app
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│   │   ├── management/         # Custom Django management commands
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│   │   ├── middleware.py       # Custom middleware for core app
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│   │   ├── migrations/         # Database migrations for core app
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>│   │   ├── schema.py           # OpenAPI schema definitions for core app
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>│   │   ├── tasks.py            # Celery task definitions for core app
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│   │   ├── tests/              # Unit and integration tests for core app
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>│   │   └── urls.py             # URL routing for core app
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>│   └── users/                  # User management and authentication app
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>│       ├── __init__.py         # Initializes the users app
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>│       ├── admin.py            # Django admin configuration for users app
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>│       ├── apps.py             # App configuration for users app
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>│       ├── forms.py            # Custom forms for users app
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>│       ├── managers.py         # Custom managers for user models
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>│       ├── migrations/         # Database migrations for users app
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>│       ├── models.py           # User model definition
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>│       ├── schema.py           # OpenAPI schema definitions for users app
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>│       ├── serializers.py      # Serializers for users app
-<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>│       ├── tests/              # Unit and integration tests for users app
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>│       ├── throttles.py        # Rate limiting configurations for user-related views
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>│       ├── urls.py             # URL routing for users app
-<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>│       ├── utils.py            # Utility functions for users app
-<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>│       └── views.py            # API views for user authentication and profile management
-<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>├── conf/                       # Project-wide configuration
-<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>│   ├── __init__.py             # Initializes the conf module
-<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>│   ├── asgi.py                 # ASGI application entry point
-<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>│   ├── celery.py               # Celery application configuration
-<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>│   ├── settings.py             # Main Django settings file
-<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>│   ├── test_settings.py        # Settings specifically for running tests
-<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>│   ├── test_utils.py           # Test utilities
-<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>│   ├── urls.py                 # Main URL routing for the project
-<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>│   └── wsgi.py                 # WSGI application entry point
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>├── .coveragerc                 # Coverage.py configuration
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── .env.example                # Example environment variables file
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── .flake8                     # Flake8 linter configuration
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── .github/                    # GitHub CI/CD workflows and issue templates
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── .gitignore                  # Git ignore file
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── .venv/                      # Virtual environment
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>├── .vscode/                    # IDE settings (VS Code configuration)
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>├── apps/                       # Django applications (core logic)
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│   ├── core/                   # Core functionalities and shared components
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│   │   ├── __init__.py         # Initializes the core app
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│   │   ├── admin.py            # Django admin configuration for core app
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│   │   ├── apps.py             # App configuration for core app
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│   │   ├── management/         # Custom Django management commands
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│   │   ├── middleware.py       # Custom middleware for core app
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│   │   ├── migrations/         # Database migrations for core app
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│   │   ├── schema.py           # OpenAPI schema definitions for core app
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│   │   ├── tasks.py            # Celery task definitions for core app
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>│   │   ├── tests/              # Unit and integration tests for core app
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>│   │   └── urls.py             # URL routing for core app
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│   └── users/                  # User management and authentication app
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>│       ├── __init__.py         # Initializes the users app
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>│       ├── admin.py            # Django admin configuration for users app
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>│       ├── apps.py             # App configuration for users app
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>│       ├── forms.py            # Custom forms for users app
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>│       ├── managers.py         # Custom managers for user models
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>│       ├── migrations/         # Database migrations for users app
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>│       ├── models.py           # User model definition
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>│       ├── schema.py           # OpenAPI schema definitions for users app
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>│       ├── serializers.py      # Serializers for users app
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>│       ├── tests/              # Unit and integration tests for users app
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>│       ├── throttles.py        # Rate limiting configurations for user-related views
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>│       ├── urls.py             # URL routing for users app
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>│       ├── utils.py            # Utility functions for users app
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>│       └── views.py            # API views for user authentication and profile management
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>├── conf/                       # Project-wide configuration
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>│   ├── __init__.py             # Initializes the conf module
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>│   ├── asgi.py                 # ASGI application entry point
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>│   ├── celery.py               # Celery application configuration
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>│   ├── settings.py             # Main Django settings file
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>│   ├── test_settings.py        # Settings specifically for running tests
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>│   ├── test_utils.py           # Test utilities
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>│   ├── urls.py                 # Main URL routing for the project
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>│   └── wsgi.py                 # WSGI application entry point
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>├── docker-compose.yml          # Docker services configuration
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>├── Dockerfile                  # Docker build instructions
 <a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>├── docs/                       # Documentation files
-<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>├── logs/                       # Application log files
-<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>├── manage.py                   # Django&#39;s command-line utility
-<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>├── mkdocs.yml                  # MkDocs configuration
-<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>├── notebook.ipynb              # Jupyter Notebook for interactive development
-<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>├── uv.lock                     # uv lock file
-<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>├── pyproject.toml              # Project dependencies and metadata (uv)
-<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>├── pytest.ini                  # Pytest configuration
-<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>├── README.md                   # Project README file
-<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>├── renovate.json               # Renovate Bot configuration for dependency updates
-<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>├── scripts/                    # Utility scripts for various development tasks
-<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>├── static/                     # Static files (CSS, JavaScript, images)
-<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>└── templates/                  # Project-wide HTML templates
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>├── manage.py                   # Django&#39;s command-line utility
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>├── mkdocs.yml                  # MkDocs configuration
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>├── notebook.ipynb              # Jupyter Notebook for interactive development
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>├── uv.lock                     # uv lock file
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>├── pyproject.toml              # Project dependencies and metadata (uv)
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>├── pytest.ini                  # Pytest configuration
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>├── README.md                   # Project README file
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>├── renovate.json               # Renovate Bot configuration for dependency updates
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>├── scripts/                    # Utility scripts for various development tasks
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>├── static/                     # Static files (CSS, JavaScript, images)
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>└── templates/                  # Project-wide HTML templates
 </code></pre></div>
 <h2 id="key-directories">Key Directories</h2>
 <p>This section describes the primary directories within the project and their respective purposes:</p>
@@ -982,9 +981,6 @@
 </li>
 <li>
 <p><strong><code>conf/</code></strong>: Contains project-wide configuration files that apply to the entire Django project, rather than being specific to a single app. This includes the main <code>settings.py</code>, URL routing (<code>urls.py</code>), ASGI/WSGI configurations, and Celery setup.</p>
-</li>
-<li>
-<p><strong><code>logs/</code></strong>: The designated directory for application log files. Different log levels and types (e.g., general application logs, security events, error logs) are typically written to separate files within this directory for easier monitoring and debugging.</p>
 </li>
 <li>
 <p><strong><code>scripts/</code></strong>: A collection of utility scripts that automate various development and maintenance tasks. These scripts can include commands for running the server, managing migrations, or executing custom project-specific operations.</p>
