@@ -48,6 +48,8 @@ Understanding the project's directory structure is fundamental for navigating, d
 │   ├── test_utils.py           # Test utilities
 │   ├── urls.py                 # Main URL routing for the project
 │   └── wsgi.py                 # WSGI application entry point
+├── docker-compose.yml          # Docker services configuration
+├── Dockerfile                  # Docker build instructions
 ├── docs/                       # Documentation files
 ├── manage.py                   # Django's command-line utility
 ├── mkdocs.yml                  # MkDocs configuration
