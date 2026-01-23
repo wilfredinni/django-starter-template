@@ -9,7 +9,7 @@ class ProfileViewTests(APITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.url = reverse("users:profile")
+        cls.url = reverse("v1:users:profile")
         cls.user = get_user_model().objects.create_user(
             email="testuser@example.com",
             password="testpassword123",

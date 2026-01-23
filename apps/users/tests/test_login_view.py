@@ -12,7 +12,7 @@ class LoginViewTests(APITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.url = reverse("users:knox_login")
+        cls.url = reverse("v1:users:knox_login")
         cls.user = User.objects.create_user(
             email="testuser@example.com", password="testpassword123"
         )
@@ -192,6 +192,6 @@ class LoginViewTests(APITestCase):
         # All tokens should be valid
         for token in tokens:
             self.client.credentials(HTTP_AUTHORIZATION=f"Token {token}")
-            profile_url = reverse("users:profile")
+            profile_url = reverse("v1:users:profile")
             response = self.client.get(profile_url)
             self.assertEqual(response.status_code, status.HTTP_200_OK)

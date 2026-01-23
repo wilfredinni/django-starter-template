@@ -9,7 +9,7 @@ class CoreViewsTests(APITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.ping_url = reverse("ping")
+        cls.ping_url = reverse("v1:core:ping")
 
     def test_ping_view_success(self):
         """Test ping endpoint returns correct response"""
