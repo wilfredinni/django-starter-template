@@ -1,5 +1,5 @@
-import re
 import os
+import re
 
 
 def increment_version(version):
@@ -42,9 +42,9 @@ def bum_version():
     with open(pyproject_file, "r") as file:
         pyproject_content = file.read()
 
-    current_version = re.search(
-        r'version = "(\d+\.\d+\.\d+)"', pyproject_content
-    ).group(1)
+    current_version = re.search(r'version = "(\d+\.\d+\.\d+)"', pyproject_content).group(
+        1
+    )
     new_version = increment_version(current_version)
 
     update_pyproject_version(pyproject_file, new_version)

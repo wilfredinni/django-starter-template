@@ -11,7 +11,7 @@ class CreateUserViewTests(APITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.url = reverse("users:create")
+        cls.url = reverse("v1:users:create")
         cls.user_data = {
             "email": "testuser@example.com",
             "password": "testpassword123",

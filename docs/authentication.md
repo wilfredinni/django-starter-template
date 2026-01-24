@@ -53,7 +53,7 @@ This endpoint allows for the registration of a new user account.
 **Request:**
 
 *   **Method:** `POST`
-*   **URL:** `/auth/create/`
+*   **URL:** `/api/v1/auth/create/`
 *   **Body:**
     ```json
     {
@@ -116,7 +116,7 @@ This endpoint authenticates a user and issues an authentication token.
 **Request:**
 
 *   **Method:** `POST`
-*   **URL:** `/auth/login/`
+*   **URL:** `/api/v1/auth/login/`
 *   **Body:**
     ```json
     {
@@ -171,7 +171,7 @@ This endpoint logs out the currently authenticated user by invalidating their cu
 **Request:**
 
 *   **Method:** `POST`
-*   **URL:** `/auth/logout/`
+*   **URL:** `/api/v1/auth/logout/`
 *   **Authentication:** Token required.
 
 **Responses:**
@@ -193,7 +193,7 @@ This endpoint invalidates all authentication tokens for the currently authentica
 **Request:**
 
 *   **Method:** `POST`
-*   **URL:** `/auth/logoutall/`
+*   **URL:** `/api/v1/auth/logoutall/`
 *   **Authentication:** Token required.
 
 **Responses:**
@@ -220,7 +220,7 @@ Retrieves the profile of the currently authenticated user.
 **Request:**
 
 *   **Method:** `GET`
-*   **URL:** `/auth/profile/`
+*   **URL:** `/api/v1/auth/profile/`
 *   **Authentication:** Token required.
 
 **Responses:**
@@ -250,7 +250,7 @@ Updates the entire profile of the currently authenticated user. All fields must 
 **Request:**
 
 *   **Method:** `PUT`
-*   **URL:** `/auth/profile/`
+*   **URL:** `/api/v1/auth/profile/`
 *   **Authentication:** Token required.
 *   **Body:**
     ```json
@@ -299,7 +299,7 @@ Partially updates the profile of the currently authenticated user. Only the fiel
 **Request:**
 
 *   **Method:** `PATCH`
-*   **URL:** `/auth/profile/`
+*   **URL:** `/api/v1/auth/profile/`
 *   **Authentication:** Token required.
 *   **Body:**
     ```json

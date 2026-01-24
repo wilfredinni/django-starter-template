@@ -1,7 +1,7 @@
 [project]
 # TODO ⚡ Change the name, version, description, authors, and license of the project
 name = "django-starter-template"
-version = "0.4.2"
+version = "0.4.3"
 description = "A comprehensive starting point for your new API with Django and DRF"
 authors = [{name = "Carlos", email = "carlos@pythoncheatsheet.org"}]
 license = {text = "MIT"}
@@ -12,7 +12,7 @@ dependencies = [
     "django-environ>=0.12.0",
     "django-cors-headers>=4.5.0",
     "djangorestframework>=3.15.2",
-    "psycopg2-binary>=2.9.10",
+    "psycopg>=3.2.0",
     "whitenoise>=6.7.0",
     "gunicorn>=23.0.0",
     "django-rest-knox>=5.0.2",
@@ -23,23 +23,8 @@ dependencies = [
     "sentry-sdk[django]>=2.17.0",
     "django-redis>=6.0.0",
     "drf-spectacular>=0.29.0",
-    "faker>=38.0.0",
-    "django-seed>=0.3.1",
-    "django-extensions>=4.1",
     "django-filter>=25.1",
     "python-json-logger>=4.0.0",
-]
-
-[project.optional-dependencies]
-dev = [
-    "django-debug-toolbar>=6.0.0",
-    "pytest>=9.0.0",
-    "pytest-django>=4.9.0",
-    "ipykernel>=7.0.0",
-    "pytest-mock>=3.14.0",
-    "pytest-cov>=7.0.0",
-    "mkdocs>=1.6.0",
-    "mkdocs-material>=9.5.26",
 ]
 
 [build-system]
@@ -48,3 +33,55 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["apps", "conf"]
+
+[tool.ruff]
+# Same chain as Black
+line-length = 90
+indent-width = 4
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+ignore = []
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+python_version = "3.13"
+warn_return_any = false
+warn_unused_configs = true
+explicit_package_bases = true
+exclude = [
+    "apps/.*/migrations/.*",
+    "conf/.*",
+    "scripts/.*",
+    "docs/.*",
+    "site/.*",
+]
+plugins = [
+    "mypy_django_plugin.main",
+    "mypy_drf_plugin.main",
+]
+
+[tool.django-stubs]
+django_settings_module = "conf.settings"
+
+[dependency-groups]
+dev = [
+    "django-debug-toolbar>=6.0.0",
+    "django-extensions>=4.1",
+    "faker>=38.0.0",
+    "pytest>=9.0.0",
+    "pytest-django>=4.9.0",
+    "ipykernel>=7.0.0",
+    "pytest-mock>=3.14.0",
+    "pytest-cov>=7.0.0",
+    "mkdocs>=1.6.0",
+    "mkdocs-material>=9.5.26",
+    "django-stubs>=5.2.9",
+    "djangorestframework-stubs>=3.16.7",
+    "mypy>=1.19.1",
+    "ruff>=0.14.14",
+]

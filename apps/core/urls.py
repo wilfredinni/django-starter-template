@@ -2,7 +2,7 @@ from django.urls import path
 
 from . import views
 
-appname = "core"
+app_name = "core"
 
 urlpatterns = [
     path("ping/", views.ping, name="ping"),

@@ -12,17 +12,20 @@ The project leverages `django-environ` to manage environment variables, ensuring
 
 ```python
 import environ
+from pathlib import Path
 
 env = environ.Env()
 root_path = environ.Path(__file__) - 2
-env.read_env(str(root_path.path(".env")))
+env_file = Path(root_path(".env"))
+if env_file.is_file():
+    env.read_env(str(env_file))
 ```
 
 **Explanation:**
 
 *   `env = environ.Env()`: Initializes the environment reader, which provides methods to access environment variables with type casting.
 *   `root_path`: Defines the base directory for resolving relative paths within the project. It's calculated as two levels up from the `settings.py` file's location.
-*   `env.read_env()`: Reads variables from the `.env` file. When called without arguments, it automatically searches for a `.env` file in the current working directory or its parent directories.
+*   `env.read_env()`: Reads variables from the `.env` file ONLY if it exists. We check `if env_file.is_file()` to to prevent crashes in production environments (like AWS/Heroku) where environment variables are injected directly by the platform and no `.env` file is present.
 
 ## Basic Configuration
 
@@ -130,6 +133,10 @@ Configuration for `django-rest-knox`, the token-based authentication system used
 Core settings for Django REST Framework, influencing how APIs behave, including authentication, filtering, and rendering:
 
 *   `DEFAULT_AUTHENTICATION_CLASSES`: Defines the authentication methods available for API endpoints. **Default:** `knox.auth.TokenAuthentication`. In `DEBUG` mode, `SessionAuthentication` and `BasicAuthentication` are also included for development convenience.
+*   `DEFAULT_VERSIONING_CLASS`: Controls API versioning. **Default:** `rest_framework.versioning.URLPathVersioning`.
+*   `DEFAULT_VERSION`: The default API version. **Default:** `v1`.
+*   `ALLOWED_VERSIONS`: A list of allowed API versions. **Default:** `["v1"]`.
+*   `VERSION_PARAM`: The URL parameter used for versioning. **Default:** `version`.
 *   `DEFAULT_FILTER_BACKENDS`: Specifies the default filter backends used for enabling filtering, searching, and ordering capabilities on API list views. **Default:** `django_filters.rest_framework.DjangoFilterBackend`, `rest_framework.filters.SearchFilter`, `rest_framework.filters.OrderingFilter`.
 *   `DEFAULT_RENDERER_CLASSES`: Determines how API responses are rendered. **Default:** `rest_framework.renderers.JSONRenderer`. In `DEBUG` mode, `BrowsableAPIRenderer` is also added, providing a user-friendly HTML interface for API interaction.
 *   `DEFAULT_SCHEMA_CLASS`: Integrates `drf-spectacular` for automatic OpenAPI schema generation. **Default:** `drf_spectacular.openapi.AutoSchema`.

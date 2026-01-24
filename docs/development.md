@@ -250,6 +250,44 @@ docker compose logs -f beat
     ```
     This command starts the Celery beat scheduler, which is responsible for periodically executing scheduled tasks.
 
+## API Versioning
+
+The project follows the **URL Path Versioning** strategy (e.g., `/api/v1/auth/login/`) to ensure backward compatibility and a clear API structure.
+
+### URL Structure
+
+*   All API endpoints are prefixed with `/api/{version}/`.
+*   The current default version is `v1`.
+*   Example: `https://api.example.com/api/v1/auth/login/`
+
+### How to use in code
+
+When reversing URLs in your tests or views, you must include the version namespace. The current version namespace is `v1`.
+
+**Example:**
+
+```python
+from django.urls import reverse
+
+# Correct way to reverse a URL
+login_url = reverse("v1:users:knox_login")
+core_ping = reverse("v1:core:ping")
+```
+
+### Configuration
+
+Versioning settings can be found in `conf/settings.py` under `REST_FRAMEWORK`:
+
+```python
+REST_FRAMEWORK = {
+    # ...
+    "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.URLPathVersioning",
+    "DEFAULT_VERSION": "v1",
+    "ALLOWED_VERSIONS": ["v1"],
+    "VERSION_PARAM": "version",
+}
+```
+
 ## Environment Variables
 
 Environment variables are managed using a `.env` file, which is crucial for configuring application settings without hardcoding sensitive information. The project uses `django-environ` to load these variables.

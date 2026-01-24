@@ -8,7 +8,9 @@ import sentry_sdk
 
 env = environ.Env()
 root_path = environ.Path(__file__) - 2
-env.read_env(str(root_path.path(".env")))
+env_file = Path(root_path(".env"))
+if env_file.is_file():
+    env.read_env(str(env_file))
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -43,9 +45,7 @@ PASSWORD_HASHERS = [
 ]
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
         "OPTIONS": {"min_length": MIN_PASSWORD_LENGTH},
@@ -88,7 +88,6 @@ INSTALLED_APPS = [
     "django_celery_beat",
     "django_celery_results",
     "drf_spectacular",
-    "django_extensions",
     # local apps
     "apps.users",
     "apps.core",
@@ -144,6 +143,10 @@ REST_KNOX = {
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": ("knox.auth.TokenAuthentication",),
+    "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.URLPathVersioning",
+    "DEFAULT_VERSION": "v1",
+    "ALLOWED_VERSIONS": ["v1"],
+    "VERSION_PARAM": "version",
     "DEFAULT_FILTER_BACKENDS": (
         "django_filters.rest_framework.DjangoFilterBackend",
         "rest_framework.filters.SearchFilter",
@@ -168,6 +171,13 @@ SPECTACULAR_SETTINGS = {
 }
 
 if DEBUG:
+    try:
+        import django_extensions  # noqa
+
+        INSTALLED_APPS += ["django_extensions"]
+    except ImportError:
+        pass
+
     REST_FRAMEWORK["DEFAULT_AUTHENTICATION_CLASSES"] += (
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.BasicAuthentication",
