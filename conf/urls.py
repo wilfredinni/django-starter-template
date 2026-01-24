@@ -8,9 +8,7 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 # TODO 🚫 Delete the index view, route and template.
 def index(request):
-    base_url = (
-        "https://github.com/wilfredinni/django-starter-template?tab=readme-ov-file"
-    )
+    base_url = "https://github.com/wilfredinni/django-starter-template?tab=readme-ov-file"
     context = {}
     context["version"] = "0.4.3"
     context["buttons"] = [

@@ -27,7 +27,48 @@ dependencies = [
     "python-json-logger>=4.0.0",
 ]
 
-[project.optional-dependencies]
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["apps", "conf"]
+
+[tool.ruff]
+# Same chain as Black
+line-length = 90
+indent-width = 4
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+ignore = []
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+python_version = "3.13"
+warn_return_any = false
+warn_unused_configs = true
+explicit_package_bases = true
+exclude = [
+    "apps/.*/migrations/.*",
+    "conf/.*",
+    "scripts/.*",
+    "docs/.*",
+    "site/.*",
+]
+plugins = [
+    "mypy_django_plugin.main",
+    "mypy_drf_plugin.main",
+]
+
+[tool.django-stubs]
+django_settings_module = "conf.settings"
+
+[dependency-groups]
 dev = [
     "django-debug-toolbar>=6.0.0",
     "django-extensions>=4.1",
@@ -39,11 +80,8 @@ dev = [
     "pytest-cov>=7.0.0",
     "mkdocs>=1.6.0",
     "mkdocs-material>=9.5.26",
+    "django-stubs>=5.2.9",
+    "djangorestframework-stubs>=3.16.7",
+    "mypy>=1.19.1",
+    "ruff>=0.14.14",
 ]
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-
-[tool.hatch.build.targets.wheel]
-packages = ["apps", "conf"]

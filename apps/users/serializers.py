@@ -1,9 +1,10 @@
+import logging
+
 from django.conf import settings
 from django.contrib.auth import authenticate
 from django.contrib.auth.password_validation import validate_password
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
-import logging
 
 from .models import CustomUser
 from .utils import get_errors
@@ -69,7 +70,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
                 errors = [
                     _("An error occurred during password validation. Please try again.")
                 ]
-            raise serializers.ValidationError({"password": errors})
+            raise serializers.ValidationError({"password": errors}) from e
 
         return data
 
@@ -79,7 +80,6 @@ class CreateUserSerializer(serializers.ModelSerializer):
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = CustomUser
         fields = ("email", "password", "first_name", "last_name")
@@ -95,7 +95,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
                 else:
                     errors = ["Password validation error. Please try again."]
 
-                raise serializers.ValidationError({"password": errors})
+                raise serializers.ValidationError({"password": errors}) from e
 
         return data
 

@@ -65,6 +65,16 @@ from .schema import MY_RESPONSE_SCHEMA
 def my_view(request): ...
 ```
 
+### 6. Type Safety
+- **Tooling**: `mypy` for static analysis, `ruff` for linting/formatting.
+- **Requirement**: All function signatures must be type-hinted.
+- **Format**: `ruff` with line-length 90.
+- **Example**:
+```python
+def get_dashboard_stats(user: CustomUser) -> dict[str, int]:
+    ...
+```
+
 ## Critical Workflows
 
 ### Docker & Make Commands
