@@ -1,6 +1,5 @@
 {
     "recommendations": [
-        "ms-python.black-formatter",
         "tamasfe.even-better-toml",
         "shardulm94.trailing-spaces",
         "ms-python.isort",
