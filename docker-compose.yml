@@ -1,6 +1,7 @@
 services:
   db:
     image: postgres:alpine
+    restart: unless-stopped
     volumes:
       - postgres_data:/var/lib/postgresql/data
     env_file:
@@ -15,6 +16,7 @@ services:
 
   redis:
     image: redis:8-alpine
+    restart: unless-stopped
     ports:
       - "6379:6379"
     healthcheck:
@@ -26,6 +28,7 @@ services:
   backend:
     build: .
     image: django-starter-template:dev
+    restart: unless-stopped
     command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/app
@@ -47,6 +50,7 @@ services:
   worker:
     image: django-starter-template:dev
     pull_policy: never
+    restart: unless-stopped
     command: sh -c "./scripts/wait-for-migrations.sh celery -A conf worker -l info"
     volumes:
       - .:/app
@@ -65,6 +69,7 @@ services:
   beat:
     image: django-starter-template:dev
     pull_policy: never
+    restart: unless-stopped
     command: sh -c "./scripts/wait-for-migrations.sh celery -A conf beat -l info"
     volumes:
       - .:/app
