@@ -34,7 +34,7 @@ def update_urls_version(file_path, new_version):
         file.write(updated_content)
 
 
-def bum_version():
+def bump_version():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     pyproject_file = os.path.join(base_dir, "pyproject.toml")
     urls_file = os.path.join(base_dir, "conf", "urls.py")
@@ -54,4 +54,4 @@ def bum_version():
 
 
 if __name__ == "__main__":
-    bum_version()
+    bump_version()
