@@ -83,7 +83,9 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ("email", "password", "first_name", "last_name")
-        extra_kwargs = {"password": {"write_only": True, "min_length": 8}}
+        extra_kwargs = {
+            "password": {"write_only": True, "min_length": MIN_PASSWORD_LENGTH}
+        }
 
     def validate(self, data: dict) -> dict:
         if "password" in data:
