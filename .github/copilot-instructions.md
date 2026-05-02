@@ -2,7 +2,7 @@
 
 ## Architecture Overview
 
-This is a **production-ready Django 5.1+ API template** structured for scalability and maintainability.
+This is a **production-ready Django 6+ API template** structured for scalability and maintainability.
 
 - **Dependency Management**: Uses `uv` for ultra-fast package management (10-100x faster than pip/Poetry).
 - **Authentication**: Custom email-based auth with `django-rest-knox`. No username field.

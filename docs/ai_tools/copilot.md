@@ -7,7 +7,7 @@ This page provides detailed information and guidelines for using GitHub Copilot 
 This project adheres to specific technical requirements and communication standards for Django backend development when using GitHub Copilot:
 
 **Framework & Core Dependencies:**
-- Django 5.2+ with Django REST Framework
+- Django 6+ with Django REST Framework
 - PostgreSQL database
 - Redis for caching
 - Authentication via django-rest-knox
