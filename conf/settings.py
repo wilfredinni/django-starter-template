@@ -86,7 +86,6 @@ INSTALLED_APPS = [
     "django_filters",
     "knox",
     "django_celery_beat",
-    "django_celery_results",
     "drf_spectacular",
     # local apps
     "apps.users",
@@ -209,7 +208,6 @@ USER_AGENTS_CACHE = "default"
 # Celery
 # -----------------------------------------------------------------------------
 CELERY_BROKER_URL = env("CELERY_BROKER_URL", default="redis://redis:6379")
-CELERY_RESULT_BACKEND = env("CELERY_RESULT_BACKEND", default="django-db")
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers.DatabaseScheduler"
 CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_TASK_SERIALIZER = "json"
