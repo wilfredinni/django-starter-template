@@ -44,6 +44,4 @@ nav:
   - Database Seeding: database_seeding.md
   - Testing: testing.md
   - Environment Setup: environment_setup.md
-  - AI Tools and CLI Agents:
-    - Overview: ai_tools/index.md
-    - GitHub Copilot: ai_tools/copilot.md
+

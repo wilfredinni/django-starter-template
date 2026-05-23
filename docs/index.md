@@ -50,7 +50,6 @@ This template comes equipped with a rich set of features designed to accelerate 
 *   **API Documentation:** Features automatic OpenAPI 3 schema generation with `drf-spectacular`, ensuring your API documentation is always up-to-date and easily explorable via Swagger UI.
 *   **Centralized Logging:** Provides a structured JSON logging system for comprehensive and easily parsable application logs, facilitating monitoring and debugging.
 *   **Custom User Model:** Utilizes a custom user model with email-based authentication, offering flexibility and a modern approach to user identity.
-*   **GitHub Copilot Prompts:** Includes a collection of useful prompts tailored to enhance your development experience with GitHub Copilot, boosting productivity.
 *   **Comprehensive Documentation:** This documentation serves as a detailed guide to all features and functionalities, helping you maximize the template's potential.
 
 ---
@@ -71,4 +70,3 @@ This documentation is your comprehensive guide to building robust applications w
 *   **[Database Seeding](database_seeding.md):** Learn how to populate your database with initial data for development and testing.
 *   **[Testing](testing.md):** Understand how to write and run tests for your project to ensure code quality and reliability.
 *   **[Environment Setup](environment_setup.md):** Get detailed instructions on setting up your development environment.
-*   **[AI Tools](ai_tools/index.md):** Explore useful prompts to enhance your development experience with GitHub Copilot, Gemini CLI agent, and Roo Code.

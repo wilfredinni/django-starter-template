@@ -4,4 +4,6 @@
 
 ### Removed
 
-- Removed GitHub Copilot prompts and VS Code settings
+- Removed GitHub Copilot prompts
+- Removed AI tools documentation
+- Removed VS Code settings
