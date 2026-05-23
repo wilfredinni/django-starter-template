@@ -1,9 +1,9 @@
 services:
   db:
-    image: postgres:alpine
+    image: postgres:18-alpine
     restart: unless-stopped
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql
     env_file:
       - .env
     ports:

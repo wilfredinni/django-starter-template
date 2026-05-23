@@ -63,7 +63,7 @@ ps:
 
 # Django Commands
 shell:
-	docker compose exec backend python manage.py shell
+	docker compose exec backend python manage.py shell_plus
 
 migrate:
 	docker compose exec backend python manage.py migrate
