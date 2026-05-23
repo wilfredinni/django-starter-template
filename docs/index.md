@@ -41,6 +41,15 @@ Follow these steps to set up your development environment:
 
 Your API should now be running and accessible at `http://127.0.0.1:8000`.
 
+### Customize Your Project
+
+Search for `TODO` comments across the codebase for guided setup steps:
+
+- `pyproject.toml` — update project name, version, description, authors, license
+- `conf/urls.py` — change admin URL, delete example index view, disable unused auth endpoints
+- `conf/settings.py` — adjust throttle rates and DRF Spectacular settings
+- `apps/core/views.py`, `urls.py`, `tasks.py` — remove example fire-task endpoint
+
 ## Key Features
 
 This template comes equipped with a rich set of features designed to accelerate your API development:

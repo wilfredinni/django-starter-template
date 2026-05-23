@@ -52,6 +52,13 @@ uv sync --all-extras
 ```
 This installs dependencies locally so your IDE can provide code completion while your code runs in Docker.
 
+**Customize Your Project:**
+Search for `TODO` comments across the codebase to find guided setup steps:
+- `pyproject.toml` — update project name, version, description, authors, license
+- `conf/urls.py` — change admin URL, delete example index view, disable unused auth endpoints
+- `conf/settings.py` — adjust throttle rates and DRF Spectacular settings
+- `apps/core/views.py`, `urls.py`, `tasks.py` — remove example fire-task endpoint
+
 ## 📖 Explore the Documentation
 
 This documentation is your guide to building amazing applications with the Django Starter Template. Use the navigation on the left to explore the different sections.

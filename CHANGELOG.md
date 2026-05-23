@@ -11,6 +11,7 @@ AI tooling setup, infra improvements, and dependency updates
 - skills-lock.json for tracking installed AI skill versions and provenance
 - AI-Assisted Development documentation page (`docs/ai.md`) with mkdocs nav entry
 - AI tooling features and links added to `docs/index.md` and `README.md`
+- TODO-guided customization steps documented in `README.md` and `docs/index.md`
 
 ### Removed
 
