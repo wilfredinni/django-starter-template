@@ -35,6 +35,7 @@ nav:
   - Project Structure: project_structure.md
   - Project Settings: settings.md
   - Dependencies: dependencies.md
+  - AI-Assisted Development: ai.md
   - Auto Documentation: auto_documentation.md
   - Authentication: authentication.md
   - Core App: core_endpoints.md

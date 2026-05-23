@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "django-celery-expert": {
+      "source": "vintasoftware/django-ai-plugins",
+      "sourceType": "github",
+      "skillPath": "plugins/django-celery-expert/skills/SKILL.md",
+      "computedHash": "31eb59e33c4251087afc81387abf26502814885921b93c9c9afa06090c3495ca"
+    },
+    "django-expert": {
+      "source": "vintasoftware/django-ai-plugins",
+      "sourceType": "github",
+      "skillPath": "plugins/django-expert/skills/SKILL.md",
+      "computedHash": "a6b8c224017570496d688a526fcbea74025a01cc90d9afb0977bfcc1f76af306"
+    }
+  }
+}

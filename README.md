@@ -19,6 +19,7 @@ This template is packed with features to help you build amazing APIs:
 -   **API Documentation:** Automatic OpenAPI 3 schema generation with `drf-spectacular`.
 -   **Centralized Logging:** Structured JSON logging for easy monitoring.
 -   **Custom User Model:** Email-based authentication for a modern user experience.
+-   **AI-Assisted Development:** Includes `AGENTS.md` and curated AI skills (Django, Celery) to help AI coding agents produce idiomatic code.
 -   **And much more!** Explore the documentation to discover all the features.
 
 ## Quick Start
@@ -67,3 +68,4 @@ This documentation is your guide to building amazing applications with the Djang
 -   **[Database Seeding](https://wilfredinni.github.io/django-starter-template/database_seeding):** Learn how to seed your database with initial data.
 -   **[Testing](https://wilfredinni.github.io/django-starter-template/testing):** Understand how to run and write tests for your project.
 -   **[Environment Setup](https://wilfredinni.github.io/django-starter-template/environment_setup):** Learn how to set up your development environment.
+-   **[AI-Assisted Development](https://wilfredinni.github.io/django-starter-template/ai):** Learn how the project helps AI coding agents work with your codebase.
