@@ -18,6 +18,7 @@ AI tooling setup, infra improvements, and dependency updates
 - Removed GitHub Copilot prompts
 - Removed AI tools documentation
 - Removed VS Code settings
+- Removed `SECURITY.md`, `notebook.ipynb`, `renovate.json`
 
 ### Changed
 
