@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../assets/logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -668,6 +668,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-Assisted Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../auto_documentation/" class="md-nav__link">
         
   
@@ -900,116 +927,6 @@
   
 
       </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
-        
-          
-          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    AI Tools and CLI Agents
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_15">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    AI Tools and CLI Agents
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ai_tools/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Overview
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ai_tools/copilot/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    GitHub Copilot
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -1307,16 +1224,19 @@
 <p>The project leverages <code>django-environ</code> to manage environment variables, ensuring that sensitive information and deployment-specific configurations are kept out of version control. Variables are loaded from a <code>.env</code> file located in the project root.</p>
 <p><strong>Configuration Snippet:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">environ</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">env</span> <span class="o">=</span> <span class="n">environ</span><span class="o">.</span><span class="n">Env</span><span class="p">()</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">root_path</span> <span class="o">=</span> <span class="n">environ</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">env</span><span class="o">.</span><span class="n">read_env</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">root_path</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="s2">&quot;.env&quot;</span><span class="p">)))</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">env</span> <span class="o">=</span> <span class="n">environ</span><span class="o">.</span><span class="n">Env</span><span class="p">()</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">root_path</span> <span class="o">=</span> <span class="n">environ</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">env_file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">root_path</span><span class="p">(</span><span class="s2">&quot;.env&quot;</span><span class="p">))</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">if</span> <span class="n">env_file</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">env</span><span class="o">.</span><span class="n">read_env</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">env_file</span><span class="p">))</span>
 </code></pre></div>
 <p><strong>Explanation:</strong></p>
 <ul>
 <li><code>env = environ.Env()</code>: Initializes the environment reader, which provides methods to access environment variables with type casting.</li>
 <li><code>root_path</code>: Defines the base directory for resolving relative paths within the project. It's calculated as two levels up from the <code>settings.py</code> file's location.</li>
-<li><code>env.read_env()</code>: Reads variables from the <code>.env</code> file. When called without arguments, it automatically searches for a <code>.env</code> file in the current working directory or its parent directories.</li>
+<li><code>env.read_env()</code>: Reads variables from the <code>.env</code> file ONLY if it exists. We check <code>if env_file.is_file()</code> to to prevent crashes in production environments (like AWS/Heroku) where environment variables are injected directly by the platform and no <code>.env</code> file is present.</li>
 </ul>
 <h2 id="basic-configuration">Basic Configuration</h2>
 <p>These are fundamental Django settings that define the core behavior of the application:</p>
@@ -1412,6 +1332,10 @@
 <p>Core settings for Django REST Framework, influencing how APIs behave, including authentication, filtering, and rendering:</p>
 <ul>
 <li><code>DEFAULT_AUTHENTICATION_CLASSES</code>: Defines the authentication methods available for API endpoints. <strong>Default:</strong> <code>knox.auth.TokenAuthentication</code>. In <code>DEBUG</code> mode, <code>SessionAuthentication</code> and <code>BasicAuthentication</code> are also included for development convenience.</li>
+<li><code>DEFAULT_VERSIONING_CLASS</code>: Controls API versioning. <strong>Default:</strong> <code>rest_framework.versioning.URLPathVersioning</code>.</li>
+<li><code>DEFAULT_VERSION</code>: The default API version. <strong>Default:</strong> <code>v1</code>.</li>
+<li><code>ALLOWED_VERSIONS</code>: A list of allowed API versions. <strong>Default:</strong> <code>["v1"]</code>.</li>
+<li><code>VERSION_PARAM</code>: The URL parameter used for versioning. <strong>Default:</strong> <code>version</code>.</li>
 <li><code>DEFAULT_FILTER_BACKENDS</code>: Specifies the default filter backends used for enabling filtering, searching, and ordering capabilities on API list views. <strong>Default:</strong> <code>django_filters.rest_framework.DjangoFilterBackend</code>, <code>rest_framework.filters.SearchFilter</code>, <code>rest_framework.filters.OrderingFilter</code>.</li>
 <li><code>DEFAULT_RENDERER_CLASSES</code>: Determines how API responses are rendered. <strong>Default:</strong> <code>rest_framework.renderers.JSONRenderer</code>. In <code>DEBUG</code> mode, <code>BrowsableAPIRenderer</code> is also added, providing a user-friendly HTML interface for API interaction.</li>
 <li><code>DEFAULT_SCHEMA_CLASS</code>: Integrates <code>drf-spectacular</code> for automatic OpenAPI schema generation. <strong>Default:</strong> <code>drf_spectacular.openapi.AutoSchema</code>.</li>

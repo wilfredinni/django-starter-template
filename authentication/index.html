@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../assets/logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -370,6 +370,33 @@
     
   
     Dependencies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-Assisted Development
   
 
     
@@ -833,116 +860,6 @@
   
 
     
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
-        
-          
-          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    AI Tools and CLI Agents
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_15">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    AI Tools and CLI Agents
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ai_tools/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Overview
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ai_tools/copilot/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    GitHub Copilot
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
   </ul>
 </nav>
                   </div>
@@ -1213,7 +1130,7 @@
 <p><strong>Request:</strong></p>
 <ul>
 <li><strong>Method:</strong> <code>POST</code></li>
-<li><strong>URL:</strong> <code>/auth/create/</code></li>
+<li><strong>URL:</strong> <code>/api/v1/auth/create/</code></li>
 <li><strong>Body:</strong>
     <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user@example.com&quot;</span><span class="p">,</span>
@@ -1279,7 +1196,7 @@
 <p><strong>Request:</strong></p>
 <ul>
 <li><strong>Method:</strong> <code>POST</code></li>
-<li><strong>URL:</strong> <code>/auth/login/</code></li>
+<li><strong>URL:</strong> <code>/api/v1/auth/login/</code></li>
 <li><strong>Body:</strong>
     <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">{</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user@example.com&quot;</span><span class="p">,</span>
@@ -1337,7 +1254,7 @@
 <p><strong>Request:</strong></p>
 <ul>
 <li><strong>Method:</strong> <code>POST</code></li>
-<li><strong>URL:</strong> <code>/auth/logout/</code></li>
+<li><strong>URL:</strong> <code>/api/v1/auth/logout/</code></li>
 <li><strong>Authentication:</strong> Token required.</li>
 </ul>
 <p><strong>Responses:</strong></p>
@@ -1364,7 +1281,7 @@
 <p><strong>Request:</strong></p>
 <ul>
 <li><strong>Method:</strong> <code>POST</code></li>
-<li><strong>URL:</strong> <code>/auth/logoutall/</code></li>
+<li><strong>URL:</strong> <code>/api/v1/auth/logoutall/</code></li>
 <li><strong>Authentication:</strong> Token required.</li>
 </ul>
 <p><strong>Responses:</strong></p>
@@ -1393,7 +1310,7 @@
 <p><strong>Request:</strong></p>
 <ul>
 <li><strong>Method:</strong> <code>GET</code></li>
-<li><strong>URL:</strong> <code>/auth/profile/</code></li>
+<li><strong>URL:</strong> <code>/api/v1/auth/profile/</code></li>
 <li><strong>Authentication:</strong> Token required.</li>
 </ul>
 <p><strong>Responses:</strong></p>
@@ -1426,7 +1343,7 @@
 <p><strong>Request:</strong></p>
 <ul>
 <li><strong>Method:</strong> <code>PUT</code></li>
-<li><strong>URL:</strong> <code>/auth/profile/</code></li>
+<li><strong>URL:</strong> <code>/api/v1/auth/profile/</code></li>
 <li><strong>Authentication:</strong> Token required.</li>
 <li><strong>Body:</strong>
     <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="p">{</span>
@@ -1481,7 +1398,7 @@
 <p><strong>Request:</strong></p>
 <ul>
 <li><strong>Method:</strong> <code>PATCH</code></li>
-<li><strong>URL:</strong> <code>/auth/profile/</code></li>
+<li><strong>URL:</strong> <code>/api/v1/auth/profile/</code></li>
 <li><strong>Authentication:</strong> Token required.</li>
 <li><strong>Body:</strong>
     <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="p">{</span>

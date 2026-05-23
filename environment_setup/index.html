@@ -12,14 +12,12 @@
         <link rel="prev" href="../testing/">
       
       
-        <link rel="next" href="../ai_tools/">
-      
       
         
       
       
       <link rel="icon" href="../assets/logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -389,6 +387,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-Assisted Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../auto_documentation/" class="md-nav__link">
         
   
@@ -701,23 +726,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Development Environment">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#docker-compose" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Docker Compose
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -762,116 +770,6 @@
     </ul>
   
 </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
-        
-          
-          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    AI Tools and CLI Agents
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_15">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    AI Tools and CLI Agents
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ai_tools/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Overview
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ai_tools/copilot/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    GitHub Copilot
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
       
     </li>
   
@@ -939,23 +837,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Development Environment">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#docker-compose" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Docker Compose
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1037,26 +918,37 @@
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># ⚡ Basic Config: for development and testing.</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># --------------------------------------------------------------------------------</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="na">DEBUG</span><span class="o">=</span><span class="s">True</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="na">DATABASE_URL</span><span class="o">=</span><span class="s">postgres://postgres:postgres@localhost:5432/postgres</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="na">DJANGO_SECRET_KEY</span><span class="o">=</span><span class="s">django-insecure-wlgjuo53y49%-4y5(!%ksylle_ud%b=7%__@9hh+@$d%_^y3s!</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="na">DJANGO_SECRET_KEY</span><span class="o">=</span><span class="s">django-insecure-wlgjuo53y49%-4y5(!%ksylle_ud%b=7%__@9hh+@$$d%_^y3s!</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># --------------------------------------------------------------------------------</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># 🗄️ Database</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1"># --------------------------------------------------------------------------------</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># 📧 Email Config: optional and can be copied if needed.</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># --------------------------------------------------------------------------------</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="na">EMAIL_HOST</span><span class="o">=</span><span class="s">smtp.gmail.com</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="na">EMAIL_USE_TLS</span><span class="o">=</span><span class="s">True</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="na">EMAIL_PORT</span><span class="o">=</span><span class="s">587</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="na">EMAIL_HOST_USER</span><span class="o">=</span><span class="s">user@user.com</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="na">EMAIL_HOST_PASSWORD</span><span class="o">=</span><span class="s">myverystrongpassword</span>
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="c1"># --------------------------------------------------------------------------------</span>
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="c1"># 🔐 Security Config: for production or testing the production settings locally.</span>
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="c1"># --------------------------------------------------------------------------------</span>
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="na">ALLOWED_HOSTS</span><span class="o">=</span><span class="s">mysite.com,mysite2.com</span>
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="na">CORS_ALLOWED_ORIGINS</span><span class="o">=</span><span class="s">mysite.com,mysite2.com</span>
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="na">SENTRY_DSN</span><span class="o">=</span><span class="s">https://examplePublicKey@o0.ingest.sentry.io/0</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="na">POSTGRES_DB</span><span class="o">=</span><span class="s">postgres</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="na">POSTGRES_USER</span><span class="o">=</span><span class="s">postgres</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="na">POSTGRES_PASSWORD</span><span class="o">=</span><span class="s">postgres</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="na">DATABASE_URL</span><span class="o">=</span><span class="s">postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:5432/${POSTGRES_DB}</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="c1"># --------------------------------------------------------------------------------</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="c1"># 📧 Email Config: optional and can be copied if needed.</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="c1"># --------------------------------------------------------------------------------</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="na">EMAIL_HOST</span><span class="o">=</span><span class="s">smtp.gmail.com</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="na">EMAIL_USE_TLS</span><span class="o">=</span><span class="s">True</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="na">EMAIL_PORT</span><span class="o">=</span><span class="s">587</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="na">EMAIL_HOST_USER</span><span class="o">=</span><span class="s">user@user.com</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="na">EMAIL_HOST_PASSWORD</span><span class="o">=</span><span class="s">myverystrongpassword</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="c1"># --------------------------------------------------------------------------------</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="c1"># 🧠 Celery &amp; Redis</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="c1"># --------------------------------------------------------------------------------</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="na">REDIS_URL</span><span class="o">=</span><span class="s">redis://localhost:6379/0</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="na">CELERY_BROKER_URL</span><span class="o">=</span><span class="s">redis://localhost:6379/0</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="c1"># --------------------------------------------------------------------------------</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="c1"># 🔐 Security Config: for production or testing the production settings locally.</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="c1"># --------------------------------------------------------------------------------</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="na">ALLOWED_HOSTS</span><span class="o">=</span><span class="s">mysite.com,mysite2.com</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="na">CORS_ALLOWED_ORIGINS</span><span class="o">=</span><span class="s">mysite.com,mysite2.com</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="na">SENTRY_DSN</span><span class="o">=</span><span class="s">https://examplePublicKey@o0.ingest.sentry.io/0</span>
 </code></pre></div>
 <p>To set up your environment, copy <code>.env.example</code> to <code>.env</code> and fill in the appropriate values:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cp<span class="w"> </span>.env.example<span class="w"> </span>.env
@@ -1070,17 +962,22 @@
 </code></pre></div>
 <p>This prevents Docker Compose from interpreting parts of your values as variable references.</p>
 <h2 id="development-environment">Development Environment</h2>
-<p>For local development:</p>
-<h3 id="docker-compose">Docker Compose</h3>
-<p>When using Docker Compose for development:</p>
+<p>, <code>POSTGRES_PASSWORD</code>, and other settings.
+2.  <strong>Explicit Overrides:</strong> The <code>docker-compose.yml</code> file explicitly defines environment variables for the services, overriding the connection URLs to point to the correct container names using the credentials from your <code>.env</code> file.</p>
 <ul>
 <li><code>DEBUG=True</code>: Enables Django's debug mode</li>
-<li><code>DATABASE_URL=postgres://postgres:postgres@db:5432/postgres</code>: Uses the containerized PostgreSQL service</li>
-<li><code>REDIS_URL=redis://redis:6379/0</code>: Uses the containerized Redis service</li>
-<li><code>CELERY_BROKER_URL=redis://redis:6379/0</code>: Celery connects to containerized Redis</li>
-<li><code>DJANGO_SECRET_KEY</code>: Use the development key from <code>.env.example</code></li>
+<li><code>DATABASE_URL</code>: Automatically pointed to <code>db:5432</code> inside Docker using <code>POSTGRES_USER</code> and <code>POSTGRES_DB</code> variables</li>
+<li><strong>Shared Secrets (.env):</strong> Docker Compose loads your local <code>.env</code> file to get secrets like <code>DJANGO_SECRET_KEY</code> and passwords.</li>
+<li><strong>Auto-Wiring (Overrides):</strong> It automatically overrides connection URLs (like database and Redis) to point to the docker container names (<code>db</code> and <code>redis</code>) instead of <code>localhost</code>.</li>
 </ul>
-<p>The <code>.env</code> file is automatically loaded by Docker Compose. For IDE support (IntelliSense, code completion), also run:</p>
+<p>Means you don't need to change your <code>.env</code> file when switching between local binaries and Docker.</p>
+<ul>
+<li><code>DEBUG=True</code>: Enables Django's debug mode</li>
+<li><code>DATABASE_URL</code>: Automatically pointed to <code>db:5432</code> inside Docker.</li>
+<li><code>REDIS_URL</code>: Automatically pointed to <code>redis:6379</code> inside Docker.</li>
+<li><code>CELERY_BROKER_URL</code>: Automatically pointed to <code>redis:6379</code> inside Docker.</li>
+</ul>
+<p>The <code>.env</code> file is automatically loaded by Docker Compose via <code>env_file</code>. For IDE support (IntelliSense, code completion), also run:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>uv<span class="w"> </span>sync
 </code></pre></div>
 <p>This installs dependencies locally so your IDE can provide autocomplete while your application runs in Docker containers.</p>
