@@ -16,7 +16,7 @@ The following are the primary dependencies required for the application to run i
 *   **`psycopg2`**: PostgreSQL adapter for Python. **Version:** `^2.9.10`
 *   **`whitenoise`**: Serves static files efficiently in production. **Version:** `^6.7.0`
 *   **`gunicorn`**: A Python WSGI HTTP Server for UNIX. **Version:** `^23.0.0`
-*   **`django-rest-knox`**: Token-based authentication for Django REST Framework. **Version:** `^5.0.2`
+*   **`djangorestframework-simplejwt`**: JWT-based authentication for Django REST Framework. **Version:** `^5.4.0`
 *   **`redis`**: Python client for Redis. **Version:** `^6.0.0`
 *   **`celery`**: Distributed task queue. **Version:** `^5.4.0`
 *   **`django-celery-beat`**: A periodic task scheduler for Celery. **Version:** `^2.7.0`

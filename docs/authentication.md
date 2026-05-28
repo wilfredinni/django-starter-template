@@ -2,7 +2,7 @@
 
 ## Overview
 
-This section provides a comprehensive guide to the authentication system implemented in the Django Starter Template. It covers the core authentication endpoints, security settings, and how token-based authentication is managed.
+This section provides a comprehensive guide to the authentication system implemented in the Django Starter Template. It covers the core authentication endpoints, security settings, and how JWT-based authentication is managed.
 
 ## Authentication Settings
 
@@ -16,26 +16,27 @@ The following settings in `conf/settings.py` are relevant to authentication and 
 
 *   `AUTH_PASSWORD_VALIDATORS`: Configures password validation rules. **Default:** Includes validators for user attribute similarity, minimum length, common passwords, and numeric passwords. You can customize these to enforce stronger password policies.
 
-### Token-Based Authentication
+### JWT Authentication
 
-The template uses `django-rest-knox` for secure, token-based authentication. This system provides a robust way to manage authentication tokens for users. The following settings, configured under `REST_KNOX` in `conf/settings.py`, control its behavior:
+The template uses `djangorestframework-simplejwt` for secure, JWT-based (JSON Web Token) authentication. This system provides stateless authentication with access and refresh token pairs. The following settings, configured under `SIMPLE_JWT` in `conf/settings.py`, control its behavior:
 
-*   `SECURE_HASH_ALGORITHM`: Specifies the hashing algorithm for tokens. **Default:** `hashlib.sha512`.
-*   `AUTH_TOKEN_CHARACTER_LENGTH`: Defines the length of the authentication token. **Default:** `64`.
-*   `TOKEN_TTL`: Sets the time-to-live for tokens, determining how long they remain valid. **Default:** `timedelta(hours=10)`.
-*   `USER_SERIALIZER`: Indicates the serializer used for user profiles. **Default:** `apps.users.serializers.UserProfileSerializer`.
-*   `TOKEN_LIMIT_PER_USER`: Allows limiting the number of active tokens a single user can have. **Default:** `None` (no limit).
-*   `AUTO_REFRESH`: Controls whether tokens are automatically refreshed upon use. **Default:** `False`.
-*   `AUTO_REFRESH_MAX_TTL`: Sets the maximum time-to-live for auto-refreshed tokens. **Default:** `None`.
-*   `MIN_REFRESH_INTERVAL`: Defines the minimum interval between token refreshes in seconds. **Default:** `60` seconds.
-*   `AUTH_HEADER_PREFIX`: Specifies the prefix for the Authorization header (e.g., `Bearer`). **Default:** `Bearer`.
-*   `TOKEN_MODEL`: Refers to the token model used by Knox. **Default:** `knox.AuthToken`.
+*   `ACCESS_TOKEN_LIFETIME`: How long access tokens remain valid before requiring a refresh. **Default:** `timedelta(hours=1)`.
+*   `REFRESH_TOKEN_LIFETIME`: How long refresh tokens remain valid before requiring a full re-login. **Default:** `timedelta(hours=24)`.
+*   `ROTATE_REFRESH_TOKENS`: Whether a new refresh token is issued on each refresh. **Default:** `True`.
+*   `BLACKLIST_AFTER_ROTATION`: Whether old refresh tokens are blacklisted on rotation. **Default:** `True`.
+*   `UPDATE_LAST_LOGIN`: Whether `last_login` is updated on authentication. **Default:** `True`.
+*   `ALGORITHM`: The signing algorithm for JWTs. **Default:** `"HS256"`.
+*   `SIGNING_KEY`: The secret key used to sign tokens. **Default:** Uses `DJANGO_SECRET_KEY`.
+*   `AUTH_HEADER_TYPES`: The accepted authorization header prefix. **Default:** `("Bearer",)`.
+*   `USER_ID_FIELD`: The model field used to identify users in the JWT payload. **Default:** `"id"`.
+*   `USER_ID_CLAIM`: The claim name in the JWT payload for the user ID. **Default:** `"user_id"`.
+*   `TOKEN_OBTAIN_SERIALIZER`: Custom serializer for the login endpoint. **Default:** `apps.users.serializers.CustomTokenObtainPairSerializer`, which includes user profile data in the response.
 
 ### REST Framework Settings
 
 Django REST Framework (DRF) settings, particularly authentication classes and throttle rates, are configured to manage API access and prevent abuse:
 
-*   `DEFAULT_AUTHENTICATION_CLASSES`: Defines the authentication methods available for API endpoints. **Default:** `knox.auth.TokenAuthentication`. In `DEBUG` mode, `SessionAuthentication` and `BasicAuthentication` are also enabled for convenience.
+*   `DEFAULT_AUTHENTICATION_CLASSES`: Defines the authentication methods available for API endpoints. **Default:** `rest_framework_simplejwt.authentication.JWTAuthentication`. In `DEBUG` mode, `SessionAuthentication` and `BasicAuthentication` are also enabled for convenience.
 
 *   `DEFAULT_THROTTLE_RATES`: Configures rate limiting to control the number of requests users can make within a given timeframe. **Default:**
     *   `user: "1000/day"` (authenticated users)
@@ -48,12 +49,13 @@ These rates can be adjusted in `conf/settings.py` to suit your application's spe
 
 ### Create User
 
-This endpoint allows for the registration of a new user account.
+This endpoint allows an admin user to register a new user account.
 
 **Request:**
 
 *   **Method:** `POST`
 *   **URL:** `/api/v1/auth/create/`
+*   **Authentication:** Admin user required
 *   **Body:**
     ```json
     {
@@ -80,7 +82,7 @@ This endpoint allows for the registration of a new user account.
     *   **Passwords do not match:**
         ```json
         {
-            "password": [
+            "non_field_errors": [
                 "Passwords do not match."
             ]
         }
@@ -102,7 +104,7 @@ This endpoint allows for the registration of a new user account.
         }
         ```
 *   **Error (401 Unauthorized):**
-    *   This error typically occurs if authentication credentials are required for this endpoint (though usually not for user creation).
+    *   This error occurs if authentication credentials are missing or invalid.
     ```json
     {
         "detail": "Authentication credentials were not provided."
@@ -111,7 +113,7 @@ This endpoint allows for the registration of a new user account.
 
 ### Login
 
-This endpoint authenticates a user and issues an authentication token.
+This endpoint authenticates a user and returns a JWT access/refresh token pair.
 
 **Request:**
 
@@ -132,8 +134,8 @@ This endpoint authenticates a user and issues an authentication token.
 *   **Success (200 OK):**
     ```json
     {
-        "expiry": "2025-07-09T12:00:00Z",
-        "token": "your-auth-token",
+        "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+        "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
         "user": {
             "email": "user@example.com",
             "first_name": "",
@@ -141,15 +143,15 @@ This endpoint authenticates a user and issues an authentication token.
         }
     }
     ```
-    *   `expiry`: The expiration timestamp of the token.
-    *   `token`: The authentication token to be used in subsequent requests.
+    *   `access`: A short-lived JWT access token (1 hour).
+    *   `refresh`: A long-lived JWT refresh token (24 hours).
     *   `user`: A dictionary containing basic user profile information.
 
-*   **Error (400 Bad Request):**
+*   **Error (401 Unauthorized):**
     *   **Invalid credentials:**
         ```json
         {
-            "detail": "Unable to log in with provided credentials."
+            "detail": "No active account found with the given credentials"
         }
         ```
     *   **Missing fields:**
@@ -164,50 +166,84 @@ This endpoint authenticates a user and issues an authentication token.
         }
         ```
 
+### Token Refresh
+
+This endpoint exchanges a valid refresh token for a new access/refresh token pair.
+
+**Request:**
+
+*   **Method:** `POST`
+*   **URL:** `/api/v1/auth/token/refresh/`
+*   **Body:**
+    ```json
+    {
+        "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+    }
+    ```
+
+**Responses:**
+
+*   **Success (200 OK):**
+    ```json
+    {
+        "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+        "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+    }
+    ```
+    *   Returns new access and refresh tokens. The old refresh token is blacklisted.
+
+*   **Error (401 Unauthorized):**
+    ```json
+    {
+        "detail": "Token is invalid or expired"
+    }
+    ```
+
+### Token Verify
+
+This endpoint validates whether a token is cryptographically valid.
+
+**Request:**
+
+*   **Method:** `POST`
+*   **URL:** `/api/v1/auth/token/verify/`
+*   **Body:**
+    ```json
+    {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+    }
+    ```
+
+**Responses:**
+
+*   **Success (200 OK):**
+    *   Empty response body with status 200 indicates the token is valid.
+
+*   **Error (401 Unauthorized):**
+    *   The token is invalid, expired, or tampered with.
+
 ### Logout
 
-This endpoint logs out the currently authenticated user by invalidating their current authentication token.
+This endpoint blacklists the provided refresh token, preventing future use.
 
 **Request:**
 
 *   **Method:** `POST`
 *   **URL:** `/api/v1/auth/logout/`
-*   **Authentication:** Token required.
-
-**Responses:**
-
-*   **Success (204 No Content):**
-    *   The response will have an empty body, indicating successful token invalidation.
-
-*   **Error (401 Unauthorized):**
-    *   Occurs if no authentication credentials are provided or if the token is invalid.
+*   **Body:**
     ```json
     {
-        "detail": "Authentication credentials were not provided."
+        "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
     }
     ```
 
-### Logout All
-This endpoint invalidates all authentication tokens for the currently authenticated user, effectively logging them out from all devices.
-
-**Request:**
-
-*   **Method:** `POST`
-*   **URL:** `/api/v1/auth/logoutall/`
-*   **Authentication:** Token required.
-
 **Responses:**
 
-*   **Success (204 No Content):**
-    *   The response will have an empty body, indicating that all tokens for the user have been invalidated.
+*   **Success (200 OK):**
+    *   The refresh token has been blacklisted. The access token will continue to work until it expires naturally (1 hour).
 
-*   **Error (401 Unauthorized):**
-    *   Occurs if no authentication credentials are provided or if the token is invalid.
-    ```json
-    {
-        "detail": "Authentication credentials were not provided."
-    }
-    ```
+*   **Error (400/401):**
+    *   Occurs if the refresh token is missing, invalid, or already blacklisted.
 
 ### User Profile
 
@@ -221,7 +257,7 @@ Retrieves the profile of the currently authenticated user.
 
 *   **Method:** `GET`
 *   **URL:** `/api/v1/auth/profile/`
-*   **Authentication:** Token required.
+*   **Authentication:** Bearer JWT token required.
 
 **Responses:**
 
@@ -236,11 +272,10 @@ Retrieves the profile of the currently authenticated user.
     *   Returns the user's email, first name, and last name.
 
 *   **Error (401 Unauthorized):**
-    *   Occurs if no authentication credentials are provided or if the token is invalid.
     ```json
     {
-    "detail": "Authentication credentials were not provided."
-}
+        "detail": "Authentication credentials were not provided."
+    }
     ```
 
 #### Update User Profile
@@ -251,16 +286,16 @@ Updates the entire profile of the currently authenticated user. All fields must 
 
 *   **Method:** `PUT`
 *   **URL:** `/api/v1/auth/profile/`
-*   **Authentication:** Token required.
+*   **Authentication:** Bearer JWT token required.
 *   **Body:**
     ```json
     {
+        "email": "user@example.com",
         "first_name": "Jane",
-        "last_name": "Doe"
+        "last_name": "Doe",
+        "password": "newpassword123"
     }
     ```
-    *   `first_name`: The user's first name.
-    *   `last_name`: The user's last name.
 
 **Responses:**
 
@@ -272,10 +307,8 @@ Updates the entire profile of the currently authenticated user. All fields must 
         "last_name": "Doe"
     }
     ```
-    *   Returns the updated user profile.
 
 *   **Error (400 Bad Request):**
-    *   Occurs if the provided data is invalid (e.g., password validation errors if password fields were included).
     ```json
     {
         "password": [
@@ -285,11 +318,10 @@ Updates the entire profile of the currently authenticated user. All fields must 
     ```
 
 *   **Error (401 Unauthorized):**
-    *   Occurs if no authentication credentials are provided or if the token is invalid.
     ```json
     {
-    "detail": "Authentication credentials were not provided."
-}
+        "detail": "Authentication credentials were not provided."
+    }
     ```
 
 #### Partially Update User Profile
@@ -300,15 +332,13 @@ Partially updates the profile of the currently authenticated user. Only the fiel
 
 *   **Method:** `PATCH`
 *   **URL:** `/api/v1/auth/profile/`
-*   **Authentication:** Token required.
+*   **Authentication:** Bearer JWT token required.
 *   **Body:**
     ```json
     {
         "first_name": "Jane"
     }
     ```
-    *   `first_name`: The user's first name (optional).
-    *   `last_name`: The user's last name (optional).
 
 **Responses:**
 
@@ -320,12 +350,18 @@ Partially updates the profile of the currently authenticated user. Only the fiel
         "last_name": "Doe"
     }
     ```
-    *   Returns the partially updated user profile.
 
 *   **Error (401 Unauthorized):**
-    *   Occurs if no authentication credentials are provided or if the token is invalid.
     ```json
     {
-    "detail": "Authentication credentials were not provided."
-}
+        "detail": "Authentication credentials were not provided."
+    }
     ```
+
+## Authentication Flow
+
+1. **Login:** POST `/api/v1/auth/login/` with `{email, password}` → returns `{access, refresh, user}`.
+2. **Authenticated Requests:** Send `Authorization: Bearer <access_token>` header on every API request.
+3. **Token Refresh:** When the access token expires, POST `/api/v1/auth/token/refresh/` with `{refresh}` to get a new access/refresh pair.
+4. **Logout:** POST `/api/v1/auth/logout/` with `{refresh}` to blacklist the refresh token.
+5. **Profile:** GET/PUT/PATCH `/api/v1/auth/profile/` with a valid Bearer token.

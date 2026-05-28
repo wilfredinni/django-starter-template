@@ -2,10 +2,9 @@ import logging
 
 from django.contrib.auth import login
 from drf_spectacular.utils import extend_schema, extend_schema_view
-from knox.auth import TokenAuthentication
-from knox.views import LoginView as KnoxLoginView
 from rest_framework import generics, permissions, serializers, status, throttling
 from rest_framework.response import Response
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 from .schema import (
     LOGIN_RESPONSE_SCHEMA,
@@ -14,31 +13,32 @@ from .schema import (
     PROFILE_PUT_SCHEMA,
     USER_CREATE_RESPONSE_SCHEMA,
 )
-from .serializers import AuthTokenSerializer, CreateUserSerializer, UserProfileSerializer
+from .serializers import (
+    CreateUserSerializer,
+    CustomTokenObtainPairSerializer,
+    UserProfileSerializer,
+)
 from .throttles import UserLoginRateThrottle
 
 logger = logging.getLogger(__name__)
 
 
 @extend_schema(responses=LOGIN_RESPONSE_SCHEMA)
-class LoginView(KnoxLoginView):
-    authentication_classes = (TokenAuthentication,)
+class LoginView(TokenObtainPairView):
+    """Login view using SimpleJWT token authentication."""
+
     permission_classes = (permissions.AllowAny,)
-    serializer_class = AuthTokenSerializer
+    serializer_class = CustomTokenObtainPairSerializer
     throttle_classes = [UserLoginRateThrottle]
 
     def post(self, request, format=None) -> Response:
-        serializer = AuthTokenSerializer(data=request.data, context={"request": request})
+        serializer = CustomTokenObtainPairSerializer(
+            data=request.data, context={"request": request}
+        )
         serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data["user"]
+        user = serializer.user
         login(request, user)
-        logger.info("User %s logged in.", user.email)
-        return super(LoginView, self).post(request, format=None)
-
-    def get_serializer_context(self):
-        context = super().get_serializer_context()
-        context["request"] = self.request
-        return context
+        return Response(serializer.validated_data, status=status.HTTP_200_OK)
 
 
 @extend_schema_view(

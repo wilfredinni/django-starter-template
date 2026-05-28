@@ -54,7 +54,7 @@ Search for `TODO` comments across the codebase for guided setup steps:
 
 This template comes equipped with a rich set of features designed to accelerate your API development:
 
-*   **User Authentication:** Implements secure, token-based authentication using `django-rest-knox`, providing a robust system for user management and access control.
+*   **User Authentication:** Implements secure, JWT-based authentication using `djangorestframework-simplejwt`, providing a robust system for user management and access control.
 *   **Background Tasks:** Leverages `Celery` and `Redis` for efficient asynchronous task processing, enabling your application to handle long-running operations without blocking the main thread.
 *   **API Documentation:** Features automatic OpenAPI 3 schema generation with `drf-spectacular`, ensuring your API documentation is always up-to-date and easily explorable via Swagger UI.
 *   **Centralized Logging:** Provides a structured JSON logging system for comprehensive and easily parsable application logs, facilitating monitoring and debugging.

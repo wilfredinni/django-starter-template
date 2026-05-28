@@ -10,7 +10,7 @@ The `AGENTS.md` file at the project root provides AI coding agents with essentia
 
 - **Commands** — All Django commands run inside Docker via `make` shortcuts (`make test`, `make migrate`, `make seed`, etc.) or raw `docker compose exec backend` commands.
 - **Lint & Typecheck** — Ruff and mypy configuration details (line-length 90, double quotes, no CI enforcement).
-- **Architecture** — Django settings module, test settings overrides, app layout (`apps/users`, `apps/core`), custom user model (email-based, Knox tokens), admin URL (`/admin-panel/`), Celery with `DatabaseScheduler`.
+- **Architecture** — Django settings module, test settings overrides, app layout (`apps/users`, `apps/core`), custom user model (email-based, JWT tokens), admin URL (`/admin-panel/`), Celery with `DatabaseScheduler`.
 - **Testing** — Test settings hardcoded in `pytest.ini`, no default addopts, DRF `APITestCase` + `unittest.mock.patch` patterns, real Postgres database.
 - **Python Version Mismatch** — Runtime is Python 3.14, but lint targets Python 3.13.
 - **Dependency Management** — Always use `uv`, not pip.

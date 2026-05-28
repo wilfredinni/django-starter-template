@@ -14,7 +14,7 @@ A comprehensive and easy-to-use starting point for your new API with **Django** 
 
 This template is packed with features to help you build amazing APIs:
 
--   **User Authentication:** Secure token-based authentication with `django-rest-knox`.
+-   **User Authentication:** Secure JWT-based authentication with `djangorestframework-simplejwt`.
 -   **Background Tasks:** Asynchronous task processing with `Celery` and `Redis`.
 -   **API Documentation:** Automatic OpenAPI 3 schema generation with `drf-spectacular`.
 -   **Centralized Logging:** Structured JSON logging for easy monitoring.

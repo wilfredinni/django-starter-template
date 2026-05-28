@@ -1,7 +1,7 @@
+from django.contrib.auth import get_user_model
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
-from django.contrib.auth import get_user_model
 
 
 class ProfileViewTests(APITestCase):
@@ -79,9 +79,7 @@ class ProfileViewTests(APITestCase):
         for method in methods:
             with self.subTest(method=method):
                 response = getattr(self.client, method)(self.url)
-                self.assertEqual(
-                    response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED
-                )
+                self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_password_validation_success(self):
         """Test successful password update with valid password"""

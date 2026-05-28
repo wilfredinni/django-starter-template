@@ -1,8 +1,11 @@
 from .settings import *  # noqa
 
-# Ensure Knox is properly configured for tests
-if "knox" not in INSTALLED_APPS:  # noqa
-    INSTALLED_APPS += ["knox"]  # noqa
+# Ensure SimpleJWT is properly configured for tests
+if "rest_framework_simplejwt" not in INSTALLED_APPS:  # noqa
+    INSTALLED_APPS += [
+        "rest_framework_simplejwt",
+        "rest_framework_simplejwt.token_blacklist",
+    ]  # noqa
 if "django.middleware.common.CommonMiddleware" in MIDDLEWARE:  # noqa
     index = MIDDLEWARE.index("django.middleware.common.CommonMiddleware") + 1  # noqa
     MIDDLEWARE.insert(index, "conf.test_utils.RequestIDMiddleware")  # noqa

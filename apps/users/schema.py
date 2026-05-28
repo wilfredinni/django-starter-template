@@ -19,7 +19,7 @@ LOGIN_RESPONSE_SCHEMA = {
         examples=[
             OpenApiExample(
                 "Invalid Credentials",
-                value={"detail": "Unable to log in with provided credentials."},
+                value={"detail": "No active account found with the given credentials"},
                 status_codes=["400"],
             ),
             OpenApiExample(

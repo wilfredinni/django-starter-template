@@ -42,7 +42,7 @@ Ruff fixes (`I` isort, `B` bugbear, `E`/`F` pycodestyle/pyflakes). Line-length 9
 - **Test settings:** `conf/test_settings.py` — swaps `RequestIDMiddleware`/`RequestIDFilter` for mocks, relaxes login throttle to 1000/min
 - **Apps:** `apps/users/` (CustomUser, auth), `apps/core/` (ping, middleware, tasks, seed — no models)
 - **AUTH_USER_MODEL:** `users.CustomUser` — email-based login, `username=None`, `USERNAME_FIELD='email'`
-- **Auth:** Knox tokens (sha512, 64 chars, 10hr TTL, `Token` prefix). Admin creates users via `/api/v1/auth/create/`.
+- **Auth:** JWT tokens (simplejwt, HS256, access 1hr + refresh 24hr, `Bearer` prefix). Admin creates users via `/api/v1/auth/create/`.
 - **Admin URL:** `/admin-panel/` (not `/admin/`)
 - **Celery:** Django `DatabaseScheduler` for beat. Worker/beat wait for migrations via `scripts/wait-for-migrations.sh`.
 - **Backend Docker entrypoint auto-runs `migrate`** on every start — no manual step needed in Docker.

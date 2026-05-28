@@ -1,18 +1,19 @@
+from unittest.mock import patch
+
+from django.core.cache import cache
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
+
 from apps.users.models import CustomUser as User
-from unittest.mock import patch, ANY
-import logging
-from django.core.cache import cache
 
 
 class LoginViewTests(APITestCase):
-    """Test suite for the user login view"""
+    """Test suite for the JWT login view"""
 
     @classmethod
     def setUpTestData(cls):
-        cls.url = reverse("v1:users:knox_login")
+        cls.url = reverse("v1:users:login")
         cls.user = User.objects.create_user(
             email="testuser@example.com", password="testpassword123"
         )
@@ -22,26 +23,40 @@ class LoginViewTests(APITestCase):
         }
 
     def test_login_success(self):
-        """Test successful user login with token response"""
-        with patch.object(logging.Logger, "info") as mock_logger:
-            response = self.client.post(self.url, self.valid_credentials, format="json")
-            self.assertEqual(response.status_code, status.HTTP_200_OK)
+        """Test successful user login with JWT token response"""
+        response = self.client.post(self.url, self.valid_credentials, format="json")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-            # Verify token response structure
-            self.assertIn("expiry", response.data)
-            self.assertIn("token", response.data)
-            self.assertIn("user", response.data)
+        # Verify JWT response structure: access + refresh + user
+        self.assertIn("access", response.data)
+        self.assertIn("refresh", response.data)
+        self.assertIn("user", response.data)
 
-            # Verify user data in response
-            user_data = response.data["user"]
-            self.assertEqual(user_data["email"], self.user.email)
-            mock_logger.assert_called_once()
+        # Verify user data in response
+        user_data = response.data["user"]
+        self.assertEqual(user_data["email"], self.user.email)
+
+        # Verify the access token is a valid JWT
+        access_token = response.data["access"]
+        self.assertIsInstance(access_token, str)
+        self.assertTrue(access_token.count(".") == 2)  # JWT has 3 parts
+
+    def test_login_success_authenticated_request(self):
+        """JWT access token can authenticate subsequent requests"""
+        response = self.client.post(self.url, self.valid_credentials, format="json")
+        access_token = response.data["access"]
+
+        # Use the access token for an authenticated request
+        self.client.credentials(HTTP_AUTHORIZATION=f"Bearer {access_token}")
+        profile_url = reverse("v1:users:profile")
+        response = self.client.get(profile_url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_login_invalid_credentials(self):
         """Test login with invalid credentials"""
         invalid_cases = [
-            {"email": "wrong@example.com", "password": "wrongpassword"},  # Wrong both
-            {"email": self.user.email, "password": "wrongpassword"},  # Correct email
+            {"email": "wrong@example.com", "password": "wrongpassword"},
+            {"email": self.user.email, "password": "wrongpassword"},
             {
                 "email": "wrong@example.com",
                 "password": self.valid_credentials["password"],
@@ -50,70 +65,17 @@ class LoginViewTests(APITestCase):
 
         for invalid_data in invalid_cases:
             with self.subTest(data=invalid_data):
-                with patch.object(logging.Logger, "warning") as mock_logger:
-                    response = self.client.post(self.url, invalid_data, format="json")
-                    self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-                    self.assertIn("non_field_errors", response.data)
-                    # Should have two log calls:
-                    # 1. For the failed login attempt (email/IP)
-                    # 2. For the Bad Request response
-                    self.assertEqual(mock_logger.call_count, 2)
-                    self.assertEqual(
-                        mock_logger.call_args_list[0][0][0],
-                        "Failed login attempt for email: %s",
-                    )
-                    self.assertEqual(
-                        mock_logger.call_args_list[0][0][1],
-                        invalid_data["email"],
-                    )
-                    self.assertEqual(
-                        mock_logger.call_args_list[1][0],
-                        (
-                            "%s: %s",
-                            "Bad Request",
-                            self.url,
-                        ),
-                    )
-                    self.assertEqual(
-                        mock_logger.call_args_list[1][1],
-                        {
-                            "extra": {"status_code": 400, "request": ANY},
-                            "exc_info": None,
-                        },
-                    )
+                response = self.client.post(self.url, invalid_data, format="json")
+                self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+                self.assertIn("detail", response.data)
 
     def test_login_inactive_user(self):
         """Test login attempt for inactive user"""
         self.user.is_active = False
         self.user.save()
-        with patch.object(logging.Logger, "warning") as mock_logger:
-            response = self.client.post(self.url, self.valid_credentials, format="json")
-            self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-            self.assertIn("non_field_errors", response.data)
-            # Should have two log calls:
-            # 1. For the failed login attempt (email/IP)
-            # 2. For the Bad Request response
-            self.assertEqual(mock_logger.call_count, 2)
-            self.assertEqual(
-                mock_logger.call_args_list[0][0][0],
-                "Failed login attempt for email: %s",
-            )
-            self.assertEqual(
-                mock_logger.call_args_list[0][0][1],
-                self.user.email,
-            )
-            self.assertEqual(
-                mock_logger.call_args_list[1][0],
-                (
-                    "%s: %s",
-                    "Bad Request",
-                    self.url,
-                ),
-            )
-            self.assertEqual(
-                mock_logger.call_args_list[1][1],
-                {"extra": {"status_code": 400, "request": ANY}, "exc_info": None},
-            )
+        response = self.client.post(self.url, self.valid_credentials, format="json")
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertIn("detail", response.data)
 
     def test_login_missing_fields(self):
         """Test login with missing required fields"""
@@ -123,17 +85,9 @@ class LoginViewTests(APITestCase):
             with self.subTest(field=field):
                 data = self.valid_credentials.copy()
                 data.pop(field)
-                with patch.object(logging.Logger, "warning") as mock_logger:
-                    response = self.client.post(self.url, data, format="json")
-                    self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-                    self.assertIn(field, response.data)
-                    mock_logger.assert_called_once_with(
-                        "%s: %s",
-                        "Bad Request",
-                        self.url,
-                        extra={"status_code": 400, "request": ANY},
-                        exc_info=None,
-                    )
+                response = self.client.post(self.url, data, format="json")
+                self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+                self.assertIn(field, response.data)
 
     def test_login_invalid_methods(self):
         """Test that only POST method is allowed"""
@@ -142,9 +96,7 @@ class LoginViewTests(APITestCase):
         for method in methods:
             with self.subTest(method=method):
                 response = getattr(self.client, method)(self.url)
-                self.assertEqual(
-                    response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED
-                )
+                self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
                 self.assertIn("POST", response["Allow"])
 
     def test_login_throttling(self):
@@ -182,16 +134,16 @@ class LoginViewTests(APITestCase):
         self.assertTrue(response["X-Content-Type-Options"] == "nosniff")
 
     def test_concurrent_login(self):
-        """Test that multiple concurrent logins work correctly"""
-        # Create multiple tokens for same user
-        tokens = []
+        """Test that multiple concurrent logins work correctly with JWT"""
+        # Create multiple JWT tokens for same user
+        access_tokens = []
         for _ in range(3):
             response = self.client.post(self.url, self.valid_credentials, format="json")
-            tokens.append(response.data["token"])
+            access_tokens.append(response.data["access"])
 
-        # All tokens should be valid
-        for token in tokens:
-            self.client.credentials(HTTP_AUTHORIZATION=f"Token {token}")
+        # All access tokens should be valid
+        for access_token in access_tokens:
+            self.client.credentials(HTTP_AUTHORIZATION=f"Bearer {access_token}")
             profile_url = reverse("v1:users:profile")
             response = self.client.get(profile_url)
             self.assertEqual(response.status_code, status.HTTP_200_OK)

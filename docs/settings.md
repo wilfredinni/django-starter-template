@@ -96,7 +96,7 @@ DATABASES = {"default": DJANGO_DATABASE_URL}
 
 This section details the configuration of installed Django applications and middleware, which are crucial for defining the project's functionalities and request-response processing flow:
 
-*   `INSTALLED_APPS`: A list of strings specifying all Django applications enabled in this project. **Default:** This includes Django's built-in applications (e.g., `django.contrib.admin`, `django.contrib.auth`), essential third-party libraries (e.g., `whitenoise`, `rest_framework`, `knox`, `drf_spectacular`), and the project's local applications (`apps.users`, `apps.core`). This setting informs Django which application modules are active and should be loaded.
+*   `INSTALLED_APPS`: A list of strings specifying all Django applications enabled in this project. **Default:** This includes Django's built-in applications (e.g., `django.contrib.admin`, `django.contrib.auth`), essential third-party libraries (e.g., `whitenoise`, `rest_framework`, `rest_framework_simplejwt`, `drf_spectacular`), and the project's local applications (`apps.users`, `apps.core`). This setting informs Django which application modules are active and should be loaded.
 
 *   `MIDDLEWARE`: A list of middleware classes that process requests and responses globally across your Django application. **Default:** This typically includes security middleware, static files handling, session management, CORS headers, common utilities, CSRF protection, authentication, and custom middleware like `RequestIDMiddleware`. The order of middleware is critically important, as they are executed sequentially for incoming requests and in reverse order for outgoing responses.
 
@@ -113,26 +113,27 @@ These settings configure Django's template engine, which is responsible for rend
 
 This section details the settings for Django REST Framework (DRF) and related tools for API development, authentication, and schema generation.
 
-### Token-Based Authentication
+### JWT Authentication
 
-Configuration for `django-rest-knox`, the token-based authentication system used for secure API access:
+Configuration for `djangorestframework-simplejwt`, the JWT-based authentication system used for secure API access:
 
-*   `SECURE_HASH_ALGORITHM`: The hashing algorithm employed for generating and verifying authentication tokens. **Default:** `hashlib.sha512`.
-*   `AUTH_TOKEN_CHARACTER_LENGTH`: Defines the length of the generated authentication tokens. **Default:** `64`.
-*   `TOKEN_TTL`: Sets the time-to-live (TTL) for authentication tokens, determining how long a token remains valid after issuance. **Default:** `timedelta(hours=10)`.
-*   `USER_SERIALIZER`: Specifies the serializer class used for user profiles when returning user-related data with tokens. **Default:** `apps.users.serializers.UserProfileSerializer`.
-*   `TOKEN_LIMIT_PER_USER`: Allows limiting the number of active tokens a single user can possess simultaneously. **Default:** `None` (no limit).
-*   `AUTO_REFRESH`: A boolean indicating whether tokens should be automatically refreshed upon use, extending their validity. **Default:** `False`.
-*   `AUTO_REFRESH_MAX_TTL`: The maximum time-to-live for tokens that are automatically refreshed. **Default:** `None`.
-*   `MIN_REFRESH_INTERVAL`: The minimum time interval (in seconds) that must pass between token refreshes. **Default:** `60` seconds.
-*   `AUTH_HEADER_PREFIX`: The prefix expected in the `Authorization` HTTP header for token authentication (e.g., `Bearer <token>`). **Default:** `Bearer`.
-*   `TOKEN_MODEL`: Refers to the Django model used by `django-rest-knox` to store authentication tokens. **Default:** `knox.AuthToken`.
+*   `ACCESS_TOKEN_LIFETIME`: How long access tokens remain valid before requiring a refresh. **Default:** `timedelta(hours=1)`.
+*   `REFRESH_TOKEN_LIFETIME`: How long refresh tokens remain valid before requiring a full re-login. **Default:** `timedelta(hours=24)`.
+*   `ROTATE_REFRESH_TOKENS`: Whether a new refresh token is issued on each refresh. **Default:** `True`.
+*   `BLACKLIST_AFTER_ROTATION`: Whether old refresh tokens are blacklisted on rotation. **Default:** `True`.
+*   `UPDATE_LAST_LOGIN`: Whether `last_login` is updated on authentication. **Default:** `True`.
+*   `ALGORITHM`: The signing algorithm for JWTs. **Default:** `"HS256"`.
+*   `SIGNING_KEY`: The secret key used to sign tokens. **Default:** Uses `DJANGO_SECRET_KEY`.
+*   `AUTH_HEADER_TYPES`: The accepted authorization header prefix. **Default:** `("Bearer",)`.
+*   `USER_ID_FIELD`: The model field used to identify users in the JWT payload. **Default:** `"id"`.
+*   `USER_ID_CLAIM`: The claim name in the JWT payload for the user ID. **Default:** `"user_id"`.
+*   `TOKEN_OBTAIN_SERIALIZER`: Custom serializer for the login response. **Default:** `apps.users.serializers.CustomTokenObtainPairSerializer`, which includes user profile data.
 
 ### General DRF Settings
 
 Core settings for Django REST Framework, influencing how APIs behave, including authentication, filtering, and rendering:
 
-*   `DEFAULT_AUTHENTICATION_CLASSES`: Defines the authentication methods available for API endpoints. **Default:** `knox.auth.TokenAuthentication`. In `DEBUG` mode, `SessionAuthentication` and `BasicAuthentication` are also included for development convenience.
+*   `DEFAULT_AUTHENTICATION_CLASSES`: Defines the authentication methods available for API endpoints. **Default:** `rest_framework_simplejwt.authentication.JWTAuthentication`. In `DEBUG` mode, `SessionAuthentication` and `BasicAuthentication` are also included for development convenience.
 *   `DEFAULT_VERSIONING_CLASS`: Controls API versioning. **Default:** `rest_framework.versioning.URLPathVersioning`.
 *   `DEFAULT_VERSION`: The default API version. **Default:** `v1`.
 *   `ALLOWED_VERSIONS`: A list of allowed API versions. **Default:** `["v1"]`.

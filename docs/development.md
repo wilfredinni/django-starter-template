@@ -270,7 +270,7 @@ When reversing URLs in your tests or views, you must include the version namespa
 from django.urls import reverse
 
 # Correct way to reverse a URL
-login_url = reverse("v1:users:knox_login")
+login_url = reverse("v1:users:login")
 core_ping = reverse("v1:core:ping")
 ```
 
