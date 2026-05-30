@@ -10,9 +10,7 @@ class TestUserModel:
     @pytest.fixture
     def user(self):
         User = get_user_model()
-        return User.objects.create_user(
-            email="test@example.com", password="testpass123"
-        )
+        return User.objects.create_user(email="test@example.com", password="testpass123")
 
     def test_create_user(self, user):
         """Test regular user creation"""

@@ -35,11 +35,6 @@ class LoginView(KnoxLoginView):
         logger.info("User %s logged in.", user.email)
         return super(LoginView, self).post(request, format=None)
 
-    def get_serializer_context(self):
-        context = super().get_serializer_context()
-        context["request"] = self.request
-        return context
-
 
 @extend_schema_view(
     get=extend_schema(responses=PROFILE_DETAIL_SCHEMA),

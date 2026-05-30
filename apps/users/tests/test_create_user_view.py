@@ -1,9 +1,10 @@
+import logging
+from unittest.mock import patch
+
+from django.contrib.auth import get_user_model
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
-from django.contrib.auth import get_user_model
-from unittest.mock import patch
-import logging
 
 
 class CreateUserViewTests(APITestCase):
@@ -40,9 +41,7 @@ class CreateUserViewTests(APITestCase):
         response = self.client.post(self.url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIn("non_field_errors", response.data)
-        self.assertEqual(
-            response.data["non_field_errors"][0], "Passwords do not match."
-        )
+        self.assertEqual(response.data["non_field_errors"][0], "Passwords do not match.")
 
     def test_create_user_weak_password(self):
         """Test creating user with weak password"""
@@ -107,6 +106,4 @@ class CreateUserViewTests(APITestCase):
         for method in methods:
             with self.subTest(method=method):
                 response = getattr(self.client, method)(self.url)
-                self.assertEqual(
-                    response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED
-                )
+                self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
