@@ -8,21 +8,25 @@ All Django commands run **inside Docker** (`docker compose exec backend`). Use t
 make up           # docker compose up
 make test         # docker compose exec backend pytest
 make test-cov     # pytest --cov
+make test-html    # pytest --cov --cov-report=html
 make migrate      # docker compose exec backend python manage.py migrate
 make seed         # seed DB (creates admin@admin.com / admin)
 make superuser    # createsuperuser
-make shell        # shell_plus (django-extensions)
+make shell        # shell_plus (django-extensions, only in DEBUG)
 make logs         # logs -f backend
 make logs-worker  # logs -f worker
+make logs-beat    # logs -f beat
 make rebuild      # docker compose up --build
 ```
 
-For a single test file or function:
+Single test file or function:
 
 ```sh
 docker compose exec backend pytest apps/users/tests/test_user_model.py
 docker compose exec backend pytest apps/users/tests/test_user_model.py::test_create_user
 ```
+
+**Important:** The backend entrypoint auto-runs `migrate` on every start. No manual migrate step needed in Docker.
 
 ## Lint & Typecheck
 
@@ -34,30 +38,28 @@ uv run ruff format --check .
 uv run mypy .
 ```
 
-Ruff fixes (`I` isort, `B` bugbear, `E`/`F` pycodestyle/pyflakes). Line-length 90, double quotes.
+Ruff selects `E`/`F`/`I`/`B`, line-length 90, double quotes, target `py314`. Mypy targets `python_version = "3.14"` with django-stubs + mypy-drf-plugin.
 
 ## Architecture
 
-- **Django settings:** `conf/settings.py` — `DJANGO_SETTINGS_MODULE=conf.settings`
-- **Test settings:** `conf/test_settings.py` — swaps `RequestIDMiddleware`/`RequestIDFilter` for mocks, relaxes login throttle to 1000/min
+- **Django settings:** `conf/settings.py` (`DJANGO_SETTINGS_MODULE=conf.settings`)
+- **Test settings:** `conf/test_settings.py` — swaps RequestIDMiddleware/RequestIDFilter for mocks, uses `LocMemCache` (throttle state resets per run), relaxes all throttle rates to 1000/min
 - **Apps:** `apps/users/` (CustomUser, auth), `apps/core/` (ping, middleware, tasks, seed — no models)
-- **AUTH_USER_MODEL:** `users.CustomUser` — email-based login, `username=None`, `USERNAME_FIELD='email'`
-- **Auth:** Knox tokens (sha512, 64 chars, 10hr TTL, `Token` prefix). Admin creates users via `/api/v1/auth/create/`.
+- **AUTH_USER_MODEL:** `users.CustomUser` — email-based, `username=None`, `USERNAME_FIELD='email'`
+- **Auth:** Knox tokens (sha512, 64 chars, 10hr TTL, `Bearer` prefix). Admin creates users via `/api/v1/auth/create/`
 - **Admin URL:** `/admin-panel/` (not `/admin/`)
-- **Celery:** Django `DatabaseScheduler` for beat. Worker/beat wait for migrations via `scripts/wait-for-migrations.sh`.
-- **Backend Docker entrypoint auto-runs `migrate`** on every start — no manual step needed in Docker.
+- **Celery:** app name `"worker"` in `conf/celery.py`, `celery -A conf` for CLI. Django `DatabaseScheduler` for beat. Worker/beat wait for migrations via `scripts/wait-for-migrations.sh`
+- **Package layout:** `pyproject.toml` sets `packages = ["apps", "conf"]` — internal imports use `apps.core.`, `apps.users.`, `conf.settings`
 
 ## Testing
 
-- `DJANGO_SETTINGS_MODULE=conf.test_settings` is hardcoded in `pytest.ini`.
-- `pytest.ini` has **no addopts** — `docs/testing.md` shows `--reuse-db --nomigrations --cov` etc. but these are **stale/not in the actual config**. Pass flags explicitly.
-- Tests use DRF `APITestCase` + `unittest.mock.patch` for mocks (not pytest-mock typically).
-- Database is real Postgres (no sqlite in-memory). CI uses `postgres:alpine` service.
-- `/api/v1/core/fire-task/` endpoint is marked for removal — don't write tests for it.
+- `DJANGO_SETTINGS_MODULE=conf.test_settings` is hardcoded in `pytest.ini`
+- `pytest.ini` includes `addopts = --reuse-db --nomigrations` — these flags are always active
+- Test database is real Postgres (Docker service). There is no sqlite in-memory fallback
+- Tests use DRF `APITestCase` + `unittest.mock.patch` for mocks (not pytest-mock fixtures)
+- `conf/test_utils.py` provides mock middleware/filter for RequestID logging context
+- `/api/v1/core/fire-task/` endpoint is example code marked for removal — skip writing tests for it
 
-## Python Version Mismatch
-
-Runtime is **Python 3.14** (`.python-version`, Dockerfile, CI), but `pyproject.toml` ruff/mypy target **py313**. Keep both in mind.
 
 ## Dependency Management
 

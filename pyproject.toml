@@ -37,7 +37,7 @@ packages = ["apps", "conf"]
 # Same chain as Black
 line-length = 90
 indent-width = 4
-target-version = "py313"
+target-version = "py314"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B"]
@@ -48,7 +48,7 @@ quote-style = "double"
 indent-style = "space"
 
 [tool.mypy]
-python_version = "3.13"
+python_version = "3.14"
 warn_return_any = false
 warn_unused_configs = true
 explicit_package_bases = true
