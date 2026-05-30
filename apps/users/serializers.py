@@ -1,4 +1,5 @@
 import logging
+from typing import cast
 
 from django.conf import settings
 from django.contrib.auth import authenticate
@@ -29,8 +30,11 @@ class AuthTokenSerializer(serializers.Serializer):
 
         # The authenticate call simply returns None for is_active=False users
         if email and password:
-            user: CustomUser = authenticate(
-                request=self.context.get("request"), email=email, password=password
+            user = cast(
+                CustomUser | None,
+                authenticate(
+                    request=self.context.get("request"), email=email, password=password
+                ),
             )
 
             if not user:
@@ -84,13 +88,15 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = CustomUser
         fields = ("email", "password", "first_name", "last_name")
         extra_kwargs = {
-            "password": {"write_only": True, "min_length": MIN_PASSWORD_LENGTH}
+            "email": {"read_only": True},
+            "password": {"write_only": True, "min_length": MIN_PASSWORD_LENGTH},
         }
 
     def validate(self, data: dict) -> dict:
         if "password" in data:
             try:
-                validate_password(data["password"], self.Meta.model(**data))
+                user = self.instance if self.instance else self.Meta.model(**data)
+                validate_password(data["password"], user=user)
             except Exception as e:
                 if hasattr(e, "error_list"):
                     errors = get_errors(e)

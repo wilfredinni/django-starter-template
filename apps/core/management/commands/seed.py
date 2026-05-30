@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from django.db import transaction
+from django.db import IntegrityError, transaction
 
 from apps.users.models import CustomUser
 
@@ -20,7 +20,6 @@ class Command(BaseCommand):
             "--clean", action="store_true", help="Delete all data before seeding"
         )
 
-    @transaction.atomic
     def handle(self, *args, **options):
         if options["clean"]:
             self.stdout.write("Deleting old data...")
@@ -39,9 +38,10 @@ class Command(BaseCommand):
             self.stdout.write(
                 self.style.SUCCESS(f"Superuser created - {superuser.email}")
             )
-        except Exception as e:
+        except IntegrityError as e:
             self.stdout.write(self.style.WARNING(f"Superuser already exists - {e}"))
 
+    @transaction.atomic
     def create_users(self, count):
         try:
             from faker import Faker
@@ -57,6 +57,7 @@ class Command(BaseCommand):
         self.stdout.write(f"Creating {count} users...")
 
         for _ in range(count):
+            sid = transaction.savepoint()
             try:
                 user = CustomUser.objects.create_user(
                     email=fake.email(),
@@ -64,6 +65,8 @@ class Command(BaseCommand):
                     first_name=fake.first_name(),
                     last_name=fake.last_name(),
                 )
+                transaction.savepoint_commit(sid)
                 self.stdout.write(f"Created user - {user.email}")
-            except Exception as e:
+            except IntegrityError as e:
+                transaction.savepoint_rollback(sid)
                 self.stdout.write(self.style.WARNING(f"Error creating user - {e}"))

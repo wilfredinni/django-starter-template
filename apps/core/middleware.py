@@ -35,7 +35,7 @@ class RequestIDMiddleware:
         path_var.set(request.path)
 
         if hasattr(request, "user") and request.user.is_authenticated:
-            user_id_var.set(str(getattr(request.user, "id", "anonymous")))
+            user_id_var.set(str(getattr(request.user, "pk", "anonymous")))
         else:
             user_id_var.set("anonymous")
 

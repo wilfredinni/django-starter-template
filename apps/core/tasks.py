@@ -21,7 +21,7 @@ class BaseTaskWithRetry(celery.Task):
     """
 
     # The list of exceptions that should be caught and retried
-    autoretry_for = (Exception, KeyError)
+    autoretry_for = (Exception,)
 
     # The maximum number of retries this task can have
     retry_kwargs = {"max_retries": 3}

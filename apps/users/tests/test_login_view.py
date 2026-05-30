@@ -1,10 +1,12 @@
+import logging
+from unittest.mock import ANY, patch
+
+from django.core.cache import cache
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
+
 from apps.users.models import CustomUser as User
-from unittest.mock import patch, ANY
-import logging
-from django.core.cache import cache
 
 
 class LoginViewTests(APITestCase):
@@ -142,9 +144,7 @@ class LoginViewTests(APITestCase):
         for method in methods:
             with self.subTest(method=method):
                 response = getattr(self.client, method)(self.url)
-                self.assertEqual(
-                    response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED
-                )
+                self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
                 self.assertIn("POST", response["Allow"])
 
     def test_login_throttling(self):
@@ -191,7 +191,7 @@ class LoginViewTests(APITestCase):
 
         # All tokens should be valid
         for token in tokens:
-            self.client.credentials(HTTP_AUTHORIZATION=f"Token {token}")
+            self.client.credentials(HTTP_AUTHORIZATION=f"Bearer {token}")
             profile_url = reverse("v1:users:profile")
             response = self.client.get(profile_url)
             self.assertEqual(response.status_code, status.HTTP_200_OK)

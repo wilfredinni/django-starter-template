@@ -61,6 +61,13 @@ X_FRAME_OPTIONS = "DENY"
 CSRF_COOKIE_SECURE = not DEBUG
 SESSION_COOKIE_SECURE = not DEBUG
 
+if not DEBUG:
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
 # -----------------------------------------------------------------------------
 # Databases
 # -----------------------------------------------------------------------------
@@ -118,7 +125,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ],
-            "builtins": ["django.template.defaultfilters"],
+            "builtins": [],
         },
     },
 ]
@@ -187,7 +194,7 @@ if DEBUG:
 
 CORS_ALLOW_ALL_ORIGINS = DEBUG
 if not CORS_ALLOW_ALL_ORIGINS:
-    CORS_ALLOWED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS")
+    CORS_ALLOWED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS", default=[])
 
 # -----------------------------------------------------------------------------
 # Cache
@@ -202,7 +209,6 @@ CACHES = {
     }
 }
 
-USER_AGENTS_CACHE = "default"
 
 # -----------------------------------------------------------------------------
 # Celery
@@ -281,16 +287,13 @@ LOGGING = {
 }
 
 if not DEBUG:
-    sentry_sdk.init(
-        dsn=env("SENTRY_DSN"),
-        # Set traces_sample_rate to 1.0 to capture 100%
-        # of transactions for tracing.
-        traces_sample_rate=1.0,
-        # Set profiles_sample_rate to 1.0 to profile 100%
-        # of sampled transactions.
-        # We recommend adjusting this value in production.
-        profiles_sample_rate=1.0,
-    )
+    sentry_dsn = env("SENTRY_DSN", default=None)
+    if sentry_dsn:
+        sentry_sdk.init(
+            dsn=sentry_dsn,
+            traces_sample_rate=0.1,
+            profiles_sample_rate=0.1,
+        )
 
 # -----------------------------------------------------------------------------
 # Static & Media Files
@@ -310,7 +313,6 @@ STATIC_ROOT = tempfile.mkdtemp() if DEBUG else root_path("static_root")
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = root_path("media_root")
-ADMIN_MEDIA_PREFIX = STATIC_URL + "admin/"
 
 # -----------------------------------------------------------------------------
 # Django Debug Toolbar and Django Extensions

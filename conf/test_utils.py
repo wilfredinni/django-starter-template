@@ -1,8 +1,13 @@
 class RequestIDFilter:
-    """Mock filter for tests that adds a test request ID"""
+    """Mock filter for tests that provides dummy values for all log record fields"""
 
     def filter(self, record):
         record.request_id = "test-request-id"
+        record.client = "127.0.0.1"
+        record.path = "/test/"
+        record.user_id = "anonymous"
+        record.status_code = 200
+        record.response_time = 0.0
         return True
 
 
