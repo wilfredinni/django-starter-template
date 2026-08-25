@@ -37,6 +37,7 @@ nav:
   - Dependencies: dependencies.md
   - AI-Assisted Development: ai.md
   - Auto Documentation: auto_documentation.md
+  - API Collection (Noodle): noodle.md
   - Authentication: authentication.md
   - Core App: core_endpoints.md
   - Logging: logging.md

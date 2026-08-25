@@ -1,0 +1,12 @@
+lastRequest: profile/get-profile
+expanded_folders:
+  - v1
+  - auth
+  - core
+  - profile
+profile/patch-profile:
+  request: auth
+  response: body
+profile/get-profile:
+  request: auth
+  response: body

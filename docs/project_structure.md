@@ -11,6 +11,7 @@ Understanding the project's directory structure is fundamental for navigating, d
 ├── .github/                    # GitHub CI/CD workflows and issue templates
 ├── .gitignore                  # Git ignore file
 ├── .venv/                      # Virtual environment
+├── api-collection/             # Noodle REST client collection (v1 endpoints)
 ├── apps/                       # Django applications (core logic)
 │   ├── core/                   # Core functionalities and shared components
 │   │   ├── __init__.py         # Initializes the core app
@@ -74,6 +75,8 @@ This section describes the primary directories within the project and their resp
     *   **`users/`**: Manages all aspects of user authentication and authorization. This includes user models, serializers, views, and related utilities for user registration, login, and profile management.
 
 *   **`conf/`**: Contains project-wide configuration files that apply to the entire Django project, rather than being specific to a single app. This includes the main `settings.py`, URL routing (`urls.py`), ASGI/WSGI configurations, and Celery setup.
+
+*   **`api-collection/`**: A [Noodle](https://noodlerest.dev) collection with ready-to-run requests for every `v1` endpoint. Requests are YAML files versioned with the repo; see [API Collection (Noodle)](noodle.md) for installation and usage.
 
 *   **`scripts/`**: A collection of utility scripts that automate various development and maintenance tasks. These scripts can include commands for running the server, managing migrations, or executing custom project-specific operations.
 

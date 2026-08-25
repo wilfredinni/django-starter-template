@@ -17,6 +17,7 @@ This template is packed with features to help you build amazing APIs:
 -   **User Authentication:** Secure token-based authentication with `django-rest-knox`.
 -   **Background Tasks:** Asynchronous task processing with `Celery` and `Redis`.
 -   **API Documentation:** Automatic OpenAPI 3 schema generation with `drf-spectacular`.
+-   **Ready-to-use API Collection:** Test every endpoint from your terminal with the bundled [Noodle](https://noodlerest.dev) collection — no Postman needed.
 -   **Centralized Logging:** Structured JSON logging for easy monitoring.
 -   **Custom User Model:** Email-based authentication for a modern user experience.
 -   **AI-Assisted Development:** Includes `AGENTS.md` and curated AI skills (Django, Celery) to help AI coding agents produce idiomatic code.
@@ -45,6 +46,17 @@ make test          # Run tests
 make seed          # Populate database with sample data
 make logs          # View application logs
 ```
+
+**Try the API with Noodle:**
+The repo includes a [Noodle](https://noodlerest.dev) collection (`api-collection/`) covering all `v1` endpoints. Install the CLI, start the stack, and run requests:
+
+```bash
+curl -LsSf https://noodlerest.dev/install.sh | sh   # or: brew tap wilfredinni/noodle && brew trust wilfredinni/noodle && brew install noodle
+noodle -c api-collection                           # open interactively
+noodle request run core/ping --collection api-collection   # or run a single request
+```
+
+See [API Collection (Noodle)](docs/noodle.md) for authentication and environment setup.
 
 **For IDE support (IntelliSense, autocomplete):**
 ```bash

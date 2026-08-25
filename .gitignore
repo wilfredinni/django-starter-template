@@ -194,3 +194,5 @@ cython_debug/
 .DS_Store
 .AppleDouble
 .LSOverride
+# noodle request history
+api-collection/.timeline/

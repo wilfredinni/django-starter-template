@@ -1,0 +1,9 @@
+name: Ping
+method: GET
+url: $base_url/api/v1/core/ping/
+timeout: 0
+followRedirects: true
+maxRedirects: 5
+auth:
+  type: bearer
+  token: $token
