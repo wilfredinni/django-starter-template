@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../tasks/">
+        <link rel="prev" href="../auto_documentation/">
       
       
-        <link rel="next" href="../database_seeding/">
+        <link rel="next" href="../authentication/">
       
       
         
@@ -23,7 +23,7 @@
     
     
       
-        <title>Rate Limiting - Django Starter Template</title>
+        <title>API Collection (Noodle) - Django Starter Template</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#rate-limiting" class="md-skip">
+        <a href="#api-collection-noodle" class="md-skip">
           Skip to content
         </a>
       
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Rate Limiting
+              API Collection (Noodle)
             
           </span>
         </div>
@@ -440,10 +440,37 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../noodle/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Collection (Noodle)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -459,6 +486,70 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Variables
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -575,37 +666,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Rate Limiting
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../rate_limiting/" class="md-nav__link">
         
   
   
@@ -621,98 +685,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#why-use-rate-limiting" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why Use Rate Limiting?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-its-implemented" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How it's Implemented
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="How it&#39;s Implemented">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-default-throttle-rates" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Default Throttle Rates
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-custom-throttle-class" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Custom Throttle Class
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-applying-throttles-to-views" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Applying Throttles to Views
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-configure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How to Configure
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -825,10 +797,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#why-use-rate-limiting" class="md-nav__link">
+  <a href="#installation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why Use Rate Limiting?
+        Installation
       
     </span>
   </a>
@@ -836,60 +808,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-its-implemented" class="md-nav__link">
+  <a href="#usage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        How it's Implemented
+        Usage
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="How it&#39;s Implemented">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-default-throttle-rates" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Default Throttle Rates
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-custom-throttle-class" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Custom Throttle Class
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-applying-throttles-to-views" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Applying Throttles to Views
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-to-configure" class="md-nav__link">
+  <a href="#authentication" class="md-nav__link">
     <span class="md-ellipsis">
       
-        How to Configure
+        Authentication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Variables
       
     </span>
   </a>
@@ -917,101 +861,117 @@
     
       
     
-    <a href="https://github.com/wilfredinni/django-starter-template/raw/master/docs/rate_limiting.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/wilfredinni/django-starter-template/raw/master/docs/noodle.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="rate-limiting">Rate Limiting</h1>
-<p>Rate limiting is a crucial security and performance feature that controls the number of requests a user or IP address can make to your API within a given timeframe. It helps prevent abuse, brute-force attacks, and ensures fair usage of your API resources.</p>
-<h2 id="why-use-rate-limiting">Why Use Rate Limiting?</h2>
-<ul>
-<li><strong>Security</strong>: Protects against brute-force attacks on login endpoints, denial-of-service (DoS) attacks, and excessive data scraping.</li>
-<li><strong>Performance</strong>: Prevents a single user or malicious actor from overwhelming your server with too many requests, ensuring the API remains responsive for all legitimate users.</li>
-<li><strong>Fair Usage</strong>: Ensures that API resources are distributed fairly among all users, preventing any single user from monopolizing resources.</li>
-</ul>
-<h2 id="how-its-implemented">How it's Implemented</h2>
-<p>This project uses Django REST Framework's built-in throttling mechanisms, along with a custom throttle class, to implement rate limiting.</p>
-<h3 id="1-default-throttle-rates">1. Default Throttle Rates</h3>
-<p>Global throttle rates are defined in <code>conf/settings.py</code> under the <code>REST_FRAMEWORK</code> dictionary. These rates are applied based on different scopes:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Example from conf/settings.py</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">REST_FRAMEWORK</span> <span class="o">=</span> <span class="p">{</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="c1"># ... other settings</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="s2">"DEFAULT_THROTTLE_RATES"</span><span class="p">:</span> <span class="p">{</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        <span class="s2">"user"</span><span class="p">:</span> <span class="s2">"1000/day"</span><span class="p">,</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="s2">"anon"</span><span class="p">:</span> <span class="s2">"100/day"</span><span class="p">,</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="s2">"user_login"</span><span class="p">:</span> <span class="s2">"5/minute"</span><span class="p">,</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="p">},</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">}</span>
+<h1 id="api-collection-noodle">API Collection (Noodle)</h1>
+<p>The project ships with a <a href="https://noodlerest.dev">Noodle</a> collection that covers every <code>v1</code> endpoint: login, logout, user creation, and profile management. Noodle is a terminal-based REST client — your requests live as YAML files in the repo, versioned next to the code they exercise.</p>
+<p>The collection lives in <code>api-collection/</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>api-collection/
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── settings.yml
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── .environments/
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   └── local.env              # base_url and dev credentials
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── auth/
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│   ├── create-user.yml
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│   ├── login.yml
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│   ├── logout.yml
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│   └── logout-all.yml
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>├── core/
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│   └── ping.yml
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>└── profile/
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    ├── get-profile.yml
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    ├── patch-profile.yml
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    └── update-profile.yml
 </code></pre></div>
-<ul>
-<li><code>user</code>: Applies to authenticated users. <strong>Default:</strong> <code>1000 requests per day</code>.</li>
-<li><code>anon</code>: Applies to unauthenticated (anonymous) users. <strong>Default:</strong> <code>100 requests per day</code>.</li>
-<li><code>user_login</code>: A custom scope specifically for login attempts. <strong>Default:</strong> <code>5 requests per minute</code>.</li>
-</ul>
-<h3 id="2-custom-throttle-class">2. Custom Throttle Class</h3>
-<p>For specific scenarios, like limiting login attempts, a custom throttle class (<code>apps/users/throttles.py</code>) is used. This allows for more granular control over how requests are identified and limited.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Example from apps/users/throttles.py</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rest_framework.throttling</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleRateThrottle</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">UserLoginRateThrottle</span><span class="p">(</span><span class="n">SimpleRateThrottle</span><span class="p">):</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">scope</span> <span class="o">=</span> <span class="s2">"user_login"</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_cache_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">view</span><span class="p">):</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">:</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>            <span class="n">ident</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_ident</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="c1"># Uses IP for anonymous users</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>            <span class="n">ident</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">pk</span> <span class="c1"># Uses user ID for authenticated users</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache_format</span> <span class="o">%</span> <span class="p">{</span><span class="s2">"scope"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">scope</span><span class="p">,</span> <span class="s2">"ident"</span><span class="p">:</span> <span class="n">ident</span><span class="p">}</span>
+<h2 id="installation">Installation</h2>
+<p>macOS (Homebrew):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>brew<span class="w"> </span>tap<span class="w"> </span>wilfredinni/noodle
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>brew<span class="w"> </span>trust<span class="w"> </span>wilfredinni/noodle
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>brew<span class="w"> </span>install<span class="w"> </span>noodle
 </code></pre></div>
-<p>This custom throttle ensures that:</p>
-<ul>
-<li>For anonymous users, rate limiting is based on their IP address.</li>
-<li>For authenticated users, rate limiting is based on their user ID.</li>
-</ul>
-<h3 id="3-applying-throttles-to-views">3. Applying Throttles to Views</h3>
-<p>Throttles are applied to DRF views using the <code>throttle_classes</code> attribute. This tells DRF which throttle policies to enforce for that specific view.</p>
-<p><strong>Example (from <code>apps/users/views.py</code> for <code>LoginView</code> and <code>UserProfileView</code>):</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># For LoginView</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rest_framework.throttling</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnonRateThrottle</span> <span class="c1"># Or other built-in throttles</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">.throttles</span><span class="w"> </span><span class="kn">import</span> <span class="n">UserLoginRateThrottle</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">LoginView</span><span class="p">(</span><span class="n">KnoxLoginView</span><span class="p">):</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="c1"># ...</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">throttle_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">UserLoginRateThrottle</span><span class="p">]</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="c1"># For UserProfileView and CreateUserView</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rest_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">throttling</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="k">class</span><span class="w"> </span><span class="nc">UserProfileView</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">RetrieveUpdateAPIView</span><span class="p">):</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="c1"># ...</span>
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    <span class="n">throttle_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">throttling</span><span class="o">.</span><span class="n">UserRateThrottle</span><span class="p">]</span>
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
-<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="k">class</span><span class="w"> </span><span class="nc">CreateUserView</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">CreateAPIView</span><span class="p">):</span>
-<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    <span class="c1"># ...</span>
-<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    <span class="n">throttle_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">throttling</span><span class="o">.</span><span class="n">UserRateThrottle</span><span class="p">]</span>
+<p>Linux/macOS (install script):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://noodlerest.dev/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
 </code></pre></div>
-<ul>
-<li><code>UserLoginRateThrottle</code>: Applied to the <code>LoginView</code> to limit login attempts.</li>
-<li><code>throttling.UserRateThrottle</code>: A built-in DRF throttle that applies the <code>user</code> scope rate (from <code>DEFAULT_THROTTLE_RATES</code>) to authenticated users. This is used for <code>UserProfileView</code> and <code>CreateUserView</code>.</li>
-</ul>
-<h2 id="how-to-configure">How to Configure</h2>
-<p>To adjust the rate limits for your API, modify the <code>DEFAULT_THROTTLE_RATES</code> dictionary in <code>conf/settings.py</code>.</p>
-<p>For example, to change the anonymous user rate limit to 50 requests per hour:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># In conf/settings.py</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">REST_FRAMEWORK</span> <span class="o">=</span> <span class="p">{</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="c1"># ...</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="s2">"DEFAULT_THROTTLE_RATES"</span><span class="p">:</span> <span class="p">{</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>        <span class="s2">"user"</span><span class="p">:</span> <span class="s2">"1000/day"</span><span class="p">,</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        <span class="s2">"anon"</span><span class="p">:</span> <span class="s2">"50/hour"</span><span class="p">,</span> <span class="c1"># Changed from 100/day</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        <span class="s2">"user_login"</span><span class="p">:</span> <span class="s2">"5/minute"</span><span class="p">,</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="p">},</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="p">}</span>
+<p>Verify the installation:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>noodle<span class="w"> </span>--version
 </code></pre></div>
-<p>You can also create new custom throttle classes in <code>apps/users/throttles.py</code> (or a similar location) and apply them to specific views as needed.</p>
+<h2 id="usage">Usage</h2>
+<p>Start the stack first — the collection points at <code>http://localhost:8000</code> by default:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>make<span class="w"> </span>up
+</code></pre></div>
+<p>Then open the collection interactively:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>noodle<span class="w"> </span>-c<span class="w"> </span>api-collection
+</code></pre></div>
+<p>Or run requests from the command line:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Run every request in the collection</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>noodle<span class="w"> </span>collection<span class="w"> </span>run<span class="w"> </span>api-collection
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Run a single request</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>noodle<span class="w"> </span>request<span class="w"> </span>run<span class="w"> </span>core/ping<span class="w"> </span>--collection<span class="w"> </span>api-collection
+</code></pre></div>
+<h2 id="authentication">Authentication</h2>
+<p>All endpoints except <code>ping</code> require a Knox token (<code>Bearer</code>). To authenticate:</p>
+<ol>
+<li>Send the <strong>login</strong> request (<code>auth/login</code>) with your credentials — the seeded admin is <code>admin@admin.com</code> / <code>admin</code> (see <a href="../database_seeding/">Database Seeding</a>).</li>
+<li>Copy the <code>token</code> value from the response.</li>
+<li>Store it as a secret so it is never written to the collection files:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>noodle<span class="w"> </span>secret<span class="w"> </span><span class="nb">set</span><span class="w"> </span>TOKEN<span class="w"> </span>--env<span class="w"> </span><span class="nb">local</span><span class="w"> </span>--collection<span class="w"> </span>api-collection
+</code></pre></div>
+<p>Every authenticated request reads <code>$token</code> from that secret.</p>
+<h2 id="environment-variables">Environment Variables</h2>
+<p>Requests reference variables from <code>api-collection/.environments/local.env</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default</th>
+<th>Used for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>base_url</code></td>
+<td><code>http://localhost:8000</code></td>
+<td>Prefix of every request URL</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td><code>admin@admin.com</code></td>
+<td>Login / create / profile bodies</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td><code>admin</code></td>
+<td>Login / create / profile bodies</td>
+</tr>
+<tr>
+<td><code>password2</code></td>
+<td><code>admin</code></td>
+<td>User creation confirmation</td>
+</tr>
+<tr>
+<td><code>first_name</code></td>
+<td><code>Admin</code></td>
+<td>Profile update bodies</td>
+</tr>
+<tr>
+<td><code>last_name</code></td>
+<td><code>User</code></td>
+<td>Profile update bodies</td>
+</tr>
+<tr>
+<td><code>TOKEN</code></td>
+<td><em>(secret)</em></td>
+<td>Bearer token for auth</td>
+</tr>
+</tbody>
+</table>
+<p>Edit <code>local.env</code> freely or add new files in <code>.environments/</code> (e.g., <code>staging.env</code>) to switch environments from the Noodle UI.</p>
 
 
 

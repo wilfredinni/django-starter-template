@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../assets/logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -27,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -722,6 +722,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../noodle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Collection (Noodle)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../authentication/" class="md-nav__link">
         
   
@@ -1228,7 +1255,7 @@
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">env</span> <span class="o">=</span> <span class="n">environ</span><span class="o">.</span><span class="n">Env</span><span class="p">()</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">root_path</span> <span class="o">=</span> <span class="n">environ</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">env_file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">root_path</span><span class="p">(</span><span class="s2">&quot;.env&quot;</span><span class="p">))</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">env_file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">root_path</span><span class="p">(</span><span class="s2">".env"</span><span class="p">))</span>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">if</span> <span class="n">env_file</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">env</span><span class="o">.</span><span class="n">read_env</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">env_file</span><span class="p">))</span>
 </code></pre></div>
@@ -1258,12 +1285,12 @@
 <ul>
 <li>
 <p><code>SECRET_KEY</code>: A unique secret key used for cryptographic signing in Django. <strong>Default:</strong> Loaded from the <code>DJANGO_SECRET_KEY</code> environment variable. <strong>This key must be kept absolutely secret and never hardcoded in version control.</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="n">env</span><span class="p">(</span><span class="s2">&quot;DJANGO_SECRET_KEY&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="n">env</span><span class="p">(</span><span class="s2">"DJANGO_SECRET_KEY"</span><span class="p">)</span>
 </code></pre></div>
 </li>
 <li>
 <p><code>ALLOWED_HOSTS</code>: A list of strings representing the host/domain names that this Django site can serve. <strong>Default:</strong> <code>["*"]</code> (loaded from <code>env.list("ALLOWED_HOSTS", default=["*"])</code>). This is a crucial security measure to prevent HTTP Host header attacks. <strong>In production, always specify your exact domain names (e.g., <code>["api.example.com"]</code>) and never use <code>"*"</code> for security reasons.</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="s2">&quot;ALLOWED_HOSTS&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="s2">"ALLOWED_HOSTS"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s2">"*"</span><span class="p">])</span>
 </code></pre></div>
 </li>
 <li>
@@ -1285,8 +1312,8 @@
 <h2 id="databases">Databases</h2>
 <p>Database connection settings are managed through the <code>DATABASE_URL</code> environment variable, which <code>django-environ</code> parses to configure the database connection.</p>
 <p><strong>Configuration Snippet:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">DJANGO_DATABASE_URL</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">db</span><span class="p">(</span><span class="s2">&quot;DATABASE_URL&quot;</span><span class="p">)</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="n">DJANGO_DATABASE_URL</span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">DJANGO_DATABASE_URL</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">db</span><span class="p">(</span><span class="s2">"DATABASE_URL"</span><span class="p">)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"default"</span><span class="p">:</span> <span class="n">DJANGO_DATABASE_URL</span><span class="p">}</span>
 </code></pre></div>
 <p><strong>Explanation:</strong></p>
 <ul>
@@ -1462,7 +1489,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.action.view"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
