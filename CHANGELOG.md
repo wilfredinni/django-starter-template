@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.6.0](https://github.com/wilfredinni/django-starter-template/releases/tag/0.6.0) - 2026-08-25
+
+Noodle API collection, Python 3.14 tooling target, and dependency updates
+
+### Added
+
+- [Noodle](https://noodlerest.dev) API collection (`api-collection/`) covering all `v1` endpoints: auth (create user, login, logout, logout all) and profile management, plus a `core/ping` health check
+- Local environment for the collection (`base_url`, seed credentials, Knox token secret)
+- API Collection documentation page (`docs/noodle.md`) with installation, usage, and authentication guide
+- Noodle feature added to `README.md` and `docs/project_structure.md`
+
+### Changed
+
+- ruff `target-version` and mypy `python_version` updated from `py313` to `py314`
+- AGENTS.md cleaned up and streamlined
+- Updated dependencies to their latest versions
+
 ## [0.5.2](https://github.com/wilfredinni/django-starter-template/releases/tag/0.5.2) - 2026-05-23
 
 AI tooling setup, infra improvements, and dependency updates
