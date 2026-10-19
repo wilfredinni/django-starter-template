@@ -2,6 +2,7 @@ import logging
 import time
 import uuid
 from contextvars import ContextVar
+from ipaddress import ip_address
 
 # ContextVars to replace threading.local for async safety
 request_id_var = ContextVar("request_id", default="none")
@@ -13,13 +14,10 @@ status_code_var = ContextVar("status_code", default=0)
 
 
 def get_client_ip(request):
-    x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
-    ip = (
-        x_forwarded_for.split(",")[0].strip()
-        if x_forwarded_for
-        else request.META.get("REMOTE_ADDR", "")
-    )
-    return ip
+    try:
+        return str(ip_address(request.META.get("REMOTE_ADDR", "")))
+    except ValueError:
+        return ""
 
 
 class RequestIDMiddleware:
@@ -30,14 +28,22 @@ class RequestIDMiddleware:
         request_id = str(uuid.uuid4())
         request.id = request_id
 
-        request_id_var.set(request_id)
-        client_ip_var.set(get_client_ip(request))
-        path_var.set(request.path)
-
         if hasattr(request, "user") and request.user.is_authenticated:
-            user_id_var.set(str(getattr(request.user, "pk", "anonymous")))
+            user_id = str(getattr(request.user, "pk", "anonymous"))
         else:
-            user_id_var.set("anonymous")
+            user_id = "anonymous"
+
+        tokens = [
+            (variable, variable.set(value))
+            for variable, value in (
+                (request_id_var, request_id),
+                (client_ip_var, get_client_ip(request)),
+                (path_var, request.path),
+                (user_id_var, user_id),
+                (response_time_var, 0.0),
+                (status_code_var, 0),
+            )
+        ]
 
         start_time = time.time()
 
@@ -58,6 +64,9 @@ class RequestIDMiddleware:
             response_time_var.set(response_time)
             status_code_var.set(500)
             raise
+        finally:
+            for variable, token in reversed(tokens):
+                variable.reset(token)
 
 
 class TimeLogFilter(logging.Filter):

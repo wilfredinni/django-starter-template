@@ -33,7 +33,9 @@ USE_TZ = True
 # Security and Users
 # -----------------------------------------------------------------------------
 SECRET_KEY = env("DJANGO_SECRET_KEY")
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["*"])
+ALLOWED_HOSTS = env.list(
+    "ALLOWED_HOSTS", default=["localhost", "127.0.0.1", "[::1]"] if DEBUG else []
+)
 AUTH_USER_MODEL = "users.CustomUser"
 MIN_PASSWORD_LENGTH = env.int("MIN_PASSWORD_LENGTH", default=8)
 PASSWORD_HASHERS = [
@@ -159,6 +161,12 @@ REST_FRAMEWORK = {
     ),
     "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_THROTTLE_CLASSES": (
+        "rest_framework.throttling.AnonRateThrottle",
+        "rest_framework.throttling.UserRateThrottle",
+    ),
+    # Ignore client-supplied forwarded headers unless proxy trust is configured.
+    "NUM_PROXIES": env.int("NUM_PROXIES", default=0),
     # TODO ⚡ Adjust the throttle rates for your API
     "DEFAULT_THROTTLE_RATES": {
         "user": "1000/day",
@@ -199,10 +207,13 @@ if not CORS_ALLOW_ALL_ORIGINS:
 # -----------------------------------------------------------------------------
 # Cache
 # -----------------------------------------------------------------------------
+REDIS_URL = (
+    env("REDIS_URL", default="redis://redis:6379/1") if DEBUG else env("REDIS_URL")
+)
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": env("REDIS_URL", default="redis://redis:6379"),
+        "LOCATION": REDIS_URL,
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         },
@@ -213,7 +224,11 @@ CACHES = {
 # -----------------------------------------------------------------------------
 # Celery
 # -----------------------------------------------------------------------------
-CELERY_BROKER_URL = env("CELERY_BROKER_URL", default="redis://redis:6379")
+CELERY_BROKER_URL = (
+    env("CELERY_BROKER_URL", default="redis://redis:6379/0")
+    if DEBUG
+    else env("CELERY_BROKER_URL")
+)
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers.DatabaseScheduler"
 CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_TASK_SERIALIZER = "json"

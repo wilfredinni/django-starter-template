@@ -15,7 +15,7 @@ from .schema import (
     USER_CREATE_RESPONSE_SCHEMA,
 )
 from .serializers import AuthTokenSerializer, CreateUserSerializer, UserProfileSerializer
-from .throttles import UserLoginRateThrottle
+from .throttles import LoginAccountRateThrottle, UserLoginRateThrottle
 
 logger = logging.getLogger(__name__)
 
@@ -25,7 +25,7 @@ class LoginView(KnoxLoginView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (permissions.AllowAny,)
     serializer_class = AuthTokenSerializer
-    throttle_classes = [UserLoginRateThrottle]
+    throttle_classes = [UserLoginRateThrottle, LoginAccountRateThrottle]
 
     def post(self, request, format=None) -> Response:
         serializer = AuthTokenSerializer(data=request.data, context={"request": request})

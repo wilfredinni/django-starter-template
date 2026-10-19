@@ -1,4 +1,7 @@
-from django.core.management.base import BaseCommand
+from secrets import token_urlsafe
+
+from django.conf import settings
+from django.core.management.base import BaseCommand, CommandError
 from django.db import IntegrityError, transaction
 
 from apps.users.models import CustomUser
@@ -12,34 +15,20 @@ class Command(BaseCommand):
             "--users", default=10, type=int, help="The number of fake users to create"
         )
         parser.add_argument(
-            "--superuser",
-            action="store_true",
-            help="Create a superuser with email admin@admin.com and password admin",
-        )
-        parser.add_argument(
             "--clean", action="store_true", help="Delete all data before seeding"
         )
 
     def handle(self, *args, **options):
+        if not settings.DEBUG:
+            raise CommandError("Seeding is only available when DEBUG=True.")
+
         if options["clean"]:
             self.stdout.write("Deleting old data...")
             CustomUser.objects.filter(is_superuser=False).delete()
 
-        if options["superuser"]:
-            self.create_superuser()
-
         self.create_users(options["users"])
 
         self.stdout.write(self.style.SUCCESS("Successfully seeded database"))
-
-    def create_superuser(self):
-        try:
-            superuser = CustomUser.objects.create_superuser("admin@admin.com", "admin")
-            self.stdout.write(
-                self.style.SUCCESS(f"Superuser created - {superuser.email}")
-            )
-        except IntegrityError as e:
-            self.stdout.write(self.style.WARNING(f"Superuser already exists - {e}"))
 
     @transaction.atomic
     def create_users(self, count):
@@ -61,7 +50,7 @@ class Command(BaseCommand):
             try:
                 user = CustomUser.objects.create_user(
                     email=fake.email(),
-                    password="testpass123",
+                    password=token_urlsafe(32),
                     first_name=fake.first_name(),
                     last_name=fake.last_name(),
                 )
