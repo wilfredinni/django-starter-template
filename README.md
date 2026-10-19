@@ -47,6 +47,16 @@ make seed          # Populate database with sample data
 make logs          # View application logs
 ```
 
+`make seed` is available only with `DEBUG=True`. Sample users receive random passwords
+that are not printed. Create your administrator with `make superuser`, then set its
+credentials in `api-collection/.environments/local.env` before testing authentication.
+
+The Compose stack is for local development: source mounts support live editing, and
+PostgreSQL and Redis ports bind to loopback. Production requires explicit `ALLOWED_HOSTS`,
+`REDIS_URL`, and `CELERY_BROKER_URL`; use authenticated TLS connections for remote Redis.
+API throttles ignore `X-Forwarded-For` by default. Set `NUM_PROXIES` only behind proxies
+that sanitize that header and prevent direct access. Request logs record the direct peer IP.
+
 **Try the API with Noodle:**
 The repo includes a [Noodle](https://noodlerest.dev) collection (`api-collection/`) covering all `v1` endpoints. Install the CLI, start the stack, and run requests:
 
@@ -69,7 +79,6 @@ Search for `TODO` comments across the codebase to find guided setup steps:
 - `pyproject.toml` — update project name, version, description, authors, license
 - `conf/urls.py` — change admin URL, delete example index view, disable unused auth endpoints
 - `conf/settings.py` — adjust throttle rates and DRF Spectacular settings
-- `apps/core/views.py`, `urls.py`, `tasks.py` — remove example fire-task endpoint
 
 ## 📖 Explore the Documentation
 

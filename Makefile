@@ -18,7 +18,7 @@ help:
 	@echo "  migrate         Run database migrations"
 	@echo "  makemigrations  Create new migrations"
 	@echo "  superuser       Create a superuser"
-	@echo "  seed            Seed database (20 users + superuser)"
+	@echo "  seed            Seed database (20 sample users, DEBUG only)"
 	@echo ""
 	@echo "Testing & Debugging:"
 	@echo "  test            Run all tests"
@@ -75,7 +75,7 @@ superuser:
 	docker compose exec backend python manage.py createsuperuser
 
 seed:
-	docker compose exec backend python manage.py seed --users 20 --superuser --clean
+	docker compose exec backend python manage.py seed --users 20 --clean
 
 # Testing & Debugging
 test:

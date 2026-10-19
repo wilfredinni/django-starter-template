@@ -1,3 +1,4 @@
+import json
 import logging
 from unittest.mock import ANY, patch
 
@@ -195,3 +196,65 @@ class LoginViewTests(APITestCase):
             profile_url = reverse("v1:users:profile")
             response = self.client.get(profile_url)
             self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+
+class LoginThrottleSecurityTests(APITestCase):
+    def setUp(self):
+        from apps.users.throttles import UserLoginRateThrottle
+
+        cache.clear()
+        self.addCleanup(cache.clear)
+        rate_patch = patch.dict(
+            UserLoginRateThrottle.THROTTLE_RATES, {"user_login": "1/minute"}
+        )
+        rate_patch.start()
+        self.addCleanup(rate_patch.stop)
+        self.url = reverse("v1:users:knox_login")
+        self.user = User.objects.create_user("target@example.com", "safe-password")
+        self.credentials = {"email": self.user.email, "password": "safe-password"}
+
+    def test_account_limit_survives_ip_and_email_case_changes(self):
+        response = self.client.post(
+            self.url, self.credentials, format="json", REMOTE_ADDR="192.0.2.1"
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response = self.client.post(
+            self.url,
+            {"email": " TARGET@example.com ", "password": "wrong-password"},
+            format="json",
+            REMOTE_ADDR="192.0.2.2",
+        )
+        self.assertEqual(response.status_code, status.HTTP_429_TOO_MANY_REQUESTS)
+
+    def test_authentication_does_not_switch_ip_bucket(self):
+        response = self.client.post(self.url, self.credentials, format="json")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.client.force_authenticate(user=self.user)
+        response = self.client.post(
+            self.url,
+            {"email": "other@example.com", "password": "wrong-password"},
+            format="json",
+        )
+        self.assertEqual(response.status_code, status.HTTP_429_TOO_MANY_REQUESTS)
+
+    def test_forwarded_header_does_not_switch_ip_bucket(self):
+        response = self.client.post(
+            self.url, self.credentials, format="json", HTTP_X_FORWARDED_FOR="192.0.2.1"
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response = self.client.post(
+            self.url,
+            {"email": "other@example.com", "password": "wrong-password"},
+            format="json",
+            HTTP_X_FORWARDED_FOR="192.0.2.2",
+        )
+        self.assertEqual(response.status_code, status.HTTP_429_TOO_MANY_REQUESTS)
+
+    def test_malformed_targets_return_validation_errors(self):
+        for payload in ({"email": []}, {"email": {}}, {"email": "\ud800"}, [], {}):
+            cache.clear()
+            with self.subTest(payload=payload):
+                response = self.client.post(
+                    self.url, json.dumps(payload), content_type="application/json"
+                )
+                self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

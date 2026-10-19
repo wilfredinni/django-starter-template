@@ -1,37 +1,31 @@
-FROM python:3.14-slim
+FROM python:3.14-slim@sha256:a2b82f3c48559aa0a8446d9af49826b6e2b2016f4cd2afabfe6013ec53729170 AS base
 
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1
 
 WORKDIR /app
 
-# Install system dependencies
+FROM base AS builder
+
 RUN apt-get update \
-    && apt-get install --no-install-recommends -y \
-        curl \
-        build-essential \
-        libpq-dev \
-        git \
-    && apt-get clean \
+    && apt-get install --no-install-recommends -y build-essential libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Create non-root user
-RUN useradd --create-home --shell /bin/bash appuser
+COPY --from=ghcr.io/astral-sh/uv:0.13.1@sha256:4a1f3666816dafadd20ceb71eac9a7d56d7ef30279f7d64048519ab901ada336 /uv /usr/local/bin/uv
 
-# Install uv
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
-
-# Copy ONLY dependency files first (better caching - changes infrequently)
 COPY pyproject.toml uv.lock ./
+RUN uv export --locked --all-extras --no-emit-project > requirements.txt \
+    && uv pip install --prefix=/install --no-cache --require-hashes -r requirements.txt
 
-# Export and install dependencies from lock file (cached layer when deps don't change)
-RUN uv export --no-hashes --all-extras --no-emit-project > requirements.txt && \
-    uv pip install --system --no-cache -r requirements.txt
+FROM base AS runtime
 
-# Copy application code (changes frequently - separate layer)
-COPY . .
+RUN apt-get update \
+    && apt-get install --no-install-recommends -y libpq5 \
+    && rm -rf /var/lib/apt/lists/* \
+    && useradd --create-home --shell /bin/bash appuser
 
-RUN chown -R appuser:appuser /app
+COPY --from=builder /install /usr/local
+COPY --chown=appuser:appuser . .
 
 USER appuser
 
