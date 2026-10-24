@@ -967,19 +967,24 @@
 <a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="c1"># --------------------------------------------------------------------------------</span>
 <a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="c1"># 🧠 Celery &amp; Redis</span>
 <a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="c1"># --------------------------------------------------------------------------------</span>
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="na">REDIS_URL</span><span class="o">=</span><span class="s">redis://localhost:6379/0</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="na">CELERY_BROKER_URL</span><span class="o">=</span><span class="s">redis://localhost:6379/0</span>
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="c1"># --------------------------------------------------------------------------------</span>
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="c1"># 🔐 Security Config: for production or testing the production settings locally.</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="c1"># Generate a unique URL-safe value with `openssl rand -hex 32`.</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="na">REDIS_PASSWORD</span><span class="o">=</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="na">REDIS_URL</span><span class="o">=</span><span class="s">redis://:${REDIS_PASSWORD}@localhost:6379/1</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="na">CELERY_BROKER_URL</span><span class="o">=</span><span class="s">redis://:${REDIS_PASSWORD}@localhost:6379/0</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
 <a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="c1"># --------------------------------------------------------------------------------</span>
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="na">ALLOWED_HOSTS</span><span class="o">=</span><span class="s">mysite.com,mysite2.com</span>
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="na">CORS_ALLOWED_ORIGINS</span><span class="o">=</span><span class="s">mysite.com,mysite2.com</span>
-<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="na">SENTRY_DSN</span><span class="o">=</span><span class="s">https://examplePublicKey@o0.ingest.sentry.io/0</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="c1"># 🔐 Security Config: for production or testing the production settings locally.</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="c1"># --------------------------------------------------------------------------------</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="na">ALLOWED_HOSTS</span><span class="o">=</span><span class="s">mysite.com,mysite2.com</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="na">CORS_ALLOWED_ORIGINS</span><span class="o">=</span><span class="s">mysite.com,mysite2.com</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="na">SENTRY_DSN</span><span class="o">=</span><span class="s">https://examplePublicKey@o0.ingest.sentry.io/0</span>
 </code></pre></div>
 <p>To set up your environment, copy <code>.env.example</code> to <code>.env</code> and fill in the appropriate values:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cp<span class="w"> </span>.env.example<span class="w"> </span>.env
 </code></pre></div>
+<p>Set <code>REDIS_PASSWORD</code> before starting Compose. Keep it URL-safe, since Compose includes it
+in the cache and broker URLs. The Redis server, its health check, and all application
+services use this password. Clients without credentials are rejected.</p>
 <p><strong>Important:</strong> If your environment variable values contain special characters like <code>$</code>, you must escape them with <code>$$</code> in the <code>.env</code> file when using Docker Compose. For example:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Incorrect - Docker Compose treats $d as a variable</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="na">DJANGO_SECRET_KEY</span><span class="o">=</span><span class="s">django-insecure-abc@$d123</span>
@@ -989,22 +994,11 @@
 </code></pre></div>
 <p>This prevents Docker Compose from interpreting parts of your values as variable references.</p>
 <h2 id="development-environment">Development Environment</h2>
-<p>, <code>POSTGRES_PASSWORD</code>, and other settings.
-2.  <strong>Explicit Overrides:</strong> The <code>docker-compose.yml</code> file explicitly defines environment variables for the services, overriding the connection URLs to point to the correct container names using the credentials from your <code>.env</code> file.</p>
-<ul>
-<li><code>DEBUG=True</code>: Enables Django's debug mode</li>
-<li><code>DATABASE_URL</code>: Automatically pointed to <code>db:5432</code> inside Docker using <code>POSTGRES_USER</code> and <code>POSTGRES_DB</code> variables</li>
-<li><strong>Shared Secrets (.env):</strong> Docker Compose loads your local <code>.env</code> file to get secrets like <code>DJANGO_SECRET_KEY</code> and passwords.</li>
-<li><strong>Auto-Wiring (Overrides):</strong> It automatically overrides connection URLs (like database and Redis) to point to the docker container names (<code>db</code> and <code>redis</code>) instead of <code>localhost</code>.</li>
-</ul>
-<p>Means you don't need to change your <code>.env</code> file when switching between local binaries and Docker.</p>
-<ul>
-<li><code>DEBUG=True</code>: Enables Django's debug mode</li>
-<li><code>DATABASE_URL</code>: Automatically pointed to <code>db:5432</code> inside Docker.</li>
-<li><code>REDIS_URL</code>: Automatically pointed to <code>redis:6379</code> inside Docker.</li>
-<li><code>CELERY_BROKER_URL</code>: Automatically pointed to <code>redis:6379</code> inside Docker.</li>
-</ul>
-<p>The <code>.env</code> file is automatically loaded by Docker Compose via <code>env_file</code>. For IDE support (IntelliSense, code completion), also run:</p>
+<p>Compose injects <code>.env</code> values through <code>env_file</code> and overrides connection URLs to use
+<code>db:5432</code> and <code>redis:6379</code> with the configured credentials. Cache uses Redis database 1;
+Celery uses database 0. Host tools use the authenticated localhost URLs from <code>.env</code>.
+The host <code>.env</code> file is excluded from the image and from source mounts.</p>
+<p>For IDE support (IntelliSense, code completion), also run:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>uv<span class="w"> </span>sync
 </code></pre></div>
 <p>This installs dependencies locally so your IDE can provide autocomplete while your application runs in Docker containers.</p>

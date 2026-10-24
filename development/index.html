@@ -1130,8 +1130,9 @@
 <h2 id="development-setup">Development Setup</h2>
 <h3 id="docker-compose">Docker Compose</h3>
 <p>This approach runs all services (PostgreSQL, Redis, Django, Celery) in Docker containers while you work on your local machine with full IDE support.</p>
-<p><strong>1. (Optional) Create <code>.env</code> file:</strong></p>
-<p>Docker Compose already defines environment variables, but if you need a local <code>.env</code> file:</p>
+<p><strong>1. Create <code>.env</code> file:</strong></p>
+<p>Copy the example, then set <code>REDIS_PASSWORD</code> to a unique URL-safe password generated with
+<code>openssl rand -hex 32</code>. An empty or missing password prevents Compose from starting.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cp<span class="w"> </span>.env.example<span class="w"> </span>.env
 </code></pre></div>
 <p><strong>2. Start services:</strong>
@@ -1145,6 +1146,15 @@
 - <code>backend</code> - Django development server on port 8000
 - <code>worker</code> - Celery worker for background tasks
 - <code>beat</code> - Celery beat scheduler</p>
+<p>Published ports bind to <code>127.0.0.1</code>. The backend applies migrations automatically.
+Only source, templates, static files, and documentation mount from the host, read-only;
+the checkout root, <code>.env</code>, and <code>.git</code> are not mounted. Redis requires authentication.
+All application services rebuild the shared image on startup using the build cache.
+Backend health checks use HTTP, worker checks target that worker over the broker, and
+beat checks its PID. Debug Toolbar trusts loopback addresses only.</p>
+<p>Use <code>make makemigrations</code> to generate migrations with a temporary writable app mount.
+<code>make docs-serve</code> starts a separate docs container and publishes <code>127.0.0.1:8001</code> until
+you stop it. <code>make docs-build</code> and <code>make test-html</code> copy generated output back to the host.</p>
 <p><strong>3. Enable IDE support (IntelliSense, autocomplete):</strong></p>
 <p>For your IDE to recognize dependencies, install them locally:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>uv<span class="w"> </span>sync<span class="w"> </span>--all-extras
@@ -1192,7 +1202,7 @@
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>backend<span class="w"> </span>python<span class="w"> </span>manage.py<span class="w"> </span>migrate
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Create migrations</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>backend<span class="w"> </span>python<span class="w"> </span>manage.py<span class="w"> </span>makemigrations
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>make<span class="w"> </span>makemigrations
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
 <a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># Create superuser</span>
 <a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>backend<span class="w"> </span>python<span class="w"> </span>manage.py<span class="w"> </span>createsuperuser
@@ -1284,8 +1294,8 @@
 <td style="text-align: left;">Starts the Django development server (usually auto-started).</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>docker compose exec backend python manage.py makemigrations</code></td>
-<td style="text-align: left;">Creates new database migrations based on model changes.</td>
+<td style="text-align: left;"><code>make makemigrations</code></td>
+<td style="text-align: left;">Creates migration files using a temporary writable app mount.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>docker compose exec backend python manage.py migrate</code></td>

@@ -968,10 +968,10 @@
 <p><strong>Clone Repository:</strong> Clone your newly created repository to your local machine.</p>
 </li>
 <li>
-<p><strong>Start Services:</strong> Run <code>docker compose up</code> to start all services (PostgreSQL, Redis, Django, Celery).</p>
+<p><strong>Configure Redis and Start Services:</strong> Set <code>REDIS_PASSWORD</code> in <code>.env</code> to a unique URL-safe value generated with <code>openssl rand -hex 32</code>, then run <code>docker compose up</code> to start all services (PostgreSQL, Redis, Django, Celery).</p>
 </li>
 <li>
-<p><strong>Run Migrations:</strong> In another terminal, run: <code>docker compose exec backend python manage.py migrate</code>.</p>
+<p><strong>Wait for Migrations:</strong> The backend applies migrations automatically before starting the development server.</p>
 </li>
 <li>
 <p><strong>Create a Superuser:</strong> Create an administrative user for accessing the Django admin interface by running: <code>docker compose exec backend python manage.py createsuperuser</code>.</p>
