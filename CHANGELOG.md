@@ -1,5 +1,38 @@
 # Changelog
 
+## [0.6.1](https://github.com/wilfredinni/django-starter-template/releases/tag/0.6.1) - 2026-10-24
+
+Security hardening, Docker improvements, and dependency updates
+
+### Added
+
+- Service-specific health checks for Django, Celery worker, Celery beat, and the documentation preview
+- Regression tests for login throttling, request context cleanup, safe seeding, and production settings
+- Collection name in the Noodle API collection settings
+
+### Changed
+
+- Docker now uses a multi-stage build with digest-pinned Python and uv images, keeping build tools out of the non-root runtime
+- Compose ports bind to localhost, source directories mount read-only, and all application services build the shared image on startup
+- Redis requires a unique URL-safe `REDIS_PASSWORD` in `.env`; cache and Celery use separate Redis databases
+- `make makemigrations` and `make docs-serve` use dedicated one-shot services; documentation and HTML coverage builds copy their output back to the host
+- Production requires explicit `ALLOWED_HOSTS`, `REDIS_URL`, and `CELERY_BROKER_URL`; forwarded client IP headers are ignored unless proxy trust is configured
+- Updated locked dependencies, including Django 6.0.9, Psycopg 3.3.6, Tornado 6.6, and urllib3 2.8.0
+
+### Fixed
+
+- Enabled default API throttles and limited login attempts by both IP and normalized target account, preventing token, forwarded-header, and source-IP changes from bypassing limits
+- Request logging validates the direct peer IP and resets request-scoped context after successful and failed requests
+- Database seeding is restricted to `DEBUG=True` and generates unique random passwords for sample users
+- Debug Toolbar trusts loopback addresses only instead of automatically trusting Docker gateway addresses
+- Docker and CI dependency installation enforce lockfile hashes; CI uses a pinned setup-uv action instead of a remote shell installer
+
+### Removed
+
+- Unauthenticated `/api/v1/core/fire-task/` endpoint and its example Celery task
+- Hard-coded seed credentials and the `seed --superuser` option; use `make superuser` to create an administrator
+- Tracked Noodle UI state and default credentials from the local API collection environment
+
 ## [0.6.0](https://github.com/wilfredinni/django-starter-template/releases/tag/0.6.0) - 2026-08-25
 
 Noodle API collection, Python 3.14 tooling target, and dependency updates
