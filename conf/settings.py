@@ -333,12 +333,7 @@ MEDIA_ROOT = root_path("media_root")
 # Django Debug Toolbar and Django Extensions
 # -----------------------------------------------------------------------------
 if DEBUG:
-    import socket
-
     INSTALLED_APPS += ["debug_toolbar"]
-    INTERNAL_IPS = ["127.0.0.1"]
-
-    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
-    INTERNAL_IPS += [".".join(ip.split(".")[:-1] + ["1"]) for ip in ips]
+    INTERNAL_IPS = ["127.0.0.1", "::1"]
 
     MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")

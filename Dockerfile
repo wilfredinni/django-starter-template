@@ -22,7 +22,8 @@ FROM base AS runtime
 RUN apt-get update \
     && apt-get install --no-install-recommends -y libpq5 \
     && rm -rf /var/lib/apt/lists/* \
-    && useradd --create-home --shell /bin/bash appuser
+    && useradd --create-home --shell /bin/bash appuser \
+    && chown appuser:appuser /app
 
 COPY --from=builder /install /usr/local
 COPY --chown=appuser:appuser . .
@@ -30,3 +31,6 @@ COPY --chown=appuser:appuser . .
 USER appuser
 
 EXPOSE 8000
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
+    CMD python -c "import http.client; c = http.client.HTTPConnection('127.0.0.1', 8000, timeout=3); c.request('GET', '/'); exit(0 if 200 <= c.getresponse().status < 400 else 1)"

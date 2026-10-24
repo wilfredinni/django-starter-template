@@ -34,8 +34,8 @@ This template is packed with features to help you build amazing APIs:
 ### Setup Steps
 
 1. Use [GitHub's template feature](https://github.com/new?template_name=django-starter-template&template_owner=wilfredinni) (recommended) or clone repository
-2. Start services: `make up` (or `docker compose up`)
-3. In another terminal, run migrations: `make migrate` (or `docker compose exec backend python manage.py migrate`)
+2. Copy `.env.example` to `.env` and set `REDIS_PASSWORD` to a unique URL-safe value, for example from `openssl rand -hex 32`.
+3. Start services: `make up` (or `docker compose up`). The backend applies migrations automatically.
 4. Create superuser: `make superuser` (or `docker compose exec backend python manage.py createsuperuser`)
 5. Access API at `http://localhost:8000`
 
@@ -51,8 +51,12 @@ make logs          # View application logs
 that are not printed. Create your administrator with `make superuser`, then set its
 credentials in `api-collection/.environments/local.env` before testing authentication.
 
-The Compose stack is for local development: source mounts support live editing, and
-PostgreSQL and Redis ports bind to loopback. Production requires explicit `ALLOWED_HOSTS`,
+The Compose stack is for local development. Source directories mount read-only for live
+editing; the host `.env` and `.git` are not mounted. All published ports bind to loopback,
+and Redis requires `REDIS_PASSWORD`. `make docs-serve` opens port 8001 only while serving
+documentation. Use `make makemigrations` for a temporary writable app mount when generating
+migrations. All app services build the shared image on startup and have service-specific
+health checks. Production requires a WSGI/ASGI server, TLS, explicit `ALLOWED_HOSTS`,
 `REDIS_URL`, and `CELERY_BROKER_URL`; use authenticated TLS connections for remote Redis.
 API throttles ignore `X-Forwarded-For` by default. Set `NUM_PROXIES` only behind proxies
 that sanitize that header and prevent direct access. Request logs record the direct peer IP.

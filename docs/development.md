@@ -10,9 +10,10 @@ This guide outlines the essential commands and best practices for developing you
 
 This approach runs all services (PostgreSQL, Redis, Django, Celery) in Docker containers while you work on your local machine with full IDE support.
 
-**1. (Optional) Create `.env` file:**
+**1. Create `.env` file:**
 
-Docker Compose already defines environment variables, but if you need a local `.env` file:
+Copy the example, then set `REDIS_PASSWORD` to a unique URL-safe password generated with
+`openssl rand -hex 32`. An empty or missing password prevents Compose from starting.
 
 ```bash
 cp .env.example .env
@@ -31,6 +32,17 @@ This starts:
 - `backend` - Django development server on port 8000
 - `worker` - Celery worker for background tasks
 - `beat` - Celery beat scheduler
+
+Published ports bind to `127.0.0.1`. The backend applies migrations automatically.
+Only source, templates, static files, and documentation mount from the host, read-only;
+the checkout root, `.env`, and `.git` are not mounted. Redis requires authentication.
+All application services rebuild the shared image on startup using the build cache.
+Backend health checks use HTTP, worker checks target that worker over the broker, and
+beat checks its PID. Debug Toolbar trusts loopback addresses only.
+
+Use `make makemigrations` to generate migrations with a temporary writable app mount.
+`make docs-serve` starts a separate docs container and publishes `127.0.0.1:8001` until
+you stop it. `make docs-build` and `make test-html` copy generated output back to the host.
 
 **3. Enable IDE support (IntelliSense, autocomplete):**
 
@@ -91,7 +103,7 @@ make prune           # Remove unused Docker resources
 docker compose exec backend python manage.py migrate
 
 # Create migrations
-docker compose exec backend python manage.py makemigrations
+make makemigrations
 
 # Create superuser
 docker compose exec backend python manage.py createsuperuser
@@ -145,7 +157,7 @@ You can also use docker compose commands directly:
 | Command | Description |
 | :--- | :--- |
 | `docker compose exec backend python manage.py runserver` | Starts the Django development server (usually auto-started). |
-| `docker compose exec backend python manage.py makemigrations` | Creates new database migrations based on model changes. |
+| `make makemigrations` | Creates migration files using a temporary writable app mount. |
 | `docker compose exec backend python manage.py migrate` | Applies pending database migrations. |
 | `docker compose exec backend pytest` | Runs the test suite using `pytest`. |
 | `docker compose exec backend pytest --cov` | Runs the test suite and generates a coverage report. |

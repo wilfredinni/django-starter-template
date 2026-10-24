@@ -28,6 +28,10 @@ docker compose exec backend pytest apps/users/tests/test_user_model.py::test_cre
 
 **Important:** The backend entrypoint auto-runs `migrate` on every start. No manual migrate step needed in Docker.
 
+Compose requires a URL-safe `REDIS_PASSWORD` in `.env` and binds ports to loopback.
+Source mounts are read-only. Use `make makemigrations` for a temporary writable app
+mount; use `make docs-serve` to publish the documentation port only while needed.
+
 ## Lint & Typecheck
 
 **No CI enforces lint/typecheck.** Run manually before committing:
