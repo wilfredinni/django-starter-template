@@ -39,8 +39,10 @@ EMAIL_HOST_PASSWORD=myverystrongpassword
 # --------------------------------------------------------------------------------
 # 🧠 Celery & Redis
 # --------------------------------------------------------------------------------
-REDIS_URL=redis://localhost:6379/0
-CELERY_BROKER_URL=redis://localhost:6379/0
+# Generate a unique URL-safe value with `openssl rand -hex 32`.
+REDIS_PASSWORD=
+REDIS_URL=redis://:${REDIS_PASSWORD}@localhost:6379/1
+CELERY_BROKER_URL=redis://:${REDIS_PASSWORD}@localhost:6379/0
 
 # --------------------------------------------------------------------------------
 # 🔐 Security Config: for production or testing the production settings locally.
@@ -56,6 +58,10 @@ To set up your environment, copy `.env.example` to `.env` and fill in the approp
 cp .env.example .env
 ```
 
+Set `REDIS_PASSWORD` before starting Compose. Keep it URL-safe, since Compose includes it
+in the cache and broker URLs. The Redis server, its health check, and all application
+services use this password. Clients without credentials are rejected.
+
 **Important:** If your environment variable values contain special characters like `$`, you must escape them with `$$` in the `.env` file when using Docker Compose. For example:
 
 ```ini
@@ -69,22 +75,13 @@ DJANGO_SECRET_KEY=django-insecure-abc@$$d123
 This prevents Docker Compose from interpreting parts of your values as variable references.
 
 ## Development Environment
-, `POSTGRES_PASSWORD`, and other settings.
-2.  **Explicit Overrides:** The `docker-compose.yml` file explicitly defines environment variables for the services, overriding the connection URLs to point to the correct container names using the credentials from your `.env` file.
 
-*   `DEBUG=True`: Enables Django's debug mode
-*   `DATABASE_URL`: Automatically pointed to `db:5432` inside Docker using `POSTGRES_USER` and `POSTGRES_DB` variables
-1.  **Shared Secrets (.env):** Docker Compose loads your local `.env` file to get secrets like `DJANGO_SECRET_KEY` and passwords.
-2.  **Auto-Wiring (Overrides):** It automatically overrides connection URLs (like database and Redis) to point to the docker container names (`db` and `redis`) instead of `localhost`.
+Compose injects `.env` values through `env_file` and overrides connection URLs to use
+`db:5432` and `redis:6379` with the configured credentials. Cache uses Redis database 1;
+Celery uses database 0. Host tools use the authenticated localhost URLs from `.env`.
+The host `.env` file is excluded from the image and from source mounts.
 
-Means you don't need to change your `.env` file when switching between local binaries and Docker.
-
-*   `DEBUG=True`: Enables Django's debug mode
-*   `DATABASE_URL`: Automatically pointed to `db:5432` inside Docker.
-*   `REDIS_URL`: Automatically pointed to `redis:6379` inside Docker.
-*   `CELERY_BROKER_URL`: Automatically pointed to `redis:6379` inside Docker.
-
-The `.env` file is automatically loaded by Docker Compose via `env_file`. For IDE support (IntelliSense, code completion), also run:
+For IDE support (IntelliSense, code completion), also run:
 
 ```bash
 uv sync

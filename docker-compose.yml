@@ -1,3 +1,25 @@
+x-app: &app
+  build: .
+  image: django-starter-template:dev
+  pull_policy: build
+  restart: unless-stopped
+  env_file:
+    - .env
+  environment:
+    - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+    - REDIS_URL=redis://:${REDIS_PASSWORD:?Set REDIS_PASSWORD in .env}@redis:6379/1
+    - CELERY_BROKER_URL=redis://:${REDIS_PASSWORD:?Set REDIS_PASSWORD in .env}@redis:6379/0
+  volumes:
+    - ./apps:/app/apps:ro
+    - ./conf:/app/conf:ro
+    - ./templates:/app/templates:ro
+    - ./static:/app/static:ro
+  depends_on:
+    db:
+      condition: service_healthy
+    redis:
+      condition: service_healthy
+
 services:
   db:
     image: postgres:18-alpine
@@ -17,75 +39,63 @@ services:
   redis:
     image: redis:8-alpine
     restart: unless-stopped
+    environment:
+      REDISCLI_AUTH: ${REDIS_PASSWORD:?Set REDIS_PASSWORD in .env}
+    command: ["sh", "-c", 'exec redis-server --requirepass "$$REDISCLI_AUTH"']
     ports:
       - "127.0.0.1:6379:6379"
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: ["CMD", "redis-cli", "-e", "ping"]
       interval: 5s
       timeout: 5s
       retries: 5
 
   backend:
-    build: .
-    image: django-starter-template:dev
-    restart: unless-stopped
-    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
-    volumes:
-      - .:/app
+    <<: *app
+    command: sh -c "python manage.py migrate && exec python manage.py runserver 0.0.0.0:8000"
+    volumes: &backend-source
+      - ./apps:/app/apps:ro
+      - ./conf:/app/conf:ro
+      - ./templates:/app/templates:ro
+      - ./static:/app/static:ro
+      - ./docs:/app/docs:ro
+      - ./mkdocs.yml:/app/mkdocs.yml:ro
     ports:
-      - "8000:8000"
-      - "8001:8001"
-    env_file:
-      - .env
-    environment:
-      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
-      - REDIS_URL=redis://redis:6379/1
-      - CELERY_BROKER_URL=redis://redis:6379/0
-    depends_on:
-      db:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
+      - "127.0.0.1:8000:8000"
 
   worker:
-    image: django-starter-template:dev
-    pull_policy: never
-    restart: unless-stopped
-    command: sh -c "./scripts/wait-for-migrations.sh celery -A conf worker -l info"
-    volumes:
-      - .:/app
-    env_file:
-      - .env
-    environment:
-      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
-      - REDIS_URL=redis://redis:6379/1
-      - CELERY_BROKER_URL=redis://redis:6379/0
-    depends_on:
-      db:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
+    <<: *app
+    command: ["./scripts/wait-for-migrations.sh", "celery", "-A", "conf", "worker", "-l", "info"]
+    healthcheck:
+      test: ["CMD-SHELL", "celery -A conf inspect ping --destination celery@$$HOSTNAME --timeout 3"]
+      timeout: 10s
 
   beat:
-    image: django-starter-template:dev
-    pull_policy: never
-    restart: unless-stopped
-    command: sh -c "./scripts/wait-for-migrations.sh celery -A conf beat -l info"
+    <<: *app
+    command: sh -c "rm -f /tmp/celerybeat.pid && exec ./scripts/wait-for-migrations.sh celery -A conf beat -l info --pidfile=/tmp/celerybeat.pid"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import os; from pathlib import Path; os.kill(int(Path('/tmp/celerybeat.pid').read_text()), 0)"]
+
+  migrations:
+    <<: *app
+    profiles: ["tools"]
+    restart: "no"
+    command: python manage.py makemigrations
     volumes:
-      - .:/app
-    env_file:
-      - .env
-    environment:
-      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
-      - REDIS_URL=redis://redis:6379/1
-      - CELERY_BROKER_URL=redis://redis:6379/0
-    depends_on:
-      db:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-      backend:
-        condition: service_started
+      - ./apps:/app/apps:rw
+    healthcheck:
+      disable: true
+
+  docs:
+    <<: *app
+    profiles: ["tools"]
+    restart: "no"
+    command: mkdocs serve -a 0.0.0.0:8001
+    volumes: *backend-source
+    ports:
+      - "127.0.0.1:8001:8001"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8001/', timeout=3).close()"]
 
 volumes:
   postgres_data:

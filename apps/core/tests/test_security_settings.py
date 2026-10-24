@@ -40,6 +40,12 @@ class SecuritySettingsTests(SimpleTestCase):
                 with self.assertRaisesMessage(ImproperlyConfigured, missing):
                     self.load_settings(missing=missing)
 
+    def test_debug_toolbar_does_not_trust_container_gateways(self):
+        with patch("socket.gethostbyname_ex", return_value=("host", [], ["172.18.0.2"])):
+            self.assertEqual(
+                self.load_settings(DEBUG="True")["INTERNAL_IPS"], ["127.0.0.1", "::1"]
+            )
+
     def test_default_api_view_is_throttled(self):
         class ExampleView(APIView):
             def get(self, request):

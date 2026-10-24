@@ -31,9 +31,9 @@ Follow these steps to set up your development environment:
 
 2.  **Clone Repository:** Clone your newly created repository to your local machine.
 
-3.  **Start Services:** Run `docker compose up` to start all services (PostgreSQL, Redis, Django, Celery).
+3.  **Configure Redis and Start Services:** Set `REDIS_PASSWORD` in `.env` to a unique URL-safe value generated with `openssl rand -hex 32`, then run `docker compose up` to start all services (PostgreSQL, Redis, Django, Celery).
 
-4.  **Run Migrations:** In another terminal, run: `docker compose exec backend python manage.py migrate`.
+4.  **Wait for Migrations:** The backend applies migrations automatically before starting the development server.
 
 5.  **Create a Superuser:** Create an administrative user for accessing the Django admin interface by running: `docker compose exec backend python manage.py createsuperuser`.
 

@@ -69,7 +69,7 @@ migrate:
 	docker compose exec backend python manage.py migrate
 
 makemigrations:
-	docker compose exec backend python manage.py makemigrations
+	docker compose run --rm --no-deps migrations
 
 superuser:
 	docker compose exec backend python manage.py createsuperuser
@@ -86,6 +86,7 @@ test-cov:
 
 test-html:
 	docker compose exec backend pytest --cov --cov-report=html
+	docker compose cp backend:/app/htmlcov .
 	@echo "Coverage report generated in htmlcov/index.html"
 
 logs:
@@ -104,10 +105,11 @@ logs-all:
 docs: docs-serve
 
 docs-serve:
-	docker compose exec backend mkdocs serve -a 0.0.0.0:8001
+	docker compose run --rm --no-deps --service-ports docs
 
 docs-build:
 	docker compose exec backend mkdocs build
+	docker compose cp backend:/app/site .
 
 docs-deploy:
 	@echo "Note: Deployment requires local git credentials"
