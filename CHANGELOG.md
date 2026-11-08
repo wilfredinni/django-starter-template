@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.6.2](https://github.com/wilfredinni/django-starter-template/releases/tag/0.6.2) - 2026-11-08
+
+Noodle API checks in CI and Django security update
+
+### Added
+
+- Dedicated GitHub Actions API job using the pinned setup-noodle v1.0.0 action and Noodle v0.10.4 against a disposable Docker Compose stack
+- Response assertions for all eight saved API requests, automatic login/token capture, and a CI environment with passwords supplied through process environment variables
+- JUnit reports uploaded as the `noodle-api-results` artifact, including reports from failed checks
+
+### Changed
+
+- Raised the minimum Django version to 6.0.10 and updated the lockfile from Django 6.0.9
+- User creation uses a separate `new_user_email`; collection requests have a 10-second timeout
+- Updated the Noodle guide and agent instructions with local credentials, automatic token capture, CI commands, and report handling
+
+### Fixed
+
+- CI no longer attempts to read the captured token from an unavailable Linux keyring before login
+- Logout checks run separately with fresh logins so token revocation cannot break profile checks
+
 ## [0.6.1](https://github.com/wilfredinni/django-starter-template/releases/tag/0.6.1) - 2026-10-24
 
 Security hardening, Docker improvements, and dependency updates
