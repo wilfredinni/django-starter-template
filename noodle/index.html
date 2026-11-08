@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../assets/logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -27,10 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -546,6 +546,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub Actions
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -840,6 +851,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub Actions
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -874,18 +896,19 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>api-collection/
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── settings.yml
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── .environments/
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   └── local.env              # base_url and dev credentials
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── auth/
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│   ├── create-user.yml
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│   ├── login.yml
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│   ├── logout.yml
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│   └── logout-all.yml
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>├── core/
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│   └── ping.yml
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>└── profile/
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    ├── get-profile.yml
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    ├── patch-profile.yml
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    └── update-profile.yml
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   ├── local.env              # local API and credential declarations
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│   └── ci.env                 # disposable CI API and credential declarations
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── auth/
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│   ├── create-user.yml
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│   ├── login.yml
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│   ├── logout.yml
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│   └── logout-all.yml
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>├── core/
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│   └── ping.yml
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>└── profile/
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    ├── get-profile.yml
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    ├── patch-profile.yml
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    └── update-profile.yml
 </code></pre></div>
 <h2 id="installation">Installation</h2>
 <p>macOS (Homebrew):</p>
@@ -900,36 +923,45 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>noodle<span class="w"> </span>--version
 </code></pre></div>
 <h2 id="usage">Usage</h2>
-<p>Start the stack first — the collection points at <code>http://localhost:8000</code> by default:</p>
+<p>Start the stack and create your administrator — the local collection points at <code>http://localhost:8000</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>make<span class="w"> </span>up
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># In another terminal, once the API is ready:</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>make<span class="w"> </span>superuser
 </code></pre></div>
-<p>Then open the collection interactively:</p>
+<p><code>make seed</code> creates sample users with random passwords; it does not create an administrator with predefined credentials. Configure your administrator's credentials as described below before running authentication checks.</p>
+<p>Open the collection interactively:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>noodle<span class="w"> </span>-c<span class="w"> </span>api-collection
 </code></pre></div>
-<p>Or run requests from the command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Run every request in the collection</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>noodle<span class="w"> </span>collection<span class="w"> </span>run<span class="w"> </span>api-collection
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Run a single request</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>noodle<span class="w"> </span>request<span class="w"> </span>run<span class="w"> </span>core/ping<span class="w"> </span>--collection<span class="w"> </span>api-collection
+<p>Or run all eight saved requests from the command line in three runs:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>noodle<span class="w"> </span>collection<span class="w"> </span>run<span class="w"> </span>api-collection<span class="w"> </span>auth/create-user<span class="w"> </span>core/<span class="w"> </span>profile/<span class="w"> </span>--env<span class="w"> </span><span class="nb">local</span><span class="w"> </span>--fail-fast
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>noodle<span class="w"> </span>collection<span class="w"> </span>run<span class="w"> </span>api-collection<span class="w"> </span>auth/logout<span class="w"> </span>--env<span class="w"> </span><span class="nb">local</span><span class="w"> </span>--fail-fast
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>noodle<span class="w"> </span>collection<span class="w"> </span>run<span class="w"> </span>api-collection<span class="w"> </span>auth/logout-all<span class="w"> </span>--env<span class="w"> </span><span class="nb">local</span><span class="w"> </span>--fail-fast
 </code></pre></div>
+<p>Each run starts with the saved <code>auth/login</code> setup hook and captures a fresh token. Run the logout endpoints separately: they revoke tokens and would break later requests in an unfiltered collection run.</p>
+<p>These checks create a user and update the administrator's profile. Use a disposable development database and choose an unused <code>new_user_email</code> each time you repeat the user-creation checks.</p>
 <h2 id="authentication">Authentication</h2>
-<p>All endpoints except <code>ping</code> require a Knox token (<code>Bearer</code>). To authenticate:</p>
+<p>Protected endpoints use Knox tokens (<code>Bearer</code>); login and ping accept unauthenticated requests. For local use:</p>
 <ol>
-<li>Send the <strong>login</strong> request (<code>auth/login</code>) with your credentials — the seeded admin is <code>admin@admin.com</code> / <code>admin</code> (see <a href="../database_seeding/">Database Seeding</a>).</li>
-<li>Copy the <code>token</code> value from the response.</li>
-<li>Store it as a secret so it is never written to the collection files:</li>
+<li>Create an administrator with <code>make superuser</code> and set its email in <code>api-collection/.environments/local.env</code>.</li>
+<li>Set <code>new_user_email</code> to a different, unused email for the account created by <code>auth/create-user</code>.</li>
+<li>Save your administrator's password as both <code>password</code> and <code>password2</code> using the prompts:</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>noodle<span class="w"> </span>secret<span class="w"> </span><span class="nb">set</span><span class="w"> </span>TOKEN<span class="w"> </span>--env<span class="w"> </span><span class="nb">local</span><span class="w"> </span>--collection<span class="w"> </span>api-collection
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>noodle<span class="w"> </span>secret<span class="w"> </span><span class="nb">set</span><span class="w"> </span>password<span class="w"> </span>--env<span class="w"> </span><span class="nb">local</span><span class="w"> </span>--collection<span class="w"> </span>api-collection
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>noodle<span class="w"> </span>secret<span class="w"> </span><span class="nb">set</span><span class="w"> </span>password2<span class="w"> </span>--env<span class="w"> </span><span class="nb">local</span><span class="w"> </span>--collection<span class="w"> </span>api-collection
 </code></pre></div>
-<p>Every authenticated request reads <code>$token</code> from that secret.</p>
+<p>The collection shares these password variables between login, user creation, and profile updates. The two values must match. Local secret storage requires a working OS keyring; CI supplies passwords through process environment variables instead.</p>
+<p><code>auth/login</code> captures <code>body.token</code> as the lowercase variable <code>token</code> with <code>persist: secret</code>. Collection runs keep that capture in memory for subsequent requests and do not write it to the keyring. Sending login individually saves the token securely for later manual requests; no copying is needed.</p>
+<p><code>request run</code> and manual sends do not execute collection setup hooks. Send login first when using individual requests:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>noodle<span class="w"> </span>request<span class="w"> </span>run<span class="w"> </span>auth/login<span class="w"> </span>--collection<span class="w"> </span>api-collection<span class="w"> </span>--env<span class="w"> </span><span class="nb">local</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>noodle<span class="w"> </span>request<span class="w"> </span>run<span class="w"> </span>profile/get-profile<span class="w"> </span>--collection<span class="w"> </span>api-collection<span class="w"> </span>--env<span class="w"> </span><span class="nb">local</span>
+</code></pre></div>
 <h2 id="environment-variables">Environment Variables</h2>
 <p>Requests reference variables from <code>api-collection/.environments/local.env</code>:</p>
 <table>
 <thead>
 <tr>
 <th>Variable</th>
-<th>Default</th>
+<th>Local default</th>
 <th>Used for</th>
 </tr>
 </thead>
@@ -941,37 +973,60 @@
 </tr>
 <tr>
 <td><code>email</code></td>
-<td><code>admin@admin.com</code></td>
-<td>Login / create / profile bodies</td>
+<td><em>(set your administrator's email)</em></td>
+<td>Login and profile bodies/assertions</td>
+</tr>
+<tr>
+<td><code>new_user_email</code></td>
+<td><em>(set an unused email)</em></td>
+<td>User creation</td>
 </tr>
 <tr>
 <td><code>password</code></td>
-<td><code>admin</code></td>
-<td>Login / create / profile bodies</td>
+<td><em>(secret; set before running)</em></td>
+<td>Login, user creation, and profile updates</td>
 </tr>
 <tr>
 <td><code>password2</code></td>
-<td><code>admin</code></td>
+<td><em>(secret; match <code>password</code>)</em></td>
 <td>User creation confirmation</td>
 </tr>
 <tr>
 <td><code>first_name</code></td>
 <td><code>Admin</code></td>
-<td>Profile update bodies</td>
+<td>Profile update bodies/assertions</td>
 </tr>
 <tr>
 <td><code>last_name</code></td>
 <td><code>User</code></td>
-<td>Profile update bodies</td>
+<td>Profile update bodies/assertions</td>
 </tr>
 <tr>
-<td><code>TOKEN</code></td>
-<td><em>(secret)</em></td>
-<td>Bearer token for auth</td>
+<td><code>token</code></td>
+<td><em>(secret; captured by login)</em></td>
+<td>Bearer token for authenticated requests</td>
 </tr>
 </tbody>
 </table>
 <p>Edit <code>local.env</code> freely or add new files in <code>.environments/</code> (e.g., <code>staging.env</code>) to switch environments from the Noodle UI.</p>
+<h2 id="github-actions">GitHub Actions</h2>
+<p>The <a href="https://github.com/wilfredinni/django-starter-template/blob/main/.github/workflows/test.yml">Test workflow</a> runs a <strong>Noodle API collections</strong> job alongside the Python tests on pushes and pull requests to <code>main</code>. It installs Noodle v0.10.4 with the pinned <a href="https://github.com/wilfredinni/setup-noodle">setup-noodle action</a>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wilfredinni/setup-noodle@a964e8bf15b3e18ac4ed85480d01c2d3b6744a39</span><span class="w"> </span><span class="c1"># v1.0.0</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="nt">with</span><span class="p">:</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v0.10.4</span>
+</code></pre></div>
+<p>The job starts the API, Postgres, and Redis with Docker Compose, waits for health checks, and creates a disposable administrator. The backend runs migrations during startup. <code>ci.env</code> selects the API at <code>http://127.0.0.1:8000</code> and the CI account emails; the workflow supplies the declared <code>password</code> and <code>password2</code> secrets from <code>DJANGO_SUPERUSER_PASSWORD</code> through process environment variables.</p>
+<p><strong>Do not declare <code>token</code> in <code>ci.env</code>.</strong> Noodle resolves declared secrets before sending requests. An empty token secret would trigger a lookup in the unavailable Linux keyring, failing before login. The setup hook captures the token in memory instead.</p>
+<p>With that disposable stack and its credentials ready, the workflow runs:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>noodle<span class="w"> </span>collection<span class="w"> </span>run<span class="w"> </span>api-collection<span class="w"> </span>auth/create-user<span class="w"> </span>core/<span class="w"> </span>profile/<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span>--env<span class="w"> </span>ci<span class="w"> </span>--fail-fast<span class="w"> </span>--reporter<span class="w"> </span>junit<span class="w"> </span>--output<span class="w"> </span>noodle-api.xml
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>noodle<span class="w"> </span>collection<span class="w"> </span>run<span class="w"> </span>api-collection<span class="w"> </span>auth/logout<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span>--env<span class="w"> </span>ci<span class="w"> </span>--fail-fast<span class="w"> </span>--reporter<span class="w"> </span>junit<span class="w"> </span>--output<span class="w"> </span>noodle-logout.xml
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>noodle<span class="w"> </span>collection<span class="w"> </span>run<span class="w"> </span>api-collection<span class="w"> </span>auth/logout-all<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">  </span>--env<span class="w"> </span>ci<span class="w"> </span>--fail-fast<span class="w"> </span>--reporter<span class="w"> </span>junit<span class="w"> </span>--output<span class="w"> </span>noodle-logout-all.xml
+</code></pre></div>
+<p>HTTP failures, failed captures, or failed response assertions make the check fail. Each command writes a JUnit report, and the workflow uploads available <code>noodle-*.xml</code> files as the <strong>noodle-api-results</strong> artifact even when a check fails. Find it on the workflow run's summary page. Later commands are skipped if an earlier command fails.</p>
+<p>Noodle refuses to overwrite reports. Choose new output filenames when repeating these commands outside a fresh CI checkout. The job prints Docker logs on failure and removes its containers and database volume after the run.</p>
 
 
 
@@ -1021,10 +1076,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.action.view"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.action.view"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>
