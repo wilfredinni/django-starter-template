@@ -10,7 +10,7 @@ make test         # docker compose exec backend pytest
 make test-cov     # pytest --cov
 make test-html    # pytest --cov --cov-report=html
 make migrate      # docker compose exec backend python manage.py migrate
-make seed         # seed DB (creates admin@admin.com / admin)
+make seed         # seed sample users (DEBUG only; random passwords)
 make superuser    # createsuperuser
 make shell        # shell_plus (django-extensions, only in DEBUG)
 make logs         # logs -f backend
@@ -64,6 +64,24 @@ Ruff selects `E`/`F`/`I`/`B`, line-length 90, double quotes, target `py314`. Myp
 - `conf/test_utils.py` provides mock middleware/filter for RequestID logging context
 - `/api/v1/core/fire-task/` endpoint is example code marked for removal — skip writing tests for it
 
+## Noodle API Checks
+
+- `.github/workflows/test.yml` runs the **Noodle API collections** job alongside the Python tests. It uses a pinned `wilfredinni/setup-noodle` v1.0.0 commit to install Noodle v0.10.4, starts the API with Docker Compose, and creates a disposable administrator.
+- `api-collection/settings.yml` sets `auth/login` as the setup hook. Each collection run logs in and captures `$token` in memory; collection runs do not persist captures.
+- CI uses `api-collection/.environments/ci.env`. Supply the declared `password` and `password2` secrets through process environment variables, as the workflow does. **Do not declare `token` in `ci.env`**: environment loading would query the unavailable Linux keyring before the login hook can capture it.
+- Run logout endpoints separately so token revocation cannot break the other checks. With the CI stack and administrator ready, run:
+
+```sh
+noodle collection run api-collection auth/create-user core/ profile/ \
+  --env ci --fail-fast --reporter junit --output noodle-api.xml
+noodle collection run api-collection auth/logout \
+  --env ci --fail-fast --reporter junit --output noodle-logout.xml
+noodle collection run api-collection auth/logout-all \
+  --env ci --fail-fast --reporter junit --output noodle-logout-all.xml
+```
+
+- These checks create a user and update the administrator's profile. Use a disposable database; local runs need an unused `new_user_email` and configured local credentials (see `docs/noodle.md`). `request run` does not execute the setup hook.
+- CI uploads available JUnit reports as `noodle-api-results`, including reports from failed runs. Noodle does not overwrite reports; use new output filenames when repeating checks outside a fresh CI checkout.
 
 ## Dependency Management
 
