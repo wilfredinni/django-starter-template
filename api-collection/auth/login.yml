@@ -1,7 +1,7 @@
 name: Login
 method: POST
 url: $base_url/api/v1/auth/login/
-timeout: 0
+timeout: 10000
 followRedirects: true
 maxRedirects: 5
 body: |-
@@ -10,3 +10,16 @@ body: |-
     "password": "$password"
   }
 body_type: json
+capture:
+  token:
+    value: body.token
+    persist: secret
+assert:
+  - expression: status
+    operator: equals
+    value: 200
+  - expression: body.token
+    operator: isString
+  - expression: body.user.email
+    operator: equals
+    value: $email

@@ -1,12 +1,12 @@
 name: Create User
 method: POST
 url: $base_url/api/v1/auth/create/
-timeout: 0
+timeout: 10000
 followRedirects: true
 maxRedirects: 5
 body: |-
   {
-    "email": "$email",
+    "email": "$new_user_email",
     "password": "$password",
     "password2": "$password2"
   }
@@ -14,3 +14,14 @@ body_type: json
 auth:
   type: bearer
   token: $token
+assert:
+  - expression: status
+    operator: equals
+    value: 201
+  - expression: body.email
+    operator: equals
+    value: $new_user_email
+  - expression: body.password
+    operator: notExists
+  - expression: body.password2
+    operator: notExists

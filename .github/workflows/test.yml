@@ -74,3 +74,58 @@ jobs:
 
       - name: Run Tests
         run: pytest
+
+  api:
+    name: Noodle API collections
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      DJANGO_SUPERUSER_EMAIL: noodle-admin@example.com
+      DJANGO_SUPERUSER_PASSWORD: ci-only-noodle-password-9274
+
+    steps:
+      - uses: actions/checkout@v6
+      - uses: wilfredinni/setup-noodle@a964e8bf15b3e18ac4ed85480d01c2d3b6744a39 # v1.0.0
+        with:
+          version: v0.10.4
+
+      - name: Start API
+        run: |
+          cat > .env <<'EOF'
+          DEBUG=True
+          DJANGO_SECRET_KEY=ci-only-django-secret-key
+          POSTGRES_USER=postgres
+          POSTGRES_PASSWORD=postgres
+          POSTGRES_DB=noodle_ci
+          REDIS_PASSWORD=ci-only-redis-password
+          EOF
+          docker compose up --build --wait --wait-timeout 120 backend
+          docker compose exec -T -e DJANGO_SUPERUSER_EMAIL -e DJANGO_SUPERUSER_PASSWORD \
+            backend python manage.py createsuperuser --noinput
+
+      - name: Run Noodle API collections
+        env:
+          password: ${{ env.DJANGO_SUPERUSER_PASSWORD }}
+          password2: ${{ env.DJANGO_SUPERUSER_PASSWORD }}
+        run: |
+          noodle collection run api-collection auth/create-user core/ profile/ \
+            --env ci --fail-fast --reporter junit --output noodle-api.xml
+          noodle collection run api-collection auth/logout \
+            --env ci --fail-fast --reporter junit --output noodle-logout.xml
+          noodle collection run api-collection auth/logout-all \
+            --env ci --fail-fast --reporter junit --output noodle-logout-all.xml
+
+      - name: Upload API test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: noodle-api-results
+          path: noodle-*.xml
+
+      - name: Show API logs on failure
+        if: failure()
+        run: docker compose logs --no-color
+
+      - name: Stop API
+        if: always()
+        run: docker compose down --volumes

@@ -1,9 +1,13 @@
 name: Logout All Sessions
 method: POST
 url: $base_url/api/v1/auth/logoutall/
-timeout: 0
+timeout: 10000
 followRedirects: true
 maxRedirects: 5
 auth:
   type: bearer
   token: $token
+assert:
+  - expression: status
+    operator: equals
+    value: 204
