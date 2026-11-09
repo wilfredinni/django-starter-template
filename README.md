@@ -65,7 +65,7 @@ that sanitize that header and prevent direct access. Request logs record the dir
 The repo includes a [Noodle](https://noodlerest.dev) collection (`api-collection/`) covering all `v1` endpoints. Install the CLI, start the stack, and run requests:
 
 ```bash
-curl -LsSf https://noodlerest.dev/install.sh | sh   # or: brew tap wilfredinni/noodle && brew trust wilfredinni/noodle && brew install noodle
+curl -LsSf https://noodlerest.dev/install.sh | sh   # or: brew install noodle
 noodle -c api-collection                           # open interactively
 noodle request run core/ping --collection api-collection   # or run a single request
 ```
